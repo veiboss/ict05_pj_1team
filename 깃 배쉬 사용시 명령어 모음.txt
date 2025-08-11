@@ -1,0 +1,43 @@
+# 1. master로 이동
+git switch master
+
+# 2. 원격 master 최신 내용 가져오기
+git pull origin master
+
+# 3. master를 기반으로 새로운 브랜치 생성 & 이동
+git switch -c feature/my-branch
+
+# 4. 코드/파일 수정 후 변경 사항 스테이징
+git add .
+
+# 5. 변경 사항 커밋
+git commit -m "작업 내용 설명"
+
+# 6. (선택) 새 브랜치를 원격에 업로드
+git push -u origin feature/my-branch
+
+# 7. master로 다시 이동
+git switch master
+
+# 8. master 최신 내용 가져오기 (혹시 변경 사항이 있을 수 있으니)
+git pull origin master
+
+# 9. 작업 브랜치를 master에 병합
+git merge feature/my-branch
+
+# 10. 병합된 master를 원격에 업로드
+git push origin master
+
+-----------------------------------------------------
+상세 설명
+
+git switch master                         # 현재 작업 브랜치를 master로 전환
+git pull origin master                    # 원격(origin)의 master 최신 내용 가져와서 로컬 master와 동기화
+git switch -c feature/my-branch           # master를 기반으로 'feature/my-branch'라는 새 브랜치를 만들고 이동
+git add .                                  # 현재 디렉토리 내 모든 변경 사항을 스테이징
+git commit -m "작업 내용 설명"              # 스테이징된 변경 사항을 메시지와 함께 커밋
+git push -u origin feature/my-branch      # 새 브랜치를 원격 저장소(origin)에 업로드하고 추적 설정(-u)
+git switch master                         # 다시 master 브랜치로 이동
+git pull origin master                    # 원격 master 최신 내용을 다시 가져와 충돌 가능성 최소화
+git merge feature/my-branch               # 현재(master)에 'feature/my-branch'의 변경 사항 병합
+git push origin master                    # 병합된 master 브랜치를 원격 저장소(origin)에 업로드
