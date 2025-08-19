@@ -22,5 +22,7 @@ import com.middlepj.ict05.dto.CustomerDTO;
 @Repository
 public class CustomerDAOImpl implements CustomerDAO {
 
+	@Autowired
+	private SqlSession session;
 
 }
