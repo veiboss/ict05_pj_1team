@@ -25,6 +25,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.UUID;
+
+import com.jcraft.jsch.ChannelSftp;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.Session;
 /**
  * Handles requests for the application home page.
  */
@@ -74,7 +78,7 @@ public class HomeController {
 
 
 	@ResponseBody
-	@RequestMapping("/image/upload")
+	@RequestMapping("/image/upload/normal")
 	public Map<String, Object> uploadImage(MultipartHttpServletRequest request, HttpServletResponse response) throws IOException {
 	    System.out.println("upload image");
 	    
@@ -121,6 +125,72 @@ public class HomeController {
 	    }
         return result;
 
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping("/image/upload")
+	public Map<String, Object> uploadSftpImage(MultipartHttpServletRequest request, HttpServletResponse response) throws IOException {
+	    Map<String, Object> result = new HashMap<>();
+	    MultipartFile file = request.getFile("upload");
+
+	    if (file != null && !file.isEmpty()) {
+	        Session session = null;
+	        ChannelSftp channelSftp = null;
+
+	        try {
+	            // JSch 객체 생성
+	            JSch jsch = new JSch();
+	            
+	            // 세션 연결 (호스트, 포트, 사용자)
+	            session = jsch.getSession("ict05", "ict05.wwwbiz.kr", 22);
+	            session.setPassword("admin*1472");
+
+	            // 보안 설정 (호스트 키 체크 무시)
+	            java.util.Properties config = new java.util.Properties();
+	            config.put("StrictHostKeyChecking", "no");
+	            session.setConfig(config);
+
+	            session.connect();
+
+	            // 채널 오픈
+	            channelSftp = (ChannelSftp) session.openChannel("sftp");
+	            channelSftp.connect();
+
+	            // 파일명 생성
+	            String originalFilename = file.getOriginalFilename();
+	            String extension = "";
+	            if (originalFilename != null && originalFilename.contains(".")) {
+	                extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+	            }
+	            String uuidFilename = UUID.randomUUID().toString() + extension;
+
+	            String remoteDir = "/httpdocs/";
+	            channelSftp.cd(remoteDir);
+
+	            // 업로드 실행
+	            channelSftp.put(file.getInputStream(), uuidFilename);
+
+	            // 업로드 성공 시 URL 반환
+	            String fileUrl = "http://ict05.wwwbiz.kr/" + uuidFilename;
+	            result.put("uploaded", true);
+	            result.put("url", fileUrl);
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            result.put("uploaded", false);
+	            result.put("error", Map.of("message", e.getMessage()));
+	        } finally {
+	            if (channelSftp != null && channelSftp.isConnected()) channelSftp.disconnect();
+	            if (session != null && session.isConnected()) session.disconnect();
+	        }
+
+	    } else {
+	        result.put("uploaded", false);
+	        result.put("error", Map.of("message", "파일이 비어있습니다."));
+	    }
+
+	    return result;
 	}
 
 }
