@@ -27,4 +27,10 @@ public class CustomerController {
 		return "common/main";
 	}
 	
+	@RequestMapping("/login.do")
+	public String login() {
+		logger.info("<<< url ==>  /login.do >>>");
+
+		return "common/login";
+	}
 }

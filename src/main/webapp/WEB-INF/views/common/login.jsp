@@ -27,7 +27,7 @@
 		<%@ include file="pc_left.jsp" %>
 		<!-- PC 컨텐츠 끝 -->
 		
-		<div id="container" class="">
+		<div id="container" class="lines">
 		<!-- [D] HEADER VIEW :  no class /.lines(2) / .only-back(1) / .only-close(1) -->
 			<!-- header 시각 -->
 			<%@ include file="header.jsp" %>
@@ -36,9 +36,26 @@
 			
 			<!-- 컨텐츠 시작 -->
 			<!-- SID : COM000 -->
-			<div id="content" class="sub"><!-- [D] main / sub-main / sub && pagd name -->
+			<div id="content" class="sub si10"><!-- [D] main / sub-main / sub && pagd name -->
 			
-				내용 들어오는 곳
+				<form class="sign-up-form">
+					<fieldset class="pack-down-center">
+						<legend class="article-title">로그인</legend>
+
+						<div class="pack-down-center">
+							<div class="field">
+								<input type="text" class="input-text" placeholder="이메일 입력">
+							</div>
+							<div class="field">
+								<input type="password" class="input-text" placeholder="비밀번호 입력">
+							</div>
+						</div>
+
+						<div class="button-area pack-center">
+							<button type="button" class="btn black large r4">로그인</button>
+						</div>
+					</fieldset>
+				</form>
 				
 			</div><!-- // #content -->
 			<!-- 컨텐츠 끝 -->
