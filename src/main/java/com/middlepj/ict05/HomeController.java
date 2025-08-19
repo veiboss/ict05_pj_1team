@@ -4,6 +4,9 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -34,6 +37,28 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		return "home";
+	}
+
+	@RequestMapping("/sample/ckeditor")
+	public String ckeditorAction() {
+
+		return "sample/ckeditor";
+	}
+
+
+	@RequestMapping("/sample/ckeditorAction")
+	public String ckeditorAction(HttpServletRequest request, HttpServletResponse response, Model model) {
+
+		String title = request.getParameter("title");
+		String editor = request.getParameter("editor");
+
+		System.out.println("title: " + title);
+		System.out.println("editor: " + editor);
+
+		model.addAttribute("title", title);
+		model.addAttribute("editor", editor);
+
+		return "sample/ckeditorAction";
 	}
 	
 }

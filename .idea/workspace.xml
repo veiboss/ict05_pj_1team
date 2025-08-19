@@ -4,11 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77cb8be7-f686-4a46-a50d-64c63d55820b" name="Changes" comment=".gitignore" />
+    <list default="true" id="77cb8be7-f686-4a46-a50d-64c63d55820b" name="Changes" comment=".gitignore">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/sample/ckeditor.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/sample/ckeditorAction.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/ckeditor/ckeditor5.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/ckeditor/ckeditor5.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/middlepj/ict05/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/middlepj/ict05/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/ckeditor/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/middlepj/ict05/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/middlepj/ict05/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.spring/mvc_mybatis/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.spring/mvc_mybatis/pom.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -46,10 +63,12 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Tomcat Server.Tomcat 9.0.106.executor": "Run",
     "git-widget-placeholder": "gek2omg",
+    "last_opened_file_path": "D:/DEV05/workspace_spring_ict05/ict05_pj_1team/src/main/webapp/resources/ckeditor",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -58,6 +77,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\DEV05\workspace_spring_ict05\ict05_pj_1team\src\main\webapp\resources\ckeditor" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Tomcat 9.0.106" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.106" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
@@ -196,7 +220,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755576639419</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary=".gitignore">
+      <option name="closed" value="true" />
+      <created>1755578385997</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1755578385997</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
