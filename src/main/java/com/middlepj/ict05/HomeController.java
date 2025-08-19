@@ -1,6 +1,8 @@
 package com.middlepj.ict05;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.util.Date;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.UUID;
 /**
@@ -72,47 +75,52 @@ public class HomeController {
 
 	@ResponseBody
 	@RequestMapping("/image/upload")
-	public Map<String, Object> uploadImage(@RequestParam("upload") MultipartFile uploadFile) throws IOException {
+	public Map<String, Object> uploadImage(MultipartHttpServletRequest request, HttpServletResponse response) throws IOException {
 	    System.out.println("upload image");
-
+	    
 	    Map<String, Object> result = new HashMap<>();
+	    MultipartFile file = request.getFile("upload");
+	    
+	    // 업로드 폴더 경로
+	    String saveDir = "D:/DEV05/workspace_spring_ict05/ict05_pj_1team/src/main/webapp/resources/uploads/";
+//	    String realDir = "D:/DEV05/workspace_spring_ict05/ict05_pj_1team/src/main/webapp/resources/uploads/";
+	    
+	    if(file != null && !file.isEmpty()) {
+	    	FileInputStream fis = null;
+	    	FileOutputStream fos = null;
+	    	
+	    	try {
+	    		 // // 폴더 생성
+	    		File uploadDir = new File(saveDir);
+	    		if (!uploadDir.exists()) uploadDir.mkdirs();
 
-	    if (uploadFile.isEmpty()) {
-	        result.put("uploaded", false);
+	    		// UUID 파일명
+	    		String originalFilename = file.getOriginalFilename();
+	    		String extension = "";
+	    		if (originalFilename != null && originalFilename.contains(".")) {
+	    		    extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+	    		}
+	    		String uuidFilename = UUID.randomUUID().toString() + extension;
+
+	    		// 파일 저장
+	    		File saveFile = new File(saveDir + uuidFilename);
+	    		file.transferTo(saveFile);
+
+	    		// CKEditor URL 반환
+	    		String fileUrl = "/resources/uploads/" + uuidFilename;
+
+	    		result.put("uploaded", true);
+	    		result.put("url", request.getContextPath() + fileUrl);
+	    	} finally {
+	    		 if (fis != null) fis.close();
+	             if (fos != null) fos.close();
+	    	}
+	    } else {
+	    	result.put("uploaded", false);
 	        result.put("error", Map.of("message", "파일이 비어있습니다."));
-	        return result;
 	    }
+        return result;
 
-	    // 원래 파일 확장자 추출
-	    String originalFilename = uploadFile.getOriginalFilename();
-	    String extension = "";
-	    if (originalFilename != null && originalFilename.contains(".")) {
-	        extension = originalFilename.substring(originalFilename.lastIndexOf("."));
-	    }
-
-	    // UUID로 새로운 파일 이름 생성
-	    String uuidFilename = UUID.randomUUID().toString() + extension;
-
-	    // 업로드 폴더
-	    File uploadDir = new File("D:/DEV05/workspace_spring_ict05/ict05_pj_1team/src/main/webapp/resources/uploads/");
-	    if(!uploadDir.exists()) {
-	        uploadDir.mkdirs();
-	    }
-
-	    String savePath = uploadDir.getAbsolutePath() + File.separator + uuidFilename;
-	    uploadFile.transferTo(new File(savePath));
-
-	    // 접근 가능한 URL
-	    String fileUrl = "/resources/uploads/" + uuidFilename;
-
-	    result.put("uploaded", true);
-	    result.put("url", "http://localhost/ict05" + fileUrl);
-	    
-	    System.out.println(fileUrl);
-	    
-	    return result;
 	}
-
-
 
 }

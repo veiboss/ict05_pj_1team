@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77cb8be7-f686-4a46-a50d-64c63d55820b" name="Changes" comment="/sample/ckeditor 추가" />
+    <list default="true" id="77cb8be7-f686-4a46-a50d-64c63d55820b" name="Changes" comment="/sample/ckeditor 추가">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/middlepj/ict05/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/middlepj/ict05/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploads/189331ef-c3b8-4fee-9173-00d6c0ca7aed.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploads/6017fcd2-ff97-4398-b9c6-880c3dce3668.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploads/80c0e205-06bf-4639-b56c-9642c9fb66ad.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploads/88e87eac-0418-4ae9-8845-5a40b7ba3d0c.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploads/abc.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploads/e63d9020-1305-4ad8-ad4b-4f403d47c583.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/uploads/eff77176-6a0e-4990-ac6f-f4ad6acddad1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/middlepj/ict05/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/middlepj/ict05/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.spring/mvc_mybatis/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.spring/mvc_mybatis/pom.properties" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -226,7 +238,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755582085708</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="/sample/ckeditor 추가">
+      <option name="closed" value="true" />
+      <created>1755592009745</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1755592009745</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
