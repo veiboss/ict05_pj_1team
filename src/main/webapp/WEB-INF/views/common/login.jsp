@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file="../../common/setting.jsp" %>
+    <%@ include file="setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,13 +24,13 @@
 <body>
 	<div id="wrap" class="wrap">
 		<!-- PC 컨텐츠 -->
-		<%@ include file="../../common/pc_left.jsp" %>
+		<%@ include file="pc_left.jsp" %>
 		<!-- PC 컨텐츠 끝 -->
 		
 		<div id="container" class="lines">
 		<!-- [D] HEADER VIEW :  no class /.lines(2) / .only-back(1) / .only-close(1) -->
 			<!-- header 시각 -->
-			<%@ include file="../../common/header.jsp" %>
+			<%@ include file="header.jsp" %>
 			<!-- header 끝 -->
 		
 			
@@ -38,21 +38,21 @@
 			<!-- SID : COM000 -->
 			<div id="content" class="sub si10"><!-- [D] main / sub-main / sub && pagd name -->
 			
-				<form class="sign-up-form" action="loginAction.do" method="post">
+				<form class="sign-up-form">
 					<fieldset class="pack-down-center">
 						<legend class="article-title">로그인</legend>
 
 						<div class="pack-down-center">
 							<div class="field">
-								<input type="text" name="mb_email" class="input-text" placeholder="이메일 입력">
+								<input type="text" class="input-text" placeholder="이메일 입력">
 							</div>
 							<div class="field">
-								<input type="password" name="mb_password" class="input-text" placeholder="비밀번호 입력">
+								<input type="password" class="input-text" placeholder="비밀번호 입력">
 							</div>
 						</div>
 
 						<div class="button-area pack-center">
-							<button type="submit" class="btn black large r4">로그인</button>
+							<button type="button" class="btn black large r4">로그인</button>
 						</div>
 					</fieldset>
 				</form>
@@ -61,11 +61,11 @@
 			<!-- 컨텐츠 끝 -->
 		
 			<!-- nav 시작 -->
-			<%@ include file="../../common/nav.jsp" %>
+			<%@ include file="nav.jsp" %>
 			<!-- nav 끝 -->
 		
 			<!-- footer 시작 -->
-			<%@ include file="../../common/footer.jsp" %>
+			<%@ include file="footer.jsp" %>
 			<!-- footer 끝 -->
 		</div><!-- // #container -->
 	</div><!-- // #wrap -->
