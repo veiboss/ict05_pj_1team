@@ -4,32 +4,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>footer</title>
+<title>YAKSOK footer</title>
 </head>
 <body>
-	<!-- footer 시작 -->
-	<div class="footer_info">
-		<div class="footer_link">
-			<ul>
-				<li><a href="#">회사소개</a></li>
-				<li><a href="#">이용약관</a></li>
-				<li><a href="#">개인정보 처리방침</a></li>
-			</ul>
-		</div>
-		<div class="footer_info_customer">
-			<h3>고객센터 02-1234-5678</h3>
-			<p>
-				평일 및 주말 10:00 ~ 17:00(공휴일 휴무)<br>
-				점심시간 12:00 ~ 13:00
-			</p>
-		</div>
-		<div class="footer_info_company">
-         <span>법인명 : ICTcopp</span>
-         <span>대표 : 김태희</span>
-         <span>사업자번호 : 123-7890</span>
-         <span>사업자 소재지 : 서울시 마포구 신수동</span>
-      </div>
-	</div>
-	<!-- footer 끝 -->
+			<!-- footer 시작 -->
+			<footer id="footer" class="footer">
+				<div class="footer-menu">
+					<a href="../etc/brand.html" class="btn transparent">약속 소개</a>
+					<a href="../cs/faq.html" class="btn transparent">FAQ</a>
+				</div>
+				<div class="com-info">
+					<p>YAKSOK</p>
+					<p>
+						서울특별시 마포구 백범로 23, 3층 (신수동, 케이터틀)
+					</p>
+					<p>대표 김민우 · 정연우 · 최민진</p>
+					<p>김주연 · 박미리 · 이경욱 · 옥채은 · 김동관</p>
+					<p>문의 <a href="mailto:finalbossveigar1@gmail.com">finalbossveigar1@gmail.com</a></p>
+				</div>
+				<p class="copyright">
+					Copyright 2025. ICT05TEAMONE Inc.<br>
+					All Rights Reserved.
+				</p>
+			</footer>
+			<!-- footer 끝 -->
 </body>
 </html>
