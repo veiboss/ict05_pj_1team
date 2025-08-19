@@ -38,21 +38,21 @@
 			<!-- SID : COM000 -->
 			<div id="content" class="sub si10"><!-- [D] main / sub-main / sub && pagd name -->
 			
-				<form class="sign-up-form">
+				<form class="sign-up-form" action="loginAction.do" method="post">
 					<fieldset class="pack-down-center">
 						<legend class="article-title">로그인</legend>
 
 						<div class="pack-down-center">
 							<div class="field">
-								<input type="text" class="input-text" placeholder="이메일 입력">
+								<input type="text" name="mb_email" class="input-text" placeholder="이메일 입력">
 							</div>
 							<div class="field">
-								<input type="password" class="input-text" placeholder="비밀번호 입력">
+								<input type="password" name="mb_password" class="input-text" placeholder="비밀번호 입력">
 							</div>
 						</div>
 
 						<div class="button-area pack-center">
-							<button type="button" class="btn black large r4">로그인</button>
+							<button type="submit" class="btn black large r4">로그인</button>
 						</div>
 					</fieldset>
 				</form>
