@@ -6,72 +6,108 @@ import java.sql.Timestamp;	// java.sql
 // DTO(Data Transfer Object) = VO(Value Object)
 public class CustomerDTO {
 	
-	private String mb_id;
-	private String mb_name;
-	private String mb_email;
-	private Date mb_password;	
-	private String mb_grade;
+	private String user_id;
+	private String user_password;
+	private String user_name;
+	private Date user_birthday;	
+	private String user_address;
+	private String user_hp;
+	private String user_email;
+	private Timestamp user_regdate;
 	
 	public CustomerDTO() {
 		super();
 	}
 
-	public CustomerDTO(String mb_id, String mb_name, String mb_email, Date mb_password, String mb_grade) {
+	public CustomerDTO(String user_id, String user_password, String user_name, Date user_birthday, String user_address,
+			String user_hp, String user_email, Timestamp user_regdate) {
 		super();
-		this.mb_id = mb_id;
-		this.mb_name = mb_name;
-		this.mb_email = mb_email;
-		this.mb_password = mb_password;
-		this.mb_grade = mb_grade;
+		this.user_id = user_id;
+		this.user_password = user_password;
+		this.user_name = user_name;
+		this.user_birthday = user_birthday;
+		this.user_address = user_address;
+		this.user_hp = user_hp;
+		this.user_email = user_email;
+		this.user_regdate = user_regdate;
 	}
 
-	public String getMb_id() {
-		return mb_id;
+	// getter setter
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 
-	public void setMb_id(String mb_id) {
-		this.mb_id = mb_id;
+	public String getUser_password() {
+		return user_password;
+	}
+	public void setUser_password(String user_password) {
+		this.user_password = user_password;
 	}
 
-	public String getMb_name() {
-		return mb_name;
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
 
-	public void setMb_name(String mb_name) {
-		this.mb_name = mb_name;
+	public Date getUser_birthday() {
+		return user_birthday;
+	}
+	public void setUser_birthday(Date user_birthday) {
+		this.user_birthday = user_birthday;
 	}
 
-	public String getMb_email() {
-		return mb_email;
+	public String getUser_address() {
+		return user_address;
+	}
+	public void setUser_address(String user_address) {
+		this.user_address = user_address;
 	}
 
-	public void setMb_email(String mb_email) {
-		this.mb_email = mb_email;
+	public String getUser_hp() {
+		return user_hp;
+	}
+	public void setUser_hp(String user_hp) {
+		this.user_hp = user_hp;
 	}
 
-	public Date getMb_password() {
-		return mb_password;
+	public String getUser_email() {
+		return user_email;
+	}
+	public void setUser_email(String user_email) {
+		this.user_email = user_email;
 	}
 
-	public void setMb_password(Date mb_password) {
-		this.mb_password = mb_password;
+	public Timestamp getUser_regdate() {
+		return user_regdate;
+	}
+	public void setUser_regdate(Timestamp user_regdate) {
+		this.user_regdate = user_regdate;
 	}
 
-	public String getMb_grade() {
-		return mb_grade;
-	}
-
-	public void setMb_grade(String mb_grade) {
-		this.mb_grade = mb_grade;
-	}
-
+	// toString()
 	@Override
 	public String toString() {
-		return "CustomerDTO [mb_id=" + mb_id + ", mb_name=" + mb_name + ", mb_email=" + mb_email + ", mb_password="
-				+ mb_password + ", mb_grade=" + mb_grade + "]";
+		return "CustomerDTO [user_id=" + user_id + ", user_password=" + user_password + ", user_name=" + user_name
+				+ ", user_birthday=" + user_birthday + ", user_address=" + user_address + ", user_hp=" + user_hp
+				+ ", user_email=" + user_email + ", user_regdate=" + user_regdate + "]";
 	}
-
-	
 	
 }
 
+
+//DROP TABLE mvc_customer_tbl  CASCADE CONSTRAINTS;
+//CREATE TABLE mvc_customer_tbl(
+//	    user_id         VARCHAR2(20)    PRIMARY KEY,       -- ID
+//		user_password   VARCHAR2(20)    NOT NULL,          -- 비�?번호
+//		user_name   	VARCHAR2(50)    NOT NULL,          -- ?���?
+//		user_birthday   DATE            NOT NULL,          -- ?��?��?��?��    
+//		user_address    VARCHAR2(50)    NOT NULL,          -- 주소
+//		user_hp         VARCHAR2(13),                      -- ?��?��?��      
+//		user_email      VARCHAR2(50)    NOT NULL,          -- ?��메일
+//		user_regdate    TIMESTAMP       DEFAULT sysdate    -- �??��?��
+//); 

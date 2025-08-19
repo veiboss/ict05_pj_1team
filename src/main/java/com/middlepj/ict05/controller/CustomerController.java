@@ -13,15 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.middlepj.ict05.service.CustomerService;
-
 
 
 @Controller
 public class CustomerController {
-	
-	@Autowired
-	private CustomerService service;
 
 	private static final Logger logger = LoggerFactory.getLogger(CustomerController.class);
 
@@ -36,15 +31,6 @@ public class CustomerController {
 	public String login() {
 		logger.info("<<< url ==>  /login.do >>>");
 
-		return "customer/login/login";
-	}
-	
-	@RequestMapping("/loginAction.do")
-	public String loginAction(HttpServletRequest request, HttpServletResponse response, Model model)
-			throws ServletException, IOException {
-		logger.info("<<< url ==>  /loginAction.do >>>");
-
-		service.loginAction(request, response, model);
-		return "common/main";
+		return "common/login";
 	}
 }
