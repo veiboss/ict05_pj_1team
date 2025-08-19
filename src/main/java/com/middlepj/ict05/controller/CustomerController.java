@@ -31,6 +31,6 @@ public class CustomerController {
 	public String login() {
 		logger.info("<<< url ==>  /login.do >>>");
 
-		return "common/login";
+		return "login/login";
 	}
 }
