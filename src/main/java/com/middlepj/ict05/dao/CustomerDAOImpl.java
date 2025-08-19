@@ -25,4 +25,13 @@ public class CustomerDAOImpl implements CustomerDAO {
 	@Autowired
 	private SqlSession session;
 
+	// 로그인 처리 / 회원정보 인증(수정, 탈퇴)
+	@Override
+	public int idPasswordChk(Map<String, Object> map) {
+		System.out.println("CustomerDAOImpl - idPasswordChk()");
+		
+		int selectCnt = session.selectOne("com.middlepj.ict05.dao.CustomerDAO.idPasswordChk", map);
+		
+		return selectCnt;
+	}
 }
