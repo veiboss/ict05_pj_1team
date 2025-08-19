@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<meta name="format-detection" content="telephone=no">
+<title>약을 쏘옥, 약속</title>
+<link type="text/css" href="../@resource/css/yaksok.css" rel="stylesheet" />
+<link type="text/css" href="../@1/resources/css/wsg_ex.css" rel="stylesheet" />
+
+<script src="../@resource/js/lib/jquery-3.2.1.min.js"></script>
+<script src="../@resource/js/lib/aos.js"></script>
+<script src="../@resource/js/yaksok.js"></script>
+
+
+<style type="text/css">
+	#pickForm					{max-width: 560px; margin: 0 auto;}
+	#pickForm .pick-section + .pick-section:not(:last-child)	{margin-top: 60px;}
+</style>
+</head>
+<body>
+
+
+			<!-- SID : FM302 S1 ~ S3 -->
+			<div id="content" class="sub pick-view pick-step"><!-- [D] main / sub-main / sub && pagd name -->
+
+				<form id="pickForm" class="pick-form">
+					<fieldset>
+						<legend class="blind">독PICK 참여</legend>
+
+						<!-- [D] 다중택일 -->
+						<div class="pick-section current">
+
+							<!-- [D] 다중택일 옵션 -->
+							<div class="pick-options multi">
+								<label class="btn pick">
+									<input type="radio" name="multiOne" class="blind">
+
+									<span class="img-wrap r8">
+										<img src="../@resource/images/@temp/pick_multi_01.jpg" class="centered" alt="이미지">
+									</span>
+
+									<span class="sub-text">집들이 선물 국룰 선배</span>
+									<strong class="text">휴지 &middot; 키친타올</strong>
+								</label>
+
+								<label class="btn pick">
+									<input type="radio" name="multiOne" class="blind">
+
+									<span class="img-wrap r8">
+										<img src="../@resource/images/@temp/pick_multi_02.jpg" class="centered" alt="이미지">
+									</span>
+
+									<span class="sub-text">오늘을 불태워버리자</span>
+									<strong class="text">각종 주류</strong>
+								</label>
+
+								<label class="btn pick">
+									<input type="radio" name="multiOne" class="blind">
+
+									<span class="img-wrap r8">
+										<img src="../@resource/images/@temp/pick_multi_03.jpg" class="centered" alt="이미지">
+									</span>
+
+									<span class="sub-text">향은 소중하니까</span>
+									<strong class="text">디퓨저 &middot; 향초</strong>
+								</label>
+
+								<label class="btn pick">
+									<input type="radio" name="multiOne" class="blind">
+
+									<span class="img-wrap r8">
+										<img src="../@resource/images/@temp/pick_multi_04.jpg" class="centered" alt="이미지">
+									</span>
+
+									<span class="sub-text">녹색 하나 놔드려야겠어요</span>
+									<strong class="text">식물 및 화분</strong>
+								</label>
+
+								<label class="btn pick">
+									<input type="radio" name="multiOne" class="blind">
+
+									<span class="img-wrap r8">
+										<img src="../@resource/images/@temp/pick_multi_05.jpg" class="centered" alt="이미지">
+									</span>
+
+									<span class="sub-text">요리할 때면 날 기억해줘</span>
+									<strong class="text">그릇 등 주방식기</strong>
+								</label>
+
+								<label class="btn pick">
+									<input type="radio" name="multiOne" class="blind">
+
+									<span class="img-wrap r8">
+										<img src="../@resource/images/@temp/pick_multi_06.jpg" class="centered" alt="이미지">
+									</span>
+
+									<span class="sub-text">영양을 책임질게요</span>
+									<strong class="text">과일 및 식료품</strong>
+								</label>
+							</div><!-- // .pick-options -->
+						</div><!-- // .pick-section -->
+
+						<!-- [D] 다지선다 -->
+						<div class="pick-section current">
+
+							<!-- [D] 다지선다 옵션 -->
+							<div class="pick-options multi">
+								<label class="btn pick">
+									<input type="checkbox" name="multi" class="blind">
+
+									<span class="img-wrap r8">
+										<img src="../@resource/images/@temp/pick_multi_01.jpg" class="centered" alt="이미지">
+									</span>
+
+									<span class="sub-text">집들이 선물 국룰 선배</span>
+									<strong class="text">휴지 &middot; 키친타올</strong>
+								</label>
+
+								<label class="btn pick">
+									<input type="checkbox" name="multi" class="blind">
+
+									<span class="img-wrap r8">
+										<img src="../@resource/images/@temp/pick_multi_02.jpg" class="centered" alt="이미지">
+									</span>
+
+									<span class="sub-text">오늘을 불태워버리자</span>
+									<strong class="text">각종 주류</strong>
+								</label>
+
+								<label class="btn pick">
+									<input type="checkbox" name="multi" class="blind">
+
+									<span class="img-wrap r8">
+										<img src="../@resource/images/@temp/pick_multi_03.jpg" class="centered" alt="이미지">
+									</span>
+
+									<span class="sub-text">향은 소중하니까</span>
+									<strong class="text">디퓨저 &middot; 향초</strong>
+								</label>
+
+								<label class="btn pick">
+									<input type="checkbox" name="multi" class="blind">
+
+									<span class="img-wrap r8">
+										<img src="../@resource/images/@temp/pick_multi_04.jpg" class="centered" alt="이미지">
+									</span>
+
+									<span class="sub-text">녹색 하나 놔드려야겠어요</span>
+									<strong class="text">식물 및 화분</strong>
+								</label>
+
+								<label class="btn pick">
+									<input type="checkbox" name="multi" class="blind">
+
+									<span class="img-wrap r8">
+										<img src="../@resource/images/@temp/pick_multi_05.jpg" class="centered" alt="이미지">
+									</span>
+
+									<span class="sub-text">요리할 때면 날 기억해줘</span>
+									<strong class="text">그릇 등 주방식기</strong>
+								</label>
+
+								<label class="btn pick">
+									<input type="checkbox" name="multi" class="blind">
+
+									<span class="img-wrap r8">
+										<img src="../@resource/images/@temp/pick_multi_06.jpg" class="centered" alt="이미지">
+									</span>
+
+									<span class="sub-text">영양을 책임질게요</span>
+									<strong class="text">과일 및 식료품</strong>
+								</label>
+							</div><!-- // .pick-options -->
+						</div><!-- // .pick-section -->
+
+						<!-- [D] 양자택일 VS -->
+						<div class="pick-section current">
+
+							<!-- [D] 양자택일 VS 옵션 -->
+							<div class="pick-options vs">
+								<label class="btn pick">
+									<input type="radio" name="vs" class="blind">
+
+									<span class="img-wrap circle">
+										<img src="../@resource/images/@temp/pick_vs_01.jpg" class="centered" alt="이미지">
+									</span>
+
+									<span class="sub-text">모르는 사이도 아니고!</span>
+									<strong class="text">도와야 한다</strong>
+								</label>
+
+								<label class="btn pick">
+									<input type="radio" name="vs" class="blind">
+
+									<span class="img-wrap circle">
+										<img src="../@resource/images/@temp/pick_vs_02.jpg" class="centered" alt="이미지">
+									</span>
+
+									<span class="sub-text">손님은 그냥 쉬세요</span>
+									<strong class="text">주인이 한다</strong>
+								</label>
+							</div><!-- // .pick-options -->
+						</div><!-- // .pick-section -->
+
+						<!-- [D] 양자택일 OX -->
+						<div class="pick-sectio currentn">
+
+							<!-- [D] 양자택일 OX 옵션-->
+							<div class="pick-options ox">
+								<label class="btn pick">
+									<input type="radio" name="vs">
+
+									<span class="character-wrap vs-o"></span>
+
+									<span class="sub-text">효율이나 맛만 좋으면</span>
+									<strong class="text">된다</strong>
+								</label>
+
+								<label class="btn pick">
+									<input type="radio" name="vs">
+
+									<span class="character-wrap vs-x"></span>
+
+									<span class="sub-text">음식은 정성이지!</span>
+									<strong class="text">안된다</strong>
+								</label>
+							</div><!-- // .pick-options -->
+						</div><!-- // .pick-section -->
+
+						<!-- [D] 순위매기기 -->
+						<div class="pick-section current">
+
+							<!-- [D] 순위매기기 SLIP -->
+							<div class="pick-options rank">
+								<ol id="dragList" class="rank-list draggable">
+									<li>
+										<div class="item">
+											<div class="img-wrap circle">
+												<img src="../@resource/images/@temp/pick_rank_01.jpg" class="centered" alt="이미지">
+											</div>
+
+											<div>
+												<p class="sub-text">학창시절 친구집에 가던 마음으로</p>
+												<p class="text">교복 패션</p>
+											</div>
+
+											
+										</div>
+									</li>
+									<li>
+										<div class="item">
+											<div class="img-wrap circle">
+												<img src="../@resource/images/@temp/pick_rank_02.jpg" class="centered" alt="이미지">
+											</div>
+
+											<div>
+												<p class="sub-text">남의집 가는데 예의는 차려야...</p>
+												<p class="text">정장</p>
+											</div>
+
+											
+										</div>
+									</li>
+									<li>
+										<div class="item">
+											<div class="img-wrap circle">
+												<img src="../@resource/images/@temp/pick_rank_03.jpg" class="centered" alt="이미지">
+											</div>
+
+											<div>
+												<p class="sub-text">편하게 누워 있을 거니까,</p>
+												<p class="text">잠옷</p>
+											</div>
+
+											
+										</div>
+									</li>
+									<li>
+										<div class="item">
+											<div class="img-wrap circle">
+												<img src="../@resource/images/@temp/pick_rank_04.jpg" class="centered" alt="이미지">
+											</div>
+
+											<div>
+												<p class="sub-text">집들이=파티, 신나게 놀 수 있는</p>
+												<p class="text">코스프레 복장</p>
+											</div>
+
+											
+										</div>
+									</li>
+									<li>
+										<div class="item">
+											<div class="img-wrap circle">
+												<img src="../@resource/images/@temp/pick_rank_05.jpg" class="centered" alt="이미지">
+											</div>
+
+											<div>
+												<p class="sub-text">너희 집 바닥을 헤엄칠게</p>
+												<p class="text">수영복</p>
+											</div>
+
+											
+										</div>
+									</li>
+								</ol>
+							</div><!-- // .pick-options -->
+						</div><!-- // .pick-section -->
+
+					</fieldset>
+				</form>
+			</div><!-- // #content -->
+
+</body>
+</html>

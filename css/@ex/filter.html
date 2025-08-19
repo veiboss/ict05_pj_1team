@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<meta name="format-detection" content="telephone=no">
+<title>약을 쏘옥, 약속</title>
+<link type="text/css" href="../@resource/css/yaksok.css" rel="stylesheet" />
+<link type="text/css" href="../@1/resources/css/wsg_ex.css" rel="stylesheet" />
+
+<script src="../@resource/js/lib/jquery-3.2.1.min.js"></script>
+<script src="../@resource/js/lib/aos.js"></script>
+<script src="../@resource/js/yaksok.js"></script>
+
+<style>
+
+</style>
+</head>
+<body>
+	<div id="wrap" class="wrap">
+
+		<div id="container" class="">
+
+			<!-- SID : COM000 -->
+			<div id="content" class="">
+				<section class="section">
+					<div class="list-control">
+						<button type="button" class="btn transparent" onclick="modalOpen('#popFilter')"><i class="ico filter"></i> 필터&nbsp;
+							<span class="fc-blue" id="filterCount">4</span>
+						</button>
+
+						<div class="sorting-wrap check-wrap">
+							<label class="check-wrap">
+								<input type="radio" class="sorting" name="sorting" checked>
+								<span>최신 순</span>
+							</label>
+
+							<label class="check-wrap">
+								<input type="radio" class="sorting" name="sorting">
+								<span>좋아요 순</span>
+							</label>
+						</div>
+
+						<div class="filtering-wrap">
+							<button type="button" class="btn filtering">음식</button>
+							<button type="button" class="btn filtering">생활</button>
+							<button type="button" class="btn filtering">건강</button>
+							<button type="button" class="btn filtering">기타</button>
+						</div>
+					</div>
+				</section>
+			</div><!-- // #content -->
+		</div>
+
+	</div><!-- // #wrap -->
+
+	<div id="popFilter" class="overlay">
+		<div class="popup">
+			<div class="popup-header">
+				<h2 class="popup-title">필터</h2>
+				<button type="button" class="btn btn-close" onclick="modalClose('#popFilter');">
+					<i class="ico close-s"><span>닫기</span></i>
+				</button>
+			</div>
+			<div class="popup-body">
+				<form class="form">
+					<fieldset>
+						<legend class="blind">필터</legend>
+
+						<div class="field both">
+							<span class="label">
+								내 관심사만 보기
+								<a href="../my/edit_info.html" class="btn transparent">
+									<i class="ico setting"><span>설정</span></i>
+								</a>
+							</span>
+							<span class="insert">
+								<label class="check-wrap toggle">
+									<input type="checkbox" name="pushSet" checked>
+									<span></span>
+								</label>
+							</span>
+						</div>
+
+						<div class="field">
+							<span class="label">
+								카테고리
+							</span>
+							<span class="insert">
+								<label class="check-wrap all">
+									<input type="checkbox" class="checkbox all" name="filterCate">
+									<span>모든 카테고리</span>
+								</label>
+								<label class="check-wrap">
+									<input type="checkbox" class="checkbox" name="filterCate">
+									<span>집꾸미기</span>
+								</label>
+								<label class="check-wrap">
+									<input type="checkbox" class="checkbox" name="filterCate">
+									<span>집구하기</span>
+								</label>
+								<label class="check-wrap">
+									<input type="checkbox" class="checkbox" name="filterCate">
+									<span>감정</span>
+								</label>
+								<label class="check-wrap">
+									<input type="checkbox" class="checkbox" name="filterCate">
+									<span>문화</span>
+								</label>
+								<label class="check-wrap">
+									<input type="checkbox" class="checkbox" name="filterCate">
+									<span>금융</span>
+								</label>
+								<label class="check-wrap">
+									<input type="checkbox" class="checkbox" name="filterCate">
+									<span>음식</span>
+								</label>
+								<label class="check-wrap">
+									<input type="checkbox" class="checkbox" name="filterCate">
+									<span>건강</span>
+								</label>
+								<label class="check-wrap">
+									<input type="checkbox" class="checkbox" name="filterCate">
+									<span>생활</span>
+								</label>
+								<label class="check-wrap">
+									<input type="checkbox" class="checkbox" name="filterCate">
+									<span>기타</span>
+								</label>
+								<label class="check-wrap">
+									<input type="checkbox" class="checkbox" name="filterCate">
+									<span>안전</span>
+								</label>
+							</span>
+						</div>
+
+						<div class="field">
+							<span class="label">
+								카테고리
+							</span>
+							<span class="insert">
+								<label class="check-wrap all">
+									<input type="checkbox" class="checkbox all" name="filterType">
+									<span>모든 타입</span>
+								</label>
+								<label class="check-wrap">
+									<input type="checkbox" class="checkbox" name="filterType">
+									<span>TIP</span>
+								</label>
+								<label class="check-wrap">
+									<input type="checkbox" class="checkbox" name="filterType">
+									<span>TALK</span>
+								</label>
+							</span>
+						</div>
+
+						<div class="button-area">
+							<button type="reset" class="btn transparent medium">
+								<i class="ico reset"></i>
+								필터 재설정
+							</button>
+							<button type="button" class="btn black medium r4" onclick="modalClose('#popFilter');">
+								필터 적용하기(123)
+							</button>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div><!-- // #popFilter -->
+
+	<script>
+		jQuery(function(){
+			popFilter();
+
+			//filtering
+			$('.btn.filtering').on('click', function() {
+				var filtering = $(this).parent('.filtering-wrap'),
+					count = $(filtering).children('.btn').length - 1;
+
+				$(this).remove();
+				if (count > 0) {
+					$("#filterCount").text( count );
+				} else{
+					$(filtering).remove();
+					$("#filterCount").text( null );
+				}
+			});
+		});
+	</script>
+</body>
+</html>

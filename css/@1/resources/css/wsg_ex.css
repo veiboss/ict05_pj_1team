@@ -1,0 +1,68 @@
+@charset "utf-8";
+/*
+	TeamOne 
+	KimJuYeon
+	2025.08.14
+*/
+
+/* row > col */
+body > [class*="pack-"]						{
+	-webkit-flex-wrap: wrap; flex-wrap: wrap;
+}
+body > [class*="pack-"] + [class*="pack-"]	{margin-top: 1rem}
+
+
+[class*="row-"]{
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
+	padding: 8px 0;
+}
+
+[class*="row"] + [class*="row"]{margin-top:-8px;}
+
+
+/* row > col */
+[class*="row"],
+[class*="col"]								{position: relative;}
+[class*="col"]								{ }
+[class*="row-"]								{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-content: flex-start;
+}
+[class*="row"] + [class*="row"]				{margin-top:1rem;}
+@media (max-width: 375px) {
+	[class*="row-"]							{flex-direction: column;}
+	.col 									{display:block;width:100%;}
+	[class*="row"] > .col + .col			{margin-top:1rem;}
+}
+@media (min-width: 376px) {
+	/*[class*="row"] > .col + .col				{margin-left:1rem;}*/
+	.row-2 > [class*="col"]						{flex : 0 1 calc((100% - 1rem) / 2);}
+	.row-3 > [class*="col"]						{flex : 0 1 calc((100% - 2rem) / 3);}
+	.row-4 > [class*="col"]						{flex : 0 1 calc((100% - 3rem) / 4);}
+	.row-5 > [class*="col"]						{flex : 0 1 calc((100% - 4rem) / 5);}
+	.row-3 > .col-2								{flex-basis:calc(1rem + ((100% - 2rem) / 3) * 2);}
+	.row-4 > .col-2								{flex-basis:calc(1rem + ((100% - 3rem) / 4) * 2);}
+	.row-4 > .col-3								{flex-basis:calc(2rem + ((100% - 3rem) / 4) * 3);}
+	.row-5 > .col-2								{flex-basis:calc(1rem + ((100% - 4rem) / 5) * 2);}
+	.row-5 > .col-3								{flex-basis:calc(2rem + ((100% - 4rem) / 5) * 3);}
+	.row-5 > .col-4								{flex-basis:calc(3rem + ((100% - 4rem) / 5) * 4);}
+}
+
+[class*="row-"]{
+	-webkit-justify-content: space-between;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
+	padding: 8px 0;
+}
+
+[class*="row"] + [class*="row"]{margin-top:-8px;}
