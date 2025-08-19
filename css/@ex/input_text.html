@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<meta name="format-detection" content="telephone=no">
+<title>약을 쏘옥, 약속</title>
+<link type="text/css" href="../@resource/css/yaksok.css" rel="stylesheet" />
+<link type="text/css" href="../@1/resources/css/wsg_ex.css" rel="stylesheet" />
+
+<script src="../@resource/js/lib/jquery-3.2.1.min.js"></script>
+<script src="../@resource/js/lib/aos.js"></script>
+<script src="../@resource/js/yaksok.js"></script>
+
+
+<style type="text/css">
+	.col{max-width: 300px;}
+</style>
+</head>
+<body>
+	<div class="row-3">
+		<div class="col">
+			<label class="label-box">
+				<span class="text-label">이름</span>
+				<input type="text" class="input-text" placeholder="이름을 입력해주세요">
+			</label>
+		</div>
+
+		<div class="col">
+			<label class="label-box disabled">
+				<span class="text-label">이름</span>
+				<input type="text" class="input-text" placeholder="박보미" disabled>
+			</label>
+		</div>
+
+		<div class="col"></div>
+	</div>
+
+	<div class="row-3">
+		<div class="col">
+			<input type="text" class="input-text" placeholder="이름을 입력해주세요">
+		</div>
+
+		<div class="col">
+			<input type="text" class="input-text" placeholder="박보미" disabled>
+		</div>
+
+		<div class="col"></div>
+	</div>
+
+	<div class="row-3">
+		<div class="col">
+			<div class="input-has-btn r4">
+				<input type="password" class="input-text" placeholder="비밀번호를 입력해주세요">
+				<button type="button" class="btn transparent toggle-password" onclick="togglePass(this);">
+					<i class="ico no-show s20"><span>비밀번호 보기</span></i>
+				</button>
+			</div>
+		</div>
+
+		<div class="col">
+			<div class="input-has-btn r4">
+				<input type="password" class="input-text" placeholder="비밀번호를 입력해주세요" value="123456!" disabled>
+				<button type="button" class="btn transparent toggle-password" onclick="togglePass(this);">
+					<i class="ico no-show s20"><span>비밀번호 보기</span></i>
+				</button>
+			</div>
+		</div>
+
+		<div class="col"></div>
+	</div>
+
+	<div class="row-3">
+		<div class="col">
+			<label class="label-box">
+				<span class="text-label">이메일 주소</span>
+				<input type="text" class="input-text" value="qhaqha@mail.com">
+			</label>
+			<p class="field-msg">
+				영문, 숫자, 특수문자 포함 8자이상이어야 합니다
+				<span class="warning">이미 사용중인 이메일 입니다</span>
+			</p>
+		</div>
+
+		<div class="col">
+			<label class="label-box">
+				<span class="text-label">비밀번호</span>
+				<input type="password" class="input-text" value="123456qwert!@">
+			</label>
+			<p class="field-msg">
+				영문, 숫자, 특수문자 포함 8자이상이어야 합니다
+			</p>
+		</div>
+
+		<div class="col"></div>
+	</div>
+
+	<div class="row-3">
+		<div class="col">
+			<input type="search" class="input-text" placeholder="검색어를 입력해주세요">
+		</div>
+
+		<div class="col"></div>
+
+		<div class="col"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+<meta name="format-detection" content="telephone=no">
+<title>약을 쏘옥, 약속</title>
+
+<link type="text/css" href="../@resource/css/yaksok.css" rel="stylesheet" />
+<link type="text/css" href="../@1/resources/css/wsg_ex.css" rel="stylesheet" />
+
+<script src="../@resource/js/lib/jquery-3.2.1.min.js"></script>
+<script src="../@resource/js/lib/aos.js"></script>
+<script src="../@resource/js/yaksok.js"></script>
+
+<style type="text/css">
+.tab-content > .section {padding-bottom: 28px}
+.tab-content > .section-bar + .section {margin-top: 28px}
+</style>
+</head>
+<body>
+
+
+	<div id="wrap" class="wrap">
+		<div id="container" class="only-close">
+			<div id="content" class="sub">
+
+
+
+
+
+				<ul class="tabs line out-cont">
+					<li class="current"><a href="#tabAll">전체 <span class="count">26</span></a></li>
+					<li><a href="#tabLife">독LIFE <span class="count">4</span></a></li>
+					<li><a href="#tabQ">독Q <span class="count">12</span></a></li>
+					<li><a href="#tabTalk">독TALK <span class="count">8</span></a></li>
+				</ul>
+
+				<div id="tabAll" class="tab-content active">
+					<section class="section sum-life">
+						<h2 class="small-title header-line">독LIFE <span class="count">4</span></h2>
+
+						<div class="data-list">컨텐츠 생략</div>
+
+						<div class="button-area ta-c">
+							<button type="button" class="btn bdr-gray medium" onclick="tabCurrent('#tabLife');">
+								독LIFE 더 보기
+							</button>
+						</div>
+					</section><!-- // .section.sum-life -->
+
+					<!-- [D] 섹션별 검색결과 0일 때 hr + section 노출안되게 -->
+					<hr class="out-cont section-bar">
+					<section class="section sum-q">
+						<h2 class="small-title header-line">독Q <span class="count">12</span></h2>
+
+						<div class="data-list">컨텐츠 생략</div>
+
+						<div class="button-area ta-c">
+							<button type="button" class="btn bdr-gray medium" onclick="tabCurrent('#tabQ');">
+								독Q 더 보기
+							</button>
+						</div>
+					</section><!-- // .section.sum-q -->
+
+					<hr class="out-cont section-bar">
+					<section class="section sum-talk">
+						<h2 class="small-title header-line">독TALK <span class="count">8</span></h2>
+
+						<div class="data-list">컨텐츠 생략</div>
+
+						<div class="button-area ta-c">
+							<button type="button" class="btn bdr-gray medium" onclick="tabCurrent('#tabTalk');">
+								독TALK 더 보기
+							</button>
+						</div>
+					</section><!-- // .section.sum-talk -->
+				</div><!-- // #tabAll -->
+
+				<div id="tabLife" class="tab-content">
+					<div class="data-list">독LIFE 컨텐츠 생략</div>
+				</div><!-- // #tabLife -->
+
+				<div id="tabQ" class="tab-content">
+					<div class="data-list">독Q 컨텐츠 생략</div>
+				</div><!-- // #tabQ -->
+
+				<div id="tabTalk" class="tab-content">
+					<div class="data-list">독TALK 컨텐츠 생략</div>
+				</div><!-- // #tabTalk -->
+
+
+
+
+
+			</div><!-- // #content -->
+		</div>
+	</div><!-- // #wrap -->
+</body>
+</html>
