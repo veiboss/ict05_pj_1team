@@ -1,11 +1,12 @@
-# 1. master로 이동
-git switch master
+# 1. dev로 이동
+git switch dev
 
-# 2. 원격 master 최신 내용 가져오기
-git pull origin master
+# 2. 원격 dev 최신 내용 가져오기
+git pull origin dev
 
-# 3. master를 기반으로 새로운 브랜치 생성 & 이동
-git switch -c feature/my-branch
+# 3. dev를 기반으로 새로운 브랜치 생성 & 이동
+git checkout -b '자신이름' (처음에만)
+생성후 : git checkout '자신이름'
 
 # 4. 코드/파일 수정 후 변경 사항 스테이징
 git add .
@@ -13,20 +14,18 @@ git add .
 # 5. 변경 사항 커밋
 git commit -m "작업 내용 설명"
 
-# 6. (선택) 새 브랜치를 원격에 업로드
-git push -u origin feature/my-branch
+# 6. 브랜치를 업로드
+git push origin '자신이생성한브랜치이름'
 
-# 7. master로 다시 이동
-git switch master
+# 7. 깃허브 홈페이지에서 pull request요청
+dev 브랜치에 자신이 작업하던 브랜치 merge 요청
+요청 후 카톡으로 연락
 
-# 8. master 최신 내용 가져오기 (혹시 변경 사항이 있을 수 있으니)
-git pull origin master
+# 8. pull request 성공 후 
+git checkout dev # dev 이동
+git log  # 확인후 차이가 있다면
+git pull origin dev # dev동기화
 
-# 9. 작업 브랜치를 master에 병합
-git merge feature/my-branch
-
-# 10. 병합된 master를 원격에 업로드
-git push origin master
 
 -----------------------------------------------------
 상세 설명
