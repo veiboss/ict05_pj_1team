@@ -1,4 +1,6 @@
 jQuery(function(){
+	nav.init();
+	
 	$(window).on("resize", function () {
 		nav.resize();
 	});
