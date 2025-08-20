@@ -3,8 +3,8 @@
 	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="spring.mvc.spring_pj_ict05.dao.BoardDAO">
-	<select id="boardList" parameterType="map" resultType="spring.mvc.spring_pj_ict05.dto.BoardDTO">
+<mapper namespace="com.middlepj.ict05_pj_1team.domain.qna.dao.QnaDao">
+	<select id="qnaList" parameterType="map" resultType="com.middlepj.ict05_pj_1team.domain.qna.dto.QnaDto">
 		SELECT *
 			FROM 
 				(SELECT A.*
