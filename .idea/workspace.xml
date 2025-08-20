@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77cb8be7-f686-4a46-a50d-64c63d55820b" name="Changes" comment="ckeditor 추가">
+    <list default="true" id="77cb8be7-f686-4a46-a50d-64c63d55820b" name="Changes" comment="QnaDto 생성">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/middlepj/ict05/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/middlepj/ict05/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/middlepj/ict05/domain/qna/dao/QnaDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/middlepj/ict05/domain/qna/dao/QnaDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/middlepj/ict05/domain/qna/service/QnaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/middlepj/ict05/domain/qna/service/QnaService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +71,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Tomcat Server.Tomcat 9.0.106.executor": "Run",
-    "git-widget-placeholder": "#24 on gek2omg",
+    "git-widget-placeholder": "#25 on gek2omg",
     "last_opened_file_path": "D:/DEV05/workspace_spring_ict05/ict05_pj_1team/src/main/webapp/resources/ckeditor",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -297,7 +298,23 @@
       <option name="project" value="LOCAL" />
       <updated>1755673618387</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="ckeditor 추가">
+      <option name="closed" value="true" />
+      <created>1755675180358</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1755675180358</updated>
+    </task>
+    <task id="LOCAL-00016" summary="QnaDto 생성">
+      <option name="closed" value="true" />
+      <created>1755675811144</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1755675811144</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,6 +337,7 @@
     <MESSAGE value="/sample/ckeditor 추가" />
     <MESSAGE value="Qna 추가" />
     <MESSAGE value="ckeditor 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="ckeditor 추가" />
+    <MESSAGE value="QnaDto 생성" />
+    <option name="LAST_COMMIT_MESSAGE" value="QnaDto 생성" />
   </component>
 </project>
