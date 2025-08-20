@@ -21,7 +21,7 @@ git push origin '자신이생성한브랜치이름'
 dev 브랜치에 자신이 작업하던 브랜치 merge 요청
 요청 후 카톡으로 연락
 
-# 8. pull request 성공 후 
+# 8. pull request 성공 후
 git checkout dev # dev 이동
 git log  # 확인후 차이가 있다면
 git pull origin dev # dev동기화

@@ -1,3 +1,31 @@
+<<<<<<< HEAD
+# IDE
+/.idea/
+/*.iml
+/.classpath
+/.project
+/.settings/
+
+# 빌드 디렉토리
+/target/
+/out/
+
+# 로그
+*.log
+
+# OS 파일
+.DS_Store
+Thumbs.db
+
+# 개인 환경설정
+application.properties
+application.yml
+.env
+
+# MyBatis Mapper XML
+# 필요 없다면 무시 가능
+# src/main/resources/mappers/*.xml
+=======
 # === Java Compiled Files ===
 *.class        # 자바 컴파일 산출물
 *.war          # 웹 애플리케이션 패키지 파일
@@ -34,3 +62,8 @@ Thumbs.db      # Windows 탐색기 썸네일 캐시
 .idea/         # IntelliJ IDEA 프로젝트 설정 폴더
 *.iml          # IntelliJ 모듈 파일
 out/           # IntelliJ 빌드 산출물
+>>>>>>> origin/dev
+
+# Build outputs
+target/
+
