@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="spring.mvc.spring_pj_ict05.dao.BoardDAO">
+	<select id="boardList" parameterType="map" resultType="spring.mvc.spring_pj_ict05.dto.BoardDTO">
+		SELECT *
+			FROM 
+				(SELECT A.*
+					 , rownum AS rn
+				   FROM (SELECT * FROM mvc_board_tbl
+				ORDER BY B_NUM DESC) A
+				)
+			WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="boardCnt" resultType="int">
+		SELECT COUNT(*) as cnt FROM mvc_board_tbl
+	</select>
+
+	<update id="plusReadCnt" parameterType="map">
+		UPDATE mvc_board_tbl
+		   SET b_readcnt = b_readcnt + 1
+		 WHERE b_num = #{b_num}
+	</update>
+
+	<select id="getBoardDetail" parameterType="map" resultType="spring.mvc.spring_pj_ict05.dto.BoardDTO">
+		SELECT * FROM mvc_board_tbl WHERE b_num = #{b_num}
+	</select>
+	
+	<select id="password_chk" parameterType="Map" resultType="int">
+		SELECT COUNT(*) FROM mvc_board_tbl WHERE b_num = #{b_num} AND b_password = #{b_password}
+	</select>
+	
+	<update id="updateBoard" parameterType="map">
+		UPDATE mvc_board_tbl
+		   SET b_password = #{b_password},
+		       b_title = #{b_title},
+		       b_content = #{b_content}
+		 WHERE b_num = #{b_num}
+	</update>
+	
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM mvc_board_tbl
+		 WHERE b_num = #{value}
+	</delete>
+	
+	<insert id="insertBoard" parameterType="spring.mvc.spring_pj_ict05.dto.BoardDTO">
+		    INSERT INTO mvc_board_tbl (
+		        b_num,
+		        b_title,
+		        b_content,
+		        b_writer,
+		        b_password,
+		        b_regdate,
+		        b_comment_count
+		    )
+		    VALUES (
+		        (SELECT NVL(MAX(b_num) + 1, 1) FROM mvc_board_tbl),
+		        #{b_title},
+		        #{b_content},
+		        #{b_writer},
+		        #{b_password},
+		        SYSDATE,
+		        0
+		    )
+	</insert>
+				
+	<insert id="insertComment" parameterType="spring.mvc.spring_pj_ict05.dto.BoardCommentDTO">
+		    INSERT INTO mvc_comment_tbl (
+		        c_comment_num,
+		        c_board_num,
+		        c_writer,
+		        c_content,
+		        c_regDate
+		    )
+		    VALUES (
+		        (SELECT NVL(MAX(c_comment_num) + 1, 1) FROM mvc_comment_tbl),
+		        #{c_board_num},
+		        #{c_writer},
+		        #{c_content},
+		        SYSDATE
+		    )
+	</insert>
+
+	<select id="commentList" parameterType="int" resultType="spring.mvc.spring_pj_ict05.dto.BoardCommentDTO">
+	    SELECT *
+	    FROM (
+	        SELECT A.*, rownum AS rn
+	        FROM (
+	            SELECT *
+	            FROM mvc_comment_tbl c
+	            JOIN mvc_board_tbl b ON b.b_num = c.c_board_num
+	            WHERE b.b_num = #{value}
+	            ORDER BY c.c_comment_num DESC
+	        ) A
+	    )
+	</select>
+
+
+
+
+
+</mapper>
