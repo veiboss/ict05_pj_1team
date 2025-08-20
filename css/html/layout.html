@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+
+	<title>약을 쏘옥, 약속</title>
+
+	<link type="text/css" href="../@resource/css/yaksok.css" rel="stylesheet">
+
+	<script src="../@resource/js/lib/jquery-3.2.1.min.js"></script>
+	<script src="../@resource/js/lib/aos.js"></script>
+	<script src="../@resource/js/yaksok.js"></script>
+	
+</head>
+<body>
+
+	<div class="skip-nav">
+		<a href="#nav">내비게이션 바로가기</a>
+		<a href="#content">본문 바로가기</a>
+		<a href="#header">헤더 바로가기</a>
+	</div>
+
+	<div id="wrap" class="wrap">
+		<div class="pc-content">
+			<div class="typing-wrap" data-aos="fade-right">
+				<p class="typing-fix">
+					약을 쏘옥,<br>
+					약속
+				</p>
+				<p class="typing">
+					<span id="pcTyping">믿음까지 쏘옥 담아</span>
+					<span id="pcTyping2">약속할께요</span>
+				</p>
+			</div>
+		</div>
+
+		<div id="container" class=""><!-- [D] HEADER VIEW :  no class /.lines(2) / .only-back(1) / .only-close(1) -->
+			<header id="header">
+				<h1>
+					<a href="index.html"><span class="logo"><span class="blind">약을 쏘옥</span></span></a>
+				</h1>
+
+				<div class="btns">
+
+				</div>
+
+				<div class="detail-line">
+					<button type="button" class="btn back">
+						<i class="ico back"><span>뒤로</span></i>
+					</button>
+
+					<button type="button" class="btn close">
+						<i class="ico close"><span>닫기</span></i>
+					</button>
+				</div>
+			</header>
+
+
+			<!-- SID : COM000 -->
+			<div id="content" class="sub"><!-- [D] main / sub-main / sub && pagd name -->
+
+				<h1 class="page-title">TIP&amp;TALK</h1>
+				<h2 class="section-title">페이지 제목 + 섹션 제목</h2>
+
+				<hr class="out-cont section-bar">
+
+				<section class="section">
+					<h2 class="section-title">섹션제목</h2>
+					<p>내용</p>
+				</section>
+
+				<hr class="out-cont section-bar">
+
+				<section class="section">
+					<h2 class="section-title">섹션제목</h2>
+					<p>내용</p>
+				</section>
+
+				<hr class="out-cont section-bar">
+
+				<section class="section">
+					<h2 class="section-title">로딩</h2>
+					<p class="button-area ta-c">
+						<button type="button" class="btn bdr-gray medium" onclick="loadingActive()">로딩 열기</button>
+					</p>
+				</section>
+			</div><!-- // #content -->
+
+			<nav id="nav" class="nav">
+				<ul>
+					<li>
+						<a href="#">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+								<path d="M225.3 2492.374v6.247a4.691 4.691 0 0 1-4.689 4.684H218v-4.686a2.6 2.6 0 0 0-5.21 0v4.686h-2.6a4.692 4.692 0 0 1-4.689-4.684v-6.247a4.667 4.667 0 0 1 1.748-3.65l5.21-4.189a4.722 4.722 0 0 1 5.88 0l5.21 4.189a4.664 4.664 0 0 1 1.751 3.65z" transform="translate(-205.396 -2483.404)" />
+							</svg>
+							<span>홈</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+								<path d="M13.5361 15.3037L10.6748 18.1631C9.54326 19.2971 7.97959 20 6.25 20C2.79781 20 0 17.2022 0 13.75C2.63599e-05 12.0204 0.702974 10.4567 1.83691 9.3252L4.69629 6.46387L13.5361 15.3037ZM13.75 0C17.2022 0 20 2.79781 20 6.25C20 7.95156 19.3156 9.49263 18.2119 10.6191L18.2178 10.625L15.3037 13.5361L6.46387 4.69629L9.375 1.78223L9.38184 1.78809C10.5083 0.684593 12.0474 2.6072e-05 13.75 0Z" />
+							</svg>
+							<span>영양제</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+								<path d="M513.5 2780.447v10.526a.515.515 0 0 1-.326.485.461.461 0 0 1-.2.042.533.533 0 0 1-.379-.158l-1.905-1.948h-9.295a3.688 3.688 0 0 1-3.684-3.684h7.895a5.265 5.265 0 0 0 5.263-5.263v-3.527a3.692 3.692 0 0 1 2.631 3.527zm-4.211 0v-5.263a3.688 3.688 0 0 0-3.684-3.684h-8.421a3.688 3.688 0 0 0-3.684 3.684v10.526a.514.514 0 0 0 .326.484.458.458 0 0 0 .2.042.534.534 0 0 0 .379-.158l1.905-1.947h9.295a3.689 3.689 0 0 0 3.684-3.684z" transform="translate(-493.5 -2771.5)" />
+							</svg>
+							<span>Q&amp;A</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+								<path d="M690.153 2704.763a5.349 5.349 0 1 1 5.348 5.263 5.312 5.312 0 0 1-5.348-5.263zm11.73 6.391a10.678 10.678 0 0 0-3.765.229 5.475 5.475 0 0 1-5.234 0 10.768 10.768 0 0 0-3.765-.229 4.759 4.759 0 0 0-3.618 4.626v1.064a3.676 3.676 0 0 0 .527 1.9 1.606 1.606 0 0 0 1.374.755h16.2a1.6 1.6 0 0 0 1.374-.756 3.67 3.67 0 0 0 .527-1.9v-1.064a4.757 4.757 0 0 0-3.62-4.626z" transform="translate(-685.5 -2699.5)" />
+							</svg>
+							<span>마이</span>
+						</a>
+					</li>
+				</ul>
+
+				<a id="btnTop" class="btn bdr-blue medium circle shadow" href="#content">
+					<i class="ico top"><span>처음으로</span></i>
+				</a>
+
+				<a id="btnWrite" class="btn blue medium circle" href="../write/talk.html">
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+						<path data-name="글쓰기" class="fill-white" d="M18076 21667.875V21656h6v11.877l-2.975 3.127zm0-13.125v-3.75h6v3.752z" transform="rotate(45 35178.19 -10976.286)" />
+					</svg>
+				</a>
+			</nav>
+
+			<footer id="footer" class="footer">
+				<div class="footer-menu">
+					<a href="../etc/brand.html" class="btn transparent">약속 소개</a>
+					<a href="../cs/faq.html" class="btn transparent">FAQ</a>
+				</div>
+				<div class="com-info">
+					<p>YAKSOK</p>
+					<p>
+						서울특별시 마포구 백범로 23, 3층 (신수동, 케이터틀)
+					</p>
+					<p>대표 김민우 · 정연우 · 최민진</p>
+					<p>김주연 · 박미리 · 이경욱 · 옥채은 · 김동관</p>
+					<p>문의 <a href="mailto:finalbossveigar1@gmail.com">finalbossveigar1@gmail.com</a></p>
+				</div>
+				<p class="copyright">
+					Copyright 2025. ICT05TEAMONE Inc.<br>
+					All Rights Reserved.
+				</p>
+			</footer>
+		</div><!-- // #container -->
+	</div><!-- // #wrap -->
+
+	<div id="loading" class="loading">
+		<img src="../@resource/images/common/loading.svg" alt="loading">
+	</div><!-- // #loading -->
+</body>
+</html>

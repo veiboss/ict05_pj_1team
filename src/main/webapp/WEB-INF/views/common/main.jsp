@@ -5,41 +5,52 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!-- 반응형 웹 -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<title>약을 쏘옥, 약속</title>
 <!-- css -->
-<link rel="stylesheet" href="${path}/resources/css/common/header.css">
-<link rel="stylesheet" href="${path}/resources/css/common/footer.css">
-<link rel="stylesheet" href="${path}/resources/css/common/main.css">
+<link rel="stylesheet" href="${path}/resources/css/yaksok.css">
 
 <!--  js -->
 <script src="https://kit.fontawesome.com/d7162d59a4.js" crossorigin="anonymous"></script>
 
 <!-- (3-4). 자바스크립트 소스 연결 -->
 <!-- defer : html을 다 읽은 후에 자바스크립트를 실행한다. 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행된다. -->
-<script src="${path}/resources/js/common/main.js" defer></script>
+<script src="${path}/resources/js/lib/aos.js" defer></script>
+<script src="${path}/resources/js/yaksok.js" defer></script>
 </head>
 <body>
-
-	<div class="wrap">
-		<!-- header 시각 -->
-		<%@ include file="header.jsp" %>
-		<!-- header 끝 -->
+	<div id="wrap" class="wrap">
+		<!-- PC 컨텐츠 -->
+		<%@ include file="pc_left.jsp" %>
+		<!-- PC 컨텐츠 끝 -->
 		
+		<div id="container" class="">
+		<!-- [D] HEADER VIEW :  no class /.lines(2) / .only-back(1) / .only-close(1) -->
+			<!-- header 시각 -->
+			<%@ include file="header.jsp" %>
+			<!-- header 끝 -->
 		
-		<!-- 컨텐츠 시작 -->
-		<center>
-			<h3> main 영역 </h3>
-			<img src="data:image/jpeg;base64,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" width="800px">
-		</center>
-		<!-- 컨텐츠 끝 -->
+			
+			<!-- 컨텐츠 시작 -->
+			<!-- SID : COM000 -->
+			<div id="content" class="sub"><!-- [D] main / sub-main / sub && pagd name -->
+			
+				내용 들어오는 곳
+				
+			</div><!-- // #content -->
+			<!-- 컨텐츠 끝 -->
 		
+			<!-- nav 시작 -->
+			<%@ include file="nav.jsp" %>
+			<!-- nav 끝 -->
 		
-		<!-- footer 시작 -->
-		<%@ include file="footer.jsp" %>
-		<!-- footer 끝 -->
-	</div>
-
+			<!-- footer 시작 -->
+			<%@ include file="footer.jsp" %>
+			<!-- footer 끝 -->
+		</div><!-- // #container -->
+	</div><!-- // #wrap -->
 </body>
 </html>
