@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="77cb8be7-f686-4a46-a50d-64c63d55820b" name="Changes" comment="/sample/ckeditor 추가">
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,12 +28,22 @@
     &quot;assignee&quot;: &quot;gek2omg&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/veiboss/ict05_pj_1team&quot;,
-    &quot;accountId&quot;: &quot;d87054cc-7f6c-4d8f-822d-6e509c4704e1&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/veiboss/ict05_pj_1team",
+    "accountId": "d87054cc-7f6c-4d8f-822d-6e509c4704e1"
+  },
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
+    },
+    "owner": "veiboss",
+    "repository": "ict05_pj_1team"
   }
-}</component>
+}]]></component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -59,7 +69,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Tomcat Server.Tomcat 9.0.106.executor": "Run",
-    "git-widget-placeholder": "gek2omg",
+    "git-widget-placeholder": "#24 on gek2omg",
     "last_opened_file_path": "D:/DEV05/workspace_spring_ict05/ict05_pj_1team/src/main/webapp/resources/ckeditor",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -262,7 +272,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755672559954</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="/sample/ckeditor 추가">
+      <option name="closed" value="true" />
+      <created>1755672707697</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1755672707697</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
