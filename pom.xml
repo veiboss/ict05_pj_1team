@@ -61,11 +61,19 @@
     </dependency>
     <!-- Mybatis 설정 끝 -->
 
+
     <!-- jdbc , 오류 나신분들만 추가  -->
     <!-- Cannot load JDBC driver class 'oracle.jdbc.driver.OracleDriver' 오류 -->
     <dependency> <groupId>com.oracle.database.jdbc</groupId>
       <artifactId>ojdbc6</artifactId>
       <version>11.2.0.4</version>
+
+    <!-- JDBC (Oracle) -->
+    <dependency>
+      <groupId>com.oracle.database.jdbc</groupId>
+      <artifactId>ojdbc8</artifactId>
+      <version>19.3.0.0</version>
+
     </dependency>
 
     <dependency>
@@ -143,6 +151,9 @@
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
+
+
+    <!-- Extra (from other side of conflict) -->
 
     <dependency>
       <groupId>commons-fileupload</groupId>
