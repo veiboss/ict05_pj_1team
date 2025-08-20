@@ -14,6 +14,5 @@
 
 <P>${title}</P>
 <P>${editor}</P>
-<img src="http://localhost/ict05/resources/uploads/b39b2801-bc4f-486f-9ff8-ded73a3844fb.jpg">
 </body>
 </html>
