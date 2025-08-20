@@ -1,110 +1,36 @@
-# Created by https://www.toptal.com/developers/gitignore/api/eclipse,java
-# Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,java
+# === Java Compiled Files ===
+*.class        # 자바 컴파일 산출물
+*.war          # 웹 애플리케이션 패키지 파일
+*.ear          # 엔터프라이즈 애플리케이션 패키지
+*.jar          # 자바 라이브러리/실행 패키지
+*.log          # 로그 파일
 
-mybatis-config.xml
-log4j.xml
+# === Eclipse / STS ===
+.project       # Eclipse/STS 프로젝트 메타정보
+.classpath     # 클래스패스 설정 파일
+.settings/     # Eclipse/STS 환경설정 폴더
+.springBeans   # STS의 Spring 설정 캐시
+.metadata/     # Eclipse 내부 메타데이터
+bin/           # Eclipse 빌드 산출물 폴더
 
-lecture
-target
+# === Maven Build ===
+target/        # Maven 빌드 결과물
+pom.xml.tag    # Maven 릴리스 시 생성되는 임시 파일
+pom.xml.releaseBackup   # 릴리스 과정 백업 파일
+pom.xml.versionsBackup  # 버전 관리 백업 파일
+pom.xml.next   # 릴리스 후 다음 버전 기록
+release.properties      # Maven 릴리스 속성 파일
 pom.properties
-.classpath
-MANIFEST.MF
 
-### Eclipse ###
-.metadata
-bin/
-tmp/
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.settings/
-.loadpath
-.recommenders
 
-# External tool builders
-.externalToolBuilders/
+# === IDE / OS ===
+.DS_Store      # macOS에서 자동 생성되는 파일
+Thumbs.db      # Windows 탐색기 썸네일 캐시
+*.bak          # 임시 백업 파일
+*.tmp          # 임시 파일
+*.orig         # 충돌 해결 시 남는 백업 파일
 
-# Locally stored "Eclipse launch configurations"
-*.launch
-
-# PyDev specific (Python IDE for Eclipse)
-*.pydevproject
-
-# CDT-specific (C/C++ Development Tooling)
-.cproject
-
-# CDT- autotools
-.autotools
-
-# Java annotation processor (APT)
-.factorypath
-
-# PDT-specific (PHP Development Tools)
-.buildpath
-
-# sbteclipse plugin
-.target
-
-# Tern plugin
-.tern-project
-
-# TeXlipse plugin
-.texlipse
-
-# STS (Spring Tool Suite)
-.springBeans
-
-# Code Recommenders
-.recommenders/
-
-# Annotation Processing
-.apt_generated/
-.apt_generated_test/
-
-# Scala IDE specific (Scala & Java development for Eclipse)
-.cache-main
-.scala_dependencies
-.worksheet
-
-# Uncomment this line if you wish to ignore the project description file.
-# Typically, this file would be tracked if it contains build/dependency configurations:
-#.project
-
-### Eclipse Patch ###
-# Spring Boot Tooling
-.sts4-cache/
-
-# Eclipse Core
-.project
-
-# IDT-specific (Eclipse Java Development Tools)
-.classpath
-
-### Java ###
-# Compiled class file
-*.class
-
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-
-# End of https://www.toptal.com/developers/gitignore/api/eclipse,java
+# === IntelliJ (Optional) ===
+.idea/         # IntelliJ IDEA 프로젝트 설정 폴더
+*.iml          # IntelliJ 모듈 파일
+out/           # IntelliJ 빌드 산출물
