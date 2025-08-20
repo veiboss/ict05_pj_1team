@@ -45,6 +45,6 @@ public class CustomerController {
 		logger.info("<<< url ==>  /loginAction.do >>>");
 
 		service.loginAction(request, response, model);
-		return "common/main";
+		return "customer/login/loginAction";
 	}
 }
