@@ -26,9 +26,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.UUID;
 
-import com.jcraft.jsch.ChannelSftp;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.Session;
 /**
  * Handles requests for the application home page.
  */
