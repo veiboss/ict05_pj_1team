@@ -10,8 +10,8 @@
 			<!-- footer 시작 -->
 			<footer id="footer" class="footer">
 				<div class="footer-menu">
-					<a href="../etc/brand.html" class="btn transparent">약속 소개</a>
-					<a href="../cs/faq.html" class="btn transparent">FAQ</a>
+					<a href="brand.do" class="btn transparent">약속 소개</a>
+					<a href="faq.do" class="btn transparent">FAQ</a>
 				</div>
 				<div class="com-info">
 					<p>YAKSOK</p>

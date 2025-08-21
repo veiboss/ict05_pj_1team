@@ -9,7 +9,7 @@
 	<bean id="dataSource"
 		class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="jndiName"
-			value="java:comp/env/jdbc/jsp_pj_ict05" />
+			value="java:comp/env/jdbc/team1_ict05" />
 		<property name="resourceRef" value="true" />
 	</bean>
 
