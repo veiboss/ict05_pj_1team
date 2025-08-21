@@ -56,7 +56,13 @@
 						</div>
 					</fieldset>
 				</form>
-				
+
+				<li>
+					<a href="join.do">
+						<button type="button" class="">회원가입</button>
+					</a>
+				</li>
+
 			</div><!-- // #content -->
 			<!-- 컨텐츠 끝 -->
 		
