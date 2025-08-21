@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # === IDE (IntelliJ / Eclipse / STS) ===
 .idea/
 *.iml
@@ -39,3 +40,41 @@ application.yml
 
 # === (옵션) MyBatis Mapper XML 무시 ===
 # src/main/resources/mappers/*.xml
+=======
+# === Java Compiled Files ===
+*.class        # 자바 컴파일 산출물
+*.war          # 웹 애플리케이션 패키지 파일
+*.ear          # 엔터프라이즈 애플리케이션 패키지
+*.jar          # 자바 라이브러리/실행 패키지
+*.log          # 로그 파일
+
+# === Eclipse / STS ===
+.project       # Eclipse/STS 프로젝트 메타정보
+.classpath     # 클래스패스 설정 파일
+.settings/     # Eclipse/STS 환경설정 폴더
+.springBeans   # STS의 Spring 설정 캐시
+.metadata/     # Eclipse 내부 메타데이터
+bin/           # Eclipse 빌드 산출물 폴더
+
+# === Maven Build ===
+target/        # Maven 빌드 결과물
+pom.xml.tag    # Maven 릴리스 시 생성되는 임시 파일
+pom.xml.releaseBackup   # 릴리스 과정 백업 파일
+pom.xml.versionsBackup  # 버전 관리 백업 파일
+pom.xml.next   # 릴리스 후 다음 버전 기록
+release.properties      # Maven 릴리스 속성 파일
+pom.properties
+
+
+# === IDE / OS ===
+.DS_Store      # macOS에서 자동 생성되는 파일
+Thumbs.db      # Windows 탐색기 썸네일 캐시
+*.bak          # 임시 백업 파일
+*.tmp          # 임시 파일
+*.orig         # 충돌 해결 시 남는 백업 파일
+
+# === IntelliJ (Optional) ===
+.idea/         # IntelliJ IDEA 프로젝트 설정 폴더
+*.iml          # IntelliJ 모듈 파일
+out/           # IntelliJ 빌드 산출물
+>>>>>>> 20cc8ad (오늘자 발표까지 자료)
