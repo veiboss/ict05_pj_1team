@@ -18,8 +18,8 @@ origin 이 붙어있는것은 클라우드 즉 github임
 # 6. 브랜치 확인
 git branch 입력시 master 브랜치 하나만 표시됨 
 
-# 7. dev 브랜치 동기화
-git checkout -b dev origin/dev dev 브랜치 생성 및 이동 후 
-origin/dev를 로컬 dev 브랜치에 동기화 
+# 7. woo 브랜치 동기화
+git checkout -b woo origin/woo woo 브랜치 생성 및 이동 후 
+origin/woo를 로컬 woo 브랜치에 동기화 
 
  
