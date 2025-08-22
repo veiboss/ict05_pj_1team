@@ -49,4 +49,11 @@ public class userController {
 		return "user/login/loginAction";
 	}
 	
+	@RequestMapping("/myPage.do")
+	public String myPage() {
+		logger.info("<<< url ==>  /myPage.do >>>");
+		
+		return "user/myPage/myPage";
+	}
+	
 }
