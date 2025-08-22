@@ -1,8 +1,8 @@
 # 1. dev로 이동
-git switch dev
+git switch woo
 
 # 2. 원격 dev 최신 내용 가져오기
-git pull origin dev
+git pull origin woo
 
 # 3. dev를 기반으로 새로운 브랜치 생성 & 이동
 git checkout -b '자신이름' (처음에만)
@@ -17,14 +17,12 @@ git commit -m "작업 내용 설명"
 # 6. 브랜치를 업로드
 git push origin '자신이생성한브랜치이름'
 
-# 7. 깃허브 홈페이지에서 pull request요청
-dev 브랜치에 자신이 작업하던 브랜치 merge 요청
-요청 후 카톡으로 연락
+# 7. 푸쉬 후 연락
 
 # 8. pull request 성공 후 
-git checkout dev # dev 이동
+git checkout woo # woo 이동
 git log  # 확인후 차이가 있다면
-git pull origin dev # dev동기화
+git pull origin woo # woo 동기화
 
 
 -----------------------------------------------------
