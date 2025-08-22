@@ -48,6 +48,7 @@
 							<div class="pack-down-center">
 								<div class="field">
 									<input type="text" name="mb_email" class="input-text" placeholder="이메일 입력">
+									<span class="warning pack-left">이메일 혹은 비밀번호가 일치하지 않습니다</span>
 								</div>
 								<div class="field">
 									<input type="password" name="mb_password" class="input-text" placeholder="비밀번호 입력">
