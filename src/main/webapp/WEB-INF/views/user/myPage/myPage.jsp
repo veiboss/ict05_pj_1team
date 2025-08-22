@@ -36,7 +36,7 @@
 			
 			<!-- 컨텐츠 시작 -->
 			<!-- SID : COM000 -->
-			<!-- <div id="content" class="sub si10"> --><!-- [D] main / sub-main / sub && pagd name -->
+			<div id="content" class="sub si10"><!-- [D] main / sub-main / sub && pagd name -->
 			<nav id="nav" class="nav">
 				<ul>
 					<li>
@@ -55,20 +55,16 @@
 						</a>
 					</li>
 					<li>
-						<c:if test="${sessionScope.sessionID != null}">
-							<a href="myPage.do">
-								<span>마이</span>
-							</a>
-						</c:if>
-						<c:if test="${sessionScope.sessionID == null}">
-							<a href="login.do">
-								<span>마이</span>
-							</a>
-						</c:if>
+						<a href="myPage.do">
+							<span>마이</span>
+						</a>
+						<a href="login.do">
+							<span>마이</span>
+						</a>
 					</li>
 				</ul>
 			</nav>
-			<!-- </div> --><!-- // #content -->
+			</div><!-- // #content -->
 			<!-- 컨텐츠 끝 -->
 			
 			<!-- nav 시작 -->
