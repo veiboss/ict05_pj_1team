@@ -1,4 +1,4 @@
-package com.middlepj.ict05.dto;
+package com.middlepj.ict05.faq;
 
 import java.sql.Date;
 

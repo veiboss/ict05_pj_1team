@@ -1,4 +1,4 @@
-package com.middlepj.ict05.controller;
+package com.middlepj.ict05.drug;
 
 import java.io.IOException;
 
@@ -8,15 +8,25 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.middlepj.ict05.user.userController;
 
 @Controller
 public class drugController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(userController.class);
 	
+	@Autowired
+	private drugServiceImpl service;
+	
+	// 영양제 검색
+	
+	
+	// 영양제 목록
 	@RequestMapping("/drug_list.do")
 	public String board_list(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
@@ -24,4 +34,16 @@ public class drugController {
 		
 		return "drug/drug_list";
 	}
+	
+	// 영양제 추가 클릭 시 - 내 영양제에 추가
+	
+	
+	// 영양 상세 처리
+	
+	
+	// 후기 목록 
+	
+	
+	// 후기 등록 처리
+	
 }
