@@ -1,4 +1,4 @@
-package com.middlepj.ict05.drug;
+package com.middlepj.ict05.domain.drug;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

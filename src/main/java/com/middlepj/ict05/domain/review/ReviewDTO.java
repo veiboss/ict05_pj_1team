@@ -1,4 +1,4 @@
-package com.middlepj.ict05.review;
+package com.middlepj.ict05.domain.review;
 
 import java.util.Date;
 

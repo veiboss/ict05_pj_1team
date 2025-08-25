@@ -1,4 +1,4 @@
-package com.middlepj.ict05.user;
+package com.middlepj.ict05.domain.user;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,7 +28,7 @@ public class userDAOImpl implements userDAO {
 	public int idPasswordChk(Map<String, Object> map) {
 		System.out.println("CustomerDAOImpl - idPasswordChk()");
 		
-		int selectCnt = session.selectOne("com.middlepj.ict05.dao.CustomerDAO.idPasswordChk", map);
+		int selectCnt = session.selectOne("com.middlepj.ict05.domain.user.userDAO.idPasswordChk", map);
 		
 		return selectCnt;
 	}

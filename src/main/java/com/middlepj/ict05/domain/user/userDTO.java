@@ -1,4 +1,4 @@
-package com.middlepj.ict05.user;
+package com.middlepj.ict05.domain.user;
 
 import java.sql.Date;		// java.sql
 import java.sql.Timestamp;	// java.sql
