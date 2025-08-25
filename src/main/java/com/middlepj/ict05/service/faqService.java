@@ -1,6 +1,6 @@
-package com.middlepj.ict05.dao;
+package com.middlepj.ict05.service;
 
-public interface FaqDAO {
+public interface faqService {
 
 	// FAQ 목록
 
@@ -11,5 +11,4 @@ public interface FaqDAO {
 	// FAQ 게시글 수정 처리
 
 	// 조회수 증가
-
 }
