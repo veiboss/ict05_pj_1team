@@ -51,18 +51,17 @@
 							</div>
 						</div>
 
-						<div class="button-area pack-center">
-							<button type="submit" class="btn black large r4">로그인</button>
+						<div class="button-area">
+							<button type="submit" class="btn blue large r4">로그인</button>
 						</div>
 					</fieldset>
 				</form>
 
-				<li>
+				<div class="button-area">
 					<a href="join.do">
-						<button type="button" class="">회원가입</button>
+						<button type="button" class="btn bdr-blue large r4">회원가입</button>
 					</a>
-				</li>
-
+				</div>
 			</div><!-- // #content -->
 			<!-- 컨텐츠 끝 -->
 		

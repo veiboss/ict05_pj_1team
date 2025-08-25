@@ -14,7 +14,7 @@
 
 
 /* 관리자 로그인 */
-#wrap.login {background-image: url("../../@resource/images/logo/man.svg"); background-repeat: no-repeat; background-size: auto 80%; background-position: 50% 200%;
+#wrap.login {background-image: url("../../resources/images/logo/man.svg"); background-repeat: no-repeat; background-size: auto 80%; background-position: 50% 200%;
 	display: flex;
 	-webkit-justify-content: flex-end; justify-content: flex-end;
 	-webkit-align-items: stretch; align-items: stretch;
