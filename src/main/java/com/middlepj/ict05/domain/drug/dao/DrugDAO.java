@@ -1,6 +1,6 @@
-package com.middlepj.ict05.domain.drug;
+package com.middlepj.ict05.domain.drug.dao;
 
-public interface drugDAO {
+public interface DrugDAO {
 
 	// 영양제 검색
 

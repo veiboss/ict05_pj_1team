@@ -1,6 +1,6 @@
-package com.middlepj.ict05.domain.drug;
+package com.middlepj.ict05.domain.drug.service;
 
-public interface drugService {
+public interface DrugService {
 
 	// 영양제 검색
 

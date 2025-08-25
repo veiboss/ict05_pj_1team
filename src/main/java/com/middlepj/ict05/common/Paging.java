@@ -1,4 +1,4 @@
-package com.middlepj.ict05.paging;
+package com.middlepj.ict05.common;
 
 public class Paging {
 

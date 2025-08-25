@@ -1,11 +1,11 @@
-package com.middlepj.ict05.domain.drug;
+package com.middlepj.ict05.domain.drug.dao;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class drugDAOImpl implements drugDAO{
+public class DrugDAOImpl implements DrugDAO{
 
 	@Autowired
 	private SqlSession sqlSession;
