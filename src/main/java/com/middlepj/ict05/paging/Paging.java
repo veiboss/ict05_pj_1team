@@ -1,4 +1,4 @@
-package spring.mvc.spring_pj_ict05.page;
+package com.middlepj.ict05.paging;
 
 public class Paging {
 	
