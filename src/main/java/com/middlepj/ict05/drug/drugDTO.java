@@ -16,7 +16,7 @@ public class drugDTO {
 	private String dr_preservation;		// 제약 보관법
 	private String dr_base_standard;	// 제약 규격
 	private String dr_show;				// 노출여부
-	
+
 	public drugDTO() {
 		super();
 	}
@@ -153,6 +153,6 @@ public class drugDTO {
 				+ ", dr_preservation=" + dr_preservation + ", dr_base_standard=" + dr_base_standard + ", dr_show="
 				+ dr_show + "]";
 	}
-	
-	
+
+
 }

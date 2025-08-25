@@ -1,17 +1,16 @@
 package com.middlepj.ict05.user;
 
 import java.sql.Date;		// java.sql
-import java.sql.Timestamp;	// java.sql
 
 // DTO(Data Transfer Object) = VO(Value Object)
 public class userDTO {
-	
+
 	private String mb_id;
 	private String mb_name;
 	private String mb_email;
-	private Date mb_password;	
+	private Date mb_password;
 	private String mb_grade;
-	
+
 	public userDTO() {
 		super();
 	}
@@ -71,6 +70,6 @@ public class userDTO {
 				+ mb_password + ", mb_grade=" + mb_grade + "]";
 	}
 
-	
-	
+
+
 }

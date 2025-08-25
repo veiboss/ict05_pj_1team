@@ -3,7 +3,7 @@ package com.middlepj.ict05.faq;
 import java.sql.Date;
 
 public class faqDTO {
-	
+
 	private int fa_id;             // FAQ 시퀀스(PK)
 	private String fa_title;       // FAQ 제목
 	private String fa_content;     // FAQ 내용
@@ -12,7 +12,7 @@ public class faqDTO {
 	private Date fa_reg_date;      // FAQ 작성일
 	private int fa_modify_id;      // FAQ 수정자 시퀀스
 	private Date fa_modify_date;   // FAQ 수정일
-	
+
 	public faqDTO() {
 		super();
 	}
@@ -100,5 +100,5 @@ public class faqDTO {
 				+ fa_show + ", fa_writer_id=" + fa_writer_id + ", fa_reg_date=" + fa_reg_date + ", fa_modify_id="
 				+ fa_modify_id + ", fa_modify_date=" + fa_modify_date + "]";
 	}
-	
+
 }

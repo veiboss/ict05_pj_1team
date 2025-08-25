@@ -18,12 +18,12 @@ import com.middlepj.ict05.user.userService;
 
 @Controller
 public class adminController {
-	
+
 	@Autowired
 	private userService service;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(adminController.class);
-	
+
 	/* 템플릿확인용 삭제예정 */
 	@RequestMapping("/layout.ad")
 	public String layout() {
@@ -31,14 +31,14 @@ public class adminController {
 
 		return "admin/layout";
 	}
-	
+
 	@RequestMapping("/login.ad")
 	public String login() {
 		logger.info("<<< url ==>  /login.ad >>>");
 
 		return "admin_login/login";
 	}
-	
+
 	@RequestMapping("/loginAction.ad")
 	public String loginAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
@@ -48,5 +48,5 @@ public class adminController {
 
 		return "admin_login/loginAction";
 	}
-	
+
 }

@@ -17,7 +17,7 @@ public class pillDTO {
 	private String DR_PRESERVATION;		// 제약 보관법
 	private String DR_BASE_STANDARD;	// 제약 규격
 	private String DR_SHOW;				// 노출여부
-	
+
 	public pillDTO() {
 		super();
 	}
@@ -141,5 +141,5 @@ public class pillDTO {
 				+ ", DR_PRESERVATION=" + DR_PRESERVATION + ", DR_BASE_STANDARD=" + DR_BASE_STANDARD + ", DR_SHOW="
 				+ DR_SHOW + "]";
 	}
-	
+
 }

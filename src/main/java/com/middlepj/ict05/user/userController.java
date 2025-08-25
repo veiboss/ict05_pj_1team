@@ -16,27 +16,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class userController {
-	
+
 	@Autowired
 	private userService service;
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(userController.class);
-	
-	
+
+
 	@RequestMapping("/main.do")
 	public String main() {
 		logger.info("<<< url ==>  /main.do >>>");
 
 		return "common/layout";
 	}
-	
+
 	@RequestMapping("/login.do")
 	public String login() {
 		logger.info("<<< url ==>  /login.do >>>");
 
 		return "user/login/login";
 	}
-	
+
 	@RequestMapping("/loginAction.do")
 	public String loginAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
@@ -46,5 +46,5 @@ public class userController {
 
 		return "user/login/loginAction";
 	}
-	
+
 }
