@@ -54,11 +54,15 @@
 									<input type="password" name="mb_password" class="input-text" placeholder="비밀번호 입력">
 								</div>
 							</div>
-	
-							<div class="button-area pack-center">
-								<button type="submit" class="btn black large r4">로그인</button>
+							<div class="button-area">
+								<button type="submit" class="btn blue large r4">로그인</button>
 							</div>
 						</fieldset>
+						<div class="button-area">
+							<a href="join.do" class="btn bdr-blue large r4">
+								회원가입
+							</a>
+						</div>
 					</c:if>
 				</form>
 				

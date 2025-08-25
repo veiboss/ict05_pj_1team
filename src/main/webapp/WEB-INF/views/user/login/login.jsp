@@ -58,8 +58,8 @@
 				</form>
 
 				<div class="button-area">
-					<a href="join.do">
-						<button type="button" class="btn bdr-blue large r4">회원가입</button>
+					<a href="join.do" class="btn bdr-blue large r4">
+						회원가입
 					</a>
 				</div>
 			</div><!-- // #content -->
