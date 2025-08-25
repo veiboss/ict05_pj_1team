@@ -1,4 +1,4 @@
-package com.middlepj.ict05.faq;
+package com.middlepj.ict05.domain.faq;
 
 import java.sql.Date;
 

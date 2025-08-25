@@ -1,4 +1,4 @@
-package com.middlepj.ict05.qna;
+package com.middlepj.ict05.domain.qna;
 
 import java.util.Date;
 
