@@ -121,7 +121,7 @@ sup		{vertical-align: super;}
 .ico.page-arr			{width: 32px; height: 32px; background-image: url('../images/common/btn-next.svg');}
 .ico.more-3dot			{width: 32px; height: 32px; background-image: url('../images/common/btn-more.svg'); background-size: 3px auto;}
 /* ico 24 */
-.ico.back				{width: 24px; height: 24px; background-image: url('../images/common/icon-back.svg');}
+.ico.back				{width: 24px; height: 24px; background-image: url('../images/@uio/icon-back.svg');}
 .ico.close				{width: 24px; height: 24px; background-image: url('../images/common/btn-close.svg');}
 .ico.close.white		{background-image: url('../images/common/btn-close-white.svg');}
 /* ico 20 */
@@ -174,10 +174,10 @@ sup		{vertical-align: super;}
 .ico.setting		{background-image: url('../images/common/icon-setting-small.svg');}
 .ico.bookmark-s		{background-image: url('../images/common/icon-bookmark-small.svg');}
 .ico.drag			{background-image: url('../images/common/icon-drag.svg');}
-.ico.top			{background-image: url('../images/common/icon-top.svg');}
+.ico.top			{background-image: url('../images/@uio/icon-top.svg');}
 .ico.accordion		{background-image: url('../images/common/icon-accordion.svg');}
 .ico.checked		{background-image: url('../images/common/icon-checked.svg');}
-.ico.checked.blue		{background-image: url('../images/common/icon-checked-blue.svg');}
+.ico.checked.blue	{background-image: url('../images/common/icon-checked-blue.svg');}
 .ico.checklist		{background-image: url('../images/common/icon-checklist.svg');}
 .ico.edit			{background-image: url('../images/common/icon-edit.svg');}
 .ico.copy			{background-image: url('../images/common/icon-copy.svg');}
