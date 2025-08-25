@@ -1,8 +1,8 @@
-package com.middlepj.ict05.domain.faq;
+package com.middlepj.ict05.domain.faq.dto;
 
 import java.sql.Date;
 
-public class faqDTO {
+public class FaqDTO {
 
 	private int fa_id;             // FAQ 시퀀스(PK)
 	private String fa_title;       // FAQ 제목
@@ -13,11 +13,11 @@ public class faqDTO {
 	private int fa_modify_id;      // FAQ 수정자 시퀀스
 	private Date fa_modify_date;   // FAQ 수정일
 
-	public faqDTO() {
+	public FaqDTO() {
 		super();
 	}
 
-	public faqDTO(int fa_id, String fa_title, String fa_content, String fa_show, int fa_writer_id, Date fa_reg_date,
+	public FaqDTO(int fa_id, String fa_title, String fa_content, String fa_show, int fa_writer_id, Date fa_reg_date,
 			      int fa_modify_id, Date fa_modify_date) {
 		super();
 		this.fa_id = fa_id;
@@ -96,7 +96,7 @@ public class faqDTO {
 
 	@Override
 	public String toString() {
-		return "faqDTO [fa_id=" + fa_id + ", fa_title=" + fa_title + ", fa_content=" + fa_content + ", fa_show="
+		return "FaqDTO [fa_id=" + fa_id + ", fa_title=" + fa_title + ", fa_content=" + fa_content + ", fa_show="
 				+ fa_show + ", fa_writer_id=" + fa_writer_id + ", fa_reg_date=" + fa_reg_date + ", fa_modify_id="
 				+ fa_modify_id + ", fa_modify_date=" + fa_modify_date + "]";
 	}

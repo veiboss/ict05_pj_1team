@@ -1,13 +1,15 @@
-package com.middlepj.ict05.domain.drug;
+package com.middlepj.ict05.domain.drug.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.middlepj.ict05.domain.drug.dao.DrugDAO;
+
 @Service
-public class drugServiceImpl implements drugService{
+public class DrugServiceImpl implements DrugService{
 
 	@Autowired
-	private drugDAO dao;
+	private DrugDAO dao;
 
 	// 영양제 검색
 

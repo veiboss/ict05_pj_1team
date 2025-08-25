@@ -1,4 +1,4 @@
-package com.middlepj.ict05.domain.admin;
+package com.middlepj.ict05.domain.admin.controller;
 
 
 import java.io.IOException;
@@ -14,15 +14,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.middlepj.ict05.domain.user.userService;
+import com.middlepj.ict05.domain.member.service.MemberService;
 
 @Controller
-public class adminController {
+public class AdminController {
 
 	@Autowired
-	private userService service;
+	private MemberService service;
 
-	private static final Logger logger = LoggerFactory.getLogger(adminController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 
 	/* 템플릿확인용 삭제예정 */
 	@RequestMapping("/layout.ad")
