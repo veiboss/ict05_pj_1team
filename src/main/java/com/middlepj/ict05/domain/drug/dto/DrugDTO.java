@@ -1,8 +1,8 @@
-package com.middlepj.ict05.domain.drug;
+package com.middlepj.ict05.domain.drug.dto;
 
 import java.sql.Date;
 
-public class drugDTO {
+public class DrugDTO {
 	private int dr_id;					// 제약 시퀀스
 	private String dr_enterprise;		// 제약 업체명
 	private String dr_product;			// 제약 제품명
@@ -17,11 +17,11 @@ public class drugDTO {
 	private String dr_base_standard;	// 제약 규격
 	private String dr_show;				// 노출여부
 
-	public drugDTO() {
+	public DrugDTO() {
 		super();
 	}
 
-	public drugDTO(int dr_id, String dr_enterprise, String dr_product, int dr_statement_id, Date dr_regist_date,
+	public DrugDTO(int dr_id, String dr_enterprise, String dr_product, int dr_statement_id, Date dr_regist_date,
 			String dr_expiration_date, String dr_sungsang, String dr_serve_use, String dr_intake_hint,
 			String dr_main_function, String dr_preservation, String dr_base_standard, String dr_show) {
 		super();
@@ -146,7 +146,7 @@ public class drugDTO {
 
 	@Override
 	public String toString() {
-		return "drugDTO [dr_id=" + dr_id + ", dr_enterprise=" + dr_enterprise + ", dr_product=" + dr_product
+		return "DrugDTO [dr_id=" + dr_id + ", dr_enterprise=" + dr_enterprise + ", dr_product=" + dr_product
 				+ ", dr_statement_id=" + dr_statement_id + ", dr_regist_date=" + dr_regist_date
 				+ ", dr_expiration_date=" + dr_expiration_date + ", dr_sungsang=" + dr_sungsang + ", dr_serve_use="
 				+ dr_serve_use + ", dr_intake_hint=" + dr_intake_hint + ", dr_main_function=" + dr_main_function

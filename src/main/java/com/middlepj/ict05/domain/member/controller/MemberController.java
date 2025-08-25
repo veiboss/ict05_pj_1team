@@ -1,4 +1,4 @@
-package com.middlepj.ict05.domain.user;
+package com.middlepj.ict05.domain.member.controller;
 
 
 import java.io.IOException;
@@ -14,13 +14,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.middlepj.ict05.domain.member.service.MemberService;
+
 @Controller
-public class userController {
+public class MemberController {
 
 	@Autowired
-	private userService service;
+	private MemberService service;
 
-	private static final Logger logger = LoggerFactory.getLogger(userController.class);
+	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
 
 	@RequestMapping("/main.do")

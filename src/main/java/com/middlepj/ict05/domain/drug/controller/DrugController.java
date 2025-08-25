@@ -1,4 +1,4 @@
-package com.middlepj.ict05.domain.drug;
+package com.middlepj.ict05.domain.drug.controller;
 
 import java.io.IOException;
 
@@ -13,15 +13,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.middlepj.ict05.domain.user.userController;
+import com.middlepj.ict05.domain.drug.service.DrugServiceImpl;
+import com.middlepj.ict05.domain.member.controller.MemberController;
 
 @Controller
-public class drugController {
+public class DrugController {
 
-	private static final Logger logger = LoggerFactory.getLogger(userController.class);
+	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
 	@Autowired
-	private drugServiceImpl service;
+	private DrugServiceImpl service;
 
 	// 영양제 검색
 

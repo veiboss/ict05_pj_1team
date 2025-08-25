@@ -1,9 +1,9 @@
-package com.middlepj.ict05.domain.user;
+package com.middlepj.ict05.domain.member.dto;
 
 import java.sql.Date;		// java.sql
 
 // DTO(Data Transfer Object) = VO(Value Object)
-public class userDTO {
+public class MemberDTO {
 
 	private String mb_id;
 	private String mb_name;
@@ -11,11 +11,11 @@ public class userDTO {
 	private Date mb_password;
 	private String mb_grade;
 
-	public userDTO() {
+	public MemberDTO() {
 		super();
 	}
 
-	public userDTO(String mb_id, String mb_name, String mb_email, Date mb_password, String mb_grade) {
+	public MemberDTO(String mb_id, String mb_name, String mb_email, Date mb_password, String mb_grade) {
 		super();
 		this.mb_id = mb_id;
 		this.mb_name = mb_name;
@@ -66,7 +66,7 @@ public class userDTO {
 
 	@Override
 	public String toString() {
-		return "userDTO [mb_id=" + mb_id + ", mb_name=" + mb_name + ", mb_email=" + mb_email + ", mb_password="
+		return "MemberDTO [mb_id=" + mb_id + ", mb_name=" + mb_name + ", mb_email=" + mb_email + ", mb_password="
 				+ mb_password + ", mb_grade=" + mb_grade + "]";
 	}
 

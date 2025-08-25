@@ -4,7 +4,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.middlepj.ict05.domain.user.dao.MemberDAO"><!-- namespace="패키지명.인터페이스" -->
+<mapper namespace="com.middlepj.ict05.domain.member.dao.MemberDAO"><!-- namespace="패키지명.인터페이스" -->
 	<!-- 로그인 처리 / 회원정보 인증(수정, 탈퇴) -->
 	<select id="idPasswordChk" parameterType="java.util.Map" resultType="int">
 		SELECT COUNT(*) FROM MEMBER_TB 
