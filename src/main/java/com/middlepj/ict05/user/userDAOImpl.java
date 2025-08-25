@@ -1,4 +1,4 @@
-package com.middlepj.ict05.dao;
+package com.middlepj.ict05.user;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,8 +15,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import com.middlepj.ict05.dto.userDTO;
 
 
 @Repository

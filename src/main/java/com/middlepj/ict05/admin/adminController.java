@@ -1,4 +1,4 @@
-package com.middlepj.ict05.controller;
+package com.middlepj.ict05.admin;
 
 
 import java.io.IOException;
@@ -14,39 +14,39 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.middlepj.ict05.service.userService;
+import com.middlepj.ict05.user.userService;
 
 @Controller
-public class userController {
+public class adminController {
 	
 	@Autowired
 	private userService service;
 	
-	private static final Logger logger = LoggerFactory.getLogger(userController.class);
+	private static final Logger logger = LoggerFactory.getLogger(adminController.class);
 	
-	
-	@RequestMapping("/main.do")
-	public String main() {
-		logger.info("<<< url ==>  /main.do >>>");
+	/* 템플릿확인용 삭제예정 */
+	@RequestMapping("/layout.ad")
+	public String layout() {
+		logger.info("<<< url ==>  /layout.ad >>>");
 
-		return "common/layout";
+		return "admin/layout";
 	}
 	
-	@RequestMapping("/login.do")
+	@RequestMapping("/login.ad")
 	public String login() {
-		logger.info("<<< url ==>  /login.do >>>");
+		logger.info("<<< url ==>  /login.ad >>>");
 
-		return "user/login/login";
+		return "admin_login/login";
 	}
 	
-	@RequestMapping("/loginAction.do")
+	@RequestMapping("/loginAction.ad")
 	public String loginAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
-		logger.info("<<< url ==>  /loginAction.do >>>");
+		logger.info("<<< url ==>  /loginAction.ad >>>");
 
 		service.loginAction(request, response, model);
 
-		return "user/login/loginAction";
+		return "admin_login/loginAction";
 	}
 	
 }

@@ -1,4 +1,4 @@
-package com.middlepj.ict05.dao;
+package com.middlepj.ict05.drug;
 
 public interface drugDAO {
 

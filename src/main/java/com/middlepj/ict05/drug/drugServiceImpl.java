@@ -1,9 +1,7 @@
-package com.middlepj.ict05.service;
+package com.middlepj.ict05.drug;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.middlepj.ict05.dao.drugDAO;
 
 @Service
 public class drugServiceImpl implements drugService{
