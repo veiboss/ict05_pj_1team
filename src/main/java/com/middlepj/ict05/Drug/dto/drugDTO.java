@@ -1,4 +1,4 @@
-package com.middlepj.ict05.dto;
+package com.middlepj.ict05.Drug.dto;
 
 import java.sql.Date;
 

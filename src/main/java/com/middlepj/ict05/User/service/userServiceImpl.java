@@ -1,4 +1,4 @@
-package com.middlepj.ict05.service;
+package com.middlepj.ict05.User.service;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -15,8 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
-import com.middlepj.ict05.dao.userDAO;
-import com.middlepj.ict05.dto.userDTO;
+import com.middlepj.ict05.User.dao.userDAO;
 
 
 @Service

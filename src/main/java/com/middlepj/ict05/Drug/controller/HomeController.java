@@ -1,4 +1,4 @@
-package com.middlepj.ict05;
+package com.middlepj.ict05.Drug.controller;
 
 import java.text.DateFormat;
 import java.util.Date;

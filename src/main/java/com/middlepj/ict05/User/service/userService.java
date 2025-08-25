@@ -1,4 +1,4 @@
-package com.middlepj.ict05.service;
+package com.middlepj.ict05.User.service;
 
 import java.io.IOException;
 

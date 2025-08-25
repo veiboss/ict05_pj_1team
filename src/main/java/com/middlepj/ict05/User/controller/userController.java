@@ -1,4 +1,4 @@
-package com.middlepj.ict05.controller;
+package com.middlepj.ict05.User.controller;
 
 
 import java.io.IOException;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.middlepj.ict05.service.userService;
+import com.middlepj.ict05.User.service.userService;
 
 @Controller
 public class userController {

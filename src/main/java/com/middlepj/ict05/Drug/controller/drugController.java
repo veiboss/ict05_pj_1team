@@ -1,4 +1,4 @@
-package com.middlepj.ict05.controller;
+package com.middlepj.ict05.Drug.controller;
 
 import java.io.IOException;
 
@@ -11,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.middlepj.ict05.User.controller.userController;
 
 @Controller
 public class drugController {

@@ -1,8 +1,6 @@
-package com.middlepj.ict05.dao;
+package com.middlepj.ict05.User.dao;
 
 import java.util.Map;
-
-import com.middlepj.ict05.dto.userDTO;
 
 public interface userDAO {
 
