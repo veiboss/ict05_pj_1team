@@ -23,7 +23,7 @@
         <!-- Mapper XML 위치 -->
         <property name="mapperLocations" value="classpath:mappers/*.xml"/>
         <!-- VO/DTO Alias -->
-        <property name="typeAliasesPackage" value="com.ict.spring_mvc_basic"/>
+        <property name="typeAliasesPackage" value="com.ict.ict05_pj_1team"/>
     </bean>
     
     <!-- MyBatis SqlSessionTemplate -->
@@ -33,7 +33,7 @@
 
     <!-- Mapper 인터페이스 자동 스캔 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.ict.spring_mvc_basic"/>
+        <property name="basePackage" value="com.ict.ict05_pj_1team"/>
     </bean>
 
 </beans>
