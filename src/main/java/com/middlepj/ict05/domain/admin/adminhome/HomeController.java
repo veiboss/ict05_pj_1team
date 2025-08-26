@@ -1,4 +1,4 @@
-package com.middlepj.ict05.domain.admin.controller;
+package com.middlepj.ict05.domain.admin.adminhome;
 
 
 import java.io.IOException;
@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.middlepj.ict05.domain.member.service.MemberService;
 
 @Controller
-public class AdminController {
+public class HomeController {
 
 	@Autowired
 	private MemberService service;
 
-	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	/* 템플릿확인용 삭제예정 */
 	@RequestMapping("/layout.ad")
