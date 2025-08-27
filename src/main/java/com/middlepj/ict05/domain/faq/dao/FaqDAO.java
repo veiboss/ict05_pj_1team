@@ -9,9 +9,15 @@ public interface FaqDAO {
 
 	// FAQ 회원 목록
 	public List<FaqDTO> userFaqlist(Map<String, Object> map);
+	
+	// FAQ 회원 total
+	public int userFaqCount();
 
-	// FAQ 목록
+	// FAQ 관리자 목록
 	public List<FaqDTO> faqlist(Map<String, Object> map);
+	
+	// FAQ 관리자 목록 total
+	public int faqCount(Map<String,Object> map);
 
 	// FAQ 등록(노출/비노출)
 	public void insertFaq(FaqDTO dto);

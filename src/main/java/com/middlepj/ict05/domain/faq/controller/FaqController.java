@@ -27,10 +27,10 @@ public class FaqController {
 	// FAQ 회원 목록
 	@RequestMapping("/faq_user_list.fc")
 	public String faq_user_list(HttpServletRequest request, HttpServletResponse response, Model model)
-	            throws ServletException, IOException{
-	        logger.info("<<< url ==> /faq_user_list.fc >>>");
+			throws ServletException, IOException {
+		logger.info("<<< url ==> /faq_user_list.fc >>>");
 
-	       // service.faqUserListAction(request, response, model); 
-	        return "views/faq/faq_user_list";                   
-	    }
+		service.faqUserListAction(request, response, model);
+		return "faq/faq_user_list";
+	}
 }

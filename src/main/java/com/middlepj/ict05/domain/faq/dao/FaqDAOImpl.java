@@ -14,19 +14,35 @@ public class FaqDAOImpl implements FaqDAO {
 
 	@Autowired
 	 private SqlSession sqlSession;
+
 	
 	// FAQ 회원 목록
 	@Override
 	public List<FaqDTO> userFaqlist(Map<String, Object> map) {
-		return null;
+		System.out.println("FaqDAOImpl - userFaqlist()");
+		
+		List<FaqDTO> list = sqlSession.selectList("com.middlepj.ict05.domain.faq.dto.FaqDTO", map);
+		return  list;
 	}
 
-	// FAQ 목록
+	// FAQ 회원 total
+	@Override
+	public int userFaqCount() {
+		return 0;
+	}
+
+	// FAQ 관리자 목록
 	@Override
 	public List<FaqDTO> faqlist(Map<String, Object> map) {
 		return null;
 	}
 
+	// FAQ 관리자 목록 total
+	@Override
+	public int faqCount(Map<String, Object> map) {
+		return 0;
+	}
+	
 	// FAQ 등록(노출/비노출)
 	@Override
 	public void insertFaq(FaqDTO dto) {
@@ -44,5 +60,6 @@ public class FaqDAOImpl implements FaqDAO {
 	public void updateFaq(FaqDTO dto) {
 		
 	}
-
+	
+	
 }
