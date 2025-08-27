@@ -1,5 +1,6 @@
 package com.middlepj.ict05.domain.qna.dto;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class QnaDto {
@@ -154,7 +155,7 @@ public class QnaDto {
 	public void setQa_modify_date(Date qa_modify_date) {
 		this.qa_modify_date = qa_modify_date;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "MyQnaDTO [qa_id=" + qa_id + ", mb_id=" + mb_id + ", dr_id=" + dr_id + ", qa_title=" + qa_title
