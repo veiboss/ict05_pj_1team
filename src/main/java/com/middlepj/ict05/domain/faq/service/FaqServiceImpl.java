@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import com.middlepj.ict05.common.Paging;
 import com.middlepj.ict05.domain.faq.dao.FaqDAO;
 import com.middlepj.ict05.domain.faq.dto.FaqDTO;
+import com.middlepj.ict05.domain.faq.dto.FaqList;
 
 @Service
 public class FaqServiceImpl implements FaqService{
@@ -25,7 +26,7 @@ public class FaqServiceImpl implements FaqService{
 
 	// FAQ 회원 목록
 	@Override
-	public void faqUserListAction(HttpServletRequest request, HttpServletResponse response, Model model)
+	public FaqList faqUserListAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
 		System.out.println("FaqServiceImpl - faqUserListAction()");
 		
@@ -50,9 +51,12 @@ public class FaqServiceImpl implements FaqService{
 		List<FaqDTO> list = dao.faqlist(map);
 		System.out.println("list : " + list);
 		
-		// 6단계. jsp로 처리결과 전달
-		model.addAttribute("list", list);
-		model.addAttribute("paging",paging);
+		FaqList faqList = new FaqList();
+		
+		faqList.setFaqList(list);
+		faqList.setPaging(paging);
+		
+		return faqList;
 		
 	}
 

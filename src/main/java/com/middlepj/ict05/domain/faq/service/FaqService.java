@@ -8,10 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.ui.Model;
 
+import com.middlepj.ict05.domain.faq.dto.FaqList;
+
 public interface FaqService {
 
 	// FAQ 회원 목록
-	public void faqUserListAction(HttpServletRequest request, HttpServletResponse response, Model model)
+	public FaqList faqUserListAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException;
 
 	// FAQ 목록
