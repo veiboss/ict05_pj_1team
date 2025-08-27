@@ -1,5 +1,13 @@
 package com.middlepj.ict05.domain.mypage.myprofile.dao;
 
-public class MyProfileDAOImpl {
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+@Repository
+public class MyProfileDAOImpl {
+	
+	@Autowired
+	private SqlSession session;
+	
 }
