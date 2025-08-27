@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.middlepj.ict05.domain.member.service.MemberService;
 
 @Controller
-public class HomeController {
+public class AdminHomeController {
 
 	@Autowired
 	private MemberService service;
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AdminHomeController.class);
 
 	/* 템플릿확인용 삭제예정 */
 	@RequestMapping("/layout.ad")

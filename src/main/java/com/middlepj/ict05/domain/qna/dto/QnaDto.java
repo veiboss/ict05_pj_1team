@@ -1,15 +1,16 @@
 package com.middlepj.ict05.domain.qna.dto;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class QnaDTO {
+public class QnaDto {
 
 	private int qa_id;				// 전문가 시퀀스(PK)
 	private int mb_id;				// 약 시퀀스(FK)
 	private int dr_id;				// 회원(전문가) 시퀀스(FK)
 	private String qa_title;		// 제목
 	private String qa_content;		// 내용
-	private String qa_private;		// 비밀글 여부
+	private char qa_private;		// 비밀글 여부
 	private String qa_answer;		// 답변
 	private Date qa_answer_date;	// 답변 작성일
 	private int qa_readcount; 		// 조회수
@@ -19,11 +20,11 @@ public class QnaDTO {
 	private int qa_modify_id;		// 수정자
 	private Date qa_modify_date;	// 수정일
 	
-	public QnaDTO() {
+	public QnaDto() {
 		super();
 	}
 
-	public QnaDTO(int qa_id, int mb_id, int dr_id, String qa_title, String qa_content, String qa_private,
+	public QnaDto(int qa_id, int mb_id, int dr_id, String qa_title, String qa_content, char qa_private,
 			String qa_answer, Date qa_answer_date, int qa_readcount, char qa_show, int qa_writer_id, Date qa_reg_date,
 			int qa_modify_id, Date qa_modify_date) {
 		super();
@@ -83,11 +84,11 @@ public class QnaDTO {
 		this.qa_content = qa_content;
 	}
 
-	public String getQa_private() {
+	public char getQa_private() {
 		return qa_private;
 	}
 
-	public void setQa_private(String qa_private) {
+	public void setQa_private(char qa_private) {
 		this.qa_private = qa_private;
 	}
 
@@ -154,7 +155,7 @@ public class QnaDTO {
 	public void setQa_modify_date(Date qa_modify_date) {
 		this.qa_modify_date = qa_modify_date;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "MyQnaDTO [qa_id=" + qa_id + ", mb_id=" + mb_id + ", dr_id=" + dr_id + ", qa_title=" + qa_title

@@ -11,6 +11,14 @@ import org.springframework.ui.Model;
 public interface MemberService {
 
 	// 로그인 처리 / 회원정보 인증(수정, 탈퇴)
-		public void loginAction(HttpServletRequest request, HttpServletResponse response, Model model)
+	public void loginAction(HttpServletRequest request, HttpServletResponse response, Model model)
 				throws ServletException, IOException;
+	
+	// 회원가입_아이디 중복확인
+	public void emailCheckAction(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException;
+	
+	// 회원가입처리
+	public void signUpAction(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException;	
 }
