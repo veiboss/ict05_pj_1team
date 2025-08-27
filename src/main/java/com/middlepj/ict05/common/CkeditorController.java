@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -25,14 +26,14 @@ import com.jcraft.jsch.Session;
 @Controller
 public class CkeditorController {
 	
-	@RequestMapping("/sample/ckeditor")
+	@GetMapping("/sample/ckeditor")
 	public String ckeditorAction() {
 
 		return "sample/ckeditor";
 	}
 
 
-	@RequestMapping("/sample/ckeditorAction")
+	@PostMapping("/sample/ckeditorAction")
 	public String ckeditorAction(HttpServletRequest request, HttpServletResponse response, Model model) {
 
 		String title = request.getParameter("title");
@@ -49,7 +50,7 @@ public class CkeditorController {
 
 
 	@ResponseBody
-	@RequestMapping("/image/upload/normal")
+	@PostMapping("/image/upload/normal")
 	public static Map<String, Object> uploadImage(MultipartHttpServletRequest request, HttpServletResponse response) throws IOException {
 	    System.out.println("upload image");
 	    
@@ -100,7 +101,7 @@ public class CkeditorController {
 	
 	
 	@ResponseBody
-	@RequestMapping("/image/upload")
+	@PostMapping("/image/upload")
 	public Map<String, Object> uploadSftpImage(MultipartHttpServletRequest request, HttpServletResponse response) throws IOException {
 	    Map<String, Object> result = new HashMap<>();
 	    MultipartFile file = request.getFile("upload");
