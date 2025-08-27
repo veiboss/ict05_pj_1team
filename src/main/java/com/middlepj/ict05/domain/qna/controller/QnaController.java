@@ -2,6 +2,7 @@ package com.middlepj.ict05.domain.qna.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,7 +30,6 @@ public class QnaController {
 	
 	@GetMapping("/list")
     public String list(HttpServletRequest request, HttpServletResponse response, Model model) {
-		
 		QnaList qnaList = qnaService.qnaList(request);
         
 		model.addAttribute("qnaList", qnaList.getQnaList());

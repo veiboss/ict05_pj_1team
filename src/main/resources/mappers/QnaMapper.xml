@@ -14,16 +14,14 @@
 						  FROM qna_tb
 						 WHERE qa_private = 'N'
 						   AND qa_show = 'Y'
-							<where>
-								<!-- 제목 검색 -->
-								<if test='mode eq "t" and s != null and s != "" '>
-									AND qa_title LIKE '%' || #{s} || '%'
-								</if>
-								<!-- 내용 검색 -->
-								<if test='mode eq "c" and s != null and s != "" '>
-									AND qa_content LIKE '%' || #{s} || '%'
-								</if>
-							</where>
+							<!-- 제목 검색 -->
+							<if test='mode eq "t" and s != null and s != "" '>
+								AND qa_title LIKE '%' || #{s} || '%'
+							</if>
+							<!-- 내용 검색 -->
+							<if test='mode eq "c" and s != null and s != "" '>
+								AND qa_content LIKE '%' || #{s} || '%'
+							</if>
 				 ORDER BY qa_id DESC
 				 ) A
 			)
