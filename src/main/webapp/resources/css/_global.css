@@ -361,7 +361,12 @@ sup		{vertical-align: super;}
 	flex-direction: column;
 }
 [class*="pack-"]:not([class*="gap-"])		{gap: 8px;}
+.gap-4[class*="pack-"]						{gap: 4px;}
+.gap-12[class*="pack-"]						{gap: 12px;}
+.gap-16[class*="pack-"]						{gap: 16px;}
+.gap-20[class*="pack-"]						{gap: 20px;}
 .gap-32[class*="pack-"]						{gap: 32px;}
+.gap-40[class*="pack-"]						{gap: 40px;}
 .gap-60[class*="pack-"]						{gap: 60px;}
 
 /* tabs */

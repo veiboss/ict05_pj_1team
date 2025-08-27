@@ -14,8 +14,6 @@
 <link rel="stylesheet" href="${path}/resources/css/yaksok.css">
 
 <!--  js -->
-<script src="https://kit.fontawesome.com/d7162d59a4.js" crossorigin="anonymous"></script>
-
 <!-- (3-4). 자바스크립트 소스 연결 -->
 <!-- defer : html을 다 읽은 후에 자바스크립트를 실행한다. 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행된다. -->
 <script src="${path}/resources/js/lib/aos.js" defer></script>
@@ -32,10 +30,9 @@
 			<!-- header 시각 -->
 			<%@ include file="../../common/header.jsp" %>
 			<!-- header 끝 -->
-		
 			
 			<!-- 컨텐츠 시작 -->
-			<!-- SID : COM000 -->
+			<!-- SID : SI10 -->
 			<div id="content" class="sub si10"><!-- [D] main / sub-main / sub && pagd name -->
 				<form class="sign-up-form" action="loginAction.do" method="post">
 					<c:if test="${sessionScope.sessionID != null}">

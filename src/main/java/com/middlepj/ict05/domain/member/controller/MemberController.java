@@ -24,7 +24,6 @@ public class MemberController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
-
 	@RequestMapping("/main.do")
 	public String main() {
 		logger.info("<<< url ==>  /main.do >>>");
@@ -36,7 +35,7 @@ public class MemberController {
 	public String login() {
 		logger.info("<<< url ==>  /login.do >>>");
 
-		return "user/login/login";
+		return "member/login/login";
 	}
 
 	@RequestMapping("/loginAction.do")
@@ -46,7 +45,36 @@ public class MemberController {
 
 		service.loginAction(request, response, model);
 
-		return "user/login/loginAction";
+		return "member/login/loginAction";
+	}
+	
+	@RequestMapping("/join.do")
+	public String join() {
+		logger.info("<<< url ==>  /join.do >>>");
+
+		return "member/join/join";
+	}
+	
+	// id 중복확인 버튼 클릭시
+	@RequestMapping("/emailCheckAction.do")
+	public String emailCheckAction(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("<<< url ==> /emailCheckAction.do >>>");
+		
+		service.emailCheckAction(request, response, model);
+		
+		return "member/join/emailCheckAction";
+	}
+	
+	// 회원가입 버튼 클릭시
+	@RequestMapping("/joinAction.do")
+	public String joinAction(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("<<< url ==> /joinAction.do >>>");
+
+		service.signUpAction(request, response, model);
+		
+		return "member/join/joinAction";
 	}
 
 }
