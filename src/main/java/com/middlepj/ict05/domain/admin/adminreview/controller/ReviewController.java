@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.middlepj.ict05.domain.admin.adminhome.HomeController;
+import com.middlepj.ict05.domain.admin.adminhome.AdminHomeController;
 import com.middlepj.ict05.domain.admin.adminreview.service.ReviewService;
 
 @Controller
@@ -22,7 +22,7 @@ public class ReviewController {
 	@Autowired
 	private ReviewService service;
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AdminHomeController.class);
 
 	/* 후기 리스트 이동 */
 	@RequestMapping("/review.ad")
