@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.middlepj.ict05.domain.mypage.myprofile.service.MyProfileService;
 
 @Controller
+=======
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.middlepj.ict05.domain.mypage.myprofile.sevice.MyProfileService;
+
+>>>>>>> 63c501b0b05dbeb7b0c370660914e16baebbce85
 public class MyProfileController {
 
 		@Autowired
@@ -24,6 +32,7 @@ public class MyProfileController {
 		private static final Logger logger = LoggerFactory.getLogger(MyProfileController.class);
 
 
+<<<<<<< HEAD
 		@RequestMapping("/myProfileAction.do")
 		public String myProfileAction() {
 			logger.info("<<< url ==>  /myProfileAction.do >>>");
@@ -57,6 +66,31 @@ public class MyProfileController {
 //			service.deleteMemberAction(request, response, model);
 //			return "myprofile/deleteMemberAction";
 //		}
+=======
+		@RequestMapping("/myProfileEdit.do")
+		public String main() {
+			logger.info("<<< url ==>  /myProfileEdit.do >>>");
+
+			return "myprofile/myProfileEdit";
+		}
+
+		@RequestMapping("/myProfileGrade.do")
+		public String login() {
+			logger.info("<<< url ==>  /myProfileGradedo.do >>>");
+
+			return "myprofile/myProfileGrade";
+		}
+
+		@RequestMapping("/loginAction.do")
+		public String loginAction(HttpServletRequest request, HttpServletResponse response, Model model)
+				throws ServletException, IOException {
+			logger.info("<<< url ==>  /loginAction.do >>>");
+
+			//service.loginAction(request, response, model);
+
+			return "user/login/loginAction";
+		}
+>>>>>>> 63c501b0b05dbeb7b0c370660914e16baebbce85
 
 	
 

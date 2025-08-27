@@ -1,5 +1,6 @@
 package com.middlepj.ict05.domain.mypage.myprofile.dao;
 
+<<<<<<< HEAD
 import com.middlepj.ict05.domain.mypage.myprofile.dto.MyProfileDTO;
 
 public interface MyProfileDAO {
@@ -12,4 +13,8 @@ public interface MyProfileDAO {
 //	
 //	public int deleteMemberAction(String mbp_email);
 //	
+=======
+public interface MyProfileDAO {
+
+>>>>>>> 63c501b0b05dbeb7b0c370660914e16baebbce85
 }
