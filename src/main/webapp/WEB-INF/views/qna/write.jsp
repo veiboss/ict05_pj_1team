@@ -30,27 +30,25 @@
 			<div id="content" class="sub si20">
 				<form name="frm" id="frm" action="${path}/qna/write" method="POST">
 				    <div>
-				        <table>
-				            <tr>
-				                <td>제목</td>
-				                <td><input type="text" name="qa_title" value=""></td>
-				            </tr>
-				            <tr>
-				                <td>질문</td>
-				                <td><textarea name="qa_content" id="qa_content"></textarea></td>
-				            </tr>
-				            <tr>
-				                <td>비밀글</td>
-				                <td><input type="checkbox" name="qa_private" value="Y"></td>
-				            </tr>
-				            <tr>
-				                <td>노출여부</td>
-				                <td><input type="checkbox" name="qa_show" value="Y" checked></td>
-				            </tr>
-				            <tr>
-				                <td colspan="2"><input type="submit" value="전송"></td>
-				            </tr>
-				        </table>
+					    <label class="label-box">
+							<span class="text-label">제목</span>
+							<input type="text" name="qa_tital" class="input-text" placeholder="제목을 입력해주세요">
+						</label>
+						<label class="label-box">
+							<span class="text-label">내용</span>
+							<textarea name="qa_content" id="qa_content" class="input-text"></textarea>
+						</label>
+						<label class="check-wrap">
+							<input type="checkbox" class="checkbox" name="qa_private" value="Y" >
+							<span>비밀글</span>
+						</label>
+						<label class="check-wrap">
+							<input type="checkbox" class="checkbox" name="qa_show" checked >
+							<span>노출여부</span>
+						</label>
+						<div>
+							<button type="submit" class="btn blue medium">작성하기</button>
+						</div>
 				    </div>
 				</form>
 			</div>

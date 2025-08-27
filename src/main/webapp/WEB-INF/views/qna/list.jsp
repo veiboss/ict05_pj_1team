@@ -20,7 +20,7 @@
 		<div id="container" class="lines">
 			<%@ include file="../common/header.jsp" %>
 			<div id="content" class="sub si20">
-				<form action="" method="GET">
+				<form class="sign-up-form" action="" method="GET">
 				    <table>
 				        <tr>
 				            <td>
@@ -33,7 +33,9 @@
 				                <input type="text" name="s" value="${param.s}" />
 				            </td>
 				            <td>
-				                <input type="submit" value="검색" />
+					            <div class="button-area pack-center">
+									<button type="submit" class="btn black large r4">검색</button>
+								</div>
 				            </td>
 				        </tr>
 				    </table>

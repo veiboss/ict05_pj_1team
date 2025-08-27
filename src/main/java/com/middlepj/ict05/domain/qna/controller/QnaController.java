@@ -35,8 +35,6 @@ public class QnaController {
 		model.addAttribute("qnaList", qnaList.getQnaList());
 		model.addAttribute("paging", qnaList.getPaging());
 		
-		System.out.println(qnaList);
-        
         return "qna/list";
     }
 	
