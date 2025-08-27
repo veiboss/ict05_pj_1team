@@ -2,6 +2,7 @@
          pageEncoding="UTF-8" %>
 <%@ include file="../common/setting.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,6 @@
 	<link rel="stylesheet" href="${path}/resources/css/yaksok.css">
 	<script src="${path}/resources/js/lib/aos.js" defer></script>
 	<script src="${path}/resources/js/yaksok.js" defer></script>
-	<script src="${path}/resources/js/common/request.js"></script>
 </head>
 <body>
 	<div id="wrap" class="wrap">
@@ -21,38 +21,64 @@
 			<%@ include file="../common/header.jsp" %>
 			<div id="content" class="sub si20">
 				<form class="sign-up-form" action="" method="GET">
-				    <table>
+					<div class="table-wrap">
+				    <table class="data-table">
+				    <tbody>
 				        <tr>
 				            <td>
-				                <select name="mode">
-				                    <option value="t" ${param.mode == 't'?'selected':''}>제목</option>
-				                    <option value="c" ${param.mode == 'c'?'selected':''}>내용</option>
-				                </select>
+				            <div class="select-options r4">
+								<label>
+									<input type="radio" name="mode" value="t" ${param.mode == 't'?'checked':''}>
+									<span class="btn medium r4">제목</span>
+								</label>
+							
+								<label>
+									<input type="radio" name="mode" value="c" ${param.mode == 'c'?'checked':''}>
+									<span class="btn medium r4">내용</span>
+								</label>
+							</div>
 				            </td>
 				            <td>
-				                <input type="text" name="s" value="${param.s}" />
+				            	<input type="search" name="s" class="input-text" value="${param.s}" placeholder="검색어를 입력해주세요">
 				            </td>
 				            <td>
-					            <div class="button-area pack-center">
-									<button type="submit" class="btn black large r4">검색</button>
-								</div>
+								<button type="submit" class="btn black medium r4" style="width:60px;">검색</button>
 				            </td>
 				        </tr>
+				        </tbody>
 				    </table>
+				    </div>
 				</form>
-				<table>
-				    <tr>
-				        <td>ID</td>
-				        <td>제목</td>
-				    </tr>
-				    <c:forEach var="qna" items="${qnaList}">
-				        <tr>
-				            <td>${qna.qa_id}</td>
-				            <td><a href="${path}/qna/detail/${qna.qa_id}">${qna.qa_title}</a></td>
-				        </tr>
-				    </c:forEach>
-				</table>
-				<ul class="pagination">
+				<div class="table=wrap" style="margin-top:10px;">
+					<table class="data-table">
+						<colgroup>
+							<col>
+							<col>
+							<col>
+							<col>
+						</colgroup>
+						<thead>
+							<tr>
+								<th scope="col">NO</th>
+								<th scope="col">제목</th>
+								<th scope="col">Read</th>
+								<th scope="col">등록일</th>
+							</tr>
+						</thead>
+						<tbody>
+					    <c:forEach var="qna" items="${qnaList}">
+					        <tr>
+					            <td scope="row">${qna.qa_id}</td>
+					            <td style="text-align:left;"><a href="${path}/qna/detail/${qna.qa_id}">${qna.qa_title}</a></td>
+					            <td>${qna.qa_readcount}</td>
+					            <td><fmt:formatDate value="${qna.qa_reg_date}" pattern="yyyy.MM.dd" /></td>
+					        </tr>
+					    </c:forEach>
+					    </tbody>
+					</table>
+				</div>
+				<div class="pagination">
+				<ul>
 				    <!-- 페이징처리 -->
 				    <!-- 이전버튼 활성화 -->
 				    <c:if test="${paging.startPage > 10}">
@@ -76,11 +102,11 @@
 				        </li>
 				    </c:if>
 				</ul>
-				<div>
-					<a href="${path}/qna/write">전문가 QnA 작성</a>
+				</div>
+				<div style="margin-top:10px;text-align:right">
+					<a class="btn bdr-gray medium" href="${path}/qna/write">전문가 QnA 작성</a>
 				</div>
 			</div>
-		
 			<%@ include file="../common/nav.jsp" %>
 			<%@ include file="../common/footer.jsp" %>
 		</div>

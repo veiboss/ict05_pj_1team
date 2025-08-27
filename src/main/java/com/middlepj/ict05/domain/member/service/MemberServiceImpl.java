@@ -32,10 +32,15 @@ public class MemberServiceImpl implements MemberService {
 		map.put("mb_password", request.getParameter("mb_password"));
 		
 		int selectCnt = dao.idPasswordChk(map);
+		
 
 		// 로그인 성공시 세션ID를 설정(중요)
 		if(selectCnt == 1) {
-			request.getSession().setAttribute("sessionID", request.getParameter("mb_email"));
+			request.getSession().setAttribute("sessionEmail", request.getParameter("mb_email"));
+			MemberDTO dto = dao.memberSelect(map);
+			request.getSession().setAttribute("sessionID", dto.getMb_id());
+			request.getSession().setAttribute("sessionName", dto.getMb_name());
+			request.getSession().setAttribute("sessionGrade", dto.getMb_grade());
 		}
 		// 로그인 성공 후 다시 로그인 했을 때, 비번이 맞지 않아도 로그인 성공으로 처리되어 추가
 		else {

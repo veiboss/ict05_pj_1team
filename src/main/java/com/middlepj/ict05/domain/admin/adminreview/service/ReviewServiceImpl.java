@@ -28,31 +28,39 @@ public class ReviewServiceImpl implements ReviewService{
 		
 		// 페이징 연산 해줄거임
 		String pageNum = request.getParameter("pageNum");
+		String keyword = request.getParameter("keyword");  // 검색어
 		String sessionID = (String)request.getSession().getAttribute("sessionID");
 		
 		com.middlepj.ict05.common.Paging paging = new com.middlepj.ict05.common.Paging(pageNum);
-		int total = dao.boardCnt();
-		System.out.println("total : " + total);
+	    // 검색 조건 반영해서 총 개수 카운트
+		Map<String, Object> map = new HashMap<>();
+		map.put("keyword", keyword);
+	    int total = (keyword == null || keyword.trim().isEmpty())
+	                ? dao.boardCnt()
+	                : dao.boardSearchCnt(map);
+	    paging.setTotalCount(total);
 		
 		paging.setTotalCount(total);
 		
 		int start = paging.getStartRow();
 		int end = paging.getEndRow();
 		
-		Map<String, Object> map = new HashMap<>();
-		map.put("start", start);
-		map.put("end", end);
+	    map.put("start", start);
+	    map.put("end", end);
 		
 		// 세션 올라간거 관리자인지 체크, 관리자아니면 안띄워줌
 		int userCnt = dao.userCheck(sessionID);
 		
 		// 목록띄워줌 리스트로 가져올거임
-		List<ReviewDTO> list = dao.reviewList(map);
+	    List<ReviewDTO> list = (keyword == null || keyword.trim().isEmpty())
+                ? dao.reviewList(map)
+                : dao.reviewSearchList(map);
 		System.out.println("list : " + list);
 		
 		model.addAttribute("list", list);
 		model.addAttribute("paging", paging);
 		model.addAttribute("userCnt", userCnt);
+	    model.addAttribute("keyword", keyword); // 검색어 유지용
 	}
 
 }

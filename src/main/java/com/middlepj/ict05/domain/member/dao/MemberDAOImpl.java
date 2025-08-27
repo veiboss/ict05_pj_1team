@@ -46,4 +46,13 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return insertCnt;
 	}
+
+	@Override
+	public MemberDTO memberSelect(Map<String, Object> map) {
+		System.out.println("MemberDAOImpl - memberSelect()");
+		
+		MemberDTO dto = session.selectOne("com.middlepj.ict05.domain.member.dao.MemberDAO.memberSelect", map);
+		
+		return dto;
+	}
 }

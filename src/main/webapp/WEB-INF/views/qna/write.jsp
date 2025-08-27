@@ -12,7 +12,6 @@
 	<link rel="stylesheet" href="${path}/resources/css/yaksok.css">
 	<script src="${path}/resources/js/lib/aos.js" defer></script>
 	<script src="${path}/resources/js/yaksok.js" defer></script>
-	<script src="${path}/resources/js/common/request.js"></script>
 	<link rel="stylesheet" href="${path}/resources/ckeditor/style.css">
     <link rel="stylesheet" href="${path}/resources/ckeditor/ckeditor5.css">
     <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
@@ -30,29 +29,35 @@
 			<div id="content" class="sub si20">
 				<form name="frm" id="frm" action="${path}/qna/write" method="POST">
 				    <div>
-					    <label class="label-box">
-							<span class="text-label">제목</span>
-							<input type="text" name="qa_tital" class="input-text" placeholder="제목을 입력해주세요">
-						</label>
-						<label class="label-box">
-							<span class="text-label">내용</span>
-							<textarea name="qa_content" id="qa_content" class="input-text"></textarea>
-						</label>
-						<div>
-						<label class="check-wrap">
-							<input type="checkbox" class="checkbox" name="qa_private" value="Y" >
-							<span>비밀글</span>
-						</label>
+					    <div>
+						    <label class="label-box">
+								<span class="text-label">제목</span>
+								<input type="text" name="qa_title" class="input-text" placeholder="제목을 입력해주세요">
+							</label>
 						</div>
 						<div>
-						<label class="check-wrap">
-							<input type="checkbox" class="checkbox" name="qa_show" checked >
-							<span>노출여부</span>
-						</label>
+							<textarea name="qa_content" id="qa_content"></textarea>
+						</div>
+						<div style="margin:10px 0">
+							<label class="check-wrap">
+								<input type="checkbox" class="checkbox" name="qa_private" value="Y" >
+								<span>비밀글</span>
+							</label>
+						</div>
+						<div style="margin:10px 0">
+							<label class="check-wrap">
+								<input type="checkbox" class="checkbox" name="qa_show" checked >
+								<span>노출여부</span>
+							</label>
 						</div>
 						<div>
 							<button type="submit" class="btn blue medium">작성하기</button>
 						</div>
+						<div style="margin-top:10px;text-align:right">
+							<a class="btn bdr-gray medium" href="${path}/qna/list">목록</a>
+							<a class="btn bdr-gray medium" href="${path}/qna/write">전문가 QnA 작성</a>
+						</div>
+						
 				    </div>
 				</form>
 			</div>
