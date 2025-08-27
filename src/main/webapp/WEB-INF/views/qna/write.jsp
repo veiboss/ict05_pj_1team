@@ -32,7 +32,7 @@
 					    <div>
 						    <label class="label-box">
 								<span class="text-label">제목</span>
-								<input type="text" name="qa_tital" class="input-text" placeholder="제목을 입력해주세요">
+								<input type="text" name="qa_title" class="input-text" placeholder="제목을 입력해주세요">
 							</label>
 						</div>
 						<div>
@@ -53,6 +53,11 @@
 						<div>
 							<button type="submit" class="btn blue medium">작성하기</button>
 						</div>
+						<div style="margin-top:10px;text-align:right">
+							<a class="btn bdr-gray medium" href="${path}/qna/list">목록</a>
+							<a class="btn bdr-gray medium" href="${path}/qna/write">전문가 QnA 작성</a>
+						</div>
+						
 				    </div>
 				</form>
 			</div>
