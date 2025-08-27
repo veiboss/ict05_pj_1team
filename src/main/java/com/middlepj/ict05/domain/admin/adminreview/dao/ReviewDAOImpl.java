@@ -20,7 +20,7 @@ public class ReviewDAOImpl implements ReviewDAO{
 	public int userCheck(String strId) {
 		System.out.println("ReviewDAOImpl - userCheck()");
 		
-		int userCnt = sqlSession.selectOne("com.middlepj.ict05.domain.admin.adminreview.ReviewDAO.userCheck", strId);
+		int userCnt = sqlSession.selectOne("com.middlepj.ict05.domain.admin.adminreview.dao.ReviewDAO.userCheck", strId);
 		
 		return userCnt;
 	}
@@ -30,7 +30,7 @@ public class ReviewDAOImpl implements ReviewDAO{
 	public int boardCnt() {
 		System.out.println("ReviewDAOImpl - boardCnt()");
 		
-		int total = sqlSession.selectOne("com.middlepj.ict05.domain.admin.adminreview.ReviewDAO.boardCnt");
+		int total = sqlSession.selectOne("com.middlepj.ict05.domain.admin.adminreview.dao.ReviewDAO.boardCnt");
 		
 		// 5. list를 리턴
 		return total;
@@ -40,7 +40,23 @@ public class ReviewDAOImpl implements ReviewDAO{
 	@Override
 	public List<ReviewDTO> reviewList(Map<String, Object> map) {
 		System.out.println("ReviewDAOImpl - reviewList()");
-		List<ReviewDTO> list = sqlSession.selectList("com.middlepj.ict05.domain.admin.adminreview.ReviewDAO.reviewList", map);
+		List<ReviewDTO> list = sqlSession.selectList("com.middlepj.ict05.domain.admin.adminreview.dao.ReviewDAO.reviewList", map);
+		
+		return list;
+	}
+	
+	@Override
+	public int boardSearchCnt(Map<String, Object> map) {
+		System.out.println("ReviewDAOImpl - boardSearchCnt()");
+		int total = sqlSession.selectOne("com.middlepj.ict05.domain.admin.adminreview.dao.ReviewDAO.boardSearchCnt", map);
+		
+		return total;
+	}
+
+	@Override
+	public List<ReviewDTO> reviewSearchList(Map<String, Object> map) {
+		System.out.println("ReviewDAOImpl - reviewSearchList()");
+		List<ReviewDTO> list = sqlSession.selectList("com.middlepj.ict05.domain.admin.adminreview.dao.ReviewDAO.reviewSearchList", map);
 		
 		return list;
 	}

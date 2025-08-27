@@ -15,4 +15,9 @@ public interface ReviewDAO {
 	
 	// 목록 뿌릴거임
 	public List<ReviewDTO> reviewList(Map<String, Object> map);
+	
+	
+	public int boardSearchCnt(Map<String, Object> map);
+	
+	public List<ReviewDTO> reviewSearchList(Map<String, Object> map);
 }
