@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.middlepj.ict05.HomeController;
+import com.middlepj.ict05.domain.faq.dto.FaqList;
 import com.middlepj.ict05.domain.faq.service.FaqServiceImpl;
 
 @Controller
@@ -30,7 +31,13 @@ public class FaqController {
 			throws ServletException, IOException {
 		logger.info("<<< url ==> /faq_user_list.fc >>>");
 
-		service.faqUserListAction(request, response, model);
+//		service.faqUserListAction(request, response, model);
+		
+		FaqList faqList = service.faqUserListAction(request, response, model);
+		
+		model.addAttribute("list", faqList.getFaqList());
+		model.addAttribute("paging", faqList.getPaging());
+
 		return "faq/faq_user_list";
 	}
 }
