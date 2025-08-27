@@ -25,8 +25,8 @@ private static final Logger logger = LoggerFactory.getLogger(ReviewController.cl
 	private ReviewServiceImpl service;
 	
 	// 1. 게시글 상세화면 목록
-	@RequestMapping("/myReview_list.do")
-	public String myReview_list(HttpServletRequest request, HttpServletResponse response, Model model)
+	@RequestMapping("/myReviewList.do")
+	public String myReviewList(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
 		logger.info("<<< url ==> /myReview_list.do >>>");
 		
@@ -37,8 +37,16 @@ private static final Logger logger = LoggerFactory.getLogger(ReviewController.cl
 	}
 	
 	// 2. 수정버튼 클릭시 - 수정 페이지로 이동
+	@RequestMapping("/myReviewDetail.do")
+	public String myReviewDetail(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("<<< url ==> /myReviewDetail.do >>>");
+		
+		
+		
+		return "";
 	
-	
+	}
 		// 2-1. 게시글 수정 (내용, 별점, 노출/비노출)
 	
 		// 2-2. 게시글 삭제 처리 (안보임처리)
