@@ -38,14 +38,18 @@
 							<span class="text-label">내용</span>
 							<textarea name="qa_content" id="qa_content" class="input-text"></textarea>
 						</label>
+						<div>
 						<label class="check-wrap">
 							<input type="checkbox" class="checkbox" name="qa_private" value="Y" >
 							<span>비밀글</span>
 						</label>
+						</div>
+						<div>
 						<label class="check-wrap">
 							<input type="checkbox" class="checkbox" name="qa_show" checked >
 							<span>노출여부</span>
 						</label>
+						</div>
 						<div>
 							<button type="submit" class="btn blue medium">작성하기</button>
 						</div>
