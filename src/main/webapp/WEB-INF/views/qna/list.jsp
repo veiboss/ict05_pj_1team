@@ -2,6 +2,7 @@
          pageEncoding="UTF-8" %>
 <%@ include file="../common/setting.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,6 @@
 	<link rel="stylesheet" href="${path}/resources/css/yaksok.css">
 	<script src="${path}/resources/js/lib/aos.js" defer></script>
 	<script src="${path}/resources/js/yaksok.js" defer></script>
-	<script src="${path}/resources/js/common/request.js"></script>
 </head>
 <body>
 	<div id="wrap" class="wrap">
@@ -40,18 +40,34 @@
 				        </tr>
 				    </table>
 				</form>
-				<table>
-				    <tr>
-				        <td>ID</td>
-				        <td>제목</td>
-				    </tr>
-				    <c:forEach var="qna" items="${qnaList}">
-				        <tr>
-				            <td>${qna.qa_id}</td>
-				            <td><a href="${path}/qna/detail/${qna.qa_id}">${qna.qa_title}</a></td>
-				        </tr>
-				    </c:forEach>
-				</table>
+				<div class="table=wrap">
+					<table class="data-table">
+						<colgroup>
+							<col>
+							<col>
+							<col>
+							<col>
+						</colgroup>
+						<thead>
+							<tr>
+								<th scope="col">NO</th>
+								<th scope="col">제목</th>
+								<th scope="col">Read</th>
+								<th scope="col">등록일</th>
+							</tr>
+						</thead>
+						<tbody>
+					    <c:forEach var="qna" items="${qnaList}">
+					        <tr>
+					            <td scope="row">${qna.qa_id}</td>
+					            <td><a href="${path}/qna/detail/${qna.qa_id}">${qna.qa_title}</a></td>
+					            <td>${qna.qa_readcount}</td>
+					            <td><fmt:formatDate value="${qna.qa_reg_date}" pattern="yyyy.MM.dd" /></td>
+					        </tr>
+					    </c:forEach>
+					    </tbody>
+					</table>
+				</div>
 				<ul class="pagination">
 				    <!-- 페이징처리 -->
 				    <!-- 이전버튼 활성화 -->
@@ -77,10 +93,9 @@
 				    </c:if>
 				</ul>
 				<div>
-					<a href="${path}/qna/write">전문가 QnA 작성</a>
+					<a class="btn blue medium" href="${path}/qna/write">전문가 QnA 작성</a>
 				</div>
 			</div>
-		
 			<%@ include file="../common/nav.jsp" %>
 			<%@ include file="../common/footer.jsp" %>
 		</div>
