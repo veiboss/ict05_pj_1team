@@ -32,7 +32,7 @@ private static final Logger logger = LoggerFactory.getLogger(ReviewController.cl
 		
 		service.reviewListAction(request, response, model);
 		
-		return "";
+		return "myPage/myPageReview/reviewList";
 		
 	}
 	
@@ -42,20 +42,35 @@ private static final Logger logger = LoggerFactory.getLogger(ReviewController.cl
 			throws ServletException, IOException {
 		logger.info("<<< url ==> /myReviewDetail.do >>>");
 		
+		service.reviewDetailAction(request, response, model);
 		
-		
-		return "";
+		return "myPage/myPageReview/reviewDetail";
 	
 	}
+	
 		// 2-1. 게시글 수정 (내용, 별점, 노출/비노출)
+	@RequestMapping("/myReviewUpdate.do")
+	public String myReviewUpdate(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("<<< url ==> /myReviewUpdate.do >>>");
+		
+		service.reviewUpdateAction(request, response, model);
+		
+		return "myPage/myPageReview/reviewList";
 	
-		// 2-2. 게시글 삭제 처리 (안보임처리)
-	
+	}
 	
 	// 3. 게시글 삭제 버튼 클릭시 - 삭제 (안보임처리)
+	@RequestMapping("/myReviewDelete.do")
+	public String myReviewDelete(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("<<< url ==> /myReviewDelete.do >>>");
+		
+		service.reviewDeleteAction(request, response, model);
+		
+		return "myPage/myPageReview/reviewList";
 	
+	}
 	
-	// 내 후기 목록 페이지로 이동
-	
-	
+
 }

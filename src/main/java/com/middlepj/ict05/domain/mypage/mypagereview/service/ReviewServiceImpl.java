@@ -27,17 +27,29 @@ public class ReviewServiceImpl implements ReviewService{
 		// 저장되어 있는 값을 
 		
 	}
-	
+
 	// 2. 수정버튼 클릭시 - 수정 페이지로 이동
-
-
-	
-		// 2-1. 게시글 수정 (내용, 별점, 노출/비노출)
+	@Override
+	public void reviewDetailAction(HttpServletRequest request, HttpServletResponse reqResponse, Model model)
+			throws ServletException, IOException {
+		System.out.println("ReviewServiceImpl - reviewDetailAction()");
 		
-		// 2-2. 게시글 삭제 처리 (안보임처리)
+	}
 
+		// 2-1. 게시글 수정 (내용, 별점, 노출/비노출)
+	@Override
+	public void reviewUpdateAction(HttpServletRequest request, HttpServletResponse reqResponse, Model model)
+			throws ServletException, IOException {
+		System.out.println("ReviewServiceImpl - reviewUpdateAction()");
+		
+	}
 
 	// 3. 게시글 삭제 버튼 클릭시 - 삭제 (안보임처리)
-	
+	@Override
+	public void reviewDeleteAction(HttpServletRequest request, HttpServletResponse reqResponse, Model model)
+			throws ServletException, IOException {
+		System.out.println("ReviewServiceImpl - reviewDeleteAction()");
+		
+	}
 	
 }

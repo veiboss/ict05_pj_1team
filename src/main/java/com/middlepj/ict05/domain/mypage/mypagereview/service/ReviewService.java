@@ -15,13 +15,15 @@ public interface ReviewService {
 			throws ServletException, IOException;
 	
 	// 2. 수정버튼 클릭시 - 수정 페이지로 이동
-	
+	public void reviewDetailAction(HttpServletRequest request, HttpServletResponse reqResponse, Model model)
+			throws ServletException, IOException;
 	
 		// 2-1. 게시글 수정 (내용, 별점, 노출/비노출)
-	
-		// 2-2. 게시글 삭제 처리 (안보임처리)
-	
+	public void reviewUpdateAction(HttpServletRequest request, HttpServletResponse reqResponse, Model model)
+			throws ServletException, IOException;
 	
 	// 3. 게시글 삭제 버튼 클릭시 - 삭제 (안보임처리)
-
+	public void reviewDeleteAction(HttpServletRequest request, HttpServletResponse reqResponse, Model model)
+			throws ServletException, IOException;
+	
 }
