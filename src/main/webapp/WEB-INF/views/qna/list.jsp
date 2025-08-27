@@ -92,8 +92,8 @@
 				        </li>
 				    </c:if>
 				</ul>
-				<div>
-					<a class="btn blue medium" href="${path}/qna/write">전문가 QnA 작성</a>
+				<div style="margin-top:10px;text-align:right">
+					<a class="btn bdr-gray medium" href="${path}/qna/write">전문가 QnA 작성</a>
 				</div>
 			</div>
 			<%@ include file="../common/nav.jsp" %>
