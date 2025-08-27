@@ -30,24 +30,31 @@
         <div id="content" class="sub si20">
             <h3>${dto.qa_title}</h3>
             <div>${dto.qa_content}</div>
+            <c:if test="${sessionScope.sessionId == dto.qa_writer_id}">
+            <div style="margin-top:10px;text-align:right">
+                <a class="btn bdr-gray medium" href="${path}/qna/modify/${dto.qa_id}">수정</a>
+            </div>
+            </c:if>
             <hr/>
             <c:if test="${empty dto.qa_answer}">
-                <div>답변이 아직 등록되지 않았습니다.</div>
+                <div style="margin-top:10px;text-align:center;">답변이 아직 등록되지 않았습니다.</div>
             </c:if>
             <c:if test="${not empty dto.qa_answer}">
                 <div>${dto.qa_answer}</div>
                 <hr/>
             </c:if>
-            <c:if test="${empty dto.qa_answer}">
-                <form name="frm" id="frm" action="${path}/qna/answer" method="POST">
-                    <input type="hidden" name="qa_id" value="${qa_id}">
-                    <div>
-                        <textarea name="qa_answer" id="qa_answer">${dto.qa_answer}</textarea>
-                    </div>
-                    <div style="text-align:right;margin-top:10px;">
-                        <button type="submit" class="btn blue medium">답변등록</button>
-                    </div>
-                </form>
+            <c:if test="${sessionScope.sessionGrade == 'EXPERT'}">
+	            <c:if test="${empty dto.qa_answer}">
+	                <form name="frm" id="frm" action="${path}/qna/answer" method="POST">
+	                    <input type="hidden" name="qa_id" value="${qa_id}">
+	                    <div>
+	                        <textarea name="qa_answer" id="qa_answer">${dto.qa_answer}</textarea>
+	                    </div>
+	                    <div style="text-align:right;margin-top:10px;">
+	                        <button type="submit" class="btn blue medium">답변등록</button>
+	                    </div>
+	                </form>
+	            </c:if>
             </c:if>
             <div style="margin-top:10px;text-align:right">
                 <a class="btn bdr-gray medium" href="${path}/qna/list">목록</a>
