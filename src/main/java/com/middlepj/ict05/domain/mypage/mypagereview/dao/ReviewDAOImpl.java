@@ -15,26 +15,33 @@ public class ReviewDAOImpl implements ReviewDAO{
 	private SqlSession sqlSession;
 
 	
-	// 게시글 목
+	// 게시글 목록
 	@Override
 	public List<ReviewDTO> reviewList(int mb_id) {
 		return null;
 	}
-	
-	
-	
+
 	// 2. 수정버튼 클릭시 - 수정 페이지로 이동
-	
-	
-	
-		// 2-1. 게시글 수정 (내용, 별점, 노출/비노출)
-	
-		// 2-2. 게시글 삭제 처리 (안보임처리)
-	
-	
+	@Override
+	public ReviewDTO reviewDetail(int rv_id) {
+		return null;
+	}
+
+	// 2-1. 게시글 수정 (내용, 별점, 노출/비노출)
+	@Override
+	public void updateReview(ReviewDTO dto) {
+		
+	}
+
 	// 3. 게시글 삭제 버튼 클릭시 - 삭제 (안보임처리)
+	@Override
+	public void deleteReview(int rv_id) {
+		
+	}
 	
 	
-	// 내 후기 목록 페이지로 이동
+	
+	
+
 
 }
