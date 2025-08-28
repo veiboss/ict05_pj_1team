@@ -49,16 +49,16 @@
     <select id="qnaCnt" parameterType="com.middlepj.ict05.domain.qna.dto.QnaSearchDto" resultType="int">
 		SELECT COUNT(*) as cnt
 		  FROM qna_tb
-			<where>
-				<!-- 제목 검색 -->
-				<if test='mode eq "t" and s != null and s != "" '>
-					AND qa_title LIKE '%' || #{s} || '%'
-				</if>
-				<!-- 내용 검색 -->
-				<if test='mode eq "c" and s != null and s != "" '>
-					AND qa_content LIKE '%' || #{s} || '%'
-				</if>
-			</where>
+		 WHERE qa_private = 'N'
+		   AND qa_show = 'Y'
+			<!-- 제목 검색 -->
+			<if test='mode eq "t" and s != null and s != "" '>
+				AND qa_title LIKE '%' || #{s} || '%'
+			</if>
+			<!-- 내용 검색 -->
+			<if test='mode eq "c" and s != null and s != "" '>
+				AND qa_content LIKE '%' || #{s} || '%'
+			</if>
 	</select>
 	
 	<insert id="insertQna" parameterType="com.middlepj.ict05.domain.qna.dto.QnaDto">
@@ -94,9 +94,20 @@
 
 	<update id="answerQna" parameterType="com.middlepj.ict05.domain.qna.dto.QnaAnswer">
 		UPDATE qna_tb
-		   SET dr_id = #{dr_id},
+		   SET mb_id = #{mb_id},
 		       qa_answer = #{qa_answer},
 		       qa_answer_date = SYSDATE
+		 WHERE qa_id = #{qa_id}
+	</update>
+
+	<update id="updateQna" parameterType="map">
+		UPDATE qna_tb
+		   SET qa_title = #{qa_title},
+		       qa_content = #{qa_content},
+		       qa_private = #{qa_private},
+		       qa_show = #{qa_show},
+		       qa_modify_id = #{qa_modify_id},
+		       qa_modify_date = SYSDATE
 		 WHERE qa_id = #{qa_id}
 	</update>
 
