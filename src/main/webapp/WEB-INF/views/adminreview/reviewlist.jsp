@@ -78,7 +78,7 @@
 						<fieldset>
 							<legend class="blind">검색</legend>
 							<div class="field insert">
-								<input type="text" id="searchTxt" class="input-text medium" title="검색어" placeholder="검색어를 입력해 주세요">
+								<input type="text" id="searchTxt" class="input-text medium" title="검색어" placeholder="검색어를 입력 (작성자 OR 제약명)">
 							</div>
 							<div class="button-area pack-left">
 								<button type="submit" class="btn medium color1">검색</button>

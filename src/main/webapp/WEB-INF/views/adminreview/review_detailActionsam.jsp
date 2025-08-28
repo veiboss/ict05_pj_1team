@@ -34,27 +34,48 @@
 		<!-- header 끝 -->
 		
 		<div id="container" class="container">
-		<!-- 컨텐츠 시작 -->
+			<!-- 컨텐츠 시작 -->
+			
+			
 			<div id="container" class="container">
 				<div class="title-bar">
 					<h2 class="page-title ellipsis">
 						페이지 제목
 					</h2>
 				</div>
+
 				<main id="content">
 					<div class="write-form box-wrap">
-						<form action="review_modify.ad">
+						<form>
 							<fieldset>
 								<legend class="blind">기본 정보</legend>
 								<div class="row-3">
 									<div class="field col">
-										<label class="label medium required" for="input01">작성자</label>
+										<label class="label medium required" for="input01">인풋</label>
 										<div class="insert">
 											<input type="text" name="input01" id="input01" class="input-text medium" title="인풋명" placeholder="검색어 입력">
 										</div>
 									</div>
+									<div class="field col">
+										<label class="label medium" for="select1">셀렉트</label>
+										<div class="insert">
+											<select id="select1" class="select medium">
+												<option>선택</option>
+												<option>1</option>
+												<option>2</option>
+											</select>
+										</div>
+									</div>
 								</div>
 								<div class="row-2">
+									<div class="field col">
+										<span class="label medium">체크박스</span>
+										<div class="insert pack-left">
+											<label for="cb1" class="pack-left"><input type="checkbox" class="checkbox" name="cb" id="cb1">체크박스1</label>
+											<label for="cb2" class="pack-left"><input type="checkbox" class="checkbox" name="cb" id="cb2">체크박스2</label>
+											<label for="cb3" class="pack-left"><input type="checkbox" class="checkbox" name="cb" id="cb3">체크박스3</label>
+										</div>
+									</div>
 									<div class="field col">
 										<span class="label medium">라디오</span>
 										<div class="insert pack-left">
@@ -80,17 +101,19 @@
 										</label>
 									</div>
 								</div>
-	
+
 								<div class="button-area pack-center">
-									<button type="submit" class="btn large color1">저장</button>
+									<button type="button" class="btn large color1">저장</button>
 									<button type="reset" class="btn large bdr-color1">초기화</button>
 								</div>
 							</fieldset>
 						</form>
 					</div><!--.write-form -->
 				</main>
-			</div>
+			
 			<!-- 컨텐츠 끝 -->
+			
+			
 			<!-- footer 시작 -->
 			<%@ include file="../admin/footer.jsp" %>
 			<!-- footer 끝 -->

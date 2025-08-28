@@ -25,8 +25,7 @@
 	            <td data-th="등록일">${dto.rv_reg_date}</td>
 	            <td data-th="공개여부">${dto.rv_show}</td>
 	            <td data-th="버튼">
-					<button class="btn small normal" onclick="location.href='review_detailAction.ad?rv_id=${dto.rv_id}'" style="cursor:pointer;">수정</button>
-					<button class="btn small accent" style="cursor:pointer;">삭제</button>
+					<button class="btn small normal" onclick="location.href='review_detailAction.ad?rv_id=${dto.rv_id}'" style="cursor:pointer;">상세/수정</button>
 				</td>
 	        </tr>
 	    </c:forEach>
