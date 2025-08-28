@@ -6,5 +6,43 @@
 
 <mapper namespace="com.middlepj.ict05.domain.mypage.mypagereview.dao.ReviewDAO">
 	
+<!-- 게시글 목록 -->
+<select id="reviewList" parameterType="int" resultType="com.middlepj.ict05.domain.mypage.mypagereview.dto.ReviewDTO">
+	SELECT rv.rv_content
+		 , rv.rv_rating
+		 , rv.rv_show
+	     , dr.dr_product
+  	  FROM REVIEW_TB rv
+      JOIN DRUG_TB dr
+        ON rv.dr_id = dr.dr_id
+     WHERE rv.mb_id = #{mb_id}
+</select>
+
+<!-- 수정버튼 클릭시 - 수정페이지로 이동 -->
+<select id="resultType" parameterType="int" resultType="com.middlepj.ict05.domain.mypage.mypagereview.dto.ReviewDTO">
+	SELECT rv_rating
+		 , rv_content
+		 , rv_show
+	  FROM REVIEW_TB
+	 WHERE rv_id = #{rv_id}
+</select>
+
+<!-- 게시글 수정 (내용, 별점, 노출/비노출) -->
+<update id="updateReview" parameterType="com.middlepj.ict05.domain.mypage.mypagereview.dto.ReviewDTO">
+	UPDATE REVIEW_TB
+	   SET rv_rating = #{rv_rating}
+	     , rv_content = #{rv_content}
+	     , rv_show = #{rv_show}
+	 WHERE rv_id = #{rv_id}
+</update>
+
+
+<!-- 게시글 삭제 버튼 클릭시 - 삭제 (안보임처리) -->
+<update id="deleteReview" parameterType="int">
+	UPDATE REVIEW_TB
+       SET rv_show = 'N'
+     WHERE rv_id = #{rv_id}
+</update>
+
 
 </mapper> 

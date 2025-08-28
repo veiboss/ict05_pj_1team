@@ -18,18 +18,32 @@ public class ReviewDAOImpl implements ReviewDAO{
 	// 게시글 목록
 	@Override
 	public List<ReviewDTO> reviewList(int mb_id) {
-		return null;
+		
+		System.out.println("ReviewDAOImpl - reviewList()");
+		
+		List<ReviewDTO> list = sqlSession.selectList("com.middlepj.ict05.domain.mypage.mypagereview.dao.ReviewDAO.reviewList", mb_id);
+		
+		return list;
 	}
 
 	// 2. 수정버튼 클릭시 - 수정 페이지로 이동
 	@Override
 	public ReviewDTO reviewDetail(int rv_id) {
-		return null;
+		
+		System.out.println("ReviewDAOImpl - reviewDetail");
+		
+		ReviewDTO dto = sqlSession.selectOne("com.middlepj.ict05.domain.mypage.mypagereview.dao.ReviewDAO.reviewDetail", rv_id);
+		
+		return dto;
 	}
 
 	// 2-1. 게시글 수정 (내용, 별점, 노출/비노출)
 	@Override
 	public void updateReview(ReviewDTO dto) {
+		
+		System.out.println("ReviewDAOImpl - updateReview");
+		
+		sqlSession.update("com.middlepj.ict05.domain.mypage.mypagereview.dao.ReviewDAO.updateReview", dto);
 		
 	}
 
@@ -37,11 +51,11 @@ public class ReviewDAOImpl implements ReviewDAO{
 	@Override
 	public void deleteReview(int rv_id) {
 		
+		System.out.println("ReviewDAOImpl - deleteReview");
+		
+		sqlSession.update("com.middlepj.ict05.domain.mypage.mypagereview.dao.ReviewDAO.deleteReview", rv_id);
+		
 	}
 	
-	
-	
-	
-
 
 }
