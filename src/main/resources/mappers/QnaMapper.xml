@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.middlepj.ict05.domain.qna.dao.QnaDao">
+
+    <select id="qnaList" 
+        parameterType="com.middlepj.ict05.domain.qna.dto.QnaSearchDto" 
+        resultType="com.middlepj.ict05.domain.qna.dto.QnaDto">
+	    SELECT *
+	      FROM (
+	            SELECT A.*, rownum AS rn
+	              FROM (
+	                    SELECT q.qa_id,
+	                           q.qa_title,
+	                           q.qa_content,
+	                           q.qa_private,
+	                           q.qa_show,
+	                           q.qa_readcount,
+	                           q.qa_answer,
+	                           q.qa_answer_date,
+	                           q.qa_reg_date,
+	                           q.mb_id,
+	                           m.mb_name
+	                      FROM qna_tb q
+	                      JOIN member_tb m
+	                        ON q.qa_writer_id = m.mb_id
+	                     WHERE q.qa_private = 'N'
+	                       AND q.qa_show = 'Y'
+	                       
+	                       <!-- 제목 검색 -->
+	                       <if test='mode eq "t" and s != null and s != "" '>
+	                           AND q.qa_title LIKE '%' || #{s} || '%'
+	                       </if>
+	                       
+	                       <!-- 내용 검색 -->
+	                       <if test='mode eq "c" and s != null and s != "" '>
+	                           AND q.qa_content LIKE '%' || #{s} || '%'
+	                       </if>
+	                       
+	                  ORDER BY q.qa_id DESC
+	                  ) A
+	           )
+	     WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+
+    
+    <select id="qnaCnt" parameterType="com.middlepj.ict05.domain.qna.dto.QnaSearchDto" resultType="int">
+		SELECT COUNT(*) as cnt
+		  FROM qna_tb
+			<where>
+				<!-- 제목 검색 -->
+				<if test='mode eq "t" and s != null and s != "" '>
+					AND qa_title LIKE '%' || #{s} || '%'
+				</if>
+				<!-- 내용 검색 -->
+				<if test='mode eq "c" and s != null and s != "" '>
+					AND qa_content LIKE '%' || #{s} || '%'
+				</if>
+			</where>
+	</select>
+	
+	<insert id="insertQna" parameterType="com.middlepj.ict05.domain.qna.dto.QnaDto">
+		    INSERT INTO qna_tb (
+		        qa_id,
+		        qa_title,
+		        qa_content,
+		        qa_private,
+		        qa_readcount,
+		        qa_show,
+		        qa_writer_id,
+		        qa_reg_date
+		    )
+		    VALUES (
+		        (SELECT NVL(MAX(qa_id) + 1, 1) FROM qna_tb),
+		        #{qa_title},
+		        #{qa_content},
+		        #{qa_private},
+		        0,
+		        #{qa_show},
+		        #{qa_writer_id},
+		        SYSDATE
+		    )
+	</insert>
+
+	<select id="getQnaDetail" parameterType="int" resultType="com.middlepj.ict05.domain.qna.dto.QnaDto">
+		SELECT * FROM qna_tb WHERE qa_id = #{qa_id}
+	</select>
+
+	<update id="plusReadCnt" parameterType="int">
+		UPDATE qna_tb SET qa_readcount = qa_readcount + 1 WHERE qa_id = #{qa_id}
+	</update>
+
+	<update id="answerQna" parameterType="com.middlepj.ict05.domain.qna.dto.QnaAnswer">
+		UPDATE qna_tb
+		   SET dr_id = #{dr_id},
+		       qa_answer = #{qa_answer},
+		       qa_answer_date = SYSDATE
+		 WHERE qa_id = #{qa_id}
+	</update>
+
+
+</mapper>
