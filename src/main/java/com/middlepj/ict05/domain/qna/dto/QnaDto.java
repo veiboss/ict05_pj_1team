@@ -1,6 +1,7 @@
 package com.middlepj.ict05.domain.qna.dto;
 
 import java.text.SimpleDateFormat;
+
 import java.util.Date;
 
 public class QnaDto {
@@ -19,6 +20,8 @@ public class QnaDto {
 	private Date qa_reg_date;		// 작성일
 	private int qa_modify_id;		// 수정자
 	private Date qa_modify_date;	// 수정일
+	
+	private String mb_name;
 	
 	public QnaDto() {
 		super();
@@ -42,6 +45,16 @@ public class QnaDto {
 		this.qa_reg_date = qa_reg_date;
 		this.qa_modify_id = qa_modify_id;
 		this.qa_modify_date = qa_modify_date;
+	}
+	
+	
+
+	public String getMb_name() {
+		return mb_name;
+	}
+
+	public void setMb_name(String mb_name) {
+		this.mb_name = mb_name;
 	}
 
 	public int getQa_id() {
