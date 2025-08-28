@@ -6,8 +6,22 @@
 
 <mapper namespace="com.middlepj.ict05.domain.drug.dao.DrugDAO"><!-- namespace="패키지명.인터페이스" -->
 	
+	
+	<!-- 영양제 개수 -->
 	<select id="drugCnt" resultType="int">
-		SELECT COUNT(*) AS cnt FROM drug_tb
+		SELECT COUNT(*) AS cnt FROM DRUG_TB
+	</select>
+	
+	<!-- 영양제 목록 -->
+	<select id="drugList" parameterType="java.util.Map" resultType="com.middlepj.ict05.domain.drug.dto.DrugDTO"> 
+		SELECT * 
+  		  FROM (SELECT A.*
+             		 , rownum AS rn 
+          		  FROM (SELECT * 
+                 		  FROM DRUG_TB 
+                 		 WHERE DR_SHOW = 'Y' 
+                 		 ORDER BY DR_ID DESC) A)  
+         WHERE rn BETWEEN #{start} AND #{end}
 	</select>
 	
 </mapper> 

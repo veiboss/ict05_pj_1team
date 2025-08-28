@@ -32,7 +32,9 @@ public class DrugDAOImpl implements DrugDAO{
 	public List<DrugDTO> drugList(Map<String, Object> map) {
 		System.out.println("=== drugDAO - drugList() ===");
 		
-		return null;
+		List<DrugDTO> list = sqlSession.selectList("com.middlepj.ict05.domain.drug.dao.DrugDAO.drugList", map);
+		
+		return list;
 	}
 	
 	// 해당 영양제 개수 카운팅

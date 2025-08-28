@@ -64,6 +64,7 @@ public class DrugServiceImpl implements DrugService{
 		
 		model.addAttribute("paging", paging);
 		model.addAttribute("list", list);
+		model.addAttribute("total", total);
 	}
 
 	// 영양제 추가 클릭 시 - 내 영양제에 추가

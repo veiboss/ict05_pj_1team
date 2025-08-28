@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.total .count{
+	color : #687FE5;
+	font-size : 15px;
+	font-weight : 600;
+}
+
+.article-type {
+	color : #696969;
+}

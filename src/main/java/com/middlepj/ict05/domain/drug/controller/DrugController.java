@@ -29,17 +29,9 @@ public class DrugController {
 			throws ServletException, IOException {
 		logger.info("<<< url ==> drug_search.do");
 
-		return "drug/drug_search";
-	}
-	@RequestMapping("/drug_search_next.do")
-	public String drug_search_next(HttpServletRequest request, HttpServletResponse response, Model model)
-			throws ServletException, IOException {
-		logger.info("<<< url ==> drug_search_next.do");
-		
 		service.drugSearchAction(request, response, model);
 		
-		return "drug/drug_search_next";
-		
+		return "drug/drug_search";
 	}
 	
 	// 영양제 목록
