@@ -90,7 +90,7 @@ public class MemberController {
 		logger.info("<<< url ==> /myPage.do >>>");
 
 	
-		return "myprofile/myPage";
+		return "myPage/myPage";
 	}
 
 }

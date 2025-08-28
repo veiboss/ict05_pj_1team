@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ include file="../../common/setting.jsp" %>
 <!DOCTYPE html>
@@ -37,8 +37,17 @@
 			<!-- 컨텐츠 시작 -->
 			<!-- SID : COM000 -->
 			<div id="content" class="sub"><!-- [D] main / sub-main / sub && pagd name -->
-			
+				
 				리뷰 상세페이지/ 수정 , 삭제
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				
 			</div><!-- // #content -->
 			<!-- 컨텐츠 끝 -->
