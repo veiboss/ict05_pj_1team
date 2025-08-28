@@ -9,3 +9,8 @@
 .article-type {
 	color : #696969;
 }
+
+.btn.search {
+	background-color : #FCD8CD;
+	font : black;
+}

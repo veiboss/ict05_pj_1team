@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.middlepj.ict05.domain.drug.dto.DrugDTO;
 import com.middlepj.ict05.domain.drug.service.DrugServiceImpl;
 
 @Controller
@@ -52,7 +53,7 @@ public class DrugController {
 		logger.info("<<< url ==> drug_addAction.do >>>");
 		
 		return "";
-		
+		 
 	}
 	
 	// 영양제 상세 처리

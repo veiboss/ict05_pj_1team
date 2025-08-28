@@ -45,7 +45,7 @@
 								<legend class="blind">통합 검색</legend>
 								<div class="search-box pack-both r4">
 									<input type="search" class="input-text r4" placeholder="검색어를 입력해주세요" autocomplete="off">
-									<button type="submit" class="btn"><strong>검색</strong></button>
+									<button type="submit" class="btn search">검색</button>
 								</div>
 							</fieldset>
 						</form>
@@ -62,57 +62,47 @@
 							<c:forEach var="dto" items="${list}">
 							<li>
 								<a href="#" class="item thumb-left">
-									<%-- <c:if test=""> --%>
-									<!-- <div class="img-wrap s100">
-										<img src="/ict05/resources/images/drug_type/01.png" alt="분말" class="centered">
-										
-											01	분말, 
-											02	원형캡슐, 
-											03	원형정제, 
-											04	제피정제, 
-											05	젤리, 
-											06	유동성 액체, 
-											07	경질캡슐
-										
-									</div> -->
-									<%-- </c:if> --%>
-									
+									<!-- 01	분말, 
+									02	원형캡슐, 
+									03	원형정제, 
+									04	제피정제, 
+									05	젤리, 
+									06	유동성 액체, 
+									07	경질캡슐 -->
 									<div class="img-wrap s100">
-									    <c:forEach var="item" items="${list}">
 									        <c:choose>
-									            <c:when test="${fn:contains(item.dr_serve_use, '분말')}">
+									            <c:when test="${fn:contains(dto.dr_sungsang, '분말')}">
 									                <img src="/ict05/resources/images/drug_type/01.png" alt="분말">
 									            </c:when>
 									
-									            <c:when test="${fn:contains(item.dr_serve_use, '원형캡슐')}">
+									            <c:when test="${fn:contains(dto.dr_sungsang, '원형캡슐')}">
 									                <img src="/ict05/resources/images/drug_type/02.png" alt="원형캡슐">
 									            </c:when>
 									
-									            <c:when test="${fn:contains(item.dr_serve_use, '원형정제')}">
+									            <c:when test="${fn:contains(dto.dr_sungsang, '원형정제')}">
 									                <img src="/ict05/resources/images/drug_type/03.png" alt="원형정제">
 									            </c:when>
 									
-									            <c:when test="${fn:contains(item.dr_serve_use, '제피정제')}">
+									            <c:when test="${fn:contains(dto.dr_sungsang, '제피정제')}">
 									                <img src="/ict05/resources/images/drug_type/04.png" alt="제피정제">
 									            </c:when>
 									            
-									            <c:when test="${fn:contains(item.dr_serve_use, '젤리')}">
-									                <img src="/ict05/resources/images/drug_type/04.png" alt="젤리">
+									            <c:when test="${fn:contains(dto.dr_sungsang, '젤리')}">
+									                <img src="/ict05/resources/images/drug_type/05.png" alt="젤리">
 									            </c:when>
 									            
-									            <c:when test="${fn:contains(item.dr_serve_use, '유동성 액체')}">
-									                <img src="/ict05/resources/images/drug_type/04.png" alt="유동성 액체">
+									            <c:when test="${fn:contains(dto.dr_sungsang, '액상')}">
+									                <img src="/ict05/resources/images/drug_type/06.png" alt="유동성 액체">
 									            </c:when>
 									            
-									            <c:when test="${fn:contains(item.dr_serve_use, '경질캡슐')}">
-									                <img src="/ict05/resources/images/drug_type/04.png" alt="경질캡슐">
+									            <c:when test="${fn:contains(dto.dr_sungsang, '경질캡슐')}">
+									                <img src="/ict05/resources/images/drug_type/07.png" alt="경질캡슐">
 									            </c:when>
 									
 									            <c:otherwise>
 									                <img src="/ict05/resources/images/drug_type/03.png" alt="정제">
 									            </c:otherwise>
 									        </c:choose>
-									    </c:forEach>
 									</div>
 									
 									<div class="data-content">
@@ -134,23 +124,34 @@
 									</div>
 								</a><!-- .item.thumb-left -->
 							</li>
-							</c:forEach>
+					    </c:forEach>
 						</ul>
 					
 					<div class="pagination">
-						<c:if test="${paging.startPage > 10}">
-						<a href="${path}/drug_list.do?pageNum=${paging.prev}" class="prev"><i class="ico page-arr"><span><</span></i></a>
+						<!-- 페이징처리 -->
+						<!-- 이전 버튼 활성화 -->
+						<c:if test="${paging.startPage > 5}">
+							<a href="${path}/drug_list.do?pageNum=${paging.prev}" class="btn prev">
+								<
+							</a>
 						</c:if>
-						<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+						
+						<!-- 페이지 번호 활성화 -->
 						<ul>
-							<li><a href="${path}/drug_list.do?pageNum=${num}" 
-										class="<c:if test='${num == paging.currentPage}'>active</c:if>">${num}</a></li>
+							<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+								<li class="<c:if test='${num == paging.currentPage}'>current</c:if>">
+									<a href="${path}/drug_list.do?pageNum=${num}" class="btn">${num}</a>
+								</li>
+							</c:forEach>
 						</ul>
-						</c:forEach>
+						
+						<!-- 다음 버튼 활성화 -->
 						<c:if test="${paging.endPage < paging.pageCount}">
-						<a href="${path}/drug_list.do?pageNum=${paging.next}" class="next"><i class="ico page-arr"><span>></span></i></a>
+							<a href="${path}/drug_list.do?pageNum=${paging.next}" class="btn next">
+								>
+							</a>
 						</c:if>
-					</div>
+					</div><!-- // .pagination -->
 				</div><!-- .section.list-wrap -->
 			</div>
 			<!-- 검색창 끝 -->

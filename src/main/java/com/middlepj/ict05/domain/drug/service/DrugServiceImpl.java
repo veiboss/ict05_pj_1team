@@ -46,6 +46,7 @@ public class DrugServiceImpl implements DrugService{
 		System.out.println("=== drugService - drugListAction() ===");
 		
 		String pageNum = request.getParameter("pageNum");
+		String keyword = request.getParameter("keyword");  // 검색어
 		
 		int total = dao.drugCnt();
 		System.out.println("total : " + total);
@@ -59,6 +60,12 @@ public class DrugServiceImpl implements DrugService{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end", end);
+		
+		// 검색 조건 반영해서 총 개수 카운트
+		Map<String, Object> map_search = new HashMap<>();
+		String safeKeyword = (keyword == null) ? "" : keyword.trim();
+		map_search.put("keyword", safeKeyword);
+		
 		
 		List<DrugDTO> list = dao.drugList(map);
 		
