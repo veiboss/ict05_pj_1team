@@ -24,7 +24,8 @@ public class ReviewServiceImpl implements ReviewService{
 			throws ServletException, IOException {
 		System.out.println("ReviewServiceImpl - reviewListAction()");
 		
-		// 저장되어 있는 값을 
+		// 화면에서 입력받은 값을 가져온다
+		
 		
 	}
 
