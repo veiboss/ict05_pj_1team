@@ -26,7 +26,7 @@
                 $.ajax({
                     type: "GET",
                     url: "reviewAjax.ad",
-                    data: { keyword: $("#keyword").val(), pageNum: page },
+                    data: { keyword: $("#searchTxt").val(), pageNum: page },
                     success: function(result){
                         $("#searchResult").html(result);
                     }
@@ -73,10 +73,20 @@
 			
 
 			<main id="content">
-				 <form id="searchForm">
-			        <input type="text" name="keyword" id="keyword" placeholder="검색어 입력">
-			        <button type="submit">검색</button>
-			    </form>
+				<div id="searchForm" class="search box-wrap">
+					<form>
+						<fieldset>
+							<legend class="blind">검색</legend>
+							<div class="field insert">
+								<input type="text" id="searchTxt" class="input-text medium" title="검색어" placeholder="검색어를 입력해 주세요">
+							</div>
+							<div class="button-area pack-left">
+								<button type="submit" class="btn medium color1">검색</button>
+								<button type="reset" class="btn medium bdr-color1">초기화</button>
+							</div>
+						</fieldset>
+					</form>
+				</div>
 			
 			    <!-- 검색 결과 들어올 div -->
 			    <div id="searchResult"></div>
