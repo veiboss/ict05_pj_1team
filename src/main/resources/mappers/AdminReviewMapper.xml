@@ -7,8 +7,9 @@
 <mapper namespace="com.middlepj.ict05.domain.admin.adminreview.dao.ReviewDAO"><!-- namespace="패키지명.인터페이스" -->
 	
 	<select id="userCheck" parameterType="String" resultType="int">
-		SELECT COUNT(*) FROM MEMBER_TB 
-		 WHERE MB_EMAIL = #{strId}
+		SELECT COUNT(*) 
+		  FROM MEMBER_TB AS cnt
+		 WHERE MB_ID = #{strId}
 		   AND MB_GRADE = 'admin'
 	</select>
 
@@ -19,12 +20,54 @@
 	</select>
 	
 	<select id="reviewList" parameterType="java.util.Map" resultType="com.middlepj.ict05.domain.admin.adminreview.dto.ReviewDTO">
-		SELECT * 
-		FROM (SELECT A.*, 
-			  		 rownum AS rn 
-				FROM (SELECT * FROM REVIEW_TB
-					   ORDER BY RV_ID DESC) A
-					 )
-			   WHERE rn BETWEEN #{start} AND #{end}
+	    SELECT * FROM (
+	        SELECT ROWNUM rn, a.*
+	        FROM (
+	            SELECT R.RV_ID,
+	                   R.MB_NAME,
+	                   R.RV_CONTENT,
+	                   R.RV_RATING,
+	                   R.RV_READCOUNT,
+	                   R.RV_REG_DATE,
+	                   R.RV_SHOW,
+	                   D.DR_PRODUCT
+	            FROM REVIEW_TB R
+	            JOIN DRUG_TB D ON R.DR_ID = D.DR_ID
+	            ORDER BY R.RV_REG_DATE DESC
+	        ) a
+	    )
+	    WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="boardSearchCnt" parameterType="java.util.Map" resultType="int">
+	    SELECT COUNT(*) AS cnt
+	    FROM REVIEW_TB R
+	    JOIN DRUG_TB D ON R.DR_ID = D.DR_ID
+	    WHERE R.MB_NAME LIKE '%' || #{keyword} || '%'
+	       OR R.RV_CONTENT LIKE '%' || #{keyword} || '%'
+	       OR D.DR_PRODUCT LIKE '%' || #{keyword} || '%'
+	</select>
+	
+	<select id="reviewSearchList" parameterType="java.util.Map" resultType="com.middlepj.ict05.domain.admin.adminreview.dto.ReviewDTO">
+	    SELECT * FROM (
+	        SELECT ROWNUM rn, a.*
+	        FROM (
+	            SELECT R.RV_ID,
+	                   R.MB_NAME,
+	                   R.RV_CONTENT,
+	                   R.RV_RATING,
+	                   R.RV_READCOUNT,
+	                   R.RV_REG_DATE,
+	                   R.RV_SHOW,
+	                   D.DR_PRODUCT
+	            FROM REVIEW_TB R
+	            JOIN DRUG_TB D ON R.DR_ID = D.DR_ID
+	            WHERE (R.MB_NAME LIKE '%' || #{keyword} || '%'
+	                OR R.RV_CONTENT LIKE '%' || #{keyword} || '%'
+	                OR D.DR_PRODUCT LIKE '%' || #{keyword} || '%')
+	            ORDER BY R.RV_REG_DATE DESC
+	        ) a
+	    )
+	    WHERE rn BETWEEN #{start} AND #{end}
 	</select>
 </mapper> 

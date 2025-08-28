@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.middlepj.ict05.domain.member.dto.MemberDTO;
+
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
@@ -21,5 +23,36 @@ public class MemberDAOImpl implements MemberDAO {
 		int selectCnt = session.selectOne("com.middlepj.ict05.domain.member.dao.MemberDAO.idPasswordChk", map);
 
 		return selectCnt;
+	}
+	
+	// ID 중복확인 처리
+	@Override
+	public int emailCheck(String strEmail) {
+		System.out.println("MemberDAOImpl - emailCheck()");
+		
+		int selectCnt = session.selectOne("com.middlepj.ict05.domain.member.dao.MemberDAO.emailCheck", strEmail);
+		
+		return selectCnt;
+	}
+
+	// 회원가입 처리
+	@Override
+	public int insertMember(MemberDTO dto) {
+		System.out.println("MemberDAOImpl - insertCustomer()");
+		
+		System.out.println("dto : " + dto);
+		
+		int insertCnt = session.insert("com.middlepj.ict05.domain.member.dao.MemberDAO.insertMember", dto);
+		
+		return insertCnt;
+	}
+
+	@Override
+	public MemberDTO memberSelect(Map<String, Object> map) {
+		System.out.println("MemberDAOImpl - memberSelect()");
+		
+		MemberDTO dto = session.selectOne("com.middlepj.ict05.domain.member.dao.MemberDAO.memberSelect", map);
+		
+		return dto;
 	}
 }

@@ -1,11 +1,14 @@
 package com.middlepj.ict05.domain.admin.adminreview.dto;
 
+import java.sql.Date;
+
 public class ReviewDTO {
 	private int rv_id;
-	private int mb_id;
-	private int dr_id;
-	private String rv_contnt;
+	private String mb_name;
+	private String rv_content;
 	private int rv_rating;
+	private int rv_readcount;
+	private Date rv_reg_date;
 	private char rv_show;
 	
 	private String dr_product;
@@ -15,14 +18,15 @@ public class ReviewDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReviewDTO(int rv_id, int mb_id, int dr_id, String rv_contnt, int rv_rating, char rv_show,
-			String dr_product) {
+	public ReviewDTO(int rv_id, String mb_name, String rv_content, int rv_rating, int rv_readcount, Date rv_reg_date,
+			char rv_show, String dr_product) {
 		super();
 		this.rv_id = rv_id;
-		this.mb_id = mb_id;
-		this.dr_id = dr_id;
-		this.rv_contnt = rv_contnt;
+		this.mb_name = mb_name;
+		this.rv_content = rv_content;
 		this.rv_rating = rv_rating;
+		this.rv_readcount = rv_readcount;
+		this.rv_reg_date = rv_reg_date;
 		this.rv_show = rv_show;
 		this.dr_product = dr_product;
 	}
@@ -35,28 +39,20 @@ public class ReviewDTO {
 		this.rv_id = rv_id;
 	}
 
-	public int getMb_id() {
-		return mb_id;
+	public String getMb_name() {
+		return mb_name;
 	}
 
-	public void setMb_id(int mb_id) {
-		this.mb_id = mb_id;
+	public void setMb_name(String mb_name) {
+		this.mb_name = mb_name;
 	}
 
-	public int getDr_id() {
-		return dr_id;
+	public String getRv_content() {
+		return rv_content;
 	}
 
-	public void setDr_id(int dr_id) {
-		this.dr_id = dr_id;
-	}
-
-	public String getRv_contnt() {
-		return rv_contnt;
-	}
-
-	public void setRv_contnt(String rv_contnt) {
-		this.rv_contnt = rv_contnt;
+	public void setRv_content(String rv_content) {
+		this.rv_content = rv_content;
 	}
 
 	public int getRv_rating() {
@@ -65,6 +61,22 @@ public class ReviewDTO {
 
 	public void setRv_rating(int rv_rating) {
 		this.rv_rating = rv_rating;
+	}
+
+	public int getRv_readcount() {
+		return rv_readcount;
+	}
+
+	public void setRv_readcount(int rv_readcount) {
+		this.rv_readcount = rv_readcount;
+	}
+
+	public Date getRv_reg_date() {
+		return rv_reg_date;
+	}
+
+	public void setRv_reg_date(Date rv_reg_date) {
+		this.rv_reg_date = rv_reg_date;
 	}
 
 	public char getRv_show() {
@@ -85,9 +97,13 @@ public class ReviewDTO {
 
 	@Override
 	public String toString() {
-		return "ReviewDTO [rv_id=" + rv_id + ", mb_id=" + mb_id + ", dr_id=" + dr_id + ", rv_contnt=" + rv_contnt
-				+ ", rv_rating=" + rv_rating + ", rv_show=" + rv_show + ", dr_product=" + dr_product + "]";
+		return "ReviewDTO [rv_id=" + rv_id + ", mb_name=" + mb_name + ", rv_content=" + rv_content + ", rv_rating="
+				+ rv_rating + ", rv_readcount=" + rv_readcount + ", rv_reg_date=" + rv_reg_date + ", rv_show=" + rv_show
+				+ ", dr_product=" + dr_product + "]";
 	}
+
+	
+	
 
 	
 	
