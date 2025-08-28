@@ -1,9 +1,12 @@
 package com.middlepj.ict05.domain.qna.service;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -84,12 +87,31 @@ public class QnaService {
 	public QnaDto answerQna(HttpServletRequest request) {
 		QnaAnswer answer = new QnaAnswer();
 		answer.setQa_id(Integer.parseInt(request.getParameter("qa_id")));
-		answer.setDr_id(1);
+		answer.setMb_id(1);
 		answer.setQa_answer(request.getParameter("qa_answer"));
 
 		dao.answerQna(answer);
 
 		QnaDto dto = dao.getQnaDetail(answer.getQa_id());
 		return dto;
+	}
+	
+	public int modifyQna(QnaForm form, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Object sessionIdObj = session.getAttribute("sessionID");
+		String sessionID = sessionIdObj != null ? sessionIdObj.toString():null;
+		
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("qa_id", form.getQa_id());		
+		map.put("qa_title", form.getQa_title());
+		map.put("qa_content", form.getQa_content());
+		map.put("qa_private", form.getQa_private());
+		map.put("qa_show", form.getQa_show());
+		map.put("qa_modify_id", Integer.parseInt(sessionID));
+		
+		int updateCnt = dao.updateQna(map);
+		
+		return updateCnt;
 	}
 }

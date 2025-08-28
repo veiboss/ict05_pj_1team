@@ -29,8 +29,9 @@
         <%@ include file="../common/header.jsp" %>
         <div id="content" class="sub si20">
             <h3>${dto.qa_title}</h3>
+            <hr/>
             <div>${dto.qa_content}</div>
-            <c:if test="${sessionScope.sessionId == dto.qa_writer_id}">
+            <c:if test="${sessionScope.sessionID == dto.qa_writer_id}">
             <div style="margin-top:10px;text-align:right">
                 <a class="btn bdr-gray medium" href="${path}/qna/modify/${dto.qa_id}">수정</a>
             </div>

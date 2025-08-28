@@ -52,4 +52,32 @@ public class QnaRestController {
 		
 		return ResponseEntity.ok(ApiResponse.success(dto, "Q&A 정상등록 되었습니다."));
 	}
+	
+	@PostMapping("/qna/modify")
+	public ResponseEntity<ApiResponse<QnaDto>> modifyAction(QnaForm form, HttpServletRequest request) {
+		List<String> errors = new ArrayList<>();
+		
+		if (form.getQa_title() == null || form.getQa_title().isEmpty()) {
+			errors.add("제목을 입력해주세요");
+		}
+		
+		if (form.getQa_content() == null || form.getQa_content().isEmpty()) {
+			errors.add("내용을 입력해주세요");
+		}
+
+		QnaDto dto = new QnaDto();
+
+		
+		if(errors.size() > 0) {
+			String message = String.join(", ", errors);
+			return ResponseEntity
+					.badRequest()
+					.body(ApiResponse.error(message, 400));
+		}
+		
+		int updateCnt = qnaService.modifyQna(form, request);
+		
+		
+		return ResponseEntity.ok(ApiResponse.success(dto, "Q&A 정상수정 되었습니다."));
+	}
 }
