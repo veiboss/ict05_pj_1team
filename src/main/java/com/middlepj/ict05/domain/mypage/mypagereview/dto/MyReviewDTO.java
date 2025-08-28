@@ -1,7 +1,7 @@
 package com.middlepj.ict05.domain.mypage.mypagereview.dto;
 
 
-public class ReviewDTO {
+public class MyReviewDTO {
 
 	private int rv_id;				// 후기 시퀀스(PK)
 	private int mb_id;				// 회원 시퀀스(FK)
@@ -10,11 +10,11 @@ public class ReviewDTO {
 	private int rv_rating;			// 후기 별점
 	private char rv_show;			// 노출 여부
 	
-	public ReviewDTO() {
+	public MyReviewDTO() {
 		super();
 	}
 
-	public ReviewDTO(int rv_id, int mb_id, String dr_id, String rv_content, int rv_rating, char rv_show) {
+	public MyReviewDTO(int rv_id, int mb_id, String dr_id, String rv_content, int rv_rating, char rv_show) {
 		super();
 		this.rv_id = rv_id;
 		this.mb_id = mb_id;
