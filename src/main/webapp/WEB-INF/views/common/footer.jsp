@@ -4,7 +4,7 @@
 <footer id="footer" class="footer">
 	<div class="footer-menu">
 		<a href="brand.do" class="btn transparent">약속 소개</a>
-		<a href="faq.do" class="btn transparent">FAQ</a>
+		<a href="faq_user_list.fc" class="btn transparent">FAQ</a>
 	</div>
 	<div class="com-info">
 		<p>YAKSOK</p>
