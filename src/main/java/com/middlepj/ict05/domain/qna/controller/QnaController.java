@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.middlepj.ict05.domain.qna.dto.QnaDto;
+import com.middlepj.ict05.domain.qna.dto.QnaForm;
 import com.middlepj.ict05.domain.qna.dto.QnaList;
 import com.middlepj.ict05.domain.qna.service.QnaService;
 
@@ -45,11 +46,17 @@ public class QnaController {
 	}
 
 	@PostMapping("/write")
-	public String writeAction(HttpServletRequest request, HttpServletResponse response, Model model) {
+	public String writeAction(QnaForm form, Model model) {
 		
-		int insertCnt = qnaService.insertQna(request);
+		int insertCnt = qnaService.insertQna(form);
 		
 		return "redirect:/qna/list";
+	}
+	
+	@GetMapping("/write-api")
+	public String writeFormApi(HttpServletRequest request, HttpServletResponse response, Model model) {
+		
+		return "qna/write_api";
 	}
 
 	@GetMapping("/detail/{qa_id}")
@@ -66,7 +73,7 @@ public class QnaController {
 			return null; // 더 이상 뷰 리턴하지 않음
 		}
 
-		if(dto.getQa_private() == 'Y') {
+		if(dto.getQa_private().equals("Y")) {
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('비밀글 입니다.'); location.href='"

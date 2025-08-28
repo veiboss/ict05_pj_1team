@@ -12,6 +12,7 @@ import com.middlepj.ict05.common.Paging;
 import com.middlepj.ict05.domain.qna.dao.QnaDao;
 import com.middlepj.ict05.domain.qna.dto.QnaAnswer;
 import com.middlepj.ict05.domain.qna.dto.QnaDto;
+import com.middlepj.ict05.domain.qna.dto.QnaForm;
 import com.middlepj.ict05.domain.qna.dto.QnaList;
 import com.middlepj.ict05.domain.qna.dto.QnaSearchDto;
 
@@ -60,23 +61,14 @@ public class QnaService {
 	 * @param dto
 	 * @return
 	 */
-	public int insertQna(HttpServletRequest request) {
+	public int insertQna(QnaForm form) {
 		QnaDto dto = new QnaDto();
-		dto.setMb_id(1);
-		dto.setQa_title(request.getParameter("qa_title"));
-		dto.setQa_content(request.getParameter("qa_content"));
-		String qaPrivateStr = request.getParameter("qa_private");
-		char qaPrivate = qaPrivateStr != null && qaPrivateStr.length() > 0 
-		                 ? 'Y' 
-		                 : 'N';   // 기본값
-		dto.setQa_private(qaPrivate);
+		dto.setQa_title(form.getQa_title());
+		dto.setQa_content(form.getQa_content());
+		dto.setQa_private(form.getQa_private());
+		dto.setQa_show(form.getQa_show());
 		dto.setQa_readcount(0);
-		String showPrivateStr = request.getParameter("qa_show");
-		char showPrivate = showPrivateStr != null && showPrivateStr.length() > 0 
-                ? 'Y' 
-                : 'N';   // 기본값
-		dto.setQa_show(showPrivate);
-		dto.setQa_writer_id(1);
+		dto.setQa_writer_id(8);
 		
 		int insertCnt = dao.insertQna(dto);
 		
