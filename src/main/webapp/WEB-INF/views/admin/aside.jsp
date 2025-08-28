@@ -32,7 +32,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="faq_admin_list.fc">
 							<span class="material-symbols-outlined">format_list_bulleted</span>
 							<span>FAQ</span>
 						</a>

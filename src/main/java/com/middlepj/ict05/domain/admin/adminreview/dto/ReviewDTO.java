@@ -9,7 +9,7 @@ public class ReviewDTO {
 	private int rv_rating;
 	private int rv_readcount;
 	private Date rv_reg_date;
-	private char rv_show;
+	private String rv_show;
 	
 	private String dr_product;
 	
@@ -19,7 +19,7 @@ public class ReviewDTO {
 	}
 
 	public ReviewDTO(int rv_id, String mb_name, String rv_content, int rv_rating, int rv_readcount, Date rv_reg_date,
-			char rv_show, String dr_product) {
+			String rv_show, String dr_product) {
 		super();
 		this.rv_id = rv_id;
 		this.mb_name = mb_name;
@@ -79,11 +79,11 @@ public class ReviewDTO {
 		this.rv_reg_date = rv_reg_date;
 	}
 
-	public char getRv_show() {
+	public String getRv_show() {
 		return rv_show;
 	}
 
-	public void setRv_show(char rv_show) {
+	public void setRv_show(String rv_show) {
 		this.rv_show = rv_show;
 	}
 

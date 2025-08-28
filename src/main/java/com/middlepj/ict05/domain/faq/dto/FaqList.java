@@ -5,17 +5,19 @@ import java.util.List;
 import com.middlepj.ict05.common.Paging;
 
 public class FaqList {
-	
+
 	private List<FaqDTO> faqList;
+	private List<FaqUserDTO> faqUserList;
 	private Paging paging;
-	
+
 	public FaqList() {
 		super();
 	}
 
-	public FaqList(List<FaqDTO> faqList, Paging paging) {
+	public FaqList(List<FaqDTO> faqList, List<FaqUserDTO> faqUserList, Paging paging) {
 		super();
 		this.faqList = faqList;
+		this.faqUserList = faqUserList;
 		this.paging = paging;
 	}
 
@@ -25,6 +27,14 @@ public class FaqList {
 
 	public void setFaqList(List<FaqDTO> faqList) {
 		this.faqList = faqList;
+	}
+
+	public List<FaqUserDTO> getFaqUserList() {
+		return faqUserList;
+	}
+
+	public void setFaqUserList(List<FaqUserDTO> faqUserList) {
+		this.faqUserList = faqUserList;
 	}
 
 	public Paging getPaging() {
@@ -37,9 +47,7 @@ public class FaqList {
 
 	@Override
 	public String toString() {
-		return "FaqList [faqList=" + faqList + ", paging=" + paging + "]";
+		return "FaqList [faqList=" + faqList + ", faqUserList=" + faqUserList + ", paging=" + paging + "]";
 	}
-	
-	
 
 }

@@ -17,7 +17,7 @@ public interface FaqService {
 			throws ServletException, IOException;
 
 	// FAQ 목록
-	public void faqListAction(HttpServletRequest request, HttpServletResponse response, Model model)
+	public FaqList faqListAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException;
 
 	// FAQ 등록(노출/비노출)
