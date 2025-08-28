@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.Map;
 
 import com.middlepj.ict05.domain.faq.dto.FaqDTO;
+import com.middlepj.ict05.domain.faq.dto.FaqUserDTO;
 
 public interface FaqDAO {
 
 	// FAQ 회원 목록
-	public List<FaqDTO> userFaqlist(Map<String, Object> map);
+	public List<FaqUserDTO> userFaqlist(Map<String, Object> map);
 	
 	// FAQ 회원 total
 	public int userFaqCount();
