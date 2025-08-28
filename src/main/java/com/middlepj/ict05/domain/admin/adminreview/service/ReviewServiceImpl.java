@@ -29,6 +29,7 @@ public class ReviewServiceImpl implements ReviewService{
 	@Override
 	public void reviewList(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
+		logger.info("ReviewServiceImpl - reviewList");
 		
 		// 페이징 연산 해줄거임
 		String pageNum = request.getParameter("pageNum");
@@ -87,4 +88,20 @@ public class ReviewServiceImpl implements ReviewService{
 	    model.addAttribute("keyword", keyword); // 검색어 유지용
 	}
 
+	@Override
+	public void review_detailAction(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("ReviewServiceImpl - review_detailAction");
+		int rv_id = Integer.parseInt(request.getParameter("rv_id"));
+		ReviewDTO dto;
+		try {
+			dto = dao.review_detailAction(rv_id);
+        } catch (Exception e) {
+            logger.error("Failed to fetch review detail", e);
+            throw new ServletException("후기 상세 조회 실패", e);
+        }
+		
+		model.addAttribute("dto", dto);
+	}
+	
 }

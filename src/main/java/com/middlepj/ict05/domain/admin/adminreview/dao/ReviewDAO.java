@@ -20,4 +20,6 @@ public interface ReviewDAO {
 	public int boardSearchCnt(Map<String, Object> map);
 	
 	public List<ReviewDTO> reviewSearchList(Map<String, Object> map);
+	
+	public ReviewDTO review_detailAction(int rv_id);
 }
