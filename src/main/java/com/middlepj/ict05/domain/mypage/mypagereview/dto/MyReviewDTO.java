@@ -8,13 +8,13 @@ public class MyReviewDTO {
 	private String dr_id;			// 약 시퀀스(FK)
 	private String rv_content;		// 후기 내용
 	private int rv_rating;			// 후기 별점
-	private char rv_show;			// 노출 여부
+	private String rv_show;			// 노출 여부
 	
 	public MyReviewDTO() {
 		super();
 	}
 
-	public MyReviewDTO(int rv_id, int mb_id, String dr_id, String rv_content, int rv_rating, char rv_show) {
+	public MyReviewDTO(int rv_id, int mb_id, String dr_id, String rv_content, int rv_rating, String rv_show) {
 		super();
 		this.rv_id = rv_id;
 		this.mb_id = mb_id;
@@ -64,11 +64,11 @@ public class MyReviewDTO {
 		this.rv_rating = rv_rating;
 	}
 
-	public char getRv_show() {
+	public String getRv_show() {
 		return rv_show;
 	}
 
-	public void setRv_show(char rv_show) {
+	public void setRv_show(String rv_show) {
 		this.rv_show = rv_show;
 	}
 
