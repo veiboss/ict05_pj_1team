@@ -9,7 +9,7 @@
 	<select id="userCheck" parameterType="String" resultType="int">
 		SELECT COUNT(*) 
 		  FROM MEMBER_TB AS cnt
-		 WHERE MB_EMAIL = #{strId}
+		 WHERE MB_ID = #{strId}
 		   AND MB_GRADE = 'admin'
 	</select>
 
@@ -29,7 +29,8 @@
 	                   R.RV_RATING,
 	                   R.RV_READCOUNT,
 	                   R.RV_REG_DATE,
-	                   D.DR_PRODUCT AS DRUG_NAME
+	                   R.RV_SHOW,
+	                   D.DR_PRODUCT
 	            FROM REVIEW_TB R
 	            JOIN DRUG_TB D ON R.DR_ID = D.DR_ID
 	            ORDER BY R.RV_REG_DATE DESC
@@ -57,6 +58,7 @@
 	                   R.RV_RATING,
 	                   R.RV_READCOUNT,
 	                   R.RV_REG_DATE,
+	                   R.RV_SHOW,
 	                   D.DR_PRODUCT
 	            FROM REVIEW_TB R
 	            JOIN DRUG_TB D ON R.DR_ID = D.DR_ID
