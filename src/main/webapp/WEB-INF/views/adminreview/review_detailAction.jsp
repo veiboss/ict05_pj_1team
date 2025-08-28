@@ -48,9 +48,22 @@
 								<legend class="blind">기본 정보</legend>
 								<div class="row-3">
 									<div class="field col">
-										<label class="label medium required" for="input01">작성자</label>
+										<label class="label medium required" for="mb_name">작성자</label>
 										<div class="insert">
-											<input type="text" name="input01" id="input01" class="input-text medium" title="인풋명" placeholder="검색어 입력">
+											<input type="text" name="mb_name" id="mb_name" class="input-text medium" title="작성자" placeholder="작성자 입력" value="${dto.mb_name}">
+										</div>
+									</div>
+									<div class="field col">
+										<label class="label medium" for="rv_rating">별점</label>
+										<div class="insert">
+											<select name="rv_rating" id="rv_rating" class="select medium">
+												<option value="">선택</option>
+												<option value="1" ${dto.rv_rating == 1 ? 'selected' : ''}>1</option>
+												<option value="2" ${dto.rv_rating == 2 ? 'selected' : ''}>2</option>
+												<option value="3" ${dto.rv_rating == 3 ? 'selected' : ''}>3</option>
+												<option value="4" ${dto.rv_rating == 4 ? 'selected' : ''}>4</option>
+												<option value="5" ${dto.rv_rating == 5 ? 'selected' : ''}>5</option>
+											</select>
 										</div>
 									</div>
 								</div>
@@ -58,29 +71,29 @@
 									<div class="field col">
 										<span class="label medium">라디오</span>
 										<div class="insert pack-left">
-											<label for="radio1" class="pack-left"><input type="radio" class="radio" name="radio" id="radio1">라디오1</label>
-											<label for="radio2" class="pack-left"><input type="radio" class="radio" name="radio" id="radio2">라디오2</label>
-											<label for="radio3" class="pack-left"><input type="radio" class="radio" name="radio" id="radio3">라디오3</label>
+											<label for="radio1" class="pack-left"><input type="radio" class="radio" name="rv_show" id="rv_show" value="Y" 
+												<c:if test="${dto.rv_show eq 'Y'}">checked</c:if>>노출</label>
+											<label for="radio2" class="pack-left"><input type="radio" class="radio" name="rv_show" id="rv_show" value="N" 
+												<c:if test="${dto.rv_show eq 'N'}">checked</c:if>>비노출</label>
 										</div>
 									</div>
 								</div>
 								<div class="row">
-									<div class="field">
-										<label class="label medium" for="inputSet02">텍스트에리어</label>
+									<div class="field col">
+										<label class="label medium required" for="dr_product">제약명</label>
 										<div class="insert">
-											<textarea class="textarea medium" rows="4" cols="50" placeholder="텍스트에리어"></textarea>
+											${dto.dr_product}
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="field">
-										<span class="label medium">인풋</span>
-										<label class="insert pack-left">
-											<input type="file" class="input-text medium">
-										</label>
+										<label class="label medium" for="inputSet02">후기 내용</label>
+										<div class="insert">
+											<textarea class="textarea medium" rows="4" cols="50" placeholder="텍스트에리어">${dto.rv_content}</textarea>
+										</div>
 									</div>
 								</div>
-	
 								<div class="button-area pack-center">
 									<button type="submit" class="btn large color1">저장</button>
 									<button type="reset" class="btn large bdr-color1">초기화</button>

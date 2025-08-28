@@ -25,7 +25,7 @@
 	            <td data-th="등록일">${dto.rv_reg_date}</td>
 	            <td data-th="공개여부">${dto.rv_show}</td>
 	            <td data-th="버튼">
-					<button class="btn small normal" onclick="location.href='review_detailAction.ad?rv_id=${dto.rv_id}'" style="cursor:pointer;">상세/수정</button>
+					<button class="btn small color1" onclick="location.href='review_detailAction.ad?rv_id=${dto.rv_id}'" style="cursor:pointer;">상세/수정</button>
 				</td>
 	        </tr>
 	    </c:forEach>
@@ -41,33 +41,29 @@
 <!-- 페이징 -->
 <div class="pagination">
     <!-- 이전 버튼 -->
-    <c:if test="${paging.startPage > 1}">
-        <a href="javascript:void(0);" class="prev page-link" data-page="${paging.startPage - 1}">
-            <i class="ico page-arr"><span><</span></i>
+    <c:if test="${paging.startPage > 5}">
+        <a href="javascript:void(0);" class="btn prev page-link" data-page="${paging.prev}">
+            <svg xmlns="http://www.w3.org/2000/svg" class="svg">
+                <path d="m2 6 6-4.33v8.66L2 6z" />
+            </svg>
         </a>
     </c:if>
 
+    <!-- 페이지 번호 -->
     <ul>
-        <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="p">
-            <li class="${p == paging.currentPage ? 'current' : ''}">
-                <a href="javascript:void(0);" class="page-link" data-page="${p}">${p}</a>
+        <c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+            <li class="${num == paging.currentPage ? 'current' : ''}">
+                <a href="javascript:void(0);" class="btn page-link" data-page="${num}">${num}</a>
             </li>
         </c:forEach>
-        
-        <c:if test="${paging.endPage < paging.pageCount}">
-            <li><span class="dot3">...</span></li>
-            <li>
-                <a href="javascript:void(0);" class="page-link" data-page="${paging.pageCount}">
-                    ${paging.pageCount}
-                </a>
-            </li>
-        </c:if>
     </ul>
 
     <!-- 다음 버튼 -->
     <c:if test="${paging.endPage < paging.pageCount}">
-        <a href="javascript:void(0);" class="next page-link" data-page="${paging.endPage + 1}">
-            <i class="ico page-arr"><span>></span></i>
+        <a href="javascript:void(0);" class="btn next page-link" data-page="${paging.next}">
+            <svg xmlns="http://www.w3.org/2000/svg" class="svg">
+                <path d="m2 6 6-4.33v8.66L2 6z" />
+            </svg>
         </a>
     </c:if>
 </div>
