@@ -38,7 +38,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="review.ad">
 							<span class="material-symbols-outlined">rate_review</span>
 							<span>후기</span>
 						</a>
