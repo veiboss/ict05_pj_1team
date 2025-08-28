@@ -2,7 +2,7 @@ package com.middlepj.ict05.domain.mypage.mypageqna.dto;
 
 import java.util.Date;
 
-public class QnaDTO {
+public class MyQnaDTO {
 
 	private int qa_id;				// 전문가 시퀀스(PK)
 	private int mb_id;				// 약 시퀀스(FK)
@@ -19,11 +19,11 @@ public class QnaDTO {
 	private int qa_modify_id;		// 수정자
 	private Date qa_modify_date;	// 수정일
 	
-	public QnaDTO() {
+	public MyQnaDTO() {
 		super();
 	}
 
-	public QnaDTO(int qa_id, int mb_id, int dr_id, String qa_title, String qa_content, String qa_private,
+	public MyQnaDTO(int qa_id, int mb_id, int dr_id, String qa_title, String qa_content, String qa_private,
 			String qa_answer, Date qa_answer_date, int qa_readcount, char qa_show, int qa_writer_id, Date qa_reg_date,
 			int qa_modify_id, Date qa_modify_date) {
 		super();
