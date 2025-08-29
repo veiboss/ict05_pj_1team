@@ -203,7 +203,7 @@ table th,
 table td						{border-bottom: 1px solid var(--bdr-color);}
 table thead th					{padding: .75rem 1.25rem; text-align: center;}
 table tbody th,
-table tbody td					{padding: .4rem;}
+table tbody td					{padding: .75rem;}
 table tbody td					{vertical-align: middle;}
 table img 						{vertical-align: inherit;}
 table p + p						{margin-top: 1rem;}
@@ -220,7 +220,7 @@ table p + p						{margin-top: 1rem;}
 		-webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column;
 	}
 	.data-table tbody th			{display: none;}
-	.data-table tbody td			{padding: .2rem 0;}
+	.data-table tbody td			{padding: .3rem 0;}
 	.data-table tbody td			{border-bottom-width: 0; text-align: left;}
 	.data-table tbody tr			{padding: 1.5rem 0; border-bottom: 1px solid var(--bdr-color);}
 	.data-table tbody td[data-th]	{display: flex; justify-content: space-between;}

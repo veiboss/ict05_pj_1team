@@ -23,4 +23,10 @@
 			)
 		 WHERE rn BETWEEN #{start} AND #{end}
 	</select>
+	
+	<!-- 멤버삭제 -->
+	<delete id="memberDelete" parameterType="int">
+		DELETE MEMBER_TB
+		 WHERE MB_ID=#{mbId}
+	</delete>
 </mapper> 

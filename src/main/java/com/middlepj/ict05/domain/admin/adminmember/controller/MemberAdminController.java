@@ -19,7 +19,8 @@ import com.middlepj.ict05.domain.admin.adminmember.service.MemberAdminServiceImp
 @Controller
 public class MemberAdminController {
 
-	@Autowired private MemberAdminServiceImpl service;
+	@Autowired
+	private MemberAdminServiceImpl service;
 	
 	private static final Logger logger = LoggerFactory.getLogger(MemberAdminController.class);
 
@@ -43,4 +44,13 @@ public class MemberAdminController {
 	// 회원 수정
 
 	// 회원 삭제
+	@RequestMapping("/memberDeleteAction.ad")
+	public String memberDeleteAction(HttpServletRequest request, HttpServletResponse response, Model model) 
+			throws ServletException, IOException {
+		logger.info("<<< url ==>  /memberDeleteAction.ad >>>");
+		
+		service.memberDeleteAction(request, response, model);
+		
+		return "admin_member/memberDelete";
+	}
 }

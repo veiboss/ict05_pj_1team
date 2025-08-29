@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.middlepj.ict05.common.Paging;
 import com.middlepj.ict05.domain.admin.adminmember.dao.MemberAdminDAO;
@@ -77,5 +78,14 @@ public class MemberAdminServiceImpl implements MemberAdminService {
 			throws ServletException, IOException{
 		System.out.println("MemberServiceImpl - memberDeleteAction()");
 		
+		int mb_id = Integer.parseInt(request.getParameter("mbId"));
+		
+		System.out.println("mb_id : " + mb_id);
+		
+		int deleteCnt = dao.memberDelete(mb_id);
+		System.out.println("deleteCnt : " + deleteCnt);
+		
+		model.addAttribute("deleteCnt", deleteCnt);
+		model.addAttribute("mbId", mb_id);
 	}
 }
