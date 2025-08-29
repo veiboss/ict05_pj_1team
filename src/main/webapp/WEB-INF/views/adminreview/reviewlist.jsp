@@ -89,9 +89,9 @@
 				</div>
 			
 			    <!-- 검색 결과 들어올 div -->
-			    <div id="searchResult"></div>
-			    
-				
+			    <section class="box-wrap">
+			    	<div id="searchResult"></div>
+				</section>
 			</main>
 			
 			<!-- 컨텐츠 끝 -->

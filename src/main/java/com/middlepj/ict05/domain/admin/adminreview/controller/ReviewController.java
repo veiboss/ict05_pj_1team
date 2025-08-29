@@ -78,4 +78,20 @@ public class ReviewController {
         }
 		return "adminreview/review_detailAction";
 	}
+	
+	@RequestMapping("/review_modify.ad")
+	public String review_modify(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("<<< url ==>  /review_modify.ad >>>");
+	
+		try {
+            // 서비스에서 model을 채워서 JSP로 넘김 (기존 구조 유지)
+			service.review_modifyAction(request, response, model);
+        } catch (Exception e) {
+            // 에러 로깅 후 예외 전파 (원래 동작을 유지하면서 문제 원인 로그 남김)
+            logger.error("Error while preparing review_modify page", e);
+            throw new ServletException("후기 수정 중 오류가 발생했습니다.", e);
+        }
+		return "adminreview/review_modify";
+	}
 }
