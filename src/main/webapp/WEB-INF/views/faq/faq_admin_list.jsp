@@ -162,10 +162,12 @@
 										<option value="1" selected="">공개</option>
 										<option value="0">비공개</option>
 								</select></td>
-								<td data-th="버튼">
-									<button class="btn small normal">수정</button>
-									<button class="btn small accent">삭제</button>
+								
+								<td data-th="버튼" style="text-align:center;"><a
+									href="${path}/faq/edit/${row.fa_id}" class="btn small normal"
+									style="margin: 10px 0;">수정</a>
 								</td>
+
 							</tr>
 
 							<c:forEach var="dto" items="${list}">
@@ -204,10 +206,8 @@
 					<!-- 등록 버튼 영역 -->
 					<div class="button-area"
 						style="margin: 20px 0; text-align: center;">
-						<a href="${path}/faq/write" class="btn large color1">글등록</a>
+						<a href="faq_insert.fc" class="btn large color1">글등록</a>
 					</div>
-
-
 
 					<div class="pagination">
 							<a href="javascript:void(0);" class="btn prev">

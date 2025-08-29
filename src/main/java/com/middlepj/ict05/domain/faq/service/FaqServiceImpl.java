@@ -103,8 +103,14 @@ public class FaqServiceImpl implements FaqService {
 			throws ServletException, IOException {
 		System.out.println("FaqServiceImpl - faqInsertAction()");
 		
-		
+		FaqDTO dto = new FaqDTO();
+		dto.setFa_writer_id((Integer)request.getSession().getAttribute("sessionID"));
+		dto.setFa_title(request.getParameter("fa_title"));
+		dto.setFa_content(request.getParameter("fa_content"));
+		dto.setFa_show(request.getParameter("fa_show"));
+		dao.insertFaq(dto);
 	}
+	
 
 	// FAQ 상세
 	@Override
