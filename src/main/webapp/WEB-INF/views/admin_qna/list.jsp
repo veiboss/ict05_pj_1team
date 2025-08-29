@@ -51,12 +51,13 @@
             <div class="table-wrap">
 				<table class="data-table">
 					<colgroup>
-						<col>
-						<col>
-						<col>
-						<col>
-						<col>
-						<col>
+						<col width="80">
+						<col width="*">
+						<col width="100">
+						<col width="100">
+						<col width="100">
+						<col width="100">
+						<col width="120">
 					</colgroup>
 					<thead>
 						<tr>
@@ -65,6 +66,7 @@
 							<th scope="col">답변</th>
 							<th scope="col">비밀글</th>
 							<th scope="col">노출여부</th>
+							<th scope="col">작성자</th>
 							<th scope="col">작성일</th>
 						</tr>
 					</thead>
@@ -79,6 +81,7 @@
 							</td>
 							<td>${qna.qa_private}</td>
 							<td>${qna.qa_show}</td>
+							<td>${qna.mb_name}</td>
 							<td><fmt:formatDate value="${qna.qa_reg_date}" pattern="yyyy. MM. dd"/></td>
 						</tr>
 						</c:forEach>

@@ -141,6 +141,7 @@ public class QnaService {
 		map.put("qa_modify_id", Integer.parseInt(sessionID));
 		
 		int updateCnt = dao.updateQna(map);
+		System.out.println(map);
 		
 		return updateCnt;
 	}

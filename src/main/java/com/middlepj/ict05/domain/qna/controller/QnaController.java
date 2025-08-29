@@ -102,6 +102,7 @@ public class QnaController {
 
 		return "qna/detail";
 	}
+	
 
 	@PostMapping("/answer")
 	public String answer(HttpServletRequest request, HttpServletResponse response, Model model) {
