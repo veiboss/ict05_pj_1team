@@ -71,7 +71,8 @@ public class FaqController {
 		logger.info("<<< url ==> /faq_insertAction.fc >>>");
 		
 		service.faqInsertAction(request, response, model);
-		return "redirect:/faq_admin_list.fc";
+
+		return "faq/faq_insertAction";
 	}
 	
 	// FAQ 수정(노출/비노출)

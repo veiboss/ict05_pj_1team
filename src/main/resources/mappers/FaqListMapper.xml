@@ -37,7 +37,6 @@
 		    FROM (
 		      SELECT *
 		      FROM FAQ_TB
-		      WHERE fa_show = 'Y'
 		      ORDER BY fa_id DESC
 		    ) A
 		    WHERE ROWNUM <= #{end}
