@@ -31,7 +31,7 @@ public class FaqController {
 			throws ServletException, IOException {
 		logger.info("<<< url ==> /faq_user_list.fc >>>");
 
-//		service.faqUserListAction(request, response, model);
+   // service.faqUserListAction(request, response, model);
 		
 		FaqList faqList = service.faqUserListAction(request, response, model);
 		
@@ -40,4 +40,29 @@ public class FaqController {
 
 		return "faq/faq_user_list";
 	}
+	
+	// FAQ 관리자 목록
+	@RequestMapping("/faq_admin_list.fc")
+	public String faq_admin_list(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("<<< url ==> /faq_admin_list.fc >>>");
+		
+		FaqList faqList = service.faqListAction(request, response, model);
+		
+		model.addAttribute("list", faqList.getFaqList());
+		model.addAttribute("paging", faqList.getPaging());
+		
+		return "faq/faq_admin_list";
+	}
+	
+	// FAQ 등록(노출/비노출)
+	@RequestMapping("/faq_insert.fc")
+	public String faq_insert(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("<<< url ==> /faq_insert.fc >>>");
+		
+		return "faq/faq_insert";
+	}
+	
+	
 }

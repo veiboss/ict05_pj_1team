@@ -28,6 +28,14 @@ public class MemberController {
 	public String main() {
 		logger.info("<<< url ==>  /main.do >>>");
 
+		return "common/main";
+	}
+
+	/* 스타일 참고용 삭제예정 */
+	@RequestMapping("/layout.do")
+	public String layout() {
+		logger.info("<<< url ==>  /layout.do >>>");
+
 		return "common/layout";
 	}
 
@@ -75,6 +83,14 @@ public class MemberController {
 		service.signUpAction(request, response, model);
 		
 		return "member/join/joinAction";
+	}
+	@RequestMapping("/myPage.do")
+	public String myPage(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("<<< url ==> /myPage.do >>>");
+
+	
+		return "myPage/myPage";
 	}
 
 }
