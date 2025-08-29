@@ -1,8 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+   
+   <!-- Root Context: defines shared resources visible to all other web components -->
+   <!-- Oracle DataSource -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+        <!-- XE 기본 접속 정보 -->
+        <property name="url" value="jdbc:oracle:thin:@192.168.0.69:1521:xe"/>
+        <property name="username" value="team1_ict05"/>
+        <property name="password" value="yaksok"/>
+    </bean>
+
+    <!-- MyBatis SqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!-- Mapper XML 위치 -->
+        <property name="mapperLocations" value="classpath:mappers/*.xml"/>
+        <!-- VO/DTO Alias -->
+        <property name="typeAliasesPackage" value="com.ict.ict05_pj_1team"/>
+    </bean>
+    
+    <!-- MyBatis SqlSessionTemplate -->
+   <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+       <constructor-arg index="0" ref="sqlSessionFactory"/>
+   </bean>
+
+    <!-- Mapper 인터페이스 자동 스캔 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.ict.ict05_pj_1team"/>
+    </bean>
+
 </beans>
