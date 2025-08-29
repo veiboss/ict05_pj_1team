@@ -69,4 +69,12 @@ public class ReviewDAOImpl implements ReviewDAO{
 		return dto;
 	}
 
+	@Override
+	public int review_modifyAction(ReviewDTO dto) {
+		System.out.println("ReviewDAOImpl - review_modifyAction()");
+		int updateCnt = sqlSession.update("com.middlepj.ict05.domain.admin.adminreview.dao.ReviewDAO.review_modifyAction", dto);
+		
+		return updateCnt;
+	}
+
 }

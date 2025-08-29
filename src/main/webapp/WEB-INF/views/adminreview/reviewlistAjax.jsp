@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- 검색 결과 리스트 -->
-<div class="search box-wrap">
+<div>
 	<table class="data-table">
 		<thead>
 		    <tr>
