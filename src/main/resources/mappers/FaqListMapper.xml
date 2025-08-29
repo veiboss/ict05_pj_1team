@@ -37,7 +37,6 @@
 		    FROM (
 		      SELECT *
 		      FROM FAQ_TB
-		      WHERE fa_show = 'Y'
 		      ORDER BY fa_id DESC
 		    ) A
 		    WHERE ROWNUM <= #{end}
@@ -50,5 +49,11 @@
 	<select id="faqCount" resultType="int">
 		SELECT COUNT(*) FROM FAQ_TB WHERE fa_show = 'Y'
 	</select>
+	
+	<!-- FAQ 글등록 -->
+	<insert id="insertFaq" parameterType="com.middlepj.ict05.domain.faq.dto.FaqDTO">
+	 	INSERT INTO faq_TB (fa_id, fa_title, fa_content, fa_show, fa_writer_id, fa_reg_date)
+		VALUES (FAQ_SEQ.NEXTVAL , #{fa_title}, #{fa_content}, #{fa_show}, #{fa_writer_id}, SYSDATE)
+	</insert>
 
 </mapper>

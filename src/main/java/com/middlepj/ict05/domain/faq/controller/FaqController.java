@@ -55,7 +55,7 @@ public class FaqController {
 		return "faq/faq_admin_list";
 	}
 	
-	// FAQ 등록(노출/비노출)
+	// FAQ 등록 페이지(노출/비노출)
 	@RequestMapping("/faq_insert.fc")
 	public String faq_insert(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
@@ -63,6 +63,27 @@ public class FaqController {
 		
 		return "faq/faq_insert";
 	}
+	
+	// FAQ 등록 처리
+	@RequestMapping("/faq_insertAction.fc")
+	public String faq_insertAction(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("<<< url ==> /faq_insertAction.fc >>>");
+		
+		service.faqInsertAction(request, response, model);
+
+		return "faq/faq_insertAction";
+	}
+	
+	// FAQ 수정(노출/비노출)
+	@RequestMapping("/faq_update.fc")
+	public String faq_update(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("<<< url ==> /faq_update.fc >>>");
+		
+		return "faq/faq_update";
+	}
+	// FAQ 상세
 	
 	
 }

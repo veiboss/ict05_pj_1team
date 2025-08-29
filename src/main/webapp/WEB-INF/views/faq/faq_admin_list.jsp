@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file="../common/setting.jsp" %>
+<%@ include file="../common/setting.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -152,48 +153,18 @@
 								<th>버튼</th>
 							</tr>
 						</thead>
+						
 						<tbody>
-							<tr>
-								<td data-th="번호">101</td>
-								<td data-th="성명">박미리</td>
-								<td data-th="제목">비밀번호 변경은 어떻게 하나요?</td>
-								<td data-th="등록일">2017-04-26 16:50</td>
-								<td data-th="공개여부"><select class="select small">
-										<option value="1" selected="">공개</option>
-										<option value="0">비공개</option>
-								</select></td>
-								<td data-th="버튼">
-									<button class="btn small normal">수정</button>
-									<button class="btn small accent">삭제</button>
-								</td>
-							</tr>
-
 							<c:forEach var="dto" items="${list}">
 								<tr>
-									<td>${dto.pdNo}</td>
-									<td>${dto.pdName}</td>
-									<td>${dto.pdBrand}</td>
-
-									<!-- upload 폴더를 새로고침, 브라우저도 새로고침해야 깨진 이미지가 제대로 보임 -->
-									<td><img src="${dto.pdImg}" width="100px"></td>
-									<td>${dto.pdCategory}</td>
-									<td>${dto.pdPrice}</td>
-									<td>${dto.pdQuantity}</td>
-									<td>${dto.pdContent}</td>
-									<td>${dto.pdStatus}</td>
-									<td>${dto.pdIndate}</td>
-									<td>
-										<center>
-											<input class="inputButton" type="button" value="수정"
-												onclick="window.location='${path}/ad_product_detailAction.pd?pdNo=${dto.pdNo}&pageNum=${paging.pageNum}'">
-										</center>
-									</td>
-
-									<td>
-										<center>
-											<input class="inputButton" type="button" value="삭제"
-												onclick="window.location='${path}/ad_product_deleteAction.pd?pdNo=${dto.pdNo}'">
-										</center>
+									<td>${dto.fa_id}</td>
+									<td>${dto.fa_writer_id}</td>
+									<td>${dto.fa_title}</td>
+									<td>${dto.fa_reg_date}</td>
+									<td>${dto.fa_show}</td>
+									<td data-th="버튼" style="text-align:center;"><a
+									href="${path}/faq/edit/${dto.fa_id}" class="btn small normal"
+									style="margin: 10px 0;">수정</a>
 									</td>
 								</tr>
 							</c:forEach>
@@ -204,10 +175,8 @@
 					<!-- 등록 버튼 영역 -->
 					<div class="button-area"
 						style="margin: 20px 0; text-align: center;">
-						<a href="${path}/faq/write" class="btn large color1">글등록</a>
+						<a href="faq_insert.fc" class="btn large color1">글등록</a>
 					</div>
-
-
 
 					<div class="pagination">
 							<a href="javascript:void(0);" class="btn prev">

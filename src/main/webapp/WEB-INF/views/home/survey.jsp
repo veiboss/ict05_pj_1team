@@ -23,7 +23,7 @@
 <style>
 	@charset "UTF-8";
 	/* ICT TeamONE _ 약을 쏘옥, 약속 _ KimJuyeon _ 20250818 */
-	
+	/* 
 	@import url(${path}/resources/css/_colors.css);
 	@import url(${path}/resources/css/_fonts.css);
 	
@@ -74,7 +74,7 @@
 		display: none;
 	}
 	.options label:hover {
-		background: #f0f4ff; /* This color is not in the variables */
+		background: #f0f4ff; 
 		border-color: var(--blue);
 	}
 	#options input:checked + span {
@@ -90,8 +90,30 @@
 		font-size: 14px;
 		color: var(--very-dark-gray);
 	}
-
-</style>
+ */
+ 
+	.article.card .card:not(.active){display:none;}
+	.article-header + .pack-down-center {padding-top: 20px;}
+	.article.card .btn{ border-radius: 100px;}
+	
+	.article.card .select-options {height: fit-content;}
+	.article.card .select-options:before{display: none;} 
+	.article.card .select-options .btn{padding: 12px 16px 12px; min-width: 50%; font-size: 18px;}
+	
+	.article.card .input-text.large	{width: 50%; height: var(--large); line-height: var(--large); text-align:center; font-size: 18px; font-weight: bold;}
+	
+	.article.card .card > .button-area{margin: 0 auto; padding: 40px 0; width: 80%; text-align:center;}
+	
+	.btn.bdr-gray:has(input:checked){border: solid 1px var(--blue);}
+	
+	.article.card .button-area .btn.large {width: 50%; text-align: center;}
+	
+	#survey-container .article-type {padding: 20px 0; text-align: right;}
+	
+	#surveyCard{position: relative;}
+	#question {font-size: 20px; font-weight: bold; line-height: 1.35; letter-spacing: -0.6px;}
+	#progress {position: absolute; top: 72px; right: 0; font-weight: bold; color: var(--blue);}
+ </style>
 <script>
 	let questions = [];
 	let currentIndex = 0;
@@ -115,10 +137,10 @@
 		let optionsHTML = "";
 		q.options.forEach(opt => {
 			optionsHTML += `
-				<label>
+				<label class="btn bdr-gray medium">
 					<input type="radio" name="q\${q.id}" value="\${opt.score}" 
 						onchange="selectAnswer(\${q.id}, \${opt.score})">
-					<span>\${opt.text}</span>
+					<strong class="fs-18">\${opt.text}</strong>
 				</label>
 			`;
 		});
@@ -161,13 +183,21 @@
 			<!-- 컨텐츠 시작 -->
 			<!-- SID : COM000 -->
 			<div id="content" class="sub"><!-- [D] main / sub-main / sub && pagd name -->
-				
-				<div class="card" id="surveyCard">
-				  <h2>내 건강 점수는?</h2>
-				  <div id="question"></div>
-				  <div id="options" class="options"></div>
-				  <div id="progress"></div>
-				</div>
+
+				<div class="bg-gray">
+					<div class="article card acitve">
+						<div class="card active" id="surveyCard">
+							<div class="article-header ta-c">
+								<h2 class="article-title">내 건강 점수는?</h2>
+							</div>
+							<div class="pack-down-center gap-20">
+								<div id="question" class=""></div>
+								<div id="options" class="select-options pack-down-center gap-12"></div>
+								<div id="progress"></div>
+							</div>
+						</div>
+					</div><!-- //.article.card -->
+				</div><!-- //.bg-gray -->
 				
 			</div><!-- // #content -->
 			<!-- 컨텐츠 끝 -->

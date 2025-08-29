@@ -103,8 +103,26 @@ public class FaqServiceImpl implements FaqService {
 			throws ServletException, IOException {
 		System.out.println("FaqServiceImpl - faqInsertAction()");
 		
+		FaqDTO dto = new FaqDTO();
+		
+		Object sid = request.getSession().getAttribute("sessionID");
+		int writerId = 0; // 기본값 (예: 0 = system, or error)
+		if (sid instanceof Integer) {
+		    writerId = (Integer) sid;
+		} else if (sid instanceof String) {
+		    try {
+		        writerId = Integer.parseInt((String) sid);
+		    } catch (NumberFormatException ignore) {}
+		}
+		dto.setFa_writer_id(writerId);
+		dto.setFa_title(request.getParameter("fa_title"));
+		dto.setFa_content(request.getParameter("fa_content"));
+		dto.setFa_show(request.getParameter("fa_show"));
+		dao.insertFaq(dto);
+		
 		
 	}
+	
 
 	// FAQ 상세
 	@Override
