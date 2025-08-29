@@ -19,6 +19,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations"
 			value="classpath:mappers/**/*.xml" />
+		<property name="typeAliasesPackage" value="com.middlepj.ict05.domain.qna.dto" />
 	</bean>
 
 	<!-- 생성자 DI이며, sqlSession이 참조변수 -->
