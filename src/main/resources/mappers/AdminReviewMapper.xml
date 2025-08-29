@@ -84,4 +84,12 @@
           JOIN DRUG_TB D ON R.DR_ID = D.DR_ID
          WHERE R.RV_ID = #{rv_id}
 	</select>
+	
+	<update id="review_modifyAction" parameterType="com.middlepj.ict05.domain.admin.adminreview.dto.ReviewDTO">
+		UPDATE REVIEW_TB
+		   SET rv_rating = #{rv_rating},
+		   	   rv_show = #{rv_show},
+		   	   rv_content = #{rv_content}
+		 WHERE rv_id = #{rv_id}
+	</update>
 </mapper> 

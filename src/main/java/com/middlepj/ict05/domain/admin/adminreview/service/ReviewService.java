@@ -15,4 +15,7 @@ public interface ReviewService {
 	
 	public void review_detailAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException;
+
+	public void review_modifyAction(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException;
 }

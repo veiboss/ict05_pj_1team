@@ -38,7 +38,7 @@
 			<div id="container" class="container">
 				<div class="title-bar">
 					<h2 class="page-title ellipsis">
-						페이지 제목
+						후기(관리자) 상세/수정
 					</h2>
 				</div>
 				<main id="content">
@@ -46,11 +46,12 @@
 						<form action="review_modify.ad">
 							<fieldset>
 								<legend class="blind">기본 정보</legend>
+								<input type="hidden" name="rv_id" value="${dto.rv_id}"/>
 								<div class="row-3">
 									<div class="field col">
 										<label class="label medium required" for="mb_name">작성자</label>
 										<div class="insert">
-											<input type="text" name="mb_name" id="mb_name" class="input-text medium" title="작성자" placeholder="작성자 입력" value="${dto.mb_name}">
+											${dto.mb_name}
 										</div>
 									</div>
 									<div class="field col">
@@ -69,7 +70,7 @@
 								</div>
 								<div class="row-2">
 									<div class="field col">
-										<span class="label medium">라디오</span>
+										<span class="label medium">노출/비노출 여부</span>
 										<div class="insert pack-left">
 											<label for="radio1" class="pack-left"><input type="radio" class="radio" name="rv_show" id="rv_show" value="Y" 
 												<c:if test="${dto.rv_show eq 'Y'}">checked</c:if>>노출</label>
@@ -90,13 +91,13 @@
 									<div class="field">
 										<label class="label medium" for="inputSet02">후기 내용</label>
 										<div class="insert">
-											<textarea class="textarea medium" rows="4" cols="50" placeholder="텍스트에리어">${dto.rv_content}</textarea>
+											<textarea class="textarea medium" rows="4" cols="50" name="rv_content" placeholder="텍스트에리어">${dto.rv_content}</textarea>
 										</div>
 									</div>
 								</div>
 								<div class="button-area pack-center">
 									<button type="submit" class="btn large color1">저장</button>
-									<button type="reset" class="btn large bdr-color1">초기화</button>
+									<a class="btn large bdr-color1" href="review.ad">취소</a>
 								</div>
 							</fieldset>
 						</form>

@@ -26,7 +26,7 @@
 					</li>
 					<!-- 서브 메뉴가 있을 경우  -->
 					<li>
-						<a href="#">
+						<a href="${path}/admin/qna/list">
 							<span class="material-symbols-outlined">forum</span>
 							<span>QnA</span>
 						</a>

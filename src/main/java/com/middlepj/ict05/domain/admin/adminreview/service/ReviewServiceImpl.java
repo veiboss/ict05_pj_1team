@@ -103,5 +103,32 @@ public class ReviewServiceImpl implements ReviewService{
 		
 		model.addAttribute("dto", dto);
 	}
+
+	@Override
+	public void review_modifyAction(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("ReviewServiceImpl - review_modifyAction");
+		int rv_id = Integer.parseInt(request.getParameter("rv_id"));
+		int rv_rating = Integer.parseInt(request.getParameter("rv_rating"));
+		String rv_show = request.getParameter("rv_show");
+		String rv_content = request.getParameter("rv_content");
+		
+		ReviewDTO dto = new ReviewDTO();
+		dto.setRv_id(rv_id);
+		dto.setRv_rating(rv_rating);
+		dto.setRv_show(rv_show);
+		dto.setRv_content(rv_content);
+		int updateCnt = 0;
+		try {
+			updateCnt = dao.review_modifyAction(dto);
+			
+        } catch (Exception e) {
+            logger.error("Failed to fetch review_modifyAction", e);
+            throw new ServletException("후기 수정 로직 실패", e);
+        }
+		
+		model.addAttribute("updateCnt", updateCnt);
+		
+	}
 	
 }
