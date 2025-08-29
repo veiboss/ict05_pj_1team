@@ -1,33 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+
 <%@ include file="../common/setting.jsp" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>전문가 QnA</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="noindex">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="${path}/resources/css/yaksok.css">
-    <script src="${path}/resources/js/lib/aos.js" defer></script>
-    <script src="${path}/resources/js/yaksok.js" defer></script>
-    <link rel="stylesheet" href="${path}/resources/ckeditor/style.css">
-    <link rel="stylesheet" href="${path}/resources/ckeditor/ckeditor5.css">
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
-    <style>
-        .ck-editor__editable:not(.ck-editor__nested-editable) {
-            height: 450px;
-        }
-    </style>
+    <title>약쏙 관리자</title>
+    <link rel="stylesheet" href="${path}/resources/css/yaksokAd.css">
+    <script src="${path}/resources/js/yaksokAd.js" defer></script>
 </head>
 <body>
-<div id="wrap" class="wrap">
-    <%@ include file="../common/pc_left.jsp" %>
-    <div id="container" class="lines">
-        <%@ include file="../common/header.jsp" %>
-        <div id="content" class="sub si20">
+<div class="skip-nav"><a href="#content">본문 바로가기</a></div>
+
+<div id="wrap" class="frame">
+    <%@ include file="../admin/aside.jsp" %>
+    <%@ include file="../admin/header.jsp" %>
+    <div id="container" class="container">
+        <div class="title-bar">
+            <h2 class="page-title ellipsis">전문가 Q&A</h2>
+        </div>
+        <main id="content">
             <h3>${dto.qa_title}</h3>
             <hr/>
             <div>${dto.qa_content}</div>
@@ -58,28 +58,12 @@
                 </c:if>
             </c:if>
             <div style="margin-top:10px;text-align:right">
-                <a class="btn bdr-gray medium" href="${path}/qna/list">목록</a>
+                <a class="btn bdr-gray medium" href="${path}/admin/qna/list">목록</a>
                 <a class="btn bdr-gray medium" href="${path}/qna/write">전문가 Q&A 작성</a>
             </div>
-
-        </div>
-
-        <%@ include file="../common/nav.jsp" %>
-        <%@ include file="../common/footer.jsp" %>
+        </main>
+        <%@ include file="../admin/footer.jsp" %>
     </div>
 </div>
-<div id="alertSignIn" class="overlay not-close">
-    <div id="emailCheckWrap" class="alert"></div>
-</div>
-<script>
-    ClassicEditor.create(document.querySelector("#qa_answer"), {
-        language: "ko",
-        ckfinder: {
-            uploadUrl: "${path}/image/upload",
-            withCredentials: true
-        }
-    });
-</script>
-
 </body>
 </html>
