@@ -53,6 +53,8 @@ public class MyReviewServiceImpl implements MyReviewService{
 	    // 후기 목록 조회
 	    List<MyReviewDTO> list = dao.reviewList(map);
 		
+	    System.out.println(list);
+	    
 	    // 6단계. jsp로 처리결과 전달
 	    model.addAttribute("list", list);
 	    model.addAttribute("paging", paging);
@@ -79,20 +81,25 @@ public class MyReviewServiceImpl implements MyReviewService{
 		
 		MyReviewDTO dto = new MyReviewDTO();
 		
+		dto.setRv_id(Integer.parseInt(request.getParameter("rv_id")));
 		dto.setRv_content(request.getParameter("rv_content"));
 		dto.setRv_show((String)request.getParameter("rv_show"));
 		dto.setRv_rating(Integer.parseInt(request.getParameter("rv_rating")));
 		
 		
 		dao.updateReview(dto);
+		model.addAttribute("dto", dto);
 	}
 
-//	// 3. 게시글 삭제 버튼 클릭시 - 삭제 (안보임처리)
-//	@Override
-//	public void reviewDeleteAction(HttpServletRequest request, HttpServletResponse reqResponse, Model model)
-//			throws ServletException, IOException {
-//		System.out.println("ReviewServiceImpl - reviewDeleteAction()");
-//		
-//	}
+	// 3. 게시글 삭제 버튼 클릭시 - 삭제 (안보임처리)
+	@Override
+	public void reviewDeleteAction(HttpServletRequest request, HttpServletResponse reqResponse, Model model)
+			throws ServletException, IOException {
+		System.out.println("ReviewServiceImpl - reviewDeleteAction()");
+		
+		int num = Integer.parseInt(request.getParameter("rv_id"));
+		
+		dao.deleteReview(num);
+	}
 	
 }

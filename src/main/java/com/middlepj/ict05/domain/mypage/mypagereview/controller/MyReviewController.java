@@ -32,7 +32,7 @@ private static final Logger logger = LoggerFactory.getLogger(MyReviewController.
 		
 		service.reviewListAction(request, response, model);
 		
-		return "myPage/myPageReview/reviewList";
+		return "myPage/myPageReview/myReviewList";
 		
 	}
 	
@@ -44,7 +44,7 @@ private static final Logger logger = LoggerFactory.getLogger(MyReviewController.
 		
 		service.reviewDetailAction(request, response, model);
 		
-		return "myPage/myPageReview/reviewDetail";
+		return "myPage/myPageReview/myReviewDetail";
 	
 	}
 	
@@ -56,21 +56,21 @@ private static final Logger logger = LoggerFactory.getLogger(MyReviewController.
 		
 		service.reviewUpdateAction(request, response, model);
 		
-		return "myPage/myPageReview/reviewDetail";
+		return "myPage/myPageReview/myReviewDetail";
 	
 	}
 	
-//	// 3. 게시글 삭제 버튼 클릭시 - 삭제 (안보임처리)
-//	@RequestMapping("/myReviewDelete.do")
-//	public String myReviewDelete(HttpServletRequest request, HttpServletResponse response, Model model)
-//			throws ServletException, IOException {
-//		logger.info("<<< url ==> /myReviewDelete.do >>>");
-//		
-//		service.reviewDeleteAction(request, response, model);
-//		
-//		return "myPage/myPageReview/reviewList";
-//	
-//	}
+	// 3. 게시글 삭제 버튼 클릭시 - 삭제 (안보임처리)
+	@RequestMapping("/myReviewDelete.do")
+	public String myReviewDelete(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("<<< url ==> /myReviewDelete.do >>>");
+		
+		service.reviewDeleteAction(request, response, model);
+		
+		return "myPage/myPageReview/myReviewList";
+	
+	}
 	
 
 }
