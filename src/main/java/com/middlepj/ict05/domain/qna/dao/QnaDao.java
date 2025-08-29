@@ -26,10 +26,22 @@ public class QnaDao {
 		return result;
 	}
 	
+	public List<QnaDto> qnaAdminList(QnaSearchDto qnaSearchDto) {
+
+		List<QnaDto> result = sqlSession.selectList("com.middlepj.ict05.domain.qna.dao.QnaDao.qnaAdminList", qnaSearchDto);
+		
+		return result;
+	}
+	
 	// QnA 갯수 카운터
 	public int qnaCnt(QnaSearchDto qnaSearchDto) {
 		return sqlSession.selectOne("com.middlepj.ict05.domain.qna.dao.QnaDao.qnaCnt", qnaSearchDto);
 	}
+	
+	public int qnaAdminCnt(QnaSearchDto qnaSearchDto) {
+		return sqlSession.selectOne("com.middlepj.ict05.domain.qna.dao.QnaDao.qnaAdminCnt", qnaSearchDto);
+	}
+
 	
 	// QnA 조회수 증가
 	public int plusReadCnt(int qa_id) {

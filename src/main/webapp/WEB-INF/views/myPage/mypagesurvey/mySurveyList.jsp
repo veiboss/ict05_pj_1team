@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file="setting.jsp" %>
+    <%@ include file="../../common/setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,48 +24,53 @@
 <body>
 	<div id="wrap" class="wrap">
 		<!-- PC 컨텐츠 -->
-		<%@ include file="pc_left.jsp" %>
+		<%@ include file="../../common/pc_left.jsp" %>
 		<!-- PC 컨텐츠 끝 -->
 		
-		<div id="container" class="">
+		<div id="container" class="lines">
 		<!-- [D] HEADER VIEW :  no class /.lines(2) / .only-back(1) / .only-close(1) -->
 			<!-- header 시각 -->
-			<%@ include file="header.jsp" %>
+			<%@ include file="../../common/header.jsp" %>
 			<!-- header 끝 -->
 		
 			
 			<!-- 컨텐츠 시작 -->
 			<!-- SID : COM000 -->
-			<div id="content" class="main"><!-- [D] main / sub-main / sub && pagd name -->
-				
-				<div class="img-wrap out-cont">
-					<img src="${path}/resources/images/common/main.jpg">
+			<div id="content" class="sub si10"><!-- [D] main / sub-main / sub && pagd name -->
+			
+				<form class="sign-up-form" action="loginAction.do" method="post">
+					<fieldset class="pack-down-center">
+						<legend class="article-title">로그인</legend>
 
-					<div class="text-wrap">
-						<div class="pack-down gap-40">
-							<p class="fs-48 fc-000">
-								<strong>
-									필요한 것만 <br>
-									잘 드시고 <br>
-									계신가요?
-								</strong>
-							</p>
-							<p class="ta-c">
-								<a class="btn black xlarge r-full" href="MA10"> 내 건강 점수는 ???</a>
-							</p>
+						<div class="pack-down-center">
+							<div class="field">
+								<input type="text" name="mb_email" class="input-text" placeholder="이메일 입력">
+							</div>
+							<div class="field">
+								<input type="password" name="mb_password" class="input-text" placeholder="비밀번호 입력">
+							</div>
 						</div>
-					</div>
-				</div>
 
+						<div class="button-area">
+							<button type="submit" class="btn blue large r4">로그인</button>
+						</div>
+					</fieldset>
+				</form>
+
+				<div class="button-area">
+					<a href="join.do" class="btn bdr-blue large r4">
+						회원가입
+					</a>
+				</div>
 			</div><!-- // #content -->
 			<!-- 컨텐츠 끝 -->
 		
 			<!-- nav 시작 -->
-			<%@ include file="nav.jsp" %>
+			<%@ include file="../../common/nav.jsp" %>
 			<!-- nav 끝 -->
 		
 			<!-- footer 시작 -->
-			<%@ include file="footer.jsp" %>
+			<%@ include file="../../common/footer.jsp" %>
 			<!-- footer 끝 -->
 		</div><!-- // #container -->
 	</div><!-- // #wrap -->
