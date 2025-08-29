@@ -7,9 +7,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
+
 @Component
 public class AuthInterceptor implements HandlerInterceptor {
-    @Override
+
+	@Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         Object user = request.getSession().getAttribute("sessionId"); // 팀 규칙에 맞게 키 이름 조정
         if (user == null) {
