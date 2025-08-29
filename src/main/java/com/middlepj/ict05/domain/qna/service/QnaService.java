@@ -64,14 +64,18 @@ public class QnaService {
 	 * @param dto
 	 * @return
 	 */
-	public int insertQna(QnaForm form) {
+	public int insertQna(QnaForm form, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Object sessionIdObj = session.getAttribute("sessionID");
+		String sessionID = sessionIdObj != null ? sessionIdObj.toString():null;
+		
 		QnaDto dto = new QnaDto();
 		dto.setQa_title(form.getQa_title());
 		dto.setQa_content(form.getQa_content());
 		dto.setQa_private(form.getQa_private());
 		dto.setQa_show(form.getQa_show());
 		dto.setQa_readcount(0);
-		dto.setQa_writer_id(8);
+		dto.setQa_writer_id(Integer.parseInt(sessionID));
 		
 		int insertCnt = dao.insertQna(dto);
 		
