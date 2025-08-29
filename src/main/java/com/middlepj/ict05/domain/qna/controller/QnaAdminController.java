@@ -25,7 +25,7 @@ public class QnaAdminController {
 	
 	@GetMapping("/list")
     public String list(HttpServletRequest request, HttpServletResponse response, Model model) {
-		QnaList qnaList = qnaService.qnaList(request);
+		QnaList qnaList = qnaService.qnaAdminList(request);
         
 		model.addAttribute("qnaList", qnaList.getQnaList());
 		model.addAttribute("paging", qnaList.getPaging());

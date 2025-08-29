@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ include file="../common/setting.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -47,73 +48,43 @@
                     </fieldset>
                 </form>
             </div>
-            <ul class="data-list">
-                <c:forEach var="qna" items="${qnaList}">
-                    <li>
-                        <div class="item normal">
-                            <a href="${path}/admin/qna/detail/${qna.qa_id}" class="pack-down">
-                                <p class="data-wrap mdot">
-                                    <i class="ico-bg blue r10"><span>Q</span></i>
-                                    <!-- [D] 답변 전 -->
-                                    <c:if test="${empty qna.qa_answer}">
-                                        <span class="q-ing">궁금해요</span>
-                                    </c:if>
-                                    <c:if test="${not empty qna.qa_answer}">
-                                        <span class="q-solved">궁금증해결</span>
-                                    </c:if>
-
-                                    <span><fmt:formatDate value="${qna.qa_reg_date}" pattern="yyyy. MM. dd"/></span>
-                                </p>
-
-                                <p class="item-title">${qna.qa_title}</p>
-
-                                <!-- [D] 약에 관한 질문일 경우 -->
-                                <div class="pack-left" style="display:none;">
-                                    <div class="item thumb-left r10">
-                                        <div class="img-wrap s48">
-                                            <img src="../@resource/images/drug_type/01.png" alt="분말" class="centered">
-                                            <!--
-                                                01	분말,
-                                                02	원형캡슐,
-                                                03	원형정제,
-                                                04	제피정제,
-                                                05	젤리,
-                                                06	유동성 액체,
-                                                07	경질캡슐
-                                            -->
-                                        </div>
-                                        <div class="data-content">
-                                            <p class="fs-14">제목, 약 이름이 얼마나 길줄 모르겠네요요요 </p>
-                                        </div>
-                                    </div><!-- .item.thumb-left -->
-                                </div><!-- .pack-left -->
-                            </a><!-- .pack-down -->
-
-                            <div class="pack-both">
-                                <div class="pack-left">
-                                    <div class="img-wrap circle s36">
-                                        <img src="https://cdn.pixabay.com/photo/2014/11/29/19/33/bald-eagle-550804_960_720.jpg"
-                                             alt="프로필아이디" class="centered">
-                                    </div>
-                                    <div class="user">
-                                        <span class="user-name">${qna.mb_name}</span>
-                                    </div>
-                                </div>
-
-                                <!-- [D] 답변안된 질문 중, 전문가만 노출 -->
-                                <c:if test="${empty qna.qa_answer}">
-                                    <c:if test="${sessionScope.sessionGrade == 'EXPERT'}">
-                                        <button type="button" class="btn bdr-blue small r4"
-                                                onclick="location.href='${path}/qna/detail/${qna.qa_id}'">
-                                            답변등록
-                                        </button>
-                                    </c:if>
-                                </c:if>
-                            </div><!-- .pack-both -->
-                        </div><!-- .item.normal -->
-                    </li>
-                </c:forEach>
-            </ul>
+            <div class="table-wrap">
+				<table class="data-table">
+					<colgroup>
+						<col>
+						<col>
+						<col>
+						<col>
+						<col>
+						<col>
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">NO</th>
+							<th scope="col">제목</th>
+							<th scope="col">답변</th>
+							<th scope="col">비밀글</th>
+							<th scope="col">노출여부</th>
+							<th scope="col">작성일</th>
+						</tr>
+					</thead>
+					<tbody>
+					<c:forEach var="qna" items="${qnaList}">
+						<tr>
+							<th scope="row">${qna.qa_id}</th>
+							<td style="text-align:left;"><a href="${path}/admin/qna/detail/${qna.qa_id}">${qna.qa_title}</a></td>
+							<td>
+								<c:if test="${empty qna.qa_answer}">N</c:if>
+								<c:if test="${not empty qna.qa_answer}">Y</c:if>
+							</td>
+							<td>${qna.qa_private}</td>
+							<td>${qna.qa_show}</td>
+							<td><fmt:formatDate value="${qna.qa_reg_date}" pattern="yyyy. MM. dd"/></td>
+						</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
             <div class="pagination" style="margin-top:10px;">
                 <ul>
                     <c:if test="${paging.startPage > 10}">

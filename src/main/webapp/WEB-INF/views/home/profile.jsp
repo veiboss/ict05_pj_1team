@@ -21,9 +21,10 @@
 <script src="${path}/resources/js/lib/aos.js" defer></script>
 <script src="${path}/resources/js/yaksok.js" defer></script>
 <style>
-
+/* 
 	@charset "UTF-8";
 	/* ICT TeamONE _ 약을 쏘옥, 약속 _ KimJuyeon _ 20250818 */
+	/* 
 	@import url(${path}/resources/css/_colors.css);
 	@import url(${path}/resources/css/_fonts.css);
 	@import url(${path}/resources/css/_button.css);
@@ -37,7 +38,7 @@
 		text-align: center;
 		display: none;
 		margin: auto;
-		max-width: 90%;  /* 반응형 대응 */
+		max-width: 90%; 
 	}
 	.card.active {
 		display: block;
@@ -60,12 +61,12 @@
 		transition: 0.2s;
 	}
 	.options label:hover {
-		background: #e3e6eb; /* This color is not in the variables */
+		background: #e3e6eb;
 	}
 	button {
 		margin: auto;
-	}
-	
+	} */
+
 /* 	#survey-container label {
 		display: block;
 		margin: 6px 0;
@@ -89,6 +90,27 @@
 		font-weight: bold;
 		color: black;
 	} */
+	
+	
+	.article.card .card:not(.active){display:none;}
+	.article-header + .pack-down-center {padding-top: 20px;}
+	.article.card .btn{ border-radius: 100px;}
+	
+	.article.card .select-options {height: fit-content;}
+	.article.card .select-options:before{display: none;} 
+	.article.card .select-options .btn{padding: 12px 16px 12px; min-width: 50%; font-size: 18px;}
+	
+	.article.card .input-text.large	{width: 50%; height: var(--large); line-height: var(--large); text-align:center; font-size: 18px; font-weight: bold;}
+	
+	.article.card .card > .button-area{margin: 0 auto; padding: 40px 0; width: 80%; text-align:center;}
+	
+	.btn.bdr-gray:has(input:checked){border: solid 1px var(--blue);}
+	
+	.article.card .button-area .btn.large {width: 50%; text-align: center;}
+	
+	#survey-container .article-type {padding: 20px 0; text-align: right;}
+	
+}
 </style>
 <script>
 	// 다음 프로필 입력으로
@@ -160,21 +182,23 @@
 			const section = document.createElement("div");
 			
 			const title = document.createElement("h3");
+			title.classList.add("article-type");
 			title.textContent = interest;
 			section.appendChild(title);
 			
 			const optionsDiv = document.createElement("div");
-			optionsDiv.classList.add("select-options", "r4");
+			optionsDiv.classList.add("select-options", "pack-down-center", "gap-12");
 			
 			surveyData[interest].forEach(item => {
 				const label = document.createElement("label");
 				const input = document.createElement("input");
+				label.classList.add("btn", "bdr-gray", "medium");
 				input.type = "checkbox";
 				input.name = item.id;
 				input.value = item.score;
 				
-				const span = document.createElement("span");
-				span.classList.add("btn", "medium", "r4");
+				const span = document.createElement("strong");
+				span.classList.add("fs-18");
 				span.textContent = item.question;
 				
 				label.appendChild(input);
@@ -267,133 +291,161 @@
 		
 			
 			<!-- 컨텐츠 시작 -->
-			<!-- SID : COM000 -->
-			<div id="content" class="sub"><!-- [D] main / sub-main / sub && pagd name -->
-				<c:if test="${checkCnt != 0}">
-					<script type="text/javascript">
-						setTimeout(function(){
-							alert("이미 프로필을 등록하였습니다. 설문 페이지로 이동합니다.")
-							window.location="${path}/MA13";
-						}, 1000);
-					</script>
-				</c:if>
-				
-				
-				<!-- Step 1: 성별 -->
-				<div class="card active" id="step1">
-					<h2>성별을 선택하세요</h2>
-					<div class="select-options r4">
-						<label>
-							<input type="radio" name="gender" value="M">
-								<span class="btn medium r4">남</span>
-						</label> 
-						<label><input type="radio" name="gender" value="W">
-								<span class="btn medium r4">여</span>
-						</label>
-					</div>
-					<br>
-					<button type="button" class="btn blue medium" onclick="nextStep(1)">다음</button>
-				</div>
+			<!-- SID : MA10 -->
+			<div id="content" class="MA10"><!-- [D] main / sub-main / sub && pagd name -->
+			
+				<div class="bg-gray">
+					<div class="article card acitve">
+						<c:if test="${checkCnt != 0}">
+							<script type="text/javascript">
+								setTimeout(function(){
+									alert("이미 프로필을 등록하였습니다. 설문 페이지로 이동합니다.")
+									window.location="${path}/MA13";
+								}, 1000);
+							</script>
+						</c:if>
+						
+						<!-- Step 1: 성별 -->
+						<div class="card active" id="step1">
+							<div class="article-header ta-c">
+								<h2 class="article-title">성별을 선택하세요</h2>
+							</div>
+							
+							<div class="select-options pack-down-center gap-12">
+								<label class="btn bdr-gray medium">
+									<input type="radio" name="gender" value="M">
+									<strong class="fs-18">남</strong>
+								</label> 
+								<label class="btn bdr-gray medium">
+									<input type="radio" name="gender" value="W">
+									<strong class="fs-18">여</strong>
+								</label>
+							</div>
+							
+							<div class="button-area">
+								<button type="button" class="btn blue large" onclick="nextStep(1)">다음</button>
+							</div>
+						</div><!-- //.card -->
+		
+						<!-- Step 2: 나이 입력 -->
+						<div class="card" id="step2">
+							<div class="article-header ta-c">
+								<h2 class="article-title">나이를 입력하세요</h2>
+							</div>
+							
+							<label class="pack-down-center">
+								<input type="text" id="age" placeholder="숫자만 입력해주세요" oninput="this.value=this.value.replace(/[^0-9]/g,'')" class="input-text large" required>
+							</label>
+							
+							<div class="button-area">
+								<button type="button" class="btn blue large" onclick="nextStep(2)">다음</button>
+							</div>
+						</div><!-- //.card -->
+		
+						<!-- Step 3: 키 입력 -->
+						<div class="card" id="step3">
+							<h2>키를 입력하세요 (cm)</h2>
+							<label class="textarea">
+								<input type="text" id="height" placeholder="소수점은 빼고 입력해주세요"
+									oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
+							</label>
+							<br>
+							<button type="button" class="btn blue large" onclick="nextStep(3)">다음</button>
+						</div>
+		
+						<!-- Step 4: 몸무게 입력 -->
+						<div class="card" id="step4">
+							<h2>몸무게를 입력하세요 (kg)</h2>
+							<label class="textarea">
+								<input type="text" id="weight" placeholder="몸무게를 입력하세요 (kg)"
+									oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
+							</label>
+							<br>
+							<button type="button" class="btn blue large" onclick="nextStep(4)">다음</button>
+						</div>
+		
+						<!-- Step 5: 관심 영양제 선택 -->
+						<div class="card" id="step5">
+							<div class="article-header ta-c">
+								<h2 class="article-title">관심 영양제를 선택하세요</h2>
+							</div>
+							
+							<div class="select-options pack-down-center gap-12">
+								<label class="btn bdr-gray medium">
+									<input type="checkbox" value="피로/간"> 
+									<strong class="fs-18">피로/간</strong>
+								</label> 
+								<label class="btn bdr-gray medium">
+									<input type="checkbox" value="체지방/혈당"> 
+									<strong class="fs-18">체지방/혈당</strong>
+								</label> 
+								<label class="btn bdr-gray medium">
+									<input type="checkbox" value="눈"> 
+									<strong class="fs-18">눈</strong>
+								</label> 
+								<label class="btn bdr-gray medium">
+									<input type="checkbox" value="뼈">
+									<strong class="fs-18">뼈</strong>
+								</label>
+							</div>
+							
+							<div class="button-area">
+								<button type="button" class="btn blue large" onclick="goToSurvey()">다음</button>
+							</div>
+						</div>
+		
+						<!-- Step 6: 설문조사 -->
+						<div class="card" id="step6">
+							<div class="article-header ta-c">
+								<h2 class="article-title">관심 영양제 관련 설문조사</h2>
+							</div>
 
-				<!-- Step 2: 나이 입력 -->
-				<div class="card" id="step2">
-					<h2>나이를 입력하세요</h2>
-					<label class="textarea">
-						<input type="text" id="age" placeholder="숫자만 입력해주세요"
-							oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
-					</label>
-					<br>
-					<button type="button" class="btn blue medium" onclick="nextStep(2)">다음</button>
-				</div>
-
-				<!-- Step 3: 키 입력 -->
-				<div class="card" id="step3">
-					<h2>키를 입력하세요 (cm)</h2>
-					<label class="textarea">
-						<input type="text" id="height" placeholder="소수점은 빼고 입력해주세요"
-							oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
-					</label>
-					<br>
-					<button type="button" class="btn blue medium" onclick="nextStep(3)">다음</button>
-				</div>
-
-				<!-- Step 4: 몸무게 입력 -->
-				<div class="card" id="step4">
-					<h2>몸무게를 입력하세요 (kg)</h2>
-					<label class="textarea">
-						<input type="text" id="weight" placeholder="몸무게를 입력하세요 (kg)"
-							oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
-					</label>
-					<br>
-					<button type="button" class="btn blue medium" onclick="nextStep(4)">다음</button>
-				</div>
-
-				<!-- Step 5: 관심 영양제 선택 -->
-				<div class="card" id="step5">
-					<h2>관심 영양제를 선택하세요</h2>
-					<div class="select-options r4">
-						<label><input type="checkbox" value="피로/간"> 
-							<span class="btn medium r4">피로/간</span>
-						</label> 
-						<label><input type="checkbox" value="체지방/혈당"> 
-							<span class="btn medium r4">체지방/혈당</span>
-						</label> 
-						<label><input type="checkbox" value="눈"> 
-							<span class="btn medium r4">눈</span>
-						</label> 
-						<label><input type="checkbox" value="뼈">
-							<span class="btn medium r4">뼈</span>
-						</label>
-					</div>
-					<br>
-					<button type="button" class="btn blue medium" onclick="goToSurvey()">다음</button>
-				</div>
-
-				<!-- Step 6: 설문조사 -->
-				<div class="card" id="step6">
-					<h2>관심 영양제 관련 설문조사</h2>
-					<div id="survey-container">
-					
-					</div>
-					<br>
-					<button type="button" class="btn blue medium" onclick="nextSurveyOrStep7()">다음</button>
-				</div>
-
-				<!-- Step 7: 기저질환 -->
-				<div class="card" id="step7">
-					<h2>기저질환을 선택하세요</h2>
-					<div class="select-options r4">
-						<label><input type="checkbox" value="고혈압/심혈관">
-							<span class="btn medium r4">고혈압/심혈관</span>
-						</label> 
-						<label><input type="checkbox" value="당뇨">
-							<span class="btn medium r4">당뇨</span>
-						</label> 
-						<label><input type="checkbox" value="골다공증/관절">
-							<span class="btn medium r4">골다공증/관절</span>
-						</label> 
-						<label><input type="checkbox" value="위장질환">
-							<span class="btn medium r4">위장질환</span>
-						</label> 
-						<label><input type="checkbox" value="">
-							<span class="btn medium r4">없음</span>
-						 </label>
-					</div>
-					<br>
-					<button type="button" class="btn blue medium" onclick="submitForm()">다음</button>
-				</div>
-				
-				<!-- 프로필 입력 받은값들 JS에서 받아와서 넘기기 -->
-				<form id="profileForm" action="MA11" method="post">
-					<input type="hidden" name="gender" id="genderInput">
-					<input type="hidden" name="age" id="ageInput">
-					<input type="hidden" name="height" id="heightInput">
-					<input type="hidden" name="weight" id="weightInput">
-					<input type="hidden" name="interests" id="interestsInput">
-					<input type="hidden" name="surveyScores" id="surveyScoresInput">
-					<input type="hidden" name="totalScore" id="totalScoreInput">
-					<input type="hidden" name="diseases" id="diseasesInput">
-				</form>
+							<div id="survey-container">
+							
+							</div>
+							
+							<div class="button-area">
+								<button type="button" class="btn blue large" onclick="nextSurveyOrStep7()">다음</button>
+							</div>
+						</div>
+		
+						<!-- Step 7: 기저질환 -->
+						<div class="card" id="step7">
+							<h2>기저질환을 선택하세요</h2>
+							<div class="select-options r4">
+								<label><input type="checkbox" value="고혈압/심혈관">
+									<span class="btn medium r4">고혈압/심혈관</span>
+								</label> 
+								<label><input type="checkbox" value="당뇨">
+									<span class="btn medium r4">당뇨</span>
+								</label> 
+								<label><input type="checkbox" value="골다공증/관절">
+									<span class="btn medium r4">골다공증/관절</span>
+								</label> 
+								<label><input type="checkbox" value="위장질환">
+									<span class="btn medium r4">위장질환</span>
+								</label> 
+								<label><input type="checkbox" value="">
+									<span class="btn medium r4">없음</span>
+								 </label>
+							</div>
+							<br>
+							<button type="button" class="btn blue medium" onclick="submitForm()">다음</button>
+						</div>
+						
+						<!-- 프로필 입력 받은값들 JS에서 받아와서 넘기기 -->
+						<form id="profileForm" action="MA11" method="post">
+							<input type="hidden" name="gender" id="genderInput">
+							<input type="hidden" name="age" id="ageInput">
+							<input type="hidden" name="height" id="heightInput">
+							<input type="hidden" name="weight" id="weightInput">
+							<input type="hidden" name="interests" id="interestsInput">
+							<input type="hidden" name="surveyScores" id="surveyScoresInput">
+							<input type="hidden" name="totalScore" id="totalScoreInput">
+							<input type="hidden" name="diseases" id="diseasesInput">
+						</form>
+					</div><!-- //.article.card -->
+				</div><!-- //.bg-gray -->
 
 
 			</div><!-- // #content -->

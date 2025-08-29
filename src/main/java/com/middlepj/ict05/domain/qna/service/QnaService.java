@@ -59,6 +59,32 @@ public class QnaService {
 		return qnaList;
 	}
 	
+	public QnaList qnaAdminList(HttpServletRequest request) {
+		QnaSearchDto qnaSearchDto = new QnaSearchDto();
+
+		qnaSearchDto.setMode(request.getParameter("mode"));
+		qnaSearchDto.setS(request.getParameter("s"));
+
+		String pageNum = request.getParameter("pageNum");
+		
+		Paging paging = new Paging(pageNum);
+
+		int total = dao.qnaAdminCnt(qnaSearchDto);
+		paging.setTotalCount(total);
+
+		int start = paging.getStartRow();
+		int end   = paging.getEndRow();
+
+		qnaSearchDto.setStart(start);
+		qnaSearchDto.setEnd(end);
+
+		QnaList qnaList = new QnaList();
+		qnaList.setQnaList(dao.qnaAdminList(qnaSearchDto));
+		qnaList.setPaging(paging);
+
+		return qnaList;
+	}
+	
 	/**
 	 * QnA 등록
 	 * @param dto
