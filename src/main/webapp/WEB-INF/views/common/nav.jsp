@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="setting.jsp" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>YAKSOK nav</title>
-</head>
-<body>
 			<!-- nav 시작 -->
 			<nav id="nav" class="nav">
 				<ul>
@@ -28,7 +21,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="qna.do">
+						<a href="${path}/qna/list">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
 								<path d="M513.5 2780.447v10.526a.515.515 0 0 1-.326.485.461.461 0 0 1-.2.042.533.533 0 0 1-.379-.158l-1.905-1.948h-9.295a3.688 3.688 0 0 1-3.684-3.684h7.895a5.265 5.265 0 0 0 5.263-5.263v-3.527a3.692 3.692 0 0 1 2.631 3.527zm-4.211 0v-5.263a3.688 3.688 0 0 0-3.684-3.684h-8.421a3.688 3.688 0 0 0-3.684 3.684v10.526a.514.514 0 0 0 .326.484.458.458 0 0 0 .2.042.534.534 0 0 0 .379-.158l1.905-1.947h9.295a3.689 3.689 0 0 0 3.684-3.684z" transform="translate(-493.5 -2771.5)" />
 							</svg>
@@ -66,5 +59,3 @@
 				</a>
 			</nav>
 			<!-- nav 끝 -->
-</body>
-</html>

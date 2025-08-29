@@ -61,4 +61,12 @@ public class ReviewDAOImpl implements ReviewDAO{
 		return list;
 	}
 
+	@Override
+	public ReviewDTO review_detailAction(int rv_id) {
+		System.out.println("ReviewDAOImpl - review_detailAction()");
+		ReviewDTO dto = sqlSession.selectOne("com.middlepj.ict05.domain.admin.adminreview.dao.ReviewDAO.review_detailAction", rv_id);
+		
+		return dto;
+	}
+
 }

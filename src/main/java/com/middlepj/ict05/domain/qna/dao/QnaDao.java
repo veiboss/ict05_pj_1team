@@ -1,6 +1,7 @@
 package com.middlepj.ict05.domain.qna.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,8 +54,9 @@ public class QnaDao {
 	}
 	
 	// QnA 수정 처리
-	public void updateBoard(QnaDto dto) {
-		
+	public int updateQna(Map<String, Object> map) {
+		int updateCnt = sqlSession.update("com.middlepj.ict05.domain.qna.dao.QnaDao.updateQna", map);
+		return updateCnt;
 	}
 	
 	// QnA 삭제 처리

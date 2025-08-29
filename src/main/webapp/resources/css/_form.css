@@ -200,12 +200,12 @@ fieldset						{display: block;}
 .input-has-btn									{width: 100%; height: 48px;  border: 1px solid var(--light-gray); vertical-align: middle;}
 .input-text								{padding:0 16px;}
 .input-text[type="search"]::-webkit-search-cancel-button{position:relative; right: -4px; width: 24px; height: 24px;
-	background: url('../images/common/btn-delete.svg') no-repeat 50% 50%;
+	background: url('../images/@uio/btn-delete.svg') no-repeat 50% 50%;
 	background-size: 20px 20px;
 }
 .input-text[type="date"]{padding-left: 30px; padding-right: 0;}
 .input-text[type="date"]::-webkit-calendar-picker-indicator {position: absolute; left: 0; width: 30px; height: 44px;
-	background: url('../images/common/icon-calendar.svg') no-repeat 14px 50%;
+	background: url('../images/@uio/icon-calendar.svg') no-repeat 14px 50%;
 	background-size: 12px 11px;
 }
 .input-text[type=date]::-webkit-datetime-edit			{color: var(--gray);}
@@ -247,7 +247,7 @@ fieldset						{display: block;}
 .label-box > .textarea					{margin-top: 21px;}
 .label-box .input-has-btn {height: auto; border: 0;}
 .label-box .input-has-btn .input-text {height: 48px;}
-.label-box .input-has-btn .btn {position: relative; min-width: auto; padding-left: 16px; padding-right: 16px;font-weight: bold;}
+.label-box .input-has-btn .btn {position: relative; min-width: auto; padding-left: 16px; padding-right: 16px; font-weight: bold; word-break: keep-all;}
 .label-box .input-has-btn .btn + .btn::before {content: ''; position: absolute; top: 50%; left: 0; width: 1px; height: 16px; background-color: var(--light-gray); transform: translateY(-50%);}
 
 /* text-area */
@@ -431,7 +431,11 @@ div.field:not(.both)							{
 .search-form					{position: relative;}
 .search-box							{border: solid 1px var(--light-gray);}
 .search-box:focus-within			{border-color: black}
-.search-box .input-text				{width: calc(100% - 55px); padding-right: 0; border: 0 none}
+.search-box .input-text,
+.search-box .select					{width: calc(100% - 55px); padding-right: 0; border: 0 none}
+.search-box:has(.select)			{--gap: 0}
+.search-box:has(.select) .input-text{width: calc((100% - 55px) * .7);}
+.search-box:has(.select) .select	{width: calc((100% - 55px) * .3);}
 .search-box .btn					{width: 55px; height: 48px;}
 
 /* write-form  */

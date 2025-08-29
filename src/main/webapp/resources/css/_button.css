@@ -40,6 +40,8 @@ button.btn					{overflow: visible; margin: 0;}
 .btn.regular	{font-size: 13px;}
 .btn.medium		{height: var(--medium); line-height: var(--medium); font-size: 14px;}
 .btn.large		{height: var(--large); line-height: var(--large); font-size: 14px;}
+.btn.xlarge		{padding: 0 calc(var(--xlarge)*.8); height: var(--xlarge); line-height: var(--xlarge); font-size: 20px;}
+
 
 /* button circle */
 .btn.circle				{overflow: hidden;

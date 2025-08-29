@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.middlepj.ict05.domain.admin.adminmember.dao.MemberAdminDAO"><!-- namespace="패키지명.인터페이스" -->
+	
+	<!-- 멤버수 -->
+	<select id="memberCnt" resultType="int">
+		SELECT COUNT(*) FROM MEMBER_TB
+	</select>
+	
+	<!-- 멤버목록 -->
+	<select id="memberList" parameterType="java.util.Map" resultType="com.middlepj.ict05.domain.admin.adminmember.dto.MemberAdminDTO">
+		SELECT *
+		  FROM 
+		  	(SELECT A.* , 
+		  			rownum AS rn
+		  			FROM
+		  				(SELECT * FROM MEMBER_TB
+						 ORDER BY MB_ID DESC) A
+			)
+		 WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+</mapper> 

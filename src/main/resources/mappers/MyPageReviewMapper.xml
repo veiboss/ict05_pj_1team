@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.middlepj.ict05.domain.mypage.mypagereview.dao.MyReviewDAO">
+	
+<!-- 게시글 목록 -->
+<select id="reviewList" parameterType="java.util.Map" resultType="com.middlepj.ict05.domain.mypage.mypagereview.dto.MyReviewDTO">
+	<![CDATA[
+	 SELECT *
+     FROM (
+      SELECT ROWNUM AS rn
+           , x.rv_content
+           , x.rv_rating
+           , x.rv_show
+           , x.dr_product
+      FROM (
+        SELECT rv.rv_content
+             , rv.rv_rating
+             , rv.rv_show
+             , dr.dr_product
+          FROM REVIEW_TB rv
+          JOIN DRUG_TB   dr ON rv.dr_id = dr.dr_id
+         WHERE rv.mb_id = #{mbId}
+         ORDER BY rv.rv_id DESC
+      ) x
+      WHERE ROWNUM <= #{end}
+    )
+    WHERE rn >= #{start}
+     ]]>
+</select>
+
+<!-- 내후기 리스트 갯수 구하기 -->
+<select id="listCnt" parameterType="int" resultType="int">
+	SELECT COUNT(*)	AS cnt
+	  FROM REVIEW_TB
+	 WHERE mb_id = #{mb_id}
+</select>
+
+<!-- 수정버튼 클릭시 - 수정페이지로 이동 -->
+<select id="reviewDetail" parameterType="int" resultType="com.middlepj.ict05.domain.mypage.mypagereview.dto.MyReviewDTO">
+	SELECT rv_rating
+		 , rv_content
+		 , rv_show
+	  FROM REVIEW_TB
+	 WHERE rv_id = #{rv_id}
+</select> 
+
+<!-- 게시글 수정 (내용, 별점, 노출/비노출) -->
+<update id="updateReview" parameterType="com.middlepj.ict05.domain.mypage.mypagereview.dto.MyReviewDTO">
+	UPDATE REVIEW_TB
+	   SET rv_rating = #{rv_rating}
+	     , rv_content = #{rv_content}
+	     , rv_show = #{rv_show}
+	 WHERE rv_id = #{rv_id}
+</update> 
+
+
+<!-- 게시글 삭제 버튼 클릭시 - 삭제 (안보임처리) -->
+<!-- <update id="deleteReview" parameterType="int">
+	UPDATE REVIEW_TB
+       SET rv_show = 'N'
+     WHERE rv_id = #{rv_id}
+</update> -->
+
+
+</mapper> 

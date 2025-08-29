@@ -13,3 +13,7 @@
 @import url(_global.css);
 @import url(_layout.css);
 
+#content.main > .img-wrap .text-wrap {position: absolute; left: 0; right: 0; top: 60%;
+	transform: translateY(-50%);
+	padding: 0 8%;
+}

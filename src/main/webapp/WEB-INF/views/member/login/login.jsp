@@ -38,10 +38,10 @@
 			<div id="content" class="sub si10"><!-- [D] main / sub-main / sub && pagd name -->
 			
 				<form action="loginAction.do" method="post">
-					<fieldset class="pack-down-center">
-						<legend class="article-title">로그인</legend>
+					<fieldset class="pack-down">
+						<legend class="article-title ta-c">로그인</legend>
 
-						<div class="pack-down-center">
+						<div class="pack-down">
 							<div class="field">
 								<input type="text" name="mb_email" class="input-text" placeholder="이메일 입력">
 							</div>
