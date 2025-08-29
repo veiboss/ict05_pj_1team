@@ -1,0 +1,30 @@
+{
+  "피로/간": [
+    {"id": "fatigue1", "question": "하루 피곤함이 심하다", "score": 2},
+    {"id": "fatigue2", "question": "야근/과음이 잦다", "score": 2},
+    {"id": "fatigue3", "question": "수면의 질이 낮다", "score": 2},
+    {"id": "fatigue4", "question": "피로 회복이 느리다", "score": 2},
+    {"id": "fatigue5", "question": "간 건강이 걱정된다", "score": 2}
+  ],
+  "체지방/혈당": [
+    {"id": "metabo1", "question": "단 음식/기름진 음식 섭취가 잦다", "score": 2},
+    {"id": "metabo2", "question": "체중 조절이 필요하다", "score": 2},
+    {"id": "metabo3", "question": "운동량이 적다", "score": 2},
+    {"id": "metabo4", "question": "가족력(당뇨)이 있다", "score": 2},
+    {"id": "metabo5", "question": "혈당 수치가 걱정된다", "score": 2}
+  ],
+  "눈": [
+    {"id": "eye1", "question": "장시간 컴퓨터/스마트폰 사용", "score": 2},
+    {"id": "eye2", "question": "안구 건조를 자주 느낀다", "score": 2},
+    {"id": "eye3", "question": "시력이 저하된 것 같다", "score": 2},
+    {"id": "eye4", "question": "눈의 피로가 쉽게 온다", "score": 2},
+    {"id": "eye5", "question": "눈 건강 관리가 필요하다", "score": 2}
+  ],
+  "뼈": [
+    {"id": "bone1", "question": "뼈/관절 통증을 느낀 적 있다", "score": 2},
+    {"id": "bone2", "question": "골밀도가 걱정된다", "score": 2},
+    {"id": "bone3", "question": "칼슘 섭취가 부족하다", "score": 2},
+    {"id": "bone4", "question": "운동 부족하다", "score": 2},
+    {"id": "bone5", "question": "가족력(골다공증)이 있다", "score": 2}
+  ]
+}
