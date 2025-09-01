@@ -5,6 +5,7 @@
 // 중복확인
 function confirmId(){
 	var inputEmail  = document.joinform.mb_email;
+	const ctx = window.APP_CTX || '';
 	
 	// alert("중복확인");
 	if(!inputEmail.value){
@@ -17,7 +18,7 @@ function confirmId(){
 		} else {
 			// 중복확인 버튼 클릭시 컨트롤러로 url을 전달, 컨트롤러에 소스 추가
 			// do로 컨트롤러 이동
-			let url = "/ict05_pj_1team/emailCheckAction.do?mb_email=" + inputEmail.value;
+			const url = `${ctx}/emailCheckAction.do?mb_email=${encodeURIComponent(inputEmail.value)}`;
 			window.open(url, "confirm", "menubar=no, width=500, height=400");
 		}
 	}
