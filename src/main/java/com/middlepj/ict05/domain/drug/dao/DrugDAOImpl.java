@@ -56,18 +56,10 @@ public class DrugDAOImpl implements DrugDAO{
 	
 	// 영양제 추가 버튼 클릭 시 - 내 영양제에 추가
 	@Override
-	public int addDrug(String mbId, int drId) {
+	public int addDrug(Map<String, Object> map) {
 		System.out.println("=== drugDAO - addDrug() ===");
 		
-		return 0;
-	}
-	
-	// 내 영양제 확인
-	@Override
-	public int countMyDrug(String mbId, int drId) {
-		System.out.println("=== drugDAO - countDrug() ===");
-		
-		return 0;
+		return sqlSession.insert("com.middlepj.ict05.domain.drug.dao.DrugDAO.addDrug", map);
 	}
 	
 	// 영양제 상세 처리
