@@ -55,6 +55,23 @@
 		margin-top: 24px;
 	}
 </style>
+<script>
+	$(function() {
+		$('.chart').easyPieChart({
+			animate: 2000,
+			easing: 'easeOutBounce',
+			barColor: '#687FE5',
+			scaleColor: false,
+			trackColor: '#f1f1f1',
+			lineWidth: 16,
+			size: 200,
+		});
+	});
+	
+	$(".chart span").counterUp({
+		time: 1000,
+	});
+</script>
 </head>
 <body>
 	<div id="wrap" class="wrap">
@@ -72,12 +89,43 @@
 			<!-- 컨텐츠 시작 -->
 			<!-- SID : COM000 -->
 			<div id="content" class="sub"><!-- [D] main / sub-main / sub && pagd name -->
-				<div class="card" id="resultCard">
-					<hx class="article-title">"${sessionName}"님의 최근 점수는 !</hx>
-					<div class="score" id="score">${dto.mbs_score}</div>
+				<div class="out-cont bg-gray">
+					<div class="section result bg-white">
+					
+						<div class="card" id="resultCard">
+							<p class="badge-wrap">
+								<span class="badge ballon blue">약속에서 체크한</span>
+							</p>
+							
+							<div class="pack-down-center gap-20">
+								<h2 class="card-title fw-600">${sessionName}님의 최근 점수는</h2>
+							
+								<div id="score" class="chart" data-percent="${dto.mbs_score}">
+									<span class="point pack-left">
+										<strong class="fs-32 fc-blue">${dto.mbs_score}</strong>
+										<span class="fc-gray">점</span>
+									</span>
+								</div>
+								
+								<div class="fs-14 fc-gray fw-500" id="comment"></div>
+							</div>
+							
+							<div class="button-area pack-center gap-12">
+								<a class="btn blue medium r8" href="MA13">다시 테스트하기</a>
+								<a class="btn blue medium r8" href="MA20">최근 설문 보기</a>
+							</div>
+							
+						</div>
+						
+						<div class="list-wrap">
+							<ul class="pack-left col-3">
+							
+							</ul>
+						</div>
+
+					</div><!-- //.article.card -->
+				</div><!-- //.bg-gray -->
 				
-				
-				</div>
 				<div class="table-wrap">
 					<table class="data-table">
 						<colgroup>
@@ -89,7 +137,7 @@
 						<tbody>
 							<tr>
 								<th scope="row">No</th>
-								<th scope="row">당신의 점수</th>
+								<th scope="row">${sessionName}님의 점수</th>
 								<th scope="row">설문한 날</th>
 							</tr>
 						<c:forEach var="dto" items="${list}">
@@ -103,7 +151,6 @@
 					</table>
 				</div>
 					<a class="btn blue medium" href="MA13">다시 테스트하기</a>
-					<a class="btn blue medium" href="MA20">최근 설문 보기</a>
 			</div><!-- // #content -->
 			<!-- 컨텐츠 끝 -->
 		

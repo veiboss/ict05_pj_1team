@@ -26,40 +26,6 @@
 <script src="${path}/resources/js/lib/easy-pie-chart/jquery.easypiechart.min.js" defer></script>
 
 <style>
-	
-/* 
-	.card {
-		background: white;
-		border-radius: 20px;
-		box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-		padding: 32px;
-		max-width: 500px;
-		width: 90%;
-		margin: auto;
-		text-align: center;
-		animation: fadeIn 0.5s ease;
-		align: center;
-	}
-	.score {
-		font-size: 32px;
-		font-weight: bold;
-		color: var(--blue);
-		margin-bottom: 16px;
-	}
-	.comment {
-		font-size: 18px;
-		line-height: 1.6;
-		color: black;
-	}
-	.retry-btn {
-		margin-top: 24px;
-	}
-	
-	@keyframes fadeIn {
-		from { opacity: 0; transform: translateY(20px); }
-		to { opacity: 1; transform: translateY(0); }
-	}
-	 */
 	#content > .bg-gray{padding: 68px 16px 16px;}
 	.section.result {position: relative; padding: 50px 20px 24px; border-radius: 12px;}
 	.section.result  .badge-wrap	{position: absolute; top: -12px; right: calc(50% - 30px); min-width: 186px; font-size: 14px;}
@@ -161,13 +127,35 @@
 							<ul class="pack-left col-3">
 								<c:forEach var="drug_dto" items="${list}">
 									<li>
-										<a href="#" class="pack-down gap-20">
-											<div class="img-wrap">
-												<img src="${path}/resources/images/drug_type/01.png" alt="분말">
-											</div>
-											
-											<p class="fs-16 ellipsis">${drug_dto.dr_product}</p>
-										</a>
+										<div class="img-wrap">
+											<c:choose>
+									            <c:when test="${fn:contains(drug_dto.dr_sungsang, '분말')}">
+									                <img src="${path}/resources/images/drug_type/01.png" alt="분말">
+									            </c:when>
+									            <c:when test="${fn:contains(drug_dto.dr_sungsang, '원형캡슐')}">
+									                <img src="${path}/resources/images/drug_type/02.png" alt="원형캡슐">
+									            </c:when>
+									            <c:when test="${fn:contains(drug_dto.dr_sungsang, '원형정제')}">
+									                <img src="${path}/resources/images/drug_type/03.png" alt="원형정제">
+									            </c:when>
+									            <c:when test="${fn:contains(drug_dto.dr_sungsang, '제피정제')}">
+									                <img src="${path}/resources/images/drug_type/04.png" alt="제피정제">
+									            </c:when>
+									            <c:when test="${fn:contains(drug_dto.dr_sungsang, '젤리')}">
+									                <img src="${path}/resources/images/drug_type/05.png" alt="젤리">
+									            </c:when>
+									            <c:when test="${fn:contains(drug_dto.dr_sungsang, '액상')}">
+									                <img src="${path}/resources/images/drug_type/06.png" alt="유동성 액체">
+									            </c:when>
+									            <c:when test="${fn:contains(drug_dto.dr_sungsang, '경질캡슐')}">
+									                <img src="${path}/resources/images/drug_type/07.png" alt="경질캡슐">
+									            </c:when>
+									            <c:otherwise>
+									                <img src="${path}/resources/images/drug_type/03.png" alt="정제">
+									            </c:otherwise>
+									        </c:choose>
+										</div>
+										<p class="fs-16 ellipsis">${drug_dto.dr_product}</p>
 									</li>
 								</c:forEach>
 							</ul>
