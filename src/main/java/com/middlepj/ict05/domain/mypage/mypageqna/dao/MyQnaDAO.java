@@ -8,7 +8,7 @@ import com.middlepj.ict05.domain.mypage.mypageqna.dto.MyQnaDTO;
 public interface MyQnaDAO {
 
 	
-	// 게시글 목록
+	// qna 상세 목록 
 	public List<MyQnaDTO> qnaList(Map<String,Object> map);
 	
 	// 게시글 갯수 구하기

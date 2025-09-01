@@ -28,7 +28,7 @@
              , dr.dr_product
              , dr.dr_id
           FROM REVIEW_TB rv
-          JOIN DRUG_TB   dr ON rv.dr_id = dr.dr_id
+          JOIN DRUG_TB dr ON rv.dr_id = dr.dr_id
          WHERE rv.mb_id = #{mbId}
          ORDER BY rv.rv_id DESC
       ) x
