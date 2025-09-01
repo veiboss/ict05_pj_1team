@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.middlepj.ict05.domain.drug.dto.DrugDTO;
 import com.middlepj.ict05.domain.drug.dto.DrugReviewDTO;
-import com.middlepj.ict05.domain.drug.dto.DrugSearchDTO;
 
 @Repository
 public class DrugDAOImpl implements DrugDAO{
@@ -17,16 +16,24 @@ public class DrugDAOImpl implements DrugDAO{
 	@Autowired
 	private SqlSession sqlSession;
 
-	// 영양제 검색 
+	// 영양제 검색 시 - 총 개수 
 	@Override
-	public List<DrugSearchDTO> drugSearch(String keyword) {
-		System.out.println("=== drugDAO - drugSearch() ===");
+	public int drugSearchCnt(Map<String, Object> map) {
 		
-		//List<DrugSearchDTO> list = sqlSession.selectList("", keyword);
+		int searchCnt = sqlSession.selectOne("com.middlepj.ict05.domain.drug.dao.DrugDAO.drugSearchCnt", map);
 		
-		return null;
+		return searchCnt;
 	}
 
+	// 영양제 검색 시 - 목록
+	@Override
+	public List<DrugDTO> drugSearchList(Map<String, Object> map) {
+		
+		List<DrugDTO> list = sqlSession.selectList("com.middlepj.ict05.domain.drug.dao.DrugDAO.drugSearchList", map);
+		
+		return list;
+	}
+	
 	// 영양제 목록
 	@Override
 	public List<DrugDTO> drugList(Map<String, Object> map) {
@@ -55,9 +62,9 @@ public class DrugDAOImpl implements DrugDAO{
 		return 0;
 	}
 	
-	// 영양제 확인
+	// 내 영양제 확인
 	@Override
-	public int countDrug(String mbId, int drId) {
+	public int countMyDrug(String mbId, int drId) {
 		System.out.println("=== drugDAO - countDrug() ===");
 		
 		return 0;
@@ -85,5 +92,6 @@ public class DrugDAOImpl implements DrugDAO{
 		System.out.println("=== drugDAO - insertReview() ===");
 		
 	}
+
 	
 }

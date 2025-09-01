@@ -9,12 +9,14 @@ public class MyReviewDTO {
 	private String rv_content;		// 후기 내용
 	private int rv_rating;			// 후기 별점
 	private String rv_show;			// 노출 여부
+	private String dr_product;
 	
 	public MyReviewDTO() {
 		super();
 	}
 
-	public MyReviewDTO(int rv_id, int mb_id, String dr_id, String rv_content, int rv_rating, String rv_show) {
+	public MyReviewDTO(int rv_id, int mb_id, String dr_id, String rv_content, int rv_rating, String rv_show,
+			String dr_product) {
 		super();
 		this.rv_id = rv_id;
 		this.mb_id = mb_id;
@@ -22,6 +24,7 @@ public class MyReviewDTO {
 		this.rv_content = rv_content;
 		this.rv_rating = rv_rating;
 		this.rv_show = rv_show;
+		this.dr_product = dr_product;
 	}
 
 	public int getRv_id() {
@@ -72,11 +75,21 @@ public class MyReviewDTO {
 		this.rv_show = rv_show;
 	}
 
+	public String getDr_product() {
+		return dr_product;
+	}
+
+	public void setDr_product(String dr_product) {
+		this.dr_product = dr_product;
+	}
+
 	@Override
 	public String toString() {
-		return "ReviewDTO [rv_id=" + rv_id + ", mb_id=" + mb_id + ", dr_id=" + dr_id + ", rv_content=" + rv_content
-				+ ", rv_rating=" + rv_rating + ", rv_show=" + rv_show + "]";
+		return "MyReviewDTO [rv_id=" + rv_id + ", mb_id=" + mb_id + ", dr_id=" + dr_id + ", rv_content=" + rv_content
+				+ ", rv_rating=" + rv_rating + ", rv_show=" + rv_show + ", dr_product=" + dr_product + "]";
 	}
+
+	
 	
 }
 

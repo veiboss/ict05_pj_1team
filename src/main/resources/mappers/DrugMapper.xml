@@ -6,6 +6,25 @@
 
 <mapper namespace="com.middlepj.ict05.domain.drug.dao.DrugDAO"><!-- namespace="패키지명.인터페이스" -->
 	
+	<!-- 검색 시 총 개수 -->
+	<select id="drugSearchCnt" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*) AS cnt
+		  FROM DRUG_TB
+		 WHERE DR_PRODUCT LIKE '%' || #{keyword} || '%'
+	</select>
+	
+	<!-- 검색 시 총 목록 -->
+	<select id="drugSearchList" parameterType="java.util.Map" resultType="com.middlepj.ict05.domain.drug.dto.DrugDTO">
+		SELECT * 
+  		  FROM (SELECT A.*
+             		 , rownum AS rn 
+          		  FROM (SELECT * 
+                 		  FROM DRUG_TB 
+                 		 WHERE DR_SHOW = 'Y'
+                 		   AND DR_PRODUCT LIKE '%' || #{keyword} || '%' 
+                 		 ORDER BY DR_ID DESC) A)  
+         WHERE rn BETWEEN #{start} AND #{end}	
+	</select>
 	
 	<!-- 영양제 개수 -->
 	<select id="drugCnt" resultType="int">
@@ -23,5 +42,12 @@
                  		 ORDER BY DR_ID DESC) A)  
          WHERE rn BETWEEN #{start} AND #{end}
 	</select>
+	
+	<!-- 영양제 추가 -->
+	
+	
+	<!-- 내 영양제 확인 -->
+	
+	
 	
 </mapper> 

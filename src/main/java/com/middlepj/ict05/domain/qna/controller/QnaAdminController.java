@@ -47,20 +47,10 @@ public class QnaAdminController {
 			return null; // 더 이상 뷰 리턴하지 않음
 		}
 
-		if(dto.getQa_private().equals("Y")) {
-			response.setContentType("text/html; charset=UTF-8");
-			PrintWriter out = response.getWriter();
-			out.println("<script>alert('비밀글 입니다.'); location.href='"
-					+ request.getContextPath() + "/qna/list';</script>");
-			out.flush();
-			return null; // 더 이상 뷰 리턴하지 않음
-		}
-
-		System.out.println(dto);
-
 		model.addAttribute("dto", dto);
 		model.addAttribute("qa_id", qa_id);
 
 		return "admin_qna/detail";
 	}
+	
 }

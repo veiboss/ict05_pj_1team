@@ -7,10 +7,12 @@
 }
 
 .article-type {
-	color : #696969;
+	color : black;
+	margin-top: 16px;
 }
 
 .btn.search {
-	background-color : #FCD8CD;
+
 	font : black;
 }
+

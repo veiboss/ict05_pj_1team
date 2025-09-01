@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.middlepj.ict05.domain.admin.adminmember.dto.MemberAdminDTO;
 
+
 @Repository
 public class MemberAdminDAOImpl implements MemberAdminDAO{
 	
@@ -25,8 +26,9 @@ public class MemberAdminDAOImpl implements MemberAdminDAO{
 	@Override
 	public List<MemberAdminDTO> memberList(Map<String, Object> map) {
 		System.out.println("MemberDAOImpl - memberList()");
-		
-		List<MemberAdminDTO> list = sqlSession.selectList("com.middlepj.ict05.domain.admin.adminmember.dao.MemberAdminDAO.memberList", map);
+
+		MemberAdminDAO dao = sqlSession.getMapper(MemberAdminDAO.class);
+		List<MemberAdminDTO> list = dao.memberList(map);
 		
 		return list;
 	}
@@ -35,8 +37,9 @@ public class MemberAdminDAOImpl implements MemberAdminDAO{
 	@Override
 	public int memberCnt() {
 		System.out.println("MemberDAOImpl - memberCnt()");
-		
-		int selectCnt = sqlSession.selectOne("com.middlepj.ict05.domain.admin.adminmember.dao.MemberAdminDAO.memberCnt");
+
+		MemberAdminDAO dao = sqlSession.getMapper(MemberAdminDAO.class);
+		int selectCnt = dao.memberCnt();
 		
 		return selectCnt;
 	}
@@ -65,7 +68,11 @@ public class MemberAdminDAOImpl implements MemberAdminDAO{
 	@Override
 	public int memberDelete(int mbId) {
 		System.out.println("MemberDAOImpl - memberDelete()");
-		return 0;
+
+		MemberAdminDAO dao = sqlSession.getMapper(MemberAdminDAO.class);
+		int deleteCnt = dao.memberDelete(mbId);
+		
+		return deleteCnt;
 	}
 
 }
