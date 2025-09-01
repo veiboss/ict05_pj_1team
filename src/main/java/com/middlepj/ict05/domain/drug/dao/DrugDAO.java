@@ -19,10 +19,7 @@ public interface DrugDAO {
 	public int drugCnt();
 	
 	// 영양제 추가 버튼 클릭 시 - 내 영양제에 추가
-	public int addDrug(String mbId, int drId);
-	
-	// 내 영양제 확인
-	public int countMyDrug(String mbId, int drId);
+	public int addDrug(Map<String, Object> map);
 	
 	// 영양제 상세 처리
 	public DrugDTO getDrugDetail(int dr_id);

@@ -83,7 +83,7 @@ public class ProfileController {
 		logger.info("ProfileController-recentSurvey");
 		service.resultScoreSurvey(request, response, model);
 		service.listSurvey(request, response, model);
-		return "home/surveyRecent";
+		return "home/surveyList";
 	}
 	
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../common/setting.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
 
@@ -25,35 +26,35 @@
 					<div class="img-wrap s100">
 					        <c:choose>
 					            <c:when test="${fn:contains(dto.dr_sungsang, '분말')}">
-					                <img src="/ict05/resources/images/drug_type/01.png" alt="분말">
+					                <img src="${path}/resources/images/drug_type/01.png" alt="분말">
 					            </c:when>
 					
 					            <c:when test="${fn:contains(dto.dr_sungsang, '원형캡슐')}">
-					                <img src="/ict05/resources/images/drug_type/02.png" alt="원형캡슐">
+					                <img src="${path}/resources/images/drug_type/02.png" alt="원형캡슐">
 					            </c:when>
 					
 					            <c:when test="${fn:contains(dto.dr_sungsang, '원형정제')}">
-					                <img src="/ict05/resources/images/drug_type/03.png" alt="원형정제">
+					                <img src="${path}/resources/images/drug_type/03.png" alt="원형정제">
 					            </c:when>
 					
 					            <c:when test="${fn:contains(dto.dr_sungsang, '제피정제')}">
-					                <img src="/ict05/resources/images/drug_type/04.png" alt="제피정제">
+					                <img src="${path}/resources/images/drug_type/04.png" alt="제피정제">
 					            </c:when>
 					            
 					            <c:when test="${fn:contains(dto.dr_sungsang, '젤리')}">
-					                <img src="/ict05/resources/images/drug_type/05.png" alt="젤리">
+					                <img src="${path}/resources/images/drug_type/05.png" alt="젤리">
 					            </c:when>
 					            
 					            <c:when test="${fn:contains(dto.dr_sungsang, '액상')}">
-					                <img src="/ict05/resources/images/drug_type/06.png" alt="유동성 액체">
+					                <img src="${path}/resources/images/drug_type/06.png" alt="유동성 액체">
 					            </c:when>
 					            
 					            <c:when test="${fn:contains(dto.dr_sungsang, '경질캡슐')}">
-					                <img src="/ict05/resources/images/drug_type/07.png" alt="경질캡슐">
+					                <img src="${path}/resources/images/drug_type/07.png" alt="경질캡슐">
 					            </c:when>
 					
 					            <c:otherwise>
-					                <img src="/ict05/resources/images/drug_type/03.png" alt="정제">
+					                <img src="${path}/resources/images/drug_type/03.png" alt="정제">
 					            </c:otherwise>
 					        </c:choose>
 					</div>

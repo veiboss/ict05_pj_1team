@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -71,7 +72,35 @@ public class DrugServiceImpl implements DrugService{
 			throws ServletException, IOException {
 		System.out.println("=== drugService - drugInsertAction() ===");
 		
-		//Map<String, Object> map = new HashMap<String, Object>();
+		HttpSession session = request.getSession(false);
+		String mb_id = null;
+		if(session != null) {
+			mb_id = (String)session.getAttribute("mb_id");
+		}
+		else {
+			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
+			model.addAttribute("url", "common/login");
+			return;
+		}
+		
+		String dr_id = request.getParameter("dr_id");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mb_id", mb_id);
+		map.put("dr_id", dr_id);
+		
+		// 추가 여부 확인
+		
+		
+		// 추가 안 되어 있으면 추가
+		int result = dao.addDrug(map);
+		
+		if(result > 0) {
+			model.addAttribute("msg", "내 영양제 목록에 추가되었습니다.");
+		}
+		else {
+			model.addAttribute("msg", "이미 추가된 영양제입니다.");
+		}
 	}
 	
 	// 내 영양제 확인

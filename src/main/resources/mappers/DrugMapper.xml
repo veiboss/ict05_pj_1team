@@ -44,9 +44,10 @@
 	</select>
 	
 	<!-- 영양제 추가 -->
+	<insert id="addDrug" parameterType="java.util.Map">
+		
+	</insert>
 	
-	
-	<!-- 내 영양제 확인 -->
 	
 	
 	
