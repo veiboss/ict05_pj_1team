@@ -29,16 +29,23 @@ public class ReviewController {
 			throws ServletException, IOException {
 		logger.info("<<< url ==>  /review.ad >>>");
 
-        try {
-            // 서비스에서 model을 채워서 JSP로 넘김 (기존 구조 유지)
-            service.reviewList(request, response, model);
-        } catch (Exception e) {
-            // 에러 로깅 후 예외 전파 (원래 동작을 유지하면서 문제 원인 로그 남김)
-            logger.error("Error while preparing review list page", e);
-            throw new ServletException("후기 목록을 불러오는 중 오류가 발생했습니다.", e);
-        }
-        
-		return "adminreview/reviewlist";
+		String grade = (String)request.getSession().getAttribute("sessionGrade");
+		if("ADMIN".equals(grade)) {
+			// 서비스에서 model을 채워서 JSP로 넘김 (기존 구조 유지)
+			try {
+				service.reviewList(request, response, model);
+			} catch (Exception e) {
+				// 에러 로깅 후 예외 전파 (원래 동작을 유지하면서 문제 원인 로그 남김)
+				logger.error("Error while preparing review list page", e);
+				throw new ServletException("후기 목록을 불러오는 중 오류가 발생했습니다.", e);
+			}
+			
+			return "adminreview/reviewlist";
+		}
+		else {
+			request.getSession().invalidate();
+			return "admin_login/login";
+		}
 	}
 	
     @RequestMapping(value = "/reviewAjax.ad", produces = "text/html; charset=UTF-8")
