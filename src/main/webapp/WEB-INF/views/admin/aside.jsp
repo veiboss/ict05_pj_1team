@@ -13,7 +13,7 @@
 				<ul>
 					<!-- 단일 메뉴  -->
 					<li>
-						<a href="#">
+						<a href="${path}/drug.ad">
 							<span class="material-symbols-outlined">pill</span>
 							<span>영양제</span>
 						</a>
@@ -32,13 +32,13 @@
 						</a>
 					</li>
 					<li>
-						<a href="faq_admin_list.fc">
+						<a href="${path}/faq_admin_list.fc">
 							<span class="material-symbols-outlined">format_list_bulleted</span>
 							<span>FAQ</span>
 						</a>
 					</li>
 					<li>
-						<a href="review.ad">
+						<a href="${path}/review.ad">
 							<span class="material-symbols-outlined">rate_review</span>
 							<span>후기</span>
 						</a>

@@ -26,7 +26,6 @@
 <script src="${path}/resources/js/yaksokAd.js" defer></script>
 </head>
 <body>
-
 	<div id="wrap" class="login">
 		<div id="container" class="container">
 			<!-- 컨텐츠 시작 -->
@@ -37,10 +36,12 @@
 				</h1>
 
 				<form class="login-form" action="loginAction.ad" method="post">
-					<c:if test="${sessionScope.sessionID != null}">
-						<c:redirect url="main.ad" />
-					</c:if>
-					<c:if test="${sessionScope.sessionID == null}">
+					<c:choose>
+    					<c:when test="${sessionScope.sessionID != null && sessionScope.sessionGrade eq 'ADMIN'}">
+						<c:redirect url="drug.ad" />
+					</c:when>
+					<c:otherwise>
+					<% session.invalidate(); %>
 						<fieldset class="fieldset">
 							<legend class="blind">로그인</legend>
 
@@ -50,6 +51,7 @@
 									<input type="text" id="userId" name="mb_email"
 										class="input-text large" title="아이디 입력"
 										placeholder="아이디를 입력해주세요.">
+										<span class="warning pack-left">이메일 혹은 비밀번호가 일치하지 않거나, 관리자 권한이 없습니다</span>
 								</div>
 							</div>
 							<div class="field text">
@@ -64,7 +66,8 @@
 								<button type="submit" class="btn large color1">로그인</button>
 							</div>
 						</fieldset>
-					</c:if>
+					</c:otherwise>
+				</c:choose>
 				</form>
 
 				<!-- footer 시작 -->
