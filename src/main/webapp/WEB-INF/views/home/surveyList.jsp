@@ -14,45 +14,34 @@
 <link rel="stylesheet" href="${path}/resources/css/yaksok.css">
 
 <!--  js -->
+<script src="${path}/resources/js/lib/aos.js" defer></script>
+<script src="${path}/resources/js/yaksok.js" defer></script>
 <script src="https://kit.fontawesome.com/d7162d59a4.js" crossorigin="anonymous"></script>
+<script src="${path}/resources/js/lib/jquery.waypoints.min.js" defer></script>
+<script src="${path}/resources/js/lib/jquery.counterup.js" defer></script>
+<script src="${path}/resources/js/lib/easy-pie-chart/jquery.easypiechart.min.js" defer></script>
 
 <!-- (3-4). 자바스크립트 소스 연결 -->
 <!-- defer : html을 다 읽은 후에 자바스크립트를 실행한다. 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행된다. -->
 <script src="${path}/resources/js/lib/aos.js" defer></script>
 <script src="${path}/resources/js/yaksok.js" defer></script>
 <style>
-	@charset "UTF-8";
-	/* ICT TeamONE _ 약을 쏘옥, 약속 _ KimJuyeon _ 20250818 */
+	#content > .bg-gray{padding: 68px 16px 16px;}
+	.section.result {position: relative; padding: 50px 20px 24px; border-radius: 12px;}
+	.section.result  .badge-wrap	{position: absolute; top: -12px; right: calc(50% - 30px); min-width: 186px; font-size: 14px;}
+	#comment {max-width: 60%;}
+	.result .chart {position: relative; display: block; margin: 0 auto;}
+	.result .chart .point{position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); line-height: 1; letter-spacing: -1px;}
 	
-	@import url(${path}/resources/css/_colors.css);
-	@import url(${path}/resources/css/_fonts.css);
-	@import url(${path}/resources/css/_button.css);
+	.list-wrap {margin-top: 40px;}
+	.list-wrap .pack-left		{flex-wrap: wrap; gap: 40px;}
+	.list-wrap .pack-left.col-3	{align-items: flex-start;}
+	.list-wrap .pack-left.col-3 li	{width: calc((100% - 80px)/3);}
 	
-	.card {
-		background: white;
-		border-radius: 20px;
-		box-shadow: 0 6px 16px rgba(0,0,0,0.15);
-		padding: 32px;
-		max-width: 500px;
-		width: 90%;
-		margin: auto;
-		text-align: center;
-		animation: fadeIn 0.5s ease;
-		align: center;
-	}
-	.score {
-		font-size: 32px;
-		font-weight: bold;
-		color: var(--blue);
-		margin-bottom: 16px;
-	}
-	.comment {
-		font-size: 18px;
-		line-height: 1.6;
-		color: black;
-	}
-	.retry-btn {
-		margin-top: 24px;
+	/* ellipsis */
+	.ellipsis		{display: block; overflow: hidden; text-overflow: ellipsis;
+		-webkit-line-clamp: 2;
+		display: -webkit-box; -webkit-box-orient: vertical;
 	}
 </style>
 <script>
@@ -68,9 +57,37 @@
 		});
 	});
 	
+	$(function() {
+		$('.chart2').easyPieChart({
+			animate: 2000,
+			easing: 'easeOutBounce',
+			barColor: '#687FE5',
+			scaleColor: false,
+			trackColor: '#f1f1f1',
+			lineWidth: 6,
+			size: 40,
+		});
+	});
+	
 	$(".chart span").counterUp({
 		time: 1000,
 	});
+	const urlParams = new URLSearchParams(window.location.search);
+	const score = parseInt(urlParams.get("score")) || 0;
+	
+	fetch("${path}/resources/json/result.json")
+		.then(res => res.json())
+		.then(data => {
+			let comment = "결과를 찾을 수 없습니다.";
+			for (let r of data.results) {
+				if (score >= r.min && score <= r.max) {
+					comment = r.comment;
+					break;
+				}
+			}
+			document.getElementById("score").innerText = `\${score}`;
+			document.getElementById("comment").innerText = comment;
+		});
 </script>
 </head>
 <body>
@@ -96,61 +113,49 @@
 							<p class="badge-wrap">
 								<span class="badge ballon blue">약속에서 체크한</span>
 							</p>
-							
 							<div class="pack-down-center gap-20">
 								<h2 class="card-title fw-600">${sessionName}님의 최근 점수는</h2>
-							
 								<div id="score" class="chart" data-percent="${dto.mbs_score}">
 									<span class="point pack-left">
 										<strong class="fs-32 fc-blue">${dto.mbs_score}</strong>
 										<span class="fc-gray">점</span>
 									</span>
 								</div>
-								
 								<div class="fs-14 fc-gray fw-500" id="comment"></div>
 							</div>
-							
 							<div class="button-area pack-center gap-12">
 								<a class="btn blue medium r8" href="MA13">다시 테스트하기</a>
-								<a class="btn blue medium r8" href="MA20">최근 설문 보기</a>
 							</div>
-							
 						</div>
 						
-						<div class="list-wrap">
-							<ul class="pack-left col-3">
-							
+						<div class="section list-wrap">
+							<ul class="data-list toon">
+								<c:forEach var="dto" items="${list}">
+								<li>
+									<a href="#" class="item thumb-left">
+										<div class="img-wrap s100">
+										</div>
+										<div class="data-content">
+											<p class="small-title">${dto.mbs_id}</p>
+											<span class="point pack-left">
+												<div id="score" class="chart2" data-percent="${dto.mbs_score}"></div>
+												<strong class="fs-32 fc-blue">${dto.mbs_score}</strong>
+												<span class="fc-gray">점</span>
+												<div class="data-wrap pack-both">
+													<p class="pack-left">
+														<span class="small-title">${dto.mbs_servey_date}</span>
+													</p>
+												</div>
+											</span>
+										</div>
+									</a><!-- .item.thumb-left -->
+								</li>
+						   		</c:forEach>
 							</ul>
 						</div>
-
 					</div><!-- //.article.card -->
 				</div><!-- //.bg-gray -->
 				
-				<div class="table-wrap">
-					<table class="data-table">
-						<colgroup>
-							<col>
-							<col>
-							<col>
-							<col>
-						</colgroup>
-						<tbody>
-							<tr>
-								<th scope="row">No</th>
-								<th scope="row">${sessionName}님의 점수</th>
-								<th scope="row">설문한 날</th>
-							</tr>
-						<c:forEach var="dto" items="${list}">
-							<tr>
-								<td data-th="TH1 : ">${dto.mbs_id}</td>
-								<td data-th="TH1 : ">${dto.mbs_score}</td>
-								<td data-th="TH1 : ">${dto.mbs_servey_date}</td>
-							</tr>
-						</c:forEach>
-						</tbody>
-					</table>
-				</div>
-					<a class="btn blue medium" href="MA13">다시 테스트하기</a>
 			</div><!-- // #content -->
 			<!-- 컨텐츠 끝 -->
 		
