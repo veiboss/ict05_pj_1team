@@ -14,6 +14,7 @@ public class MyQnaServiceImpl implements MyQnaService{
 	@Override
 	public void qnaListAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
+		System.out.println("MyQnaServiceImpl - qnaListAction()");
 		
 	}
 	

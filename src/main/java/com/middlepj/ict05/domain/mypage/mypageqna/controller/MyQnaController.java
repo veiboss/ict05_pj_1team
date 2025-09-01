@@ -24,16 +24,19 @@ private static final Logger logger = LoggerFactory.getLogger(MyReviewController.
 	@Autowired
 	private MyQnaServiceImpl service;
 	
+	 // 1. qna 상세 목록
+	 @RequestMapping("/myQnaList.do")
+	 public String myQnaList(HttpServletRequest request, HttpServletResponse response, Model model) 
+			 throws ServletException, IOException { 
+		 logger.info("<<< url ==> /myQnaList.do >>>");
 	
-	/*
-	 * // 1. qna 상세 목록
-	 * 
-	 * @RequestMapping("/myQnaList.do") public String myQnaList(HttpServletRequest
-	 * request, HttpServletResponse response, Model model) throws ServletException,
-	 * IOException { logger.info("<<< url ==> /myQnaList.do >>>");
-	 * 
-	 * return " "; }
-	 */
+		 service.qnaListAction(request, response, model);
+		 
+		 return "myPage/myPageQna/myQnaList"; 
+		 
+	 
+	 }
+	 
 	
 	
 	// 2. 수정버튼 클릭시 - 전문가 댓글 없을 시에 수정 페이지 이동
