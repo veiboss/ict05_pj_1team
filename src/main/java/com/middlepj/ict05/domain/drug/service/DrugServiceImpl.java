@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,22 +24,6 @@ public class DrugServiceImpl implements DrugService{
 	@Autowired 
 	private DrugDAO dao;
 
-	// 영양제 검색
-	@Override
-	public void drugSearchAction(HttpServletRequest request, HttpServletResponse response, Model model)
-			throws ServletException, IOException {
-		System.out.println("=== drugService - drugSearchAction() ===");
-	
-		/*
-		 * String keyword = request.getParameter("keyword");
-		 * 
-		 * List<DrugSearchDTO> list = dao.drugSearch(keyword);
-		 * 
-		 * request.setAttribute("list", list);
-		 */
-		
-	}
-
 	// 영양제 목록
 	@Override
 	public void drugListAction(HttpServletRequest request, HttpServletResponse response, Model model)
@@ -48,7 +33,16 @@ public class DrugServiceImpl implements DrugService{
 		String pageNum = request.getParameter("pageNum");
 		String keyword = request.getParameter("keyword");  // 검색어
 		
-		int total = dao.drugCnt();
+		Map<String, Object> map = new HashMap<String, Object>();
+		String safeKeyword = (keyword == null) ? "" : keyword.trim();
+		map.put("keyword", safeKeyword);
+		
+		int total;
+		if (safeKeyword.isEmpty()) {
+            total = dao.drugCnt();
+        } else {
+            total = dao.drugSearchCnt(map);
+        }
 		System.out.println("total : " + total);
 		
 		Paging paging = new Paging(pageNum);
@@ -57,17 +51,15 @@ public class DrugServiceImpl implements DrugService{
 		int start = paging.getStartRow();
 		int end = paging.getEndRow();
 		
-		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end", end);
 		
-		// 검색 조건 반영해서 총 개수 카운트
-		Map<String, Object> map_search = new HashMap<>();
-		String safeKeyword = (keyword == null) ? "" : keyword.trim();
-		map_search.put("keyword", safeKeyword);
-		
-		
-		List<DrugDTO> list = dao.drugList(map);
+		List<DrugDTO> list;
+		if (safeKeyword.isEmpty()) {
+            list = dao.drugList(map);
+        } else {
+            list = dao.drugSearchList(map);
+        }
 		
 		model.addAttribute("paging", paging);
 		model.addAttribute("list", list);
@@ -76,29 +68,45 @@ public class DrugServiceImpl implements DrugService{
 
 	// 영양제 추가 클릭 시 - 내 영양제에 추가
 	@Override
-	public void drugAddAction(DrugDTO drug) {
+	public void drugAddAction(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
 		System.out.println("=== drugService - drugInsertAction() ===");
 		
-		/*
-		 * String mbId = (String)session.getAttribute("mb_id"); 
-		 * member.setMb_id(mbId);
-		 * 
-		 * if(mbId == null) { 
-		 * 		return "user/login/login"; 
-		 * } 
-		 * else { 
-		 * 		int count = service.countDrug(mbId, drug.getDr_id()); 
-		 * 		if(count == 0) {
-		 * 			service.drugAddAction(drug); } else { // 있으면 alert창으로 } 
-		 * 		}
-		 * 
-		 * return "";
-		 */
+		HttpSession session = request.getSession(false);
+		String mb_id = null;
+		if(session != null) {
+			mb_id = (String)session.getAttribute("mb_id");
+		}
+		else {
+			model.addAttribute("msg", "로그인 후 이용 가능합니다.");
+			model.addAttribute("url", "common/login");
+			return;
+		}
+		
+		String dr_id = request.getParameter("dr_id");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mb_id", mb_id);
+		map.put("dr_id", dr_id);
+		
+		// 추가 여부 확인
+		
+		
+		// 추가 안 되어 있으면 추가
+		int result = dao.addDrug(map);
+		
+		if(result > 0) {
+			model.addAttribute("msg", "내 영양제 목록에 추가되었습니다.");
+		}
+		else {
+			model.addAttribute("msg", "이미 추가된 영양제입니다.");
+		}
 	}
 	
-	// 영양제 확인
+	// 내 영양제 확인
 	@Override
-	public int countDrug(String mbId, int drId) {
+	public int countMyDrug(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
 
 		return 0;
 	}

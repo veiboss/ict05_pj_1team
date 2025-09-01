@@ -56,7 +56,9 @@ public class FaqDAOImpl implements FaqDAO {
 	// FAQ 등록(노출/비노출)
 	@Override
 	public void insertFaq(FaqDTO dto) {
+		System.out.println("FaqDAOImpl - insertFaq()");
 		
+		sqlSession.insert("com.middlepj.ict05.domain.faq.dao.FaqDAO.insertFaq", dto);
 	}
 
 	// FAQ 상세

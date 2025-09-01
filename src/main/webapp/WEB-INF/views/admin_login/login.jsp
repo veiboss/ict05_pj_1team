@@ -37,13 +37,13 @@
 						<div class="field text">
 							<label class="label small" for="userId">ID</label>
 							<div class="insert">
-								<input type="text" id="userId" class="input-text large" title="아이디 입력" placeholder="아이디를 입력해주세요.">
+								<input type="text" id="userId" name="mb_email" class="input-text large" title="아이디 입력" placeholder="아이디를 입력해주세요.">
 							</div>
 						</div>
 						<div class="field text">
 							<label class="label small" for="password">PASSWORD</label>
 							<div class="insert">
-								<input type="password" id="password" class="input-text large" title="비밀번호 입력" placeholder="비밀번호를 입력해주세요.">
+								<input type="password" id="password" name="mb_password" class="input-text large" title="비밀번호 입력" placeholder="비밀번호를 입력해주세요.">
 							</div>
 						</div>
 						<div class="button-area">

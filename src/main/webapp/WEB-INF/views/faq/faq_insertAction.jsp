@@ -4,7 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>등록요청</title>
+<script type="text/javascript">
+	location.href = "faq_admin_list.fc";
+</script>
 </head>
 <body>
 
