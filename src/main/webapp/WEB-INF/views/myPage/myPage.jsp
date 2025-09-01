@@ -39,7 +39,7 @@
 			<div id="content" class="main"><!-- [D] main / sub-main / sub && pagd name -->
 				<ul>
 					<li><a href="${path}/주소넣기" style="color:black">홍길동</a></li>
-					<li><a href="${path}/주소넣기" style="color:black">내설문목록</a></li>
+					<li><a href="MA20" style="color:black">내설문목록</a></li>
 					<li><a href="${path}/주소넣기" style="color:black">내약목록</a></li>
 					<li><a href="myReviewList.do" style="color:black">내가쓴후기목록</a></li>
 					<li><a href="${path}/주소넣기" style="color:black">내가쓴qna</a></li>

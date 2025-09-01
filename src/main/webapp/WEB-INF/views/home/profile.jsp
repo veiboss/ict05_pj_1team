@@ -21,77 +21,6 @@
 <script src="${path}/resources/js/lib/aos.js" defer></script>
 <script src="${path}/resources/js/yaksok.js" defer></script>
 <style>
-/* 
-	@charset "UTF-8";
-	/* ICT TeamONE _ 약을 쏘옥, 약속 _ KimJuyeon _ 20250818 */
-	/* 
-	@import url(${path}/resources/css/_colors.css);
-	@import url(${path}/resources/css/_fonts.css);
-	@import url(${path}/resources/css/_button.css);
-	
-	.card {
-		width: 480px;
-		background: white;
-		border-radius: 16px;
-		box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-		padding: 24px;
-		text-align: center;
-		display: none;
-		margin: auto;
-		max-width: 90%; 
-	}
-	.card.active {
-		display: block;
-	}
-	h2 {
-		font-size: 20px;
-		margin-bottom: 20px;
-	}
-	.options {
-		display: flex;
-		flex-direction: column;
-		gap: 10px;
-	}
-	.options label {
-		display: block;
-		background: var(--mostly-white);
-		padding: 10px;
-		border-radius: 8px;
-		cursor: pointer;
-		transition: 0.2s;
-	}
-	.options label:hover {
-		background: #e3e6eb;
-	}
-	button {
-		margin: auto;
-	} */
-
-/* 	#survey-container label {
-		display: block;
-		margin: 6px 0;
-		background: var(--mostly-white);
-		padding: 8px;
-		border-radius: 6px;
-		text-align: left;
-		color: black;
-		font-size: 14px;
-		line-height: 1.4;
-		white-space: normal;
-		word-break: keep-all;
-		overflow-wrap: break-word;
-	}
-	#survey-container input[type="checkbox"] {
-		margin-right: 8px;
-	}
-	#survey-container h3 {
-		margin: 15px 0 10px;
-		font-size: 16px;
-		font-weight: bold;
-		color: black;
-	} */
-	
-	
 	.article.card .card:not(.active){display:none;}
 	.article-header + .pack-down-center {padding-top: 20px;}
 	.article.card .btn{ border-radius: 100px;}
@@ -344,24 +273,30 @@
 		
 						<!-- Step 3: 키 입력 -->
 						<div class="card" id="step3">
-							<h2>키를 입력하세요 (cm)</h2>
-							<label class="textarea">
-								<input type="text" id="height" placeholder="소수점은 빼고 입력해주세요"
-									oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
+							<div class="article-header ta-c">
+								<h2 class="article-title">키를 입력하세요 (cm)</h2>
+							</div>
+							<label class="pack-down-center">
+								<input type="text" id="height" placeholder="숫자만 입력해주세요"
+									oninput="this.value=this.value.replace(/[^0-9]/g,'')" class="input-text large" required>
 							</label>
-							<br>
-							<button type="button" class="btn blue large" onclick="nextStep(3)">다음</button>
+							<div class="button-area">
+								<button type="button" class="btn blue large" onclick="nextStep(3)">다음</button>
+							</div>
 						</div>
 		
 						<!-- Step 4: 몸무게 입력 -->
 						<div class="card" id="step4">
-							<h2>몸무게를 입력하세요 (kg)</h2>
-							<label class="textarea">
-								<input type="text" id="weight" placeholder="몸무게를 입력하세요 (kg)"
-									oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
+							<div class="article-header ta-c">
+								<h2 class="article-title">몸무게를 입력하세요 (kg)</h2>
+							</div>
+							<label class="pack-down-center">
+								<input type="text" id="weight" placeholder="숫자만 입력해주세요"
+									oninput="this.value=this.value.replace(/[^0-9]/g,'')" class="input-text large" required>
 							</label>
-							<br>
-							<button type="button" class="btn blue large" onclick="nextStep(4)">다음</button>
+							<div class="button-area">
+								<button type="button" class="btn blue large" onclick="nextStep(4)">다음</button>
+							</div>
 						</div>
 		
 						<!-- Step 5: 관심 영양제 선택 -->
@@ -411,26 +346,34 @@
 		
 						<!-- Step 7: 기저질환 -->
 						<div class="card" id="step7">
-							<h2>기저질환을 선택하세요</h2>
-							<div class="select-options r4">
-								<label><input type="checkbox" value="고혈압/심혈관">
-									<span class="btn medium r4">고혈압/심혈관</span>
-								</label> 
-								<label><input type="checkbox" value="당뇨">
-									<span class="btn medium r4">당뇨</span>
-								</label> 
-								<label><input type="checkbox" value="골다공증/관절">
-									<span class="btn medium r4">골다공증/관절</span>
-								</label> 
-								<label><input type="checkbox" value="위장질환">
-									<span class="btn medium r4">위장질환</span>
-								</label> 
-								<label><input type="checkbox" value="">
-									<span class="btn medium r4">없음</span>
-								 </label>
+							<div class="article-header ta-c">
+						        <h2 class="article-title">기저질환을 선택하세요</h2>
+						    </div>
+							<div class="select-options pack-down-center gap-12">
+								<label class="btn bdr-gray medium">
+									<input type="checkbox" value="고혈압/심혈관">
+									<strong class="fs-18">고혈압/심혈관</strong>
+								</label>
+								<label class="btn bdr-gray medium">
+									<input type="checkbox" value="당뇨">
+									<strong class="fs-18">당뇨</strong>
+								</label>
+								<label class="btn bdr-gray medium">
+									<input type="checkbox" value="골다공증/관절">
+									<strong class="fs-18">골다공증/관절</strong>
+								</label>
+								<label class="btn bdr-gray medium">
+									<input type="checkbox" value="위장질환">
+									<strong class="fs-18">위장질환</strong>
+								</label>
+								<label class="btn bdr-gray medium">
+									<input type="checkbox" value="">
+									<strong class="fs-18">없음</strong>
+								</label>
 							</div>
-							<br>
-							<button type="button" class="btn blue medium" onclick="submitForm()">다음</button>
+							<div class="button-area">
+						        <button type="button" class="btn blue large" onclick="submitForm()">다음</button>
+						    </div>
 						</div>
 						
 						<!-- 프로필 입력 받은값들 JS에서 받아와서 넘기기 -->
