@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file="../common/setting.jsp" %>
+<%@ include file="../common/setting.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,96 +28,13 @@
 		<div class="skip-nav"><a href="#content">본문 바로가기</a></div>
 
 		<div id="wrap" class="frame">
-		<aside id="aside" class="aside">
-			<h1><img src="../@resource/images/logo/finger@2x.png" class="logo" alt="TeamOne"></h1>
-			<nav id="nav" class="aside-nav">
-				<ul>
-					<!-- 단일 메뉴  -->
-					<li>
-						<a href="javascript:void(0);">
-							<span class="material-symbols-outlined">pill</span>
-							<span>영양제</span>
-						</a>
-					</li>
-					<li>
-						<a href="javascript:void(0);">
-							<span class="material-symbols-outlined">user_attributes</span>
-							<span>회원</span>
-						</a>
-					</li>
-					<!-- 서브 메뉴가 있을 경우  -->
-					<li>
-						<a href="javascript:void(0);" class="toggle-sub">
-							<span class="material-symbols-outlined">view_list</span>
-							<span>게시판</span>
-						</a>
-						<ul>
-							<li>
-								<a href="javascript:void(0);"><span>QnA</span></a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><span>FAQ</span></a>
-							</li>
-							<li>
-								<a href="javascript:void(0);"><span>후기</span></a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</nav>
-		</aside>
-
-		<header id="header" class="header">
-			<div>
-				<button type="button" class="btn toggle-nav">
-					<span class="material-symbols-outlined">
-						arrow_circle_left
-					</span>
-				</button>
-			</div><!-- #header > div : left-->
-
-			<div>
-				<div class="user">
-					<ul>
-
-						<li>
-							<button type="button" class="btn btn-toggle">
-								<img src="https://img.imbc.com/adams/Program/20237/133342330004430266.jpg" alt="{user name}" class="img profile">
-							</button>
-							<div class="toggle-cont">
-								<ul>
-									<li>
-										<div class="item pack-left">
-											<img src="https://img.imbc.com/adams/Program/20237/133342330004430266.jpg" alt="{user name}" class="img profile">
-											<div>
-												<p>Hong Gil Dong</p>
-												<p class="fs-s">admin</p>
-											</div>
-										</div>
-									</li>
-									<li>
-										<a href="javascript:void(0);" class="btn">
-											<span class="material-symbols-outlined">
-												account_circle
-											</span>
-											<span>계정 관리</span>
-										</a>
-									</li>
-									<li>
-										<a href="javascript:void(0);" class="btn">
-											<span class="material-symbols-outlined">
-											logout
-											</span>
-											<span>로그아웃</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</div><!-- #header > div : right-->
-		</header>
+		<!-- menu 시작 -->
+		<%@ include file="../admin/aside.jsp" %>
+		<!-- menu 끝 -->
+		
+		<!-- header 시작 -->
+		<%@ include file="../admin/header.jsp" %>
+		<!-- header 끝 -->
 
 		<div id="container" class="container">
 			<div class="title-bar">
@@ -152,48 +70,18 @@
 								<th>버튼</th>
 							</tr>
 						</thead>
+						
 						<tbody>
-							<tr>
-								<td data-th="번호">101</td>
-								<td data-th="성명">박미리</td>
-								<td data-th="제목">비밀번호 변경은 어떻게 하나요?</td>
-								<td data-th="등록일">2017-04-26 16:50</td>
-								<td data-th="공개여부"><select class="select small">
-										<option value="1" selected="">공개</option>
-										<option value="0">비공개</option>
-								</select></td>
-								<td data-th="버튼">
-									<button class="btn small normal">수정</button>
-									<button class="btn small accent">삭제</button>
-								</td>
-							</tr>
-
 							<c:forEach var="dto" items="${list}">
 								<tr>
-									<td>${dto.pdNo}</td>
-									<td>${dto.pdName}</td>
-									<td>${dto.pdBrand}</td>
-
-									<!-- upload 폴더를 새로고침, 브라우저도 새로고침해야 깨진 이미지가 제대로 보임 -->
-									<td><img src="${dto.pdImg}" width="100px"></td>
-									<td>${dto.pdCategory}</td>
-									<td>${dto.pdPrice}</td>
-									<td>${dto.pdQuantity}</td>
-									<td>${dto.pdContent}</td>
-									<td>${dto.pdStatus}</td>
-									<td>${dto.pdIndate}</td>
-									<td>
-										<center>
-											<input class="inputButton" type="button" value="수정"
-												onclick="window.location='${path}/ad_product_detailAction.pd?pdNo=${dto.pdNo}&pageNum=${paging.pageNum}'">
-										</center>
-									</td>
-
-									<td>
-										<center>
-											<input class="inputButton" type="button" value="삭제"
-												onclick="window.location='${path}/ad_product_deleteAction.pd?pdNo=${dto.pdNo}'">
-										</center>
+									<td>${dto.fa_id}</td>
+									<td>${dto.fa_writer_id}</td>
+									<td>${dto.fa_title}</td>
+									<td>${dto.fa_reg_date}</td>
+									<td>${dto.fa_show}</td>
+									<td data-th="버튼" style="text-align:center;"><a
+									href="${path}/faq/edit/${dto.fa_id}" class="btn small normal"
+									style="margin: 10px 0;">수정</a>
 									</td>
 								</tr>
 							</c:forEach>
@@ -204,10 +92,8 @@
 					<!-- 등록 버튼 영역 -->
 					<div class="button-area"
 						style="margin: 20px 0; text-align: center;">
-						<a href="${path}/faq/write" class="btn large color1">글등록</a>
+						<a href="faq_insert.fc" class="btn large color1">글등록</a>
 					</div>
-
-
 
 					<div class="pagination">
 							<a href="javascript:void(0);" class="btn prev">

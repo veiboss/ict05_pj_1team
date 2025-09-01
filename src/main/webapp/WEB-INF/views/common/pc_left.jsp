@@ -5,7 +5,7 @@
 	<div class="typing-wrap" data-aos="fade-right">
 		<p class="typing-fix">
 			약을 쏘옥,<br>
-			약속
+			약속.
 		</p>
 		<p class="typing">
 			<span id="pcTyping">믿음까지 쏘옥 담아</span>

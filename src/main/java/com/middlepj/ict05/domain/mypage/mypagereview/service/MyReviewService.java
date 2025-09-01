@@ -22,8 +22,8 @@ public interface MyReviewService {
 	public void reviewUpdateAction(HttpServletRequest request, HttpServletResponse reqResponse, Model model)
 			throws ServletException, IOException;
 	
-//	// 3. 게시글 삭제 버튼 클릭시 - 삭제 (안보임처리)
-//	public void reviewDeleteAction(HttpServletRequest request, HttpServletResponse reqResponse, Model model)
-//			throws ServletException, IOException;
-//	
+	// 3. 게시글 삭제 버튼 클릭시 - 삭제 (안보임처리)
+	public void reviewDeleteAction(HttpServletRequest request, HttpServletResponse reqResponse, Model model)
+			throws ServletException, IOException;
+	
 }

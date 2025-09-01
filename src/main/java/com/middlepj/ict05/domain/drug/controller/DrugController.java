@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.middlepj.ict05.domain.drug.dto.DrugDTO;
 import com.middlepj.ict05.domain.drug.service.DrugServiceImpl;
 
 @Controller
@@ -25,14 +24,14 @@ public class DrugController {
 	private DrugServiceImpl service;
 	
 	// 영양제 검색
-	@RequestMapping("/drug_search.do")
-	public String drug_search(HttpServletRequest request, HttpServletResponse response, Model model)
+	@RequestMapping("/drugSearchAjax.do")
+	public String drugSearchAjax(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
-		logger.info("<<< url ==> drug_search.do");
+		logger.info("<<< url ==> drugSearchAjax.do");
 
-		service.drugSearchAction(request, response, model);
+		service.drugListAction(request, response, model);
 		
-		return "drug/drug_search";
+		return "drug/drugListAjax";
 	}
 	
 	// 영양제 목록
@@ -52,7 +51,9 @@ public class DrugController {
 			throws ServletException, IOException {
 		logger.info("<<< url ==> drug_addAction.do >>>");
 		
-		return "";
+		service.drugAddAction(request, response, model);
+		
+		return null;
 		 
 	}
 	

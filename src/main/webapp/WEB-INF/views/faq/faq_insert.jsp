@@ -20,7 +20,8 @@
         .ck-editor__editable:not(.ck-editor__nested-editable) {
             height: 450px;
         }
-    </style>
+	</style>
+	
 </head>
 <body>
 <div id="wrap" class="wrap">
@@ -28,38 +29,30 @@
     <div id="container" class="lines">
         <%@ include file="../common/header.jsp" %>
         <div id="content" class="sub si20">
-            <form name="frm" id="frm" action="${path}/qna/write" method="POST">
+        
+            <form name="insertForm" id="frm" action="${path}/faq_insertAction.fc" method="POST">
                 <div>
                     <div>
                         <label class="label-box">
                             <span class="text-label">제목</span>
-                            <input type="text" name="qa_title" class="input-text" placeholder="제목을 입력해주세요">
+                            <input type="text" name="fa_title" class="input-text" placeholder="제목을 입력해주세요">
                         </label>
                     </div>
-                    <div>
-                        <textarea name="qa_content" id="qa_content"></textarea>
+                    <div style="margin-top:10px;">
+                        <textarea name="fa_content" id="fa_content"></textarea>
                     </div>
-                    <div style="margin:10px 0">
-                        <label class="check-wrap">
-                            <input type="checkbox" class="checkbox" name="qa_private" value="Y">
-                            <span>비밀글</span>
-                        </label>
+                    
+                    <div class="insert pack-left">
+						<label for="radio1" class="pack-left"><input type="radio" class="radio" name="fa_show" id="fa_show" value="Y" checked>노출</label>
+						<label for="radio2" class="pack-left"><input type="radio" class="radio" name="fa_show" id="fa_show" value="N" >비노출</label>
+					</div>
+                 
                     </div>
-                    <div style="margin:10px 0">
-                        <label class="check-wrap">
-                            <input type="checkbox" class="checkbox" name="qa_show" checked>
-                            <span>노출여부</span>
-                        </label>
-                    </div>
-                    <div>
-                        <button type="submit" class="btn blue medium">작성하기</button>
-                    </div>
-                    <div style="margin-top:10px;text-align:right">
-                        <a class="btn bdr-gray medium" href="${path}/qna/list">목록</a>
-                        <a class="btn bdr-gray medium" href="${path}/qna/write">전문가 QnA 작성</a>
-                    </div>
+					
+					<div style="text-align: center; margin-top: 20px;">
+						<button type="submit" class="btn blue medium">등록하기</button>
+					</div>
 
-                </div>
             </form>
         </div>
 
@@ -71,14 +64,30 @@
     <div id="emailCheckWrap" class="alert"></div>
 </div>
 <script>
-    ClassicEditor.create(document.querySelector("#qa_content"), {
-        language: "ko",
-        ckfinder: {
-            uploadUrl: "${path}/image/upload",
-            withCredentials: true
-        }
-    });
-</script>
+  let faEditor = null;
 
+  ClassicEditor.create(document.querySelector("#fa_content"), {
+      language: "ko"
+  }).then(editor => {
+      faEditor = editor;
+
+      document.getElementById("frm").addEventListener("submit", function (e) {
+          const title = document.querySelector('input[name="fa_title"]').value.trim();
+          const content = faEditor.getData().trim(); // 단순히 내용 유무만 체크
+
+          if (title === "") {
+              alert("제목을 입력하세요!!!");
+              e.preventDefault();
+              return;
+          }
+
+          if (content === "") {
+              alert("내용을 입력하세요!!!");
+              e.preventDefault();
+              return;
+          }
+      });
+  });
+</script>
 </body>
 </html>

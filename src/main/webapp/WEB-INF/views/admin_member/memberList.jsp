@@ -20,6 +20,7 @@
 <!-- (3-4). 자바스크립트 소스 연결 -->
 <!-- defer : html을 다 읽은 후에 자바스크립트를 실행한다. 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행된다. -->
 <script src="${path}/resources/js/yaksokAd.js" defer></script>
+
 </head>
 <body>
 	<div class="skip-nav"><a href="#content">본문 바로가기</a></div>
@@ -65,66 +66,70 @@
 					</form>
 				</div>
 
-				<section class="box-wrap">
-					<table class="data-table">
-						<thead>
-							<tr>
-								<th>ID</th>
-								<th>이름</th>
-								<th>이메일</th>
-								<th>등급</th>
-								<th>가입일</th>
-								<th>버튼</th>
-							</tr>
-						</thead>
-						<tbody>
-							<!-- 게시글이 있으면 -->
-							<c:forEach var="dto" items="${list}">
+				<div class="box-wrap">
+					
+					<form name="memberList">
+						<table class="data-table">
+							<thead>
 								<tr>
-									<td data-th="ID">${dto.mb_id}</td>
-									<td data-th="이름" class="ta-l">${dto.mb_name}</td>
-									<td data-th="이메일" class="ta-l">${dto.mb_email}</td>
-									<td data-th="등급">${dto.mb_grade}</td>
-									<td data-th="가입일">${dto.mb_reg_date}</td>
-									<td data-th="버튼">
-										<button class="btn small color1">수정</button>
-										<button class="btn small bdr-color1">삭제</button>
-									</td>
+									<th>ID</th>
+									<th>이름</th>
+									<th>이메일</th>
+									<th>등급</th>
+									<th>가입일</th>
+									<th>버튼</th>
 								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-
-					<div class="pagination">
-						<!-- 페이징처리 -->
-						<!-- 이전 버튼 활성화 -->
-						<c:if test="${paging.startPage > 5}">
-							<a href="j${path}/memberList.ad?pageNum=${paging.prev}" class="btn prev">
-								<svg xmlns="http://www.w3.org/2000/svg" class="svg">
-									<path d="m2 6 6-4.33v8.66L2 6z" />
-								</svg>
-							</a>
-						</c:if>
-						
-						<!-- 페이지 번호 활성화 -->
-						<ul>
-							<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
-								<li class="<c:if test='${num == paging.currentPage}'>current</c:if>">
-									<a href="${path}/memberList.ad?pageNum=${num}" class="btn">${num}</a>
-								</li>
-							</c:forEach>
-						</ul>
-						
-						<!-- 다음 버튼 활성화 -->
-						<c:if test="${paging.endPage < paging.pageCount}">
-							<a href="${path}/memberList.ad?pageNum=${paging.next}" class="btn next">
-								<svg xmlns="http://www.w3.org/2000/svg" class="svg">
-									<path d="m2 6 6-4.33v8.66L2 6z" />
-								</svg>
-							</a>
-						</c:if>
-					</div><!-- // .pagination -->
-				</section>
+							</thead>
+							<tbody>
+								<!-- 게시글이 있으면 -->
+								<c:forEach var="dto" items="${list}">
+									<tr>
+										<td data-th="ID">${dto.mb_id}</td>
+										<td data-th="이름" class="ta-l">${dto.mb_name}</td>
+										<td data-th="이메일" class="ta-l">${dto.mb_email}</td>
+										<td data-th="등급">${dto.mb_grade}</td>
+										<td data-th="가입일">${dto.mb_reg_date}</td>
+										<td data-th="버튼">
+											<button type="button" class="btn small color1" onclick="window.location='${path}/memberDetailAction.ad?mbId=${dto.mb_id}&pageNum=${paging.pageNum}'">수정</button>
+											
+											<button type="button" class="btn small bdr-color1" onclick="window.location='${path}/memberDeleteAction.ad?mbId=${dto.mb_id}'">삭제</button>
+										</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+	
+						<div class="pagination">
+							<!-- 페이징처리 -->
+							<!-- 이전 버튼 활성화 -->
+							<c:if test="${paging.startPage > 5}">
+								<a href="j${path}/memberList.ad?pageNum=${paging.prev}" class="btn prev">
+									<svg xmlns="http://www.w3.org/2000/svg" class="svg">
+										<path d="m2 6 6-4.33v8.66L2 6z" />
+									</svg>
+								</a>
+							</c:if>
+							
+							<!-- 페이지 번호 활성화 -->
+							<ul>
+								<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+									<li class="<c:if test='${num == paging.currentPage}'>current</c:if>">
+										<a href="${path}/memberList.ad?pageNum=${num}" class="btn">${num}</a>
+									</li>
+								</c:forEach>
+							</ul>
+							
+							<!-- 다음 버튼 활성화 -->
+							<c:if test="${paging.endPage < paging.pageCount}">
+								<a href="${path}/memberList.ad?pageNum=${paging.next}" class="btn next">
+									<svg xmlns="http://www.w3.org/2000/svg" class="svg">
+										<path d="m2 6 6-4.33v8.66L2 6z" />
+									</svg>
+								</a>
+							</c:if>
+						</div><!-- // .pagination -->
+					</form>
+				</div>
 
 			</main>
 			

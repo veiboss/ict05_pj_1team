@@ -49,7 +49,7 @@ public class MyReviewDAOImpl implements MyReviewDAO{
 		return dto;
 	}
 
-	// 2-1. 게시글 수정 (내용, 별점, 노출/비노출)
+	// 2-1. 게시글 수정 (내용, 별점)
 	@Override
 	public void updateReview(MyReviewDTO dto) {
 		
@@ -59,15 +59,15 @@ public class MyReviewDAOImpl implements MyReviewDAO{
 		
 	}
 
-//	// 3. 게시글 삭제 버튼 클릭시 - 삭제 (안보임처리)
-//	@Override
-//	public void deleteReview(int rv_id) {
-//		
-//		System.out.println("ReviewDAOImpl - deleteReview");
-//		
-//		sqlSession.update("com.middlepj.ict05.domain.mypage.mypagereview.dao.ReviewDAO.deleteReview", rv_id);
-//		
-//	}
+	// 3. 게시글 삭제 버튼 클릭시 - 삭제 (안보임처리)
+	@Override
+	public void deleteReview(int rv_id) {
+		
+		System.out.println("ReviewDAOImpl - deleteReview");
+		
+		sqlSession.update("com.middlepj.ict05.domain.mypage.mypagereview.dao.MyReviewDAO.deleteReview", rv_id);
+		
+	}
 	
 
 }
