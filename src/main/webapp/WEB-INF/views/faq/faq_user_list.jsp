@@ -27,7 +27,6 @@
 
 </head>
 <body>
-
 	<div class="skip-nav">
 		<a href="#nav">내비게이션 바로가기</a>
 		<a href="#content">본문 바로가기</a>
@@ -93,116 +92,6 @@
 							</div><!-- // .item -->
 						</li>
 						
-						<li class="accordion">
-							<div class="item normal">
-								<a href="javascript:void(0);" class="pack-both accordion-switche" title="게시물 열고/닫기">
-									<div class="text-wrap">
-										<p class="article-type">회원 관련</p>
-										<p class="item-title">비밀번호 변경은 어떻게 하나요?</p>
-									</div>
-									<i class="ico accordion"></i>
-								</a>
-
-								<div class="accordion-content">
-									<p>
-									비밀번호는 "마이&gt;내 정보 수정"에서 변경 가능합니다.<br>
-									네이버 또는 카카오톡으로 로그인하신 경우, 비밀번호는 해당 서비스에서 변경이 가능합니다.
-									</p>
-								</div><!-- // .accordion-content -->
-							</div><!-- // .item -->
-						</li>
-						<li class="accordion">
-							<div class="item normal">
-								<a href="javascript:void(0);" class="pack-both accordion-switche" title="게시물 열고/닫기">
-									<div class="text-wrap">
-										<p class="article-type">회원 관련</p>
-										<p class="item-title">계정이 정지되었어요.</p>
-									</div>
-									<i class="ico accordion"></i>
-								</a>
-
-								<div class="accordion-content">
-									<p>
-									서비스에서 적절하지 않은 활동을 하였을 경우, 계정이 일시적으로 정지될 수 있습니다.<br>
-									이의 신청은 [마이 &gt; 서비스 이용 '문의하기']를 통해 진행해 주세요.
-										</p>
-								</div><!-- // .accordion-content -->
-							</div><!-- // .item -->
-						</li>
-						
-						<li class="accordion">
-							<div class="item normal">
-								<a href="javascript:void(0);" class="pack-both accordion-switche" title="게시물 열고/닫기">
-									<div class="text-wrap">
-										<p class="article-type">회원 관련</p>
-										<p class="item-title">휴대폰 인증 문자가 오지 않습니다.</p>
-										<p class="data-wrap"></p>
-									</div>
-									<i class="ico accordion"></i>
-								</a>
-
-								<div class="accordion-content">
-									<p>
-									인증번호는 휴대폰 SMS 또는 카카오 알림톡으로 발송됩니다.<br>
-									인증 문자가 도착하지 않은 경우 [마이 &gt; 서비스 이용 '문의하기']를 통해 문의해주세요.
-										</p>
-								</div><!-- // .accordion-content -->
-							</div><!-- // .item -->
-						</li>
-						<li class="accordion">
-							<div class="item normal">
-								<a href="javascript:void(0);" class="pack-both accordion-switche" title="게시물 열고/닫기">
-									<div class="text-wrap">
-										<p class="article-type">서비스 관련</p>
-								<p class="item-title">서비스를 매번 검색해서 들어오기 불편해요. 앱은 따로 없나요?</p>
-								<p class="data-wrap"></p>
-									</div>
-									<i class="ico accordion"></i>
-								</a>
-
-								<div class="accordion-content">
-									<p>
-									'독립은 처음이라'는 현재 웹 페이지로 운영되고 있습니다.<br>
-									웹페이지를 모바일 홈 화면에 추가할 경우 더욱 빠르게 접속이 가능합니다. 서비스 이용가이드(링크) 내 '독립은 처음이라'를 홈 화면에 추가하는 법(링크)을 참고해주세요!
-									</p>
-								</div><!-- // .accordion-content -->
-							</div><!-- // .item -->
-						</li>
-						<li class="accordion">
-							<div class="item normal">
-								<a href="javascript:void(0);" class="pack-both accordion-switche" title="게시물 열고/닫기">
-									<div class="text-wrap">
-										<p class="article-type">서비스 관련</p>
-								<p class="item-title">서비스 운영 정책에 대해 알고싶어요.</p>
-									</div>
-									<i class="ico accordion"></i>
-								</a>
-
-								<div class="accordion-content">
-									<p>
-									서비스의 기본 운영 방침 및 분류 별 상세 정책은 <strong>서비스 운영정책(링크)</strong>를 참고해주세요!
-									</p>
-								</div><!-- // .accordion-content -->
-							</div><!-- // .item -->
-						</li>
-						<li class="accordion">
-							<div class="item normal">
-								<a href="javascript:void(0);" class="pack-both accordion-switche" title="게시물 열고/닫기">
-									<div class="text-wrap">
-										<p class="article-type">서비스 관련</p>
-								<p class="item-title">'독립은 처음이라'는 어떤 서비스인가요?</p>
-									</div>
-									<i class="ico accordion"></i>
-								</a>
-
-								<div class="accordion-content">
-									<p>
-									독립을 하고있는, 독립을 준비 중인, 독립에 관심있는 사람이라면 누구나 즐길 수 있는 커뮤니티 서비스입니다.<br>
-									'독립은 처음이라'를 더 자세히 알고 싶으시다면 <strong>브랜드 스토리</strong>와 서비스 <strong>이용가이드</strong>를 참고해주세요!
-									</p>
-								</div><!-- // .accordion-content -->
-							</div><!-- // .item -->
-						</li>
 					</ul>
 					
 					<div class="pagination">
@@ -223,7 +112,7 @@
 			<nav id="nav" class="nav">
 				<ul>
 					<li>
-						<a href="#">
+						<a href="/#">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
 								<path d="M225.3 2492.374v6.247a4.691 4.691 0 0 1-4.689 4.684H218v-4.686a2.6 2.6 0 0 0-5.21 0v4.686h-2.6a4.692 4.692 0 0 1-4.689-4.684v-6.247a4.667 4.667 0 0 1 1.748-3.65l5.21-4.189a4.722 4.722 0 0 1 5.88 0l5.21 4.189a4.664 4.664 0 0 1 1.751 3.65z" transform="translate(-205.396 -2483.404)" />
 							</svg>

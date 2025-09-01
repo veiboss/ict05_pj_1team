@@ -22,4 +22,6 @@ public interface ReviewDAO {
 	public List<ReviewDTO> reviewSearchList(Map<String, Object> map);
 	
 	public ReviewDTO review_detailAction(int rv_id);
+	
+	public int review_modifyAction(ReviewDTO dto);
 }

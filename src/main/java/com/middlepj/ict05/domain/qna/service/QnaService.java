@@ -59,19 +59,49 @@ public class QnaService {
 		return qnaList;
 	}
 	
+	public QnaList qnaAdminList(HttpServletRequest request) {
+		QnaSearchDto qnaSearchDto = new QnaSearchDto();
+
+		qnaSearchDto.setMode(request.getParameter("mode"));
+		qnaSearchDto.setS(request.getParameter("s"));
+
+		String pageNum = request.getParameter("pageNum");
+		
+		Paging paging = new Paging(pageNum);
+
+		int total = dao.qnaAdminCnt(qnaSearchDto);
+		paging.setTotalCount(total);
+
+		int start = paging.getStartRow();
+		int end   = paging.getEndRow();
+
+		qnaSearchDto.setStart(start);
+		qnaSearchDto.setEnd(end);
+
+		QnaList qnaList = new QnaList();
+		qnaList.setQnaList(dao.qnaAdminList(qnaSearchDto));
+		qnaList.setPaging(paging);
+
+		return qnaList;
+	}
+	
 	/**
 	 * QnA 등록
 	 * @param dto
 	 * @return
 	 */
-	public int insertQna(QnaForm form) {
+	public int insertQna(QnaForm form, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Object sessionIdObj = session.getAttribute("sessionID");
+		String sessionID = sessionIdObj != null ? sessionIdObj.toString():null;
+		
 		QnaDto dto = new QnaDto();
 		dto.setQa_title(form.getQa_title());
 		dto.setQa_content(form.getQa_content());
 		dto.setQa_private(form.getQa_private());
 		dto.setQa_show(form.getQa_show());
 		dto.setQa_readcount(0);
-		dto.setQa_writer_id(8);
+		dto.setQa_writer_id(Integer.parseInt(sessionID));
 		
 		int insertCnt = dao.insertQna(dto);
 		
@@ -111,6 +141,7 @@ public class QnaService {
 		map.put("qa_modify_id", Integer.parseInt(sessionID));
 		
 		int updateCnt = dao.updateQna(map);
+		System.out.println(map);
 		
 		return updateCnt;
 	}

@@ -29,12 +29,13 @@
         <%@ include file="../common/header.jsp" %>
         <div id="content" class="sub si20">
             <form name="frm" id="frm" method="POST">
-            	<input type="hidden" name="qa_id" value="${dto.qa_id}">
+                <input type="hidden" name="qa_id" value="${dto.qa_id}">
                 <div>
                     <div>
                         <label class="label-box">
                             <span class="text-label">제목</span>
-                            <input type="text" name="qa_title" class="input-text" value="${dto.qa_title}" placeholder="제목을 입력해주세요">
+                            <input type="text" name="qa_title" class="input-text" value="${dto.qa_title}"
+                                   placeholder="제목을 입력해주세요">
                         </label>
                     </div>
                     <div style="margin-top:10px;">
@@ -81,44 +82,44 @@
     });
 </script>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    const form = document.getElementById("frm");
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("frm");
 
-    form.addEventListener("submit", async function(e) {
-        e.preventDefault(); // 기존 폼 제출 방지
+        form.addEventListener("submit", async function (e) {
+            e.preventDefault(); // 기존 폼 제출 방지
 
-        // FormData 생성
-        const formData = new FormData();
-        formData.append("qa_id", form.qa_id.value);
-        formData.append("qa_title", form.qa_title.value);
-    	formData.append("qa_content", form.qa_content.value);
-        formData.append("qa_private", form.qa_private.checked ? "Y" : "N");
-        formData.append("qa_show", form.qa_show.checked ? "Y" : "N");
+            // FormData 생성
+            const formData = new FormData();
+            formData.append("qa_id", form.qa_id.value);
+            formData.append("qa_title", form.qa_title.value);
+            formData.append("qa_content", form.qa_content.value);
+            formData.append("qa_private", form.qa_private.checked ? "Y" : "N");
+            formData.append("qa_show", form.qa_show.checked ? "Y" : "N");
 
-        try {
-            const response = await fetch(`${path}/API/qna/modify`, {
-                method: "POST",
-                body: formData,
-                credentials: "include" // 세션 유지
-            });
+            try {
+                const response = await fetch(`${path}/API/qna/modify`, {
+                    method: "POST",
+                    body: formData,
+                    credentials: "include" // 세션 유지
+                });
 
-            const result = await response.json(); // 서버가 JSON 반환한다고 가정
-            console.log(result);
+                const result = await response.json(); // 서버가 JSON 반환한다고 가정
+                console.log(result);
 
-            // 성공 시 처리
-            if (result.status === 200) {
-                alert("QnA 작성 완료!");
-                window.location.href = `${path}/qna/list`;
-            } else {
-                alert("오류: " + result.message);
+                // 성공 시 처리
+                if (result.status === 200) {
+                    alert("QnA 작성 완료!");
+                    window.location.href = `${path}/qna/list`;
+                } else {
+                    alert("오류: " + result.message);
+                }
+
+            } catch (error) {
+                console.error("Fetch Error:", error);
+                alert("서버와 통신 중 오류가 발생했습니다.");
             }
-
-        } catch (error) {
-            console.error("Fetch Error:", error);
-            alert("서버와 통신 중 오류가 발생했습니다.");
-        }
+        });
     });
-});
 </script>
 
 </body>

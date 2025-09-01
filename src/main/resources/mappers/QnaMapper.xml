@@ -44,6 +44,44 @@
 	           )
 	     WHERE rn BETWEEN #{start} AND #{end}
 	</select>
+	
+	<select id="qnaAdminList" 
+        parameterType="com.middlepj.ict05.domain.qna.dto.QnaSearchDto" 
+        resultType="com.middlepj.ict05.domain.qna.dto.QnaDto">
+	    SELECT *
+	      FROM (
+	            SELECT A.*, rownum AS rn
+	              FROM (
+	                    SELECT q.qa_id,
+	                           q.qa_title,
+	                           q.qa_content,
+	                           q.qa_private,
+	                           q.qa_show,
+	                           q.qa_readcount,
+	                           q.qa_answer,
+	                           q.qa_answer_date,
+	                           q.qa_reg_date,
+	                           q.mb_id,
+	                           m.mb_name
+	                      FROM qna_tb q
+	                      JOIN member_tb m
+	                        ON q.qa_writer_id = m.mb_id
+	                     WHERE 1=1
+	                       <!-- 제목 검색 -->
+	                       <if test='mode eq "t" and s != null and s != "" '>
+	                           AND q.qa_title LIKE '%' || #{s} || '%'
+	                       </if>
+	                       
+	                       <!-- 내용 검색 -->
+	                       <if test='mode eq "c" and s != null and s != "" '>
+	                           AND q.qa_content LIKE '%' || #{s} || '%'
+	                       </if>
+	                       
+	                  ORDER BY q.qa_id DESC
+	                  ) A
+	           )
+	     WHERE rn BETWEEN #{start} AND #{end}
+	</select>
 
     
     <select id="qnaCnt" parameterType="com.middlepj.ict05.domain.qna.dto.QnaSearchDto" resultType="int">
@@ -51,6 +89,20 @@
 		  FROM qna_tb
 		 WHERE qa_private = 'N'
 		   AND qa_show = 'Y'
+			<!-- 제목 검색 -->
+			<if test='mode eq "t" and s != null and s != "" '>
+				AND qa_title LIKE '%' || #{s} || '%'
+			</if>
+			<!-- 내용 검색 -->
+			<if test='mode eq "c" and s != null and s != "" '>
+				AND qa_content LIKE '%' || #{s} || '%'
+			</if>
+	</select>
+	
+	    <select id="qnaAdminCnt" parameterType="com.middlepj.ict05.domain.qna.dto.QnaSearchDto" resultType="int">
+		SELECT COUNT(*) as cnt
+		  FROM qna_tb
+		 WHERE 1=1
 			<!-- 제목 검색 -->
 			<if test='mode eq "t" and s != null and s != "" '>
 				AND qa_title LIKE '%' || #{s} || '%'

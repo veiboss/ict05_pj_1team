@@ -26,7 +26,7 @@ public class QnaRestController {
 	private QnaService qnaService;
 
 	@PostMapping("/qna/write")
-	public ResponseEntity<ApiResponse<QnaDto>> writeAction(QnaForm form) {
+	public ResponseEntity<ApiResponse<QnaDto>> writeAction(QnaForm form, HttpServletRequest request) {
 		List<String> errors = new ArrayList<>();
 		
 		if (form.getQa_title() == null || form.getQa_title().isEmpty()) {
@@ -47,7 +47,7 @@ public class QnaRestController {
 					.body(ApiResponse.error(message, 400));
 		}
 		
-		int insertCnt = qnaService.insertQna(form);
+		int insertCnt = qnaService.insertQna(form, request);
 		
 		
 		return ResponseEntity.ok(ApiResponse.success(dto, "Q&A 정상등록 되었습니다."));

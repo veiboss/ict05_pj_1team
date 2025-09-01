@@ -20,15 +20,6 @@
 <!-- defer : html을 다 읽은 후에 자바스크립트를 실행한다. 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행된다. -->
 <script src="${path}/resources/js/lib/aos.js" defer></script>
 <script src="${path}/resources/js/yaksok.js" defer></script>
-<script>
-function delReview(id){
-	if(confirm('이 후기를 삭제할까요?')){
-		const f = document.getElementById('delForm');
-		f.rv_id.value = id;
-		f.submit();
-	}
-}
-</script>
 </head>
 <body>
 	<div id="wrap" class="wrap">
@@ -36,7 +27,7 @@ function delReview(id){
 		<%@ include file="../../common/pc_left.jsp" %>
 		<!-- PC 컨텐츠 끝 -->
 		
-		<div id="container" class="">
+		<div id="container" class="lines">
 		<!-- [D] HEADER VIEW :  no class /.lines(2) / .only-back(1) / .only-close(1) -->
 			<!-- header 시각 -->
 			<%@ include file="../../common/header.jsp" %>
@@ -45,21 +36,32 @@ function delReview(id){
 			
 			<!-- 컨텐츠 시작 -->
 			<!-- SID : COM000 -->
-			<div id="content" class="sub"><!-- [D] main / sub-main / sub && pagd name -->
-				<h2 style="margin:24px 0 12px"> 내가 쓴 후기 </h2>
-				
-				<c:if test="${empty list}">
-					<div style="padding:32px;border:1px dashed #ddd;border-radius:12px;text-align:center;color:#666">
-         				 작성한 후기가 없습니다.
-       				 </div>				
-				</c:if>
-					
-				
-				
-				
-				
-				
-				
+			<div id="content" class="sub si10"><!-- [D] main / sub-main / sub && pagd name -->
+			
+				<form class="sign-up-form" action="loginAction.do" method="post">
+					<fieldset class="pack-down-center">
+						<legend class="article-title">로그인</legend>
+
+						<div class="pack-down-center">
+							<div class="field">
+								<input type="text" name="mb_email" class="input-text" placeholder="이메일 입력">
+							</div>
+							<div class="field">
+								<input type="password" name="mb_password" class="input-text" placeholder="비밀번호 입력">
+							</div>
+						</div>
+
+						<div class="button-area">
+							<button type="submit" class="btn blue large r4">로그인</button>
+						</div>
+					</fieldset>
+				</form>
+
+				<div class="button-area">
+					<a href="join.do" class="btn bdr-blue large r4">
+						회원가입
+					</a>
+				</div>
 			</div><!-- // #content -->
 			<!-- 컨텐츠 끝 -->
 		

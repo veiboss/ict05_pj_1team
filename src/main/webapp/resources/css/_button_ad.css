@@ -24,8 +24,8 @@ input.btn,
 button.btn					{overflow: visible; margin: 0;}
 
 /* button size */
-.btn.xsmall					{height: var(--xsmall); padding: 0 4px; font-size: .875rem; line-height: var(--xsmall); border-radius: 2px;}
-.btn.small:not(.transparent)					{height: var(--small); padding: 0 8px; line-height: var(--small); border-radius: 2px;}
+.btn.xsmall					{height: var(--xsmall); padding: 0 4px; font-size: .75rem; line-height: var(--xsmall); border-radius: 2px;}
+.btn.small:not(.transparent)		{height: var(--small); padding: 0 8px; font-size: .875rem; line-height: var(--small); border-radius: 2px;}
 .btn.medium					{height: var(--medium); padding: 0 16px; font-size: 1rem; line-height: var(--medium); border-radius: 4px;}
 .btn.large					{height: var(--large); padding: 0 20px; font-size: 1.125rem; line-height: var(--large); border-radius: 8px;}
 

@@ -51,7 +51,7 @@
 								</strong>
 							</p>
 							<p class="ta-c">
-								<a class="btn black xlarge r-full" href="javascript:void(0);"> 내 건강 점수는 ???</a>
+								<a class="btn black xlarge r-full" href="MA10"> 내 건강 점수는 ???</a>
 							</p>
 						</div>
 					</div>

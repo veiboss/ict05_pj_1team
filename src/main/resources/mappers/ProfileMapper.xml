@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.middlepj.ict05.domain.home.dao.ProfileDAO"><!-- namespace="패키지명.인터페이스" -->
+	<!-- 프로필 등록여부 체크 -->
+	<select id="checkProfile" parameterType="int" resultType="int">
+		SELECT count(*) as CNT
+		  FROM MEMBER_PROFILE_TB
+		 WHERE MB_ID =#{checkNo}
+	</select>
+	<!-- 프로필 등록 -->
+	<insert id="insertProfile" parameterType="com.middlepj.ict05.domain.home.dto.ProfileDTO">
+		INSERT INTO MEMBER_PROFILE_TB (MBP_ID
+									 , MB_ID
+									 , MBP_HEIGHT
+									 , MBP_WEIGHT
+									 , MBP_AGE
+									 , MBP_DISEASE
+									 , MBP_INT_PILL
+									 , MBP_GENDER
+									 , MBP_PILL_SCORE
+									 , MBP_WRITER_ID
+									 , MBP_REG_DATE)
+							VALUES((SELECT NVL(MAX(MBP_ID)+1, 1) FROM MEMBER_PROFILE_TB)
+									 , #{mb_id}
+									 , #{mbp_height}
+									 , #{mbp_weight}
+									 , #{mbp_age}
+									 , #{mbp_disease}
+									 , #{mbp_int_pill}
+									 , #{mbp_gender}
+									 , #{mbp_pill_score}
+									 , #{mbp_writer_id}
+									 , SYSDATE)
+	</insert>
+	
+	<!-- 설문 등록 -->
+	<insert id="insertSurvey" parameterType="com.middlepj.ict05.domain.mypage.mypagesurvey.dto.MypageSurveyDTO">
+		INSERT INTO MEMBER_SURVEY_TB (MBS_ID
+									, MB_ID
+									, MBS_SCORE
+									, MBS_SERVEY_DATE
+									, MBS_WRITER_ID
+									, MBS_REG_DATE)
+							VALUES ((SELECT NVL(MAX(MBS_ID)+1, 1) FROM MEMBER_SURVEY_TB)
+									, #{mb_id}
+									, #{mbs_score}
+									, SYSDATE
+									, #{mb_id}
+									, SYSDATE)
+	</insert>
+	<!-- 설문 결과 점수 표시 -->
+	<select id="getScoreSurvey" parameterType="int" resultType="com.middlepj.ict05.domain.mypage.mypagesurvey.dto.MypageSurveyDTO">
+		SELECT *
+		  FROM MEMBER_SURVEY_TB
+		 WHERE MBS_ID = (SELECT MAX(MBS_ID)
+		  FROM MEMBER_SURVEY_TB mst
+		 WHERE mst.MB_ID = #{sessionID}) 
+	</select>
+	<!-- 영양제 추천 -->
+	<select id="recommendPill" parameterType="java.util.Map" resultType="com.middlepj.ict05.domain.drug.dto.DrugDTO">
+		WITH SPLIT_PILL AS (
+		    SELECT MB_ID,
+		           MBP_ID,
+		           REGEXP_SUBSTR(MBP_INT_PILL, '[^,]+', 1, LEVEL) AS PILL
+		    FROM MEMBER_PROFILE_TB
+		    WHERE MB_ID = #{sessionID}
+		    CONNECT BY LEVEL &lt;= REGEXP_COUNT(MBP_INT_PILL, ',') + 1
+		      AND PRIOR MBP_ID = MBP_ID
+		      AND PRIOR SYS_GUID() IS NOT NULL
+		),
+		SPLIT_RULE AS (
+		    SELECT RULE_ID,
+		           RULE_INTEREST,
+		           TRIM(REGEXP_SUBSTR(RULE_RECOMMEND, '[^,]+', 1, LEVEL)) AS RECOMMEND
+		    FROM RULE_TB
+		    CONNECT BY LEVEL &lt;= REGEXP_COUNT(RULE_RECOMMEND, ',') + 1
+		      AND PRIOR RULE_ID = RULE_ID
+		      AND PRIOR SYS_GUID() IS NOT NULL
+		),
+		RECOMMEND_JOIN AS (
+		    SELECT DISTINCT
+		           P.MB_ID,
+		           P.MBP_ID,
+		           R.RECOMMEND
+		    FROM SPLIT_PILL P
+		    JOIN SPLIT_RULE R 
+		      ON P.PILL = R.RULE_INTEREST
+		    WHERE R.RECOMMEND IS NOT NULL
+		),
+		LIMITED_RECOMMEND AS (
+		    SELECT MB_ID, MBP_ID, RECOMMEND
+		    FROM (
+		        SELECT RJ.*,
+		               ROW_NUMBER() OVER (PARTITION BY RJ.MB_ID, RJ.MBP_ID ORDER BY RJ.RECOMMEND) AS RN
+		        FROM RECOMMEND_JOIN RJ
+		    )
+		    WHERE RN &lt;= 100
+		),
+		MATCHED_DRUGS AS (
+		    SELECT L.MB_ID,
+		           L.MBP_ID,
+		           L.RECOMMEND,
+		           D.DR_ID,
+		           ROW_NUMBER() OVER (PARTITION BY L.RECOMMEND ORDER BY D.DR_ID) AS DRUG_RN
+		    FROM LIMITED_RECOMMEND L
+		    JOIN DRUG_TB D
+		      ON DBMS_LOB.INSTR(D.DR_MAIN_FUNCTION, L.RECOMMEND) > 0
+		)
+		SELECT *
+		FROM DRUG_TB
+		WHERE DR_ID IN (
+		    SELECT DR_ID
+		    FROM MATCHED_DRUGS
+		    WHERE DRUG_RN &lt;= #{resultScore}
+		)
+		ORDER BY DR_ID
+	</select>
+	<!-- 최근 설문 목록 -->
+	<select id="selectSurvey">
+		SELECT MBS_ID
+			 , MBS_SCORE
+			 , MBS_SERVEY_DATE
+		  FROM MEMBER_SURVEY_TB 
+		 WHERE MB_ID = #{sessionID}
+		 ORDER BY MBS_SERVEY_DATE DESC
+	</select>
+</mapper> 

@@ -21,23 +21,24 @@
     <div id="container" class="lines">
         <%@ include file="../common/header.jsp" %>
         <div id="content" class="sub si20">
-        	<div class="search-bar">
-            <form class="sign-up-form" action="" method="GET">
-                <fieldset>
-                    <legend class="blind">통합 검색</legend>
-                    <div class="search-box pack-both r4">
-                        <select name="mode" class="select" style="width:100px;">
-                            <option value="t" ${param.mode == 't'?'selected':''}>제목</option>
-                            <option value="c" ${param.mode == 'c'?'selected':''}>내용</option>
-                        </select>
+            <div class="search-bar">
+                <form class="sign-up-form" action="" method="GET">
+                    <fieldset>
+                        <legend class="blind">통합 검색</legend>
+                        <div class="search-box pack-both r4">
+                            <select name="mode" class="select" style="width:100px;">
+                                <option value="t" ${param.mode == 't'?'selected':''}>제목</option>
+                                <option value="c" ${param.mode == 'c'?'selected':''}>내용</option>
+                            </select>
 
-                        <input type="search" class="input-text r4" name="s" value="${param.s}" placeholder="검색어를 입력해주세요"
-                               autocomplete="off">
+                            <input type="search" class="input-text r4" name="s" value="${param.s}"
+                                   placeholder="검색어를 입력해주세요"
+                                   autocomplete="off">
 
-                        <button type="submit" class="btn"><strong>검색</strong></button>
-                    </div>
-                </fieldset>
-            </form>
+                            <button type="submit" class="btn"><strong>검색</strong></button>
+                        </div>
+                    </fieldset>
+                </form>
             </div>
             <ul class="data-list">
                 <c:forEach var="qna" items="${qnaList}">
@@ -48,10 +49,10 @@
                                     <i class="ico-bg blue r10"><span>Q</span></i>
                                     <!-- [D] 답변 전 -->
                                     <c:if test="${empty qna.qa_answer}">
-                                    <span class="q-ing">궁금해요</span>
+                                        <span class="q-ing">궁금해요</span>
                                     </c:if>
                                     <c:if test="${not empty qna.qa_answer}">
-                                    <span class="q-solved">궁금증해결</span>
+                                        <span class="q-solved">궁금증해결</span>
                                     </c:if>
 
                                     <span><fmt:formatDate value="${qna.qa_reg_date}" pattern="yyyy. MM. dd"/></span>
@@ -94,11 +95,12 @@
 
                                 <!-- [D] 답변안된 질문 중, 전문가만 노출 -->
                                 <c:if test="${empty qna.qa_answer}">
-                                <c:if test="${sessionScope.sessionGrade == 'EXPERT'}">
-                                <button type="button" class="btn bdr-blue small r4" onclick="location.href='${path}/qna/detail/${qna.qa_id}'">
-                                    답변등록
-                                </button>
-                                </c:if>
+                                    <c:if test="${sessionScope.sessionGrade == 'EXPERT'}">
+                                        <button type="button" class="btn bdr-blue small r4"
+                                                onclick="location.href='${path}/qna/detail/${qna.qa_id}'">
+                                            답변등록
+                                        </button>
+                                    </c:if>
                                 </c:if>
                             </div><!-- .pack-both -->
                         </div><!-- .item.normal -->
@@ -111,13 +113,14 @@
                     <!-- 이전버튼 활성화 -->
                     <c:if test="${paging.startPage > 10}">
                         <li>
-                            <a href="${path}/qna/list?pageNum=${paging.prev}" class="prevPage"> [이전] </a>
+                            <a href="${path}/qna/list?pageNum=${paging.prev}&mode=${param.mode}&s=${param.s}"
+                               class="prevPage"> [이전] </a>
                         </li>
                     </c:if>
 
                     <c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
                         <li>
-                            <a href="${path}/qna/list?pageNum=${num}"
+                            <a href="${path}/qna/list?pageNum=${num}&mode=${param.mode}&s=${param.s}"
                                class="<c:if test='${num == paging.currentPage}'>active</c:if>">${num}</a>
                         </li>
                     </c:forEach>
@@ -126,7 +129,8 @@
                     <!-- 다음버튼 활성화 -->
                     <c:if test="${paging.startPage < paging.pageCount}">
                         <li>
-                            <a href="${path}/qna/list?pageNum=${paging.next}" class="nextPage"> [다음] </a>
+                            <a href="${path}/qna/list?pageNum=${paging.next}&mode=${param.mode}&s=${param.s}"
+                               class="nextPage"> [다음] </a>
                         </li>
                     </c:if>
                 </ul>

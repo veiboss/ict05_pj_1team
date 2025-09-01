@@ -6,7 +6,7 @@ public class DrugDTO {
 	private int dr_id;					// 제약 시퀀스
 	private String dr_enterprise;		// 제약 업체명
 	private String dr_product;			// 제약 제품명
-	private int dr_statement_id;		// 제약 품목번호
+	private long dr_statement_id;		// 제약 품목번호
 	private Date dr_regist_date;		// 제약 등록일자
 	private String dr_expiration_date;	// 제약 유통기한
 	private String dr_sungsang;			// 제약 성상
@@ -21,7 +21,7 @@ public class DrugDTO {
 		super();
 	}
 
-	public DrugDTO(int dr_id, String dr_enterprise, String dr_product, int dr_statement_id, Date dr_regist_date,
+	public DrugDTO(int dr_id, String dr_enterprise, String dr_product, long dr_statement_id, Date dr_regist_date,
 			String dr_expiration_date, String dr_sungsang, String dr_serve_use, String dr_intake_hint,
 			String dr_main_function, String dr_preservation, String dr_base_standard, String dr_show) {
 		super();
@@ -64,11 +64,11 @@ public class DrugDTO {
 		this.dr_product = dr_product;
 	}
 
-	public int getDr_statement_id() {
+	public long getDr_statement_id() {
 		return dr_statement_id;
 	}
 
-	public void setDr_statement_id(int dr_statement_id) {
+	public void setDr_statement_id(long dr_statement_id) {
 		this.dr_statement_id = dr_statement_id;
 	}
 
