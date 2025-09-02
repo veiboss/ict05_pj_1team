@@ -85,5 +85,18 @@ public class FaqController {
 	}
 	// FAQ 상세
 	
+	// FAQ ADMIN Ajax
+	@RequestMapping("/faq_admin_ajax.fc")
+	public String faq_admin_ajax(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("<<< url ==> /faq_admin_list.fc >>>");
+		
+		FaqList faqList = service.faqListAction(request, response, model);
+		
+		model.addAttribute("list", faqList.getFaqList());
+		model.addAttribute("paging", faqList.getPaging());
+		
+		return "faq/faq_admin_ajax";
+	}
 	
 }

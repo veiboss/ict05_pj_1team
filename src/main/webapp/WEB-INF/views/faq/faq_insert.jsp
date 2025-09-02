@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>전문가 QnA</title>
+    <title>전문가 FAQ</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
@@ -35,11 +35,11 @@
                     <div>
                         <label class="label-box">
                             <span class="text-label">제목</span>
-                            <input type="text" name="fa_title" class="input-text" placeholder="제목을 입력해주세요">
+                            <input type="text" name="fa_title" class="input-text" maxlength="100" placeholder="제목을 입력해주세요">
                         </label>
                     </div>
                     <div style="margin-top:10px;">
-                        <textarea name="fa_content" id="fa_content"></textarea>
+                        <textarea name="fa_content" id="fa_content"  maxlength="4000"></textarea>
                     </div>
                     
                     <div class="insert pack-left">

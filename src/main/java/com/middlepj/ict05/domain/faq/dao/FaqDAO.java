@@ -28,4 +28,10 @@ public interface FaqDAO {
 
 	// FAQ 수정(노출/비노출)
 	public void updateFaq(FaqDTO dto);
+	
+	// FAQ 검색 total
+	public int faqSearchCount(Map<String, Object> map);
+	
+	// FAQ 목록 조회 영역
+	public List<FaqDTO> faqSearchList(Map<String, Object> map);
 }

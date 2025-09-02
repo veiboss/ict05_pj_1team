@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -26,6 +28,8 @@ public class FaqServiceImpl implements FaqService {
 	@Autowired
 	private FaqDAO dao;
 
+	private static final Logger logger = LoggerFactory.getLogger(FaqServiceImpl.class);
+	
 	// FAQ 회원 목록
 	@Override
 	public FaqList faqUserListAction(HttpServletRequest request, HttpServletResponse response, Model model)
@@ -70,10 +74,26 @@ public class FaqServiceImpl implements FaqService {
 
 		// 페이징 처리
 		String pageNum = request.getParameter("pageNum");
-
+		String keyword = request.getParameter("keyword");
+		
 		// 전체 게시글 갯수 카운터를 해야 페이징처리 가능
 		Paging paging = new Paging(pageNum);
-		int total = dao.userFaqCount();
+		Map<String, Object> map = new HashMap<String, Object>();
+		String safeKeyword = (keyword == null) ? "" : keyword.trim();
+		map.put("keyword", safeKeyword);
+		
+		int total;
+		try {
+            if (safeKeyword.isEmpty()) {
+            	total = dao.userFaqCount();
+            } else {
+                total = dao.faqSearchCount(map);
+            }
+        } catch (Exception e) {
+            logger.error("Failed to get total FAQ count", e);
+            throw new ServletException("FAQ 개수 조회 실패", e);
+        }
+		
 		System.out.println("total : " + total);
 
 		paging.setTotalCount(total);
@@ -82,18 +102,29 @@ public class FaqServiceImpl implements FaqService {
 		int start = paging.getStartRow();
 		int end = paging.getEndRow();
 
-		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end", end);
 
-		List<FaqDTO> list = dao.faqlist(map);
+		List<FaqDTO> list;
+		try {
+            if (safeKeyword.isEmpty()) {
+            	list = dao.faqlist(map);
+            } else {
+                list = dao.faqSearchList(map);
+            }
+        } catch (Exception e) {
+            logger.error("Failed to fetch FAQ list", e);
+            throw new ServletException("FAQ 목록 조회 실패", e);
+        }
+		
 		System.out.println("list : " + list);
 
 		FaqList faqList = new FaqList();
 
 		faqList.setFaqList(list);
 		faqList.setPaging(paging);
-
+		model.addAttribute("keyword", keyword); // 검색어 유지용
+		
 		return faqList;
 	}
 

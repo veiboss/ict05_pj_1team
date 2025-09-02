@@ -52,8 +52,29 @@
 	
 	<!-- FAQ 글등록 -->
 	<insert id="insertFaq" parameterType="com.middlepj.ict05.domain.faq.dto.FaqDTO">
-	 	INSERT INTO faq_TB (fa_id, fa_title, fa_content, fa_show, fa_writer_id, fa_reg_date)
-		VALUES (FAQ_SEQ.NEXTVAL , #{fa_title}, #{fa_content}, #{fa_show}, #{fa_writer_id}, SYSDATE)
+	    INSERT INTO faq_TB (fa_id, fa_title, fa_content, fa_show, fa_writer_id, fa_reg_date)
+	    VALUES (FAQ_SEQ.NEXTVAL, #{fa_title}, #{fa_content}, #{fa_show, jdbcType=CHAR}, #{fa_writer_id}, SYSDATE)
 	</insert>
+
+
+	<!-- 검색 카운터 -->
+	<select id="faqSearchCount" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*) AS cnt
+	    FROM FAQ_TB
+	    WHERE FA_TITLE LIKE '%' || #{keyword} || '%'
+	</select>
+	
+	<!-- 검색 리스트 -->
+	<select id="faqSearchList" parameterType="java.util.Map" resultType="com.middlepj.ict05.domain.faq.dto.FaqDTO">
+	    SELECT * 
+	    FROM (SELECT A.*, rownum AS rn 
+	          FROM (SELECT * 
+	                FROM FAQ_TB 
+	                WHERE FA_SHOW = 'Y'
+	                AND FA_TITLE LIKE '%' || #{keyword} || '%' 
+	                ORDER BY FA_ID DESC) A)  
+	    WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+
 
 </mapper>

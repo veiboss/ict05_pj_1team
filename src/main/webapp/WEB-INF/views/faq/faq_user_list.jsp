@@ -24,7 +24,6 @@
 <script src="${path}/resources/js/lib/aos.js" defer></script>
 <script src="${path}/resources/js/yaksok.js" defer></script>
 
-
 </head>
 <body>
 	<div class="skip-nav">
@@ -91,7 +90,6 @@
 								</div><!-- // .accordion-content -->
 							</div><!-- // .item -->
 						</li>
-						
 					</ul>
 					
 					<div class="pagination">
