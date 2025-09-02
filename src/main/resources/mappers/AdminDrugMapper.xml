@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.middlepj.ict05.domain.admin.admindrug.dao.AdminDrugDAO"><!-- namespace="패키지명.인터페이스" -->
+	
+	<select id="boardCnt" resultType="int">
+		SELECT COUNT(*)  AS cnt
+		  FROM DRUG_TB
+	</select>
+	
+	<select id="boardSearchCnt" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*)  AS cnt
+		  FROM DRUG_TB
+		 WHERE DR_PRODUCT LIKE '%' || #{keyword} || '%'
+		    OR DR_MAIN_FUNCTION LIKE '%' || #{keyword} || '%'
+	</select>
+	
+	<select id="drugList" parameterType="java.util.Map" resultType="com.middlepj.ict05.domain.admin.admindrug.dto.AdminDrugListDTO">
+		SELECT * FROM (
+	        SELECT ROWNUM rn, a.*
+	        FROM (
+	            SELECT dr_id,
+	                   dr_enterprise,
+	                   dr_product,
+	                   dr_statement_id,
+	                   dr_regist_date,
+	                   dr_expiration_date,
+	                   dr_show
+	            FROM DRUG_TB
+	            ORDER BY DR_REGIST_DATE DESC
+	        ) a
+	    )
+	    WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="drugSearchList" parameterType="java.util.Map" resultType="com.middlepj.ict05.domain.admin.admindrug.dto.AdminDrugListDTO">
+	    SELECT * FROM (
+	        SELECT ROWNUM rn, a.*
+	        FROM (
+	            SELECT dr_id,
+	                   dr_enterprise,
+	                   dr_product,
+	                   dr_statement_id,
+	                   dr_regist_date,
+	                   dr_expiration_date,
+	                   dr_show
+	            FROM DRUG_TB
+			 WHERE DR_PRODUCT LIKE '%' || #{keyword} || '%'
+			    OR DR_MAIN_FUNCTION LIKE '%' || #{keyword} || '%'
+	            ORDER BY DR_REGIST_DATE DESC
+	        ) a
+	    )
+	    WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+</mapper> 

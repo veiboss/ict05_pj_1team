@@ -1,9 +1,7 @@
 package com.middlepj.ict05.domain.admin.adminmember.service;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.middlepj.ict05.common.Paging;
 import com.middlepj.ict05.domain.admin.adminmember.dao.MemberAdminDAO;
 import com.middlepj.ict05.domain.admin.adminmember.dto.MemberAdminDTO;
+import com.middlepj.ict05.domain.admin.adminmember.dto.MemberSearchDTO;
 
 @Service
 public class MemberAdminServiceImpl implements MemberAdminService {
@@ -30,8 +28,18 @@ public class MemberAdminServiceImpl implements MemberAdminService {
 		System.out.println("MemberServiceImpl - memberListAction()");
 		
 		String pageNum = request.getParameter("pageNum");
+		String s_grade = request.getParameter("s_grade");
+		String s_keyword = request.getParameter("s_keyword");
+
+		System.out.println("검색조건 => grade=" + s_grade + ", keyword=" + s_keyword);
 		
-		int total = dao.memberCnt();
+		// SearchDTO
+		MemberSearchDTO searchDTO = new MemberSearchDTO();
+		searchDTO.setS_grade(s_grade);
+		searchDTO.setS_keyword(s_keyword);
+		
+		// total 구할 때 조건 반영
+		int total = dao.memberCnt(searchDTO);
 		System.out.println("total : " + total);
 		
 		Paging paging = new Paging(pageNum);
@@ -41,15 +49,20 @@ public class MemberAdminServiceImpl implements MemberAdminService {
 		int end = paging.getEndRow();
 		
 		// HashMap 생성후 추가
-		Map<String, Object> map = new HashMap<String, Object>(); 
-		map.put("start", start);
-		map.put("end", end);
+//		Map<String, Object> map = new HashMap<String, Object>(); 
+//		map.put("start", start);
+//		map.put("end", end);
 		
-		List<MemberAdminDTO> list = dao.memberList(map);
+		searchDTO.setStart(start);
+		searchDTO.setEnd(end);
+
+		List<MemberAdminDTO> list = dao.memberList(searchDTO);
 		
 		// 6단계. jsp로 처리결과 전달
 		model.addAttribute("paging", paging);
 		model.addAttribute("list", list);
+		model.addAttribute("s_grade", s_grade);
+		model.addAttribute("s_keyword", s_keyword);
 		
 	}
 	

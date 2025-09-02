@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.middlepj.ict05.domain.admin.adminmember.dto.MemberAdminDTO;
+import com.middlepj.ict05.domain.admin.adminmember.dto.MemberSearchDTO;
 
 
 @Repository
@@ -24,22 +25,22 @@ public class MemberAdminDAOImpl implements MemberAdminDAO{
 	
 	// 회원 목록
 	@Override
-	public List<MemberAdminDTO> memberList(Map<String, Object> map) {
+	public List<MemberAdminDTO> memberList(MemberSearchDTO searchDTO) {
 		System.out.println("MemberDAOImpl - memberList()");
 
 		MemberAdminDAO dao = sqlSession.getMapper(MemberAdminDAO.class);
-		List<MemberAdminDTO> list = dao.memberList(map);
+		List<MemberAdminDTO> list = dao.memberList(searchDTO);
 		
 		return list;
 	}
 	
 	// 회원수
 	@Override
-	public int memberCnt() {
+	public int memberCnt(MemberSearchDTO searchDto) {
 		System.out.println("MemberDAOImpl - memberCnt()");
 
 		MemberAdminDAO dao = sqlSession.getMapper(MemberAdminDAO.class);
-		int selectCnt = dao.memberCnt();
+		int selectCnt = dao.memberCnt(searchDto);
 		
 		return selectCnt;
 	}

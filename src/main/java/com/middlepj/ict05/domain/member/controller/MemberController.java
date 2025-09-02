@@ -92,5 +92,14 @@ public class MemberController {
 	
 		return "myPage/myPage";
 	}
+	
+	@RequestMapping("/logout.do")
+	public String logout(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("<<< url ==> /logout.do >>>");
 
+		request.getSession().invalidate();
+	
+		return "redirect:/main.do";
+	}
 }

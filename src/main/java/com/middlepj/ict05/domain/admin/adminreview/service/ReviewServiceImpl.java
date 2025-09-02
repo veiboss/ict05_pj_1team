@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+import com.middlepj.ict05.common.Paging;
 import com.middlepj.ict05.domain.admin.adminreview.dao.ReviewDAO;
 import com.middlepj.ict05.domain.admin.adminreview.dto.ReviewDTO;
 
@@ -36,7 +37,8 @@ public class ReviewServiceImpl implements ReviewService{
 		String keyword = request.getParameter("keyword");  // 검색어
 		// String sessionID = (String)request.getSession().getAttribute("sessionID");
 		
-		com.middlepj.ict05.common.Paging paging = new com.middlepj.ict05.common.Paging(pageNum);
+		int currentPage = (pageNum == null || pageNum.equals("0")) ? 1 : Integer.parseInt(pageNum);
+		Paging paging = new Paging(String.valueOf(currentPage));
 	   
 		// 검색 조건 반영해서 총 개수 카운트
 		Map<String, Object> map = new HashMap<>();
