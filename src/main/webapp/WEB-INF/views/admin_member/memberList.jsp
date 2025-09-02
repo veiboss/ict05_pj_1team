@@ -42,24 +42,24 @@
 				<h2 class="page-title ellipsis">회원 관리</h2>
 			</div>
 			
-
 			<main id="content">
 				<div id="search" class="search box-wrap">
-					<form>
+					<form  action="${path}/memberList.ad" method="GET">
 						<fieldset>
 							<legend class="blind">검색</legend>
 							<div class="field insert">
-								<select class="select medium" title="검색조건" id="searchSel">
-									<option>작성자</option>
-									<option>한줄후기</option>
+								<select class="select medium" title="등급조회" name="s_grade">
+									<option value="" <c:if test="${empty s_grade}">selected</c:if>>전체등급</option>
+									<option value="ORDINARY" <c:if test="${s_grade == 'ORDINARY'}">selected</c:if>>일반회원</option>
+									<option value="EXPERT" <c:if test="${s_grade == 'EXPERT'}">selected</c:if>>전문가</option>
+									<option value="ADMIN" <c:if test="${s_grade == 'ADMIN'}">selected</c:if>>관리자</option>
 								</select>
 							</div>
 							<div class="field insert">
-								<input type="text" id="searchTxt" class="input-text medium" title="검색어" placeholder="검색어를 입력해 주세요" />
+								<input type="text" name="s_keyword" class="input-text medium" title="검색어" placeholder="검색어(이름, 검색어) 입력" value="${s_keyword}"/>
 							</div>
-
 							<div class="button-area pack-left">
-								<button type="button" class="btn medium color1">검색</button>
+								<button type="submit" class="btn medium color1">검색</button>
 								<button type="reset" class="btn medium bdr-color1">초기화</button>
 							</div>
 						</fieldset>
@@ -103,7 +103,7 @@
 							<!-- 페이징처리 -->
 							<!-- 이전 버튼 활성화 -->
 							<c:if test="${paging.startPage > 5}">
-								<a href="j${path}/memberList.ad?pageNum=${paging.prev}" class="btn prev">
+								<a href="j${path}/memberList.ad?pageNum=${paging.prev}&s_grade=${s_grade}&s_keyword=${s_keyword}" class="btn prev">
 									<svg xmlns="http://www.w3.org/2000/svg" class="svg">
 										<path d="m2 6 6-4.33v8.66L2 6z" />
 									</svg>
@@ -114,14 +114,14 @@
 							<ul>
 								<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
 									<li class="<c:if test='${num == paging.currentPage}'>current</c:if>">
-										<a href="${path}/memberList.ad?pageNum=${num}" class="btn">${num}</a>
+										<a href="${path}/memberList.ad?pageNum=${num}&s_grade=${s_grade}&s_keyword=${s_keyword}" class="btn">${num}</a>
 									</li>
 								</c:forEach>
 							</ul>
 							
 							<!-- 다음 버튼 활성화 -->
 							<c:if test="${paging.endPage < paging.pageCount}">
-								<a href="${path}/memberList.ad?pageNum=${paging.next}" class="btn next">
+								<a href="${path}/memberList.ad?pageNum=${paging.next}&s_grade=${s_grade}&s_keyword=${s_keyword}" class="btn next">
 									<svg xmlns="http://www.w3.org/2000/svg" class="svg">
 										<path d="m2 6 6-4.33v8.66L2 6z" />
 									</svg>
