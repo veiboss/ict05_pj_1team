@@ -9,6 +9,15 @@
 	<!-- 멤버수 -->
 	<select id="memberCnt" resultType="int">
 		SELECT COUNT(*) FROM MEMBER_TB
+		<where>
+		<if test="s_grade != null and s_grade != ''">
+		   AND MB_GRADE = #{s_grade}
+		</if>
+		<if test="s_keyword != null and s_keyword != ''">
+		   AND (MB_NAME LIKE '%' || #{s_keyword} || '%'
+		    OR MB_EMAIL LIKE '%' || #{s_keyword} || '%')
+		</if>
+		</where>
 	</select>
 	
 	<!-- 멤버목록 -->
@@ -17,9 +26,22 @@
 		  FROM 
 		  	(SELECT A.* , 
 		  			rownum AS rn
-		  			FROM
-		  				(SELECT * FROM MEMBER_TB
-						 ORDER BY MB_ID DESC) A
+		  	   FROM (
+		  	   		 SELECT * FROM MEMBER_TB
+	  				 <where>
+	  				 <!-- grade 조건 -->
+	  				 <if test="s_grade != null and s_grade != ''">
+	  					AND MB_GRADE = #{s_grade}
+	  				 </if>
+	  				
+	  				 <!-- keyword 조건 -->
+	  				 <if test="s_keyword != null and s_keyword != ''">
+	  					AND (MB_NAME LIKE '%' || #{s_keyword} || '%'
+	  					 OR MB_EMAIL LIKE '%' || #{s_keyword} || '%')
+	  				 </if>
+	  				 </where>
+					 ORDER BY MB_ID DESC
+					) A
 			)
 		 WHERE rn BETWEEN #{start} AND #{end}
 	</select>

@@ -20,6 +20,36 @@
 <!-- (3-4). 자바스크립트 소스 연결 -->
 <!-- defer : html을 다 읽은 후에 자바스크립트를 실행한다. 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행된다. -->
 <script src="${path}/resources/js/yaksokAd.js" defer></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+	    function loadReviews(page = 1){
+	        $.ajax({
+	            type: "GET",
+	            url: "adminDrugAjax.ad",
+	            data: { keyword: $("#searchTxt").val(), pageNum: page },
+	            success: function(result){
+	                $("#searchResult").html(result);
+	            }
+	        });
+	    }
+	
+	    // 초기 로딩 시 전체 목록
+	    loadReviews();
+	
+	    // 검색 폼 제출
+	    $("#searchForm").submit(function(e){
+	        e.preventDefault();
+	        loadReviews(1);
+	    });
+	
+	    // 페이지 이동
+	    $(document).on("click", ".page-link", function(e){
+	        e.preventDefault();
+	        let page = $(this).data("page");
+	        loadReviews(page);
+	    });
+	});
+</script>
 </head>
 <body>
 	<div class="skip-nav"><a href="#content">본문 바로가기</a></div>
@@ -38,117 +68,36 @@
 			
 			
 			<div class="title-bar">
-				<h2 class="page-title ellipsis">관리자 영양제 - 예정 </h2>
+				<h2 class="page-title ellipsis">영양제 관리</h2>
 			</div>
 			
 
 			<main id="content">
-
-
-				<div class="row-2">
-					<div class="col box-wrap">
-						.row-2 > .col
-					</div>
-					<div class="col box-wrap">
-						.row-2 > .col
-					</div>
+				<div id="searchForm" class="search box-wrap">
+					<form>
+						<fieldset>
+							<legend class="blind">검색</legend>
+							<div class="field insert">
+								<input type="text" id="searchTxt" class="input-text medium" title="검색어" placeholder="검색어를 입력 (성분명 OR 제약명)">
+							</div>
+							<div class="button-area pack-left">
+								<button type="submit" class="btn medium color1">검색</button>
+								<button type="reset" class="btn medium bdr-color1">초기화</button>
+							</div>
+						</fieldset>
+					</form>
 				</div>
-				<div class="row-3">
-					<div class="col box-wrap">
-						.row-3 > .col
+			
+			    <!-- 검색 결과 들어올 div -->
+			    <section class="box-wrap">
+			    	<div class="list-header pack-both">
+						<div></div>
+						<div>
+							<a class="btn medium color1" href="javascript:void(0);">영양제 등록</a>
+						</div>
 					</div>
-					<div class="col box-wrap">
-						.row-3 > .col
-					</div>
-					<div class="col box-wrap">
-						.row-3 > .col
-					</div>
-				</div>
-				<div class="row-3">
-					<div class="col field box-wrap">
-						.row-3 > .col
-					</div>
-					<div class="col-2 box-wrap">
-						.row-3 > .col-2
-					</div>
-				</div>
-				<div class="row-4">
-					<div class="col box-wrap">
-						.row-4 > .col
-					</div>
-					<div class="col box-wrap">
-						.row-4 > .col
-					</div>
-					<div class="col box-wrap">
-						.row-4 > .col
-					</div>
-					<div class="col box-wrap">
-						.row-4 > .col
-					</div>
-				</div>
-				<div class="row-4">
-					<div class="col field box-wrap">
-						.row-4 > .col
-					</div>
-					<div class="col-2 box-wrap">
-						.row-4 > .col-2
-					</div>
-					<div class="col field box-wrap">
-						.row-4 > .col
-					</div>
-				</div>
-				<div class="row-4">
-					<div class="col field box-wrap">
-						.row-4 > .col
-					</div>
-					<div class="col-3 box-wrap">
-						.row-4 > .col-3
-					</div>
-				</div>
-				<div class="row-5">
-					<div class="col box-wrap">
-						.row-5 > .col
-					</div>
-					<div class="col box-wrap">
-						.row-5 > .col
-					</div>
-					<div class="col box-wrap">
-						.row-5 > .col
-					</div>
-					<div class="col box-wrap">
-						.row-5 > .col
-					</div>
-					<div class="col box-wrap">
-						.row-5 > .col
-					</div>
-				</div>
-				<div class="row-5">
-					<div class="col box-wrap">
-						.row-5 > .col
-					</div>
-					<div class="col-4 field box-wrap">
-						.row-5 > .col-4
-					</div>
-				</div>
-				<div class="row-5">
-					<div class="col-2 box-wrap">
-						.row-5 > .col-2
-					</div>
-					<div class="col-3 field box-wrap">
-						.row-5 > .col-3
-					</div>
-				</div>
-				<div class="row-5">
-					<div class="col box-wrap">
-						.row-5 > .col
-					</div>
-					<div class="col-2 box-wrap">
-						.row-5 > .col-2
-					</div>
-					<div class="col-2 box-wrap">
-						.row-5 > .col-2
-					</div>
-				</div>
+			    	<div id="searchResult"></div>
+				</section>
 			</main>
 			
 			<!-- 컨텐츠 끝 -->

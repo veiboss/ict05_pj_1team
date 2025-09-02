@@ -21,6 +21,7 @@
 <script src="${path}/resources/js/yaksok.js" defer></script>
 <script src="${path}/resources/js/common/request.js"></script>
 <script src="${path}/resources/js/member/join.js" defer></script>
+<script>window.APP_CTX='${path}';</script>
 </head>
 <body>
 	<div id="wrap" class="wrap">

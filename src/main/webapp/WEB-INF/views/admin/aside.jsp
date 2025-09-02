@@ -19,7 +19,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="${path}/memberList.ad">
 							<span class="material-symbols-outlined">user_attributes</span>
 							<span>회원</span>
 						</a>
