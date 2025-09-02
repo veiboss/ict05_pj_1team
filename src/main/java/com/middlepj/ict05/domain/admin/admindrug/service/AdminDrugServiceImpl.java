@@ -36,7 +36,8 @@ public class AdminDrugServiceImpl implements AdminDrugService{
 		String pageNum = request.getParameter("pageNum");
 		String keyword = request.getParameter("keyword");  // 검색어
 		
-		Paging paging = new Paging(pageNum);
+		int currentPage = (pageNum == null || pageNum.equals("0")) ? 1 : Integer.parseInt(pageNum);
+		Paging paging = new Paging(String.valueOf(currentPage));
 		
 		// 검색 조건 반영해서 총 개수 카운트
 			Map<String, Object> map = new HashMap<>();
