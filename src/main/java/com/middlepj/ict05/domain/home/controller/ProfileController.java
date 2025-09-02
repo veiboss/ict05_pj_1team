@@ -38,7 +38,7 @@ public class ProfileController {
 		}
 	}
 	
-	// 회원 프로필 내용 등록 실행
+	// 회원 프로필 내용 등록 처리
 	@RequestMapping("MA11")
 	public String addProfileAction(HttpServletRequest request, HttpServletResponse response, Model model) 
 			throws ServletException, IOException {
@@ -46,44 +46,4 @@ public class ProfileController {
 		service.insertProfileAction(request, response, model);
 		return "home/profileAction";
 	}
-	
-	
-	// 회원 설문 내용 등록 페이지
-	@RequestMapping("MA13")
-	public String addSurvey(HttpServletRequest request, HttpServletResponse response, Model model) 
-			throws ServletException, IOException {
-		logger.info("ProfileController-addSurvey");
-		return "home/survey";
-	}
-	
-	// 회원 설문 내용 등록 페이지
-	@RequestMapping("MA14")
-	public String addSurveyAction(HttpServletRequest request, HttpServletResponse response, Model model) 
-			throws ServletException, IOException {
-		logger.info("ProfileController-addSurveyAction");
-		service.insertSurvey(request, response, model);
-		return "home/surveyAddAction";
-	}
-	
-	
-	// 회원 설문 결과 페이지
-	@RequestMapping("MA15")
-	public String resultSurvey(HttpServletRequest request, HttpServletResponse response, Model model) 
-			throws ServletException, IOException {
-		logger.info("ProfileController-resultSurvey");
-		service.resultScoreSurvey(request, response, model);
-		service.recommendPill(request, response, model);
-		return "home/surveyResult";
-	}
-	
-	// 회원 최근 설문 목록
-	@RequestMapping("MA20")
-	public String recentSurvey(HttpServletRequest request, HttpServletResponse response, Model model) 
-			throws ServletException, IOException {
-		logger.info("ProfileController-recentSurvey");
-		service.resultScoreSurvey(request, response, model);
-		service.listSurvey(request, response, model);
-		return "home/surveyList";
-	}
-	
 }
