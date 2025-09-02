@@ -11,15 +11,13 @@ public class MyDrugDTO {
 	private String mbd_drug_effect; // 회원약 효과
 	private int mbd_writer_id;		// 회원약 작성자
 	private Date mbd_reg_date;		// 회원약 작성일
-	private int mbd_modify_id;		// 회원약 수정자
-	private Date mbd_modify_date;	// 회원약 수정일
 	
 	public MyDrugDTO() {
 		super();
 	}
 
 	public MyDrugDTO(int mbd_id, int mb_id, int dr_id, String mbd_drug_name, String mbd_drug_effect, int mbd_writer_id,
-			Date mbd_reg_date, int mbd_modify_id, Date mbd_modify_date) {
+			Date mbd_reg_date) {
 		super();
 		this.mbd_id = mbd_id;
 		this.mb_id = mb_id;
@@ -28,8 +26,6 @@ public class MyDrugDTO {
 		this.mbd_drug_effect = mbd_drug_effect;
 		this.mbd_writer_id = mbd_writer_id;
 		this.mbd_reg_date = mbd_reg_date;
-		this.mbd_modify_id = mbd_modify_id;
-		this.mbd_modify_date = mbd_modify_date;
 	}
 
 	public int getMbd_id() {
@@ -88,28 +84,11 @@ public class MyDrugDTO {
 		this.mbd_reg_date = mbd_reg_date;
 	}
 
-	public int getMbd_modify_id() {
-		return mbd_modify_id;
-	}
-
-	public void setMbd_modify_id(int mbd_modify_id) {
-		this.mbd_modify_id = mbd_modify_id;
-	}
-
-	public Date getMbd_modify_date() {
-		return mbd_modify_date;
-	}
-
-	public void setMbd_modify_date(Date mbd_modify_date) {
-		this.mbd_modify_date = mbd_modify_date;
-	}
-
 	@Override
 	public String toString() {
 		return "MyDrugDTO [mbd_id=" + mbd_id + ", mb_id=" + mb_id + ", dr_id=" + dr_id + ", mbd_drug_name="
 				+ mbd_drug_name + ", mbd_drug_effect=" + mbd_drug_effect + ", mbd_writer_id=" + mbd_writer_id
-				+ ", mbd_reg_date=" + mbd_reg_date + ", mbd_modify_id=" + mbd_modify_id + ", mbd_modify_date="
-				+ mbd_modify_date + "]";
+				+ ", mbd_reg_date=" + mbd_reg_date + "]";
 	}
 	
 }

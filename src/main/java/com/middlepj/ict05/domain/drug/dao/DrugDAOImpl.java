@@ -54,11 +54,25 @@ public class DrugDAOImpl implements DrugDAO{
 		return selectCnt;
 	}
 	
+	// 영양제 추가 버튼 클릭 시 - 영양제 중복 확인
+	@Override
+	public int existCnt(Map<String, Object> map) {
+		System.out.println("=== drugDAO - existCnt() ===");
+		return sqlSession.selectOne("com.middlepj.ict05.domain.drug.dao.DrugDAO.existCnt", map);
+	}
+	
+	// 영양제 정보 가져오기
+	@Override
+	public DrugDTO getDrugById(int dr_id) {
+		System.out.println("=== drugDAO - getDrugById() ===");
+		
+		return sqlSession.selectOne("com.middlepj.ict05.domain.drug.dao.DrugDAO.getDrugById", dr_id);
+	}
+	
 	// 영양제 추가 버튼 클릭 시 - 내 영양제에 추가
 	@Override
 	public int addDrug(Map<String, Object> map) {
 		System.out.println("=== drugDAO - addDrug() ===");
-		
 		return sqlSession.insert("com.middlepj.ict05.domain.drug.dao.DrugDAO.addDrug", map);
 	}
 	
@@ -85,5 +99,4 @@ public class DrugDAOImpl implements DrugDAO{
 		
 	}
 
-	
 }

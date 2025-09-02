@@ -1,10 +1,12 @@
 package com.middlepj.ict05.domain.drug.controller;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.middlepj.ict05.domain.drug.service.DrugServiceImpl;
 
@@ -46,15 +50,13 @@ public class DrugController {
 	}
 	
 	// 영양제 추가 클릭 시 - 내 영양제에 추가
-	@RequestMapping("/drug_addAction.do")
-	public String drug_addAction(HttpServletRequest request, HttpServletResponse response, Model model)
-			throws ServletException, IOException {
-		logger.info("<<< url ==> drug_addAction.do >>>");
-		
-		service.drugAddAction(request, response, model);
-		
-		return null;
-		 
+	@RequestMapping(value = "/drug_addAction.do", method = RequestMethod.POST)
+	@ResponseBody // JSON을 바로 반환
+	public Map<String, String> drug_addAction(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException, ServletException {
+	    
+		Map<String, String> messageMap = service.drugAddAction(request, null, null);
+	    
+		return messageMap; // {"msg":"..."}
 	}
 	
 	// 영양제 상세 처리
