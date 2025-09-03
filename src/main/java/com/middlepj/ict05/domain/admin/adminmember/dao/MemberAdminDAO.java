@@ -1,7 +1,6 @@
 package com.middlepj.ict05.domain.admin.adminmember.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import com.middlepj.ict05.domain.admin.adminmember.dto.MemberAdminDTO;
 import com.middlepj.ict05.domain.admin.adminmember.dto.MemberSearchDTO;

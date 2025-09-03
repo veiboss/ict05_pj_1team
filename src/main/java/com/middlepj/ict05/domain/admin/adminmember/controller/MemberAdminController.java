@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.middlepj.ict05.domain.admin.adminmember.service.MemberAdminServiceImpl;
 
-
 @Controller
 public class MemberAdminController {
 
@@ -36,8 +35,24 @@ public class MemberAdminController {
 	}
 	
 	// 회원 등록
+	@RequestMapping("/memberInsert.ad")
+	public String memberInsert(HttpServletRequest request, HttpServletResponse response, Model model) 
+			throws ServletException, IOException {
+		logger.info("<<< url ==>  /memberList.ad >>>");
+	
+		return "admin_member/memberInsert";
+	}
 	
 	// 회원 등록 처리 => 등록
+	@RequestMapping("/memberInsertAction.ad")
+	public String memberInsertAction(HttpServletRequest request, HttpServletResponse response, Model model) 
+			throws ServletException, IOException{
+		logger.info("<<< url ==> memberInsertAction >>>");
+		
+		service.memberAddAction(request, response, model);
+		
+		return "admin_member/memberInsertAction";
+	}
 	
 	// 회원 상세
 	
