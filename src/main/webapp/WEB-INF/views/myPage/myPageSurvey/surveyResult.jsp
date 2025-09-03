@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file="../../common/setting.jsp" %>
+<%@ include file="../../common/setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +45,34 @@
 	}
 </style>
 <script>
+		
 	$(function() {
+		console.log('jQuery:', typeof jQuery, jQuery && jQuery.fn && jQuery.fn.jquery);
+		console.log("counterUp 등록 여부:", typeof $.fn.counterUp); // function 이면 정상
+		console.log("easyPieChart 등록 여부:", typeof $.fn.easyPieChart);
+		/* =============================================================== */
+		// 1) 요소와 부모의 display/visibility 확인
+		const el = document.querySelector('.chart') || document.getElementById('score');
+		if (!el) { console.warn('요소 없음 (.chart 또는 #score)'); }
+		else {
+			console.log('element:', el);
+			console.log('computed display:', getComputedStyle(el).display);
+			console.log('computed visibility:', getComputedStyle(el).visibility);
+			console.log('computed opacity:', getComputedStyle(el).opacity);
+			console.log('offsetWidth/Height:', el.offsetWidth, el.offsetHeight);
+			// 부모 중에 display:none 인게 있는지 확인
+			let p = el;
+			while (p) {
+				const cs = getComputedStyle(p);
+				if (cs.display === 'none' || cs.visibility === 'hidden' || +cs.opacity === 0) {
+					console.warn('hidden ancestor found:', p, cs);
+					break;
+				}
+				p = p.parentElement;
+			}
+		}		
+		
+		/* =============================================================== */
 		$('.chart').easyPieChart({
 			animate: 2000,
 			easing: 'easeOutBounce',
@@ -55,28 +82,46 @@
 			lineWidth: 16,
 			size: 200,
 		});
-	});
-	
-	$(".chart span").counterUp({
-		time: 1000,
-	});
-
-	const urlParams = new URLSearchParams(window.location.search);
-	const score = parseInt(urlParams.get("score")) || 0;
-	
-	fetch("${path}/resources/json/result.json")
-		.then(res => res.json())
-		.then(data => {
-			let comment = "결과를 찾을 수 없습니다.";
-			for (let r of data.results) {
-				if (score >= r.min && score <= r.max) {
-					comment = r.comment;
-					break;
-				}
-			}
-			document.getElementById("score").innerText = `\${score}`;
-			document.getElementById("comment").innerText = comment;
+		$(".chart span").counterUp({
+			time: 1000
 		});
+		
+		const urlParams = new URLSearchParams(window.location.search);
+		const score = parseInt(urlParams.get("score")) || 0;
+		
+		fetch("${path}/resources/json/result.json")
+			.then(res => res.json())
+			.then(data => {
+				let comment = "결과를 찾을 수 없습니다.";
+				for (let r of data.results) {
+					if (score >= r.min && score <= r.max) {
+						comment = r.comment;
+						break;
+					}
+				}
+				document.getElementById("score").innerText = `\${score}`;
+				document.getElementById("comment").innerText = comment;
+			});
+		
+	    $(".add-btn").click(function() {
+	        var dr_id = $(this).data("drid"); // 버튼의 data-drid 가져오기
+	
+	        $.ajax({
+	            url: '${path}/MA16',
+	            type: 'POST',
+	            data: { dr_id: dr_id },       // 객체로 보내면 application/x-www-form-urlencoded로 전송
+	            dataType: 'json',             // JSON 응답 받기
+	            success: function(response) {
+	                alert(response.msg);       // Service에서 보낸 메시지 표시
+	            },
+	            error: function(xhr, status, error) {
+	                console.error("에러 상태 :", status);
+	                console.error("에러 내용 :", error);
+	                alert("서버 오류가 발생했습니다.");
+	            }
+	        });
+	    });
+	});
 </script>
 </head>
 <body>
@@ -156,6 +201,14 @@
 									        </c:choose>
 										</div>
 										<p class="fs-16 ellipsis">${drug_dto.dr_product}</p>
+										<div id="drug-item" class="data-wrap pack-both">
+											<span> </span>
+											<p class="pack-center">
+												<button type="submit" class="btn blue small r4 add-btn" data-drid="${drug_dto.dr_id}">
+													내약추가
+												</button>
+											</p>
+										</div>
 									</li>
 								</c:forEach>
 							</ul>
