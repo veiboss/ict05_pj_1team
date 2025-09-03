@@ -65,13 +65,19 @@ public class FaqDAOImpl implements FaqDAO {
 	// FAQ 상세
 	@Override
 	public FaqDTO faqDetail(int fa_id) {
-		return null;
+		System.out.println("FaqDAOImpl - faqDetail()");
+		
+		FaqDTO dto = sqlSession.selectOne("com.middlepj.ict05.domain.faq.dao.FaqDAO.faqDetail", fa_id);
+		return dto;
 	}
 
 	// FAQ 수정(노출/비노출)
 	@Override
-	public void updateFaq(FaqDTO dto) {
+	public int updateFaq(FaqDTO dto) {
+		System.out.println("FaqDAOImpl - updateFaq()");
 		
+		int updateCnt = sqlSession.update("com.middlepj.ict05.domain.faq.dao.FaqDAO.updateFaq", dto);
+		return updateCnt;
 	}
 
 	// FAQ 검색 total

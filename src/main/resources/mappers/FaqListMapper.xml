@@ -52,8 +52,15 @@
 	
 	<!-- FAQ 글등록 -->
 	<insert id="insertFaq" parameterType="com.middlepj.ict05.domain.faq.dto.FaqDTO">
-	    INSERT INTO faq_TB (fa_id, fa_title, fa_content, fa_show, fa_writer_id, fa_reg_date)
-	    VALUES (FAQ_SEQ.NEXTVAL, #{fa_title}, #{fa_content}, #{fa_show, jdbcType=CHAR}, #{fa_writer_id}, SYSDATE)
+	    INSERT INTO faq_TB (
+	    fa_id,
+	    fa_writer_id,
+	    fa_title, 
+	    fa_content, 
+	    fa_show, 
+	    fa_writer_name, 
+	    fa_reg_date)
+	    VALUES (FAQ_SEQ.NEXTVAL, #{fa_writer_id}, #{fa_title}, #{fa_content}, #{fa_show, jdbcType=CHAR}, #{fa_writer_name}, SYSDATE)
 	</insert>
 
 
@@ -76,5 +83,26 @@
 	    WHERE rn BETWEEN #{start} AND #{end}
 	</select>
 
+	<!-- FAQ 상세 -->
+	<select id="faqDetail" parameterType="int" resultType="com.middlepj.ict05.domain.faq.dto.FaqDTO">
+		SELECT FA_ID,
+               FA_TITLE,
+               FA_CONTENT,
+               FA_SHOW,
+               FA_WRITER_NAME,
+               FA_REG_DATE
+          FROM FAQ_TB 
+         WHERE FA_ID = #{fa_id}
+	</select>
+	
+	<!-- FAQ 수정 -->
+	<update id="updateFaq" parameterType="com.middlepj.ict05.domain.faq.dto.FaqDTO">
+		UPDATE FAQ_TB
+		   SET fa_writer_name = #{fa_writer_name},
+		   	   fa_show = #{fa_show},
+		   	   fa_title = #{fa_title},
+		   	   fa_content = #{fa_content}
+		 WHERE fa_id = #{fa_id}
+	</update>
 
 </mapper>

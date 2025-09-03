@@ -145,28 +145,61 @@ public class FaqServiceImpl implements FaqService {
 		        writerId = Integer.parseInt((String) sid);
 		    } catch (NumberFormatException ignore) {}
 		}
-		dto.setFa_writer_id(writerId);
+		dto.setFa_writer_name(request.getParameter("fa_writer_name"));
 		dto.setFa_title(request.getParameter("fa_title"));
 		dto.setFa_content(request.getParameter("fa_content"));
 		dto.setFa_show(request.getParameter("fa_show"));
 		dao.insertFaq(dto);
 		
-		
 	}
-	
 
-	// FAQ 상세
+	// FAQ 상세 처리
 	@Override
 	public void faqDetailAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
-
+		System.out.println("FaqServiceImpl - faqInsertAction()");
+		
+		int fa_id = Integer.parseInt(request.getParameter("fa_id"));
+		FaqDTO dto;
+		try {
+			dto = dao.faqDetail(fa_id);
+        } catch (Exception e) {
+            logger.error("Failed to fetch FAQ detail", e);
+            throw new ServletException("FAQ 상세 조회 실패", e);
+        }
+		
+		model.addAttribute("dto", dto);
 	}
-
+	
+		
 	// FAQ 수정(노출/비노출)
 	@Override
 	public void faqUpdateAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
+		System.out.println("FaqServiceImpl - faqUpdateAction()");
 
+		int fa_id = Integer.parseInt(request.getParameter("fa_id"));
+		String fa_show = request.getParameter("fa_show");
+		String fa_writer_name = request.getParameter("fa_writer_name");
+		String fa_title = request.getParameter("fa_title");
+		String fa_content = request.getParameter("fa_content");
+
+		FaqDTO dto = new FaqDTO();
+		dto.setFa_id(fa_id);
+		dto.setFa_writer_name(fa_writer_name);
+		dto.setFa_show(fa_show);
+		dto.setFa_title(fa_title);
+		dto.setFa_content(fa_content);
+
+		int updateCnt = 0;
+		
+		try {
+			updateCnt = dao.updateFaq(dto);
+		} catch (Exception e) {
+			logger.error("Failed to fetch faq_updateAction", e);
+			throw new ServletException("FAQ 수정 로직 실패", e);
+		}
+		model.addAttribute("updateCnt", updateCnt);
 	}
 
 }

@@ -31,11 +31,24 @@
         <div id="content" class="sub si20">
         
             <form name="insertForm" id="frm" action="${path}/faq_insertAction.fc" method="POST">
+            	
                 <div>
                     <div>
                         <label class="label-box">
                             <span class="text-label">제목</span>
                             <input type="text" name="fa_title" class="input-text" maxlength="100" placeholder="제목을 입력해주세요">
+                        </label>
+                    </div>
+                 <!--    <div>
+                        <label class="label-box">
+                            <span class="text-label">작성자id</span>
+                            <input type="text" name="fa_writer_id" class="input-text" maxlength="100" placeholder="작성자id를 입력해주세요">
+                        </label>
+                    </div> -->
+                    <div>
+                        <label class="label-box">
+                            <span class="text-label">작성자</span>
+                            <input type="text" name="fa_writer_name" class="input-text" maxlength="100" placeholder="작성자를 입력해주세요">
                         </label>
                     </div>
                     <div style="margin-top:10px;">

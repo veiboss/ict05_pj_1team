@@ -35,7 +35,7 @@ public class FaqController {
 		
 		FaqList faqList = service.faqUserListAction(request, response, model);
 		
-		model.addAttribute("list", faqList.getFaqList());
+		model.addAttribute("list", faqList.getFaqUserList());
 		model.addAttribute("paging", faqList.getPaging());
 
 		return "faq/faq_user_list";
@@ -75,15 +75,40 @@ public class FaqController {
 		return "faq/faq_insertAction";
 	}
 	
-	// FAQ 수정(노출/비노출)
+	// FAQ 수정 처리
 	@RequestMapping("/faq_update.fc")
 	public String faq_update(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
 		logger.info("<<< url ==> /faq_update.fc >>>");
 		
+		try {
+            // 서비스에서 model을 채워서 JSP로 넘김 (기존 구조 유지)
+			service.faqUpdateAction(request, response, model);
+        } catch (Exception e) {
+            // 에러 로깅 후 예외 전파 (원래 동작을 유지하면서 문제 원인 로그 남김)
+            logger.error("Error while preparing faq_update page", e);
+            throw new ServletException("FAQ 수정 중 오류가 발생했습니다.", e);
+        }
 		return "faq/faq_update";
 	}
-	// FAQ 상세
+		
+	
+	// FAQ 상세페이지 이동
+	@RequestMapping("/faq_detail.fc")
+	public String faq_detail(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("<<< url ==> /faq_detail.fc >>>");
+		
+		try {
+			// 서비스에서 model을 채워서 JSP로 넘김 (기존 구조 유지)
+			service.faqDetailAction(request, response, model);
+		} catch (Exception e) {
+			// 에러 로깅 후 예외 전파 (원래 동작을 유지하면서 문제 원인 로그 남김)
+			logger.error("Error while preparing review_detailAction page", e);
+			throw new ServletException("FAQ 상세를 불러오는 중 오류가 발생했습니다.", e);
+		}
+		return "faq/faq_detailAction";
+	}
 	
 	// FAQ ADMIN Ajax
 	@RequestMapping("/faq_admin_ajax.fc")

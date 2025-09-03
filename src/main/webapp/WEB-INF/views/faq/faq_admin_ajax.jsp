@@ -20,15 +20,16 @@
 			<c:forEach var="dto" items="${list}">
 				<tr>
 					<td>${dto.fa_id}</td>
-					<td>${dto.fa_writer_id}</td>
+					<td>${dto.fa_writer_name}</td>
 					<td>${dto.fa_title}</td>
 					<td>${dto.fa_reg_date}</td>
 					<td>${dto.fa_show}</td>
-					<td data-th="버튼" style="text-align: center;"><a
-						href="${path}/faq/edit/${dto.fa_id}" class="btn small normal"
-						style="margin: 10px 0;">수정</a></td>
+					<td data-th="버튼">
+					<button class="btn small color1" onclick="location.href='faq_detail.fc?fa_id=${dto.fa_id}'" style="cursor:pointer;">상세/수정</button>
+					</td>
 				</tr>
 			</c:forEach>
+			
 			<c:if test="${empty list}">
 		    <tr>
 		        <td colspan="7">검색 결과가 없습니다.</td>
@@ -63,8 +64,8 @@
 
 		<!-- 다음 버튼 -->
 		<c:if test="${paging.endPage < paging.pageCount}">
-			<a href="#" class="btn next page-link" data-page="${paging.next}"> <svg
-					xmlns="http://www.w3.org/2000/svg" class="svg">
+			<a href="#" class="btn next page-link" data-page="${paging.next}"> 
+			<svg xmlns="http://www.w3.org/2000/svg" class="svg">
                 <path d="m2 6 6-4.33v8.66L2 6z" />
             </svg>
 			</a>
