@@ -37,7 +37,7 @@ public interface DrugDAO {
 	public int reviewCnt();
 	
 	// 후기 등록 처리
-	public void insertReview(DrugReviewDTO dto);
+	public int insertReview(DrugReviewDTO dto);
 	
 }
 

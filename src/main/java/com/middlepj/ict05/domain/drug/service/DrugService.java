@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.ui.Model;
 
+import com.middlepj.ict05.domain.drug.dto.DrugReviewDTO;
+
 public interface DrugService {
 
 	// 영양제 목록
@@ -28,7 +30,7 @@ public interface DrugService {
 			throws ServletException, IOException;
 	
 	// 후기 등록 처리 
-	public void reviewInsertAction(HttpServletRequest request, HttpServletResponse response, Model model)
+	public DrugReviewDTO reviewInsertAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException;
 	
 }
