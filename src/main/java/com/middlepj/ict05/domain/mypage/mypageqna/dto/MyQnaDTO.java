@@ -2,7 +2,7 @@ package com.middlepj.ict05.domain.mypage.mypageqna.dto;
 
 public class MyQnaDTO {
 
-	private int qa_id;				// qa글 시퀀스(PK)
+	private int qa_id;				// qna글 시퀀스(PK)
 	private int mb_id;				// 전문가 시퀀스(FK)
 	private String qa_title;		// 제목
 	private String qa_content;		// 내용

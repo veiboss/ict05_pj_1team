@@ -18,13 +18,16 @@
            , x.qa_private
            , x.qa_answer
            , x.qa_show
+           , x.qa_writer_id
       FROM (
         SELECT qa_id,
+        	   mb_id,
                qa_title,
                qa_content,
                qa_private,
                qa_answer,
-               qa_show
+               qa_show,
+               qa_writer_id
           FROM QNA_TB
          WHERE qa_writer_id = #{qa_writer_id}
            AND qa_show = 'Y'
