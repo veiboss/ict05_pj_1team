@@ -45,23 +45,28 @@
 			</div>
 			
 			<main id="content">
-				<div class="write-form box-wrap" style="max-width: 960px;">
-					<form name="joinform" action="memberInsertAction.ad" method="post" onsubmit="return signUpCheck()">
+				<div class="write-form box-wrap" style="max-width: 960px; gap: 40px;">
+					<form name="updateform" action="memberUpdateAction.ad" method="post" class="pack-down" style="gap: 40px;">
 						<fieldset class="pack-down" style="gap: 20px;">
 							<legend class="blind">기본 정보</legend>
 							
-							<!-- 중복 확인 버튼 안 눌렸을 때 0으로 설정-->
-							<input type="hidden" name="hidden_mb_email" value="0">
+							<h3 class="section-title">회원 정보</h3>
+							<hr class="line">
+							<!-- 목록 페이징 처리를 위한  -->
+							<input type="hidden" name="hiddenPageNum" value="${num}">
+							<input type="hidden" name="hiddenGrade" value="${s_grade}">
+							<input type="hidden" name="hiddenKeyword" value="${s_keyword}">
 							
-							<!-- 아이디 등록 관리자 아이디 -->
-							<input type="hidden" name="mb_writer_id" value="${sessionID}">
+							<input type="hidden" name="hiddenMbId" value="${dto.mb_id}">
+							
+							<!-- 회원정보수정 관리자 아이디 -->
+							<input type="hidden" name="mb_modify_id" value="${sessionID}">
 							
 							<div class="row">
 								<div class="field col-2 pack-down">
 									<label class="label medium required" for="emailAddress">이메일주소</label>
-									<div class="insert input-has-btn">
-										<input type="email" class="input-text medium" name="mb_email" id="emailAddress" placeholder="이메일 입력" required>
-										<button type="button" class="btn medium color1" name="btnChk" onclick="confirmId()">중복확인</button>
+									<div class="insert">
+										<input type="email" class="input-text medium" name="mb_email" id="emailAddress" placeholder="이메일 입력" required disabled value="${dto.mb_email}">
 									</div>
 								</div>
 							</div>
@@ -69,14 +74,14 @@
 								<div class="field col pack-down">
 									<label class="label medium required" for="userName">이름</label>
 									<div class="insert">
-										<input type="text" class="input-text medium" name="mb_name" id="userName" placeholder="이름 입력" required>
+										<input type="text" class="input-text medium" name="mb_name" id="userName" placeholder="이름 입력" required value="${dto.mb_name}">
 									</div>
 								</div>
 								
 								<div class="field col pack-down">
 									<label class="label medium required" for="passWord">비밀번호</label>
 									<div class="insert">
-										<input type="text" class="input-text medium" name="mb_password" id="passWord" placeholder="영문, 숫자, 특수문자 포함 8자 이상 입력" required>
+										<input type="text" class="input-text medium" name="mb_password" id="passWord" placeholder="영문, 숫자, 특수문자 포함 8자 이상 입력" required value="${dto.mb_password}">
 									</div>
 								</div>
 							</div>
@@ -85,24 +90,51 @@
 									<span class="label medium">회원등급</span>
 									<div class="insert pack-left">
 										<label for="radio1" class="pack-left">
-											<input type="radio" class="radio" name="mb_grade" value="ORDINARY">
+											<input type="radio" class="radio" name="mb_grade" value="ORDINARY" <c:if test="${dto.mb_grade =='ORDINARY'}"> checked</c:if>>
 											<span>일반회원</span>
 										</label>
 										<label for="radio2" class="pack-left">
-											<input type="radio" class="radio" name="mb_grade" value="EXPERT">
+											<input type="radio" class="radio" name="mb_grade" value="EXPERT" <c:if test="${dto.mb_grade =='EXPERT'}"> checked</c:if>>
 											<span>전문가</span>
 										</label>
 										<label for="radio3" class="pack-left">
-											<input type="radio" class="radio" name="mb_grade" value="ADMIN">
+											<input type="radio" class="radio" name="mb_grade" value="ADMIN" <c:if test="${dto.mb_grade =='ADMIN'}"> checked</c:if>>
 											<span>관리자</span>
 										</label>
 									</div>
 								</div>
 							</div>
+
+							<hr class="line">
+							
+							
+							<div class="row-2">
+								<div class="field col pack-down">
+									<label class="label medium required" for="regId">가입 아이디</label>
+									<div class="insert">
+										<input type="hidden" class="input-text medium" name="regId" id="regId" placeholder="등록 ID 입력" required value="${dto.mb_writer_id}" disabled>
+										
+										<c:if test="${dto.mb_id == dto.mb_writer_id}">
+											<span class="fc-light">본인</span>
+										</c:if>
+										<c:if test="${dto.mb_id != dto.mb_writer_id}">
+											관리자 <a href="${path}/memberDetailAction.ad?mbId=${dto.mb_writer_id}"><span class="fc-primary">${dto.mb_writer_id}</span></a>
+										</c:if>
+									</div>
+								</div>
+								
+								<div class="field col pack-down">
+									<label class="label medium required" for="regDate">가입일</label>
+									<div class="insert">
+										<input type="text" class="input-text medium" name="regDate" id="regDate" placeholder="영문, 숫자, 특수문자 포함 8자 이상 입력" required value="${dto.mb_reg_date}" disabled>
+									</div>
+								</div>
+							</div>
 	
-							<div class="button-area pack-center">
-								<button type="submit" class="btn large color1">회원 등록</button>
+							<div class="button-area pack-center mo-pack-down">
+								<button type="submit" class="btn large color1">회원 정보 수정</button>
 								<button type="reset" class="btn large bdr-color1">초기화</button>
+								<button type="button" class="btn large bdr-color1" onclick="history.back()">회원목록</a>
 							</div>
 						</fieldset>
 					</form>

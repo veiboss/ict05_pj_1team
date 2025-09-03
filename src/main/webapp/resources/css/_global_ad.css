@@ -147,6 +147,11 @@ hr.line			{border-width: 2px 0 0 0; border-color: var(--body-bg-color); border-s
 .pack-left.has-bar > span + span:before		{content: ''; display: inline-block; width: 1px; height: 12px; margin: 0 12px; border-radius: 2px; background-color: var(--temp); vertical-align: middle;}
 
 
+@media (min-width: 768px) {
+	.mo-pack-down			{
+		flex-direction: column;
+	}
+}
 /* item */
 .item					{position: relative;}
 
@@ -305,16 +310,18 @@ table p + p						{margin-top: 1rem;}
 [class*="col"]								{overflow: hidden;}
 [class*="row-"]								{
 	display: flex;
-	-webkit-flex-wrap: wrap; flex-wrap: wrap;
+	flex-wrap: wrap;
 	justify-content: space-between;
 }
 [class*="row"] > .col							{
-	-webkit-flex: 1 1 0; flex: 1 1 0;
+	flex: 1;
 }
 @media (max-width: 767px) {
-	[class*="row-"]							{
-		-webkit-flex-direction: column; flex-direction: column;
+	[class*="row-"],
+	.mo-pack-down								{
+		flex-direction: column;
 	}
+	
 }
 @media (min-width: 768px) {
 	.row-3 > .col						{
@@ -354,6 +361,7 @@ table p + p						{margin-top: 1rem;}
 [class*="row-"] > .box-wrap[class*="col"],
 #content .write-form fieldset.box-wrap			{padding: .75rem}
 #content > .box-wrap.write-form					{padding: 1.4rem}
+#content > .box-wrap.write-form fieldset.pack-down > hr.line{margin: 0 -1.4rem;}
 .box-wrap > .section-title + table	{margin-top: .5rem}
 .box-wrap > hr.line,
 .box-wrap > .tabs.box-header		{margin-right: -.75rem; margin-left: -.75rem; gap: 1.5rem;}

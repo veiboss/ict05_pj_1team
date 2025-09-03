@@ -69,4 +69,11 @@
 				#{mb_writer_id}, 
 				sysdate)
 	</insert>
+	
+	<!-- 멤버상세 -->
+	<select id="memberDetail"  parameterType="int" resultType="com.middlepj.ict05.domain.admin.adminmember.dto.MemberAdminDTO">
+		SELECT *
+		  FROM MEMBER_TB
+		 WHERE MB_ID=#{mbId}
+	</select>
 </mapper> 
