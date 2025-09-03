@@ -78,6 +78,30 @@
 	</insert>
 	
 	<!-- 영양제 상세 페이지 -->
+	<select id="getDrugDetail" parameterType="int" resultType="com.middlepj.ict05.domain.drug.dto.DrugDTO">
+		SELECT * FROM DRUG_TB
+		 WHERE DR_ID = #{dr_id}
+	</select>
+	
+	<!-- 후기 목록 -->
+	<select id="drugReviewList" parameterType="java.util.Map" resultType="com.middlepj.ict05.domain.drug.dto.DrugReviewDTO">
+		SELECT * 
+  		  FROM (SELECT A.*
+             		 , rownum AS rn 
+          		  FROM (SELECT * 
+                 		  FROM REVIEW_TB 
+                 		 WHERE RV_SHOW = 'Y' 
+                 		 ORDER BY RV_ID DESC) A)  
+         WHERE rn BETWEEN #{start} AND #{end} 
+	</select>
+	
+	<!-- 후기 개수 -->
+	<select id="reviewCnt" resultType="int">
+		SELECT COUNT(*) AS cnt FROM REVIEW_TB
+	</select>
+	
+	<!-- 후기 등록 -->
+	
 	
 	
 </mapper> 

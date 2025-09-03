@@ -81,7 +81,7 @@ public class DrugDAOImpl implements DrugDAO{
 	public DrugDTO getDrugDetail(int dr_id) {
 		System.out.println("=== drugDAO - getDrugDetail() ===");
 		
-		return null;
+		return sqlSession.selectOne("com.middlepj.ict05.domain.drug.dao.DrugDAO.getDrugDetail", dr_id);
 	}
 	
 	// 후기 목록
@@ -89,7 +89,19 @@ public class DrugDAOImpl implements DrugDAO{
 	public List<DrugReviewDTO> drugReviewList(Map<String, Object> map) {
 		System.out.println("=== drugDAO - drugReviewList() ===");
 		
-		return null;
+		List<DrugReviewDTO> list = sqlSession.selectList("com.middlepj.ict05.domain.drug.dao.DrugDAO.drugReviewList", map);
+		
+		return list;
+	}
+	
+	// 후기 개수
+	@Override
+	public int reviewCnt() {
+		System.out.println("=== drugDAO - reviewCnt() ===");
+		
+		int reviewCnt = sqlSession.selectOne("com.middlepj.ict05.domain.drug.dao.DrugDAO.reviewCnt");
+		
+		return reviewCnt;
 	}
 	
 	// 후기 등록 처리

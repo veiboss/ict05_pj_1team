@@ -12,7 +12,6 @@
 <title>영양제 검색</title>
 <!-- css -->
 <link rel="stylesheet" href="${path}/resources/css/yaksok.css">
-<link rel="stylesheet" href="${path}/resources/css/drug/list.css">
 
 <!--  js -->
 
@@ -51,6 +50,22 @@
             });
         });
     </script>
+<style>
+.total .count{
+	color : #687FE5;
+	font-size : 15px;
+	font-weight : 600;
+}
+
+.article-type {
+	color : black;
+	margin-top: 16px;
+}
+
+.btn.search {
+	font : black;
+}
+</style>
 </head>
 <body>
 	<div id="wrap" class="wrap">
