@@ -20,12 +20,18 @@ public interface FaqDAO {
 	// FAQ 관리자 목록 total
 	public int faqCount(Map<String,Object> map);
 
-	// FAQ 등록(노출/비노출)
+	// FAQ 등록 처리(노출/비노출)
 	public void insertFaq(FaqDTO dto);
 
-	// FAQ 상세
+	// FAQ 상세 
 	public FaqDTO faqDetail(int fa_id);
 
-	// FAQ 수정(노출/비노출)
-	public void updateFaq(FaqDTO dto);
+	// FAQ 수정 처리(노출/비노출)
+	public int updateFaq(FaqDTO dto);
+	
+	// FAQ 검색 total
+	public int faqSearchCount(Map<String, Object> map);
+	
+	// FAQ 목록 조회 영역
+	public List<FaqDTO> faqSearchList(Map<String, Object> map);
 }

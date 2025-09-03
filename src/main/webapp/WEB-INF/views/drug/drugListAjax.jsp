@@ -39,7 +39,7 @@ $(document).ready(function() {
 		<ul class="data-list toon">
 			<c:forEach var="dto" items="${list}">
 			<li>
-				<a href="#" class="item thumb-left">
+				<a href="${path}/drug_detailAction.do?dr_id=${dto.dr_id}" class="item thumb-left">
 					<!-- 01	분말, 
 					02	원형캡슐, 
 					03	원형정제, 

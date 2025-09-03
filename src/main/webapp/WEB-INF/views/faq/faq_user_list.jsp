@@ -24,7 +24,6 @@
 <script src="${path}/resources/js/lib/aos.js" defer></script>
 <script src="${path}/resources/js/yaksok.js" defer></script>
 
-
 </head>
 <body>
 	<div class="skip-nav">
@@ -74,37 +73,53 @@
 				<h1 class="page-title">FAQ 회원 게시판</h1>
 				<div class="section list-wrap">
 					<ul class="data-list">
+					<c:forEach items="${list}" var="dto">
 						<li class="accordion">
 							<div class="item normal">
 								<a href="javascript:void(0);" class="pack-both accordion-switche" title="게시물 열고/닫기">
 									<div class="text-wrap">
-										<p class="article-type">서비스 이용</p>
-										<p class="item-title">이 게시물을 다른 사람에게 공유하고 싶어요.</p>
+										<p class="item-title">${dto.fa_title}</p>
 									</div>
 									<i class="ico accordion"></i>
 								</a>
 
 								<div class="accordion-content">
-									<p>
-										게시물 우측 하단의 '공유하기' 버튼 클릭 시 해당 게시물의 링크복사 또는 기타 앱을 통해 바로 공유가 가능합니다.
-										</p>
+									<p>${dto.fa_content}</p>
 								</div><!-- // .accordion-content -->
 							</div><!-- // .item -->
 						</li>
-						
+					</c:forEach>
 					</ul>
 					
+				<!-- 페이징 -->
 					<div class="pagination">
-						<a href="javascript:void(0);" class="prev"><i class="ico page-arr"><span>&lt;</span></i></a>
-						<ul>
-							<li><a href="javascript:void(0);">1</a></li>
-							<li><a href="javascript:void(0);">2</a></li>
-							<li class="current"><a href="javascript:void(0);">3</a></li>
-							<li><a href="javascript:void(0);">4</a></li>
-							<li><a href="javascript:void(0);">5</a></li>
-						</ul>
-						<a href="javascript:void(0);" class="next"><i class="ico page-arr"><span>&gt;</span></i></a>
-					</div><!-- .pagination -->
+					    <!-- 이전 버튼 -->
+					    <c:if test="${paging.startPage > 5}">
+					        <a href="review.ad?page=${paging.prev}" class="btn prev page-link" data-page="${paging.prev}">
+					            <svg xmlns="http://www.w3.org/2000/svg" class="svg">
+					                <path d="m2 6 6-4.33v8.66L2 6z" />
+					            </svg>
+					        </a>
+					    </c:if>
+					
+					    <!-- 페이지 번호 -->
+					    <ul>
+					        <c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+					            <li class="${num == paging.currentPage ? 'current' : ''}">
+					                <a href="review.ad?page=${num}" class="btn page-link" data-page="${num}">${num}</a>
+					            </li>
+					        </c:forEach>
+					    </ul>
+					
+					    <!-- 다음 버튼 -->
+					    <c:if test="${paging.endPage < paging.pageCount}">
+					        <a href="review.ad?page=${paging.next}" class="btn next page-link" data-page="${paging.next}">
+					            <svg xmlns="http://www.w3.org/2000/svg" class="svg">
+					                <path d="m2 6 6-4.33v8.66L2 6z" />
+					            </svg>
+					        </a>
+					    </c:if>
+					</div>
 				</div><!-- .section.list-wrap -->
 
 			</div><!-- // #content -->

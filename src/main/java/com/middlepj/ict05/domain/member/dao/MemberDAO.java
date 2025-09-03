@@ -17,4 +17,5 @@ public interface MemberDAO {
 	// 회원정보 가져옴
 	public MemberDTO memberSelect(Map<String, Object> map);
 
+
 }

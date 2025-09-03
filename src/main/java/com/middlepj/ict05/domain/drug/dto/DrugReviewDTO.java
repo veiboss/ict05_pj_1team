@@ -17,12 +17,14 @@ public class DrugReviewDTO {
 	private int rv_modifyId;		// 후기 수정자 시퀀스
 	private Date rv_modifyDate;		// 후기 수정일
 	
+	private String dr_product;
+	
 	public DrugReviewDTO() {
 		super();
 	}
 
 	public DrugReviewDTO(int rv_id, int mb_id, int dr_id, String mb_name, String rv_content, int rv_rating,
-			char rv_show, int rv_readCnt, int rv_writerId, Date rv_regDate, int rv_modifyId, Date rv_modifyDate) {
+			char rv_show, int rv_readCnt, int rv_writerId, Date rv_regDate, int rv_modifyId, Date rv_modifyDate, String dr_product) {
 		super();
 		this.rv_id = rv_id;
 		this.mb_id = mb_id;
@@ -36,6 +38,7 @@ public class DrugReviewDTO {
 		this.rv_regDate = rv_regDate;
 		this.rv_modifyId = rv_modifyId;
 		this.rv_modifyDate = rv_modifyDate;
+		this.dr_product = dr_product;
 	}
 
 	public int getRv_id() {
@@ -122,12 +125,19 @@ public class DrugReviewDTO {
 		this.rv_modifyDate = rv_modifyDate;
 	}
 
+	public String getDr_product() {
+		return dr_product;
+	}
+	public void setDr_product(String dr_product) {
+		this.dr_product = dr_product;
+	}
+
 	@Override
 	public String toString() {
 		return "DrugReviewDTO [rv_id=" + rv_id + ", mb_id=" + mb_id + ", dr_id=" + dr_id + ", mb_name=" + mb_name
 				+ ", rv_content=" + rv_content + ", rv_rating=" + rv_rating + ", rv_show=" + rv_show + ", rv_readCnt="
 				+ rv_readCnt + ", rv_writerId=" + rv_writerId + ", rv_regDate=" + rv_regDate + ", rv_modifyId="
-				+ rv_modifyId + ", rv_modifyDate=" + rv_modifyDate + "]";
+				+ rv_modifyId + ", rv_modifyDate=" + rv_modifyDate + ", dr_product=" + dr_product +"]";
 	}
 	
 }

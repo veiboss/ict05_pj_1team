@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file="../common/setting.jsp" %>
+    <%@ include file="../../common/setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,36 +23,37 @@
 <body>
 	<div id="wrap" class="wrap">
 		<!-- PC 컨텐츠 -->
-		<%@ include file="../common/pc_left.jsp" %>
+		<%@ include file="../../common/pc_left.jsp" %>
 		<!-- PC 컨텐츠 끝 -->
 		
 		<div id="container" class="lines">
 		<!-- [D] HEADER VIEW :  no class /.lines(2) / .only-back(1) / .only-close(1) -->
 			<!-- header 시각 -->
-			<%@ include file="../common/header.jsp" %>
+			<%@ include file="../../common/header.jsp" %>
 			<!-- header 끝 -->
 			
 			<!-- 컨텐츠 시작 -->
 			<!-- SID : SI20 -->
-			<div id="content" class="sub si20"><!-- [D] main / sub-main / sub && pagd name -->
-				<label class="label-box">
-					<span class="text-label">이름</span>
-					<input type="text" class="input-text" placeholder="이름을 입력해주세요">
-				</label>
-				
-				<label class="label-box disabled">
-					<span class="text-label">이름</span>
-					<input type="text" class="input-text" placeholder="이름을 입력해주세요" value ="옥채은" disabled>
-				</label>
-			</div><!-- // #content -->
-			<!-- 컨텐츠 끝 -->
+			<c:if test="${deleteCnt==1}">
+				<script type="text/javascript">
+					alert("회원탈퇴 성공!!");
+					window.location="${path}/main.do";
+				</script>
+			</c:if>
+			<c:if test="${deleteCnt==0}">
+				<script type="text/javascript">
+					alert("회원탈퇴 실패!!");
+					window.location="${path}/myProfileDelete.do";
+				</script>
+			</c:if>
+		<!-- 컨텐츠 끝 -->
 		
 			<!-- nav 시작 -->
-			<%@ include file="../common/nav.jsp" %>
+			<%@ include file="../../common/nav.jsp" %>
 			<!-- nav 끝 -->
 		
 			<!-- footer 시작 -->
-			<%@ include file="../common/footer.jsp" %>
+			<%@ include file="../../common/footer.jsp" %>
 			<!-- footer 끝 -->
 		</div><!-- // #container -->
 	</div><!-- // #wrap -->

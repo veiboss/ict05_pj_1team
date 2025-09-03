@@ -57,7 +57,11 @@ public class MemberAdminDAOImpl implements MemberAdminDAO {
 	@Override
 	public MemberAdminDTO memberDetail(int mbId) {
 		System.out.println("MemberDAOImpl - memberDetail()");
-		return null;
+
+		MemberAdminDAO dao = sqlSession.getMapper(MemberAdminDAO.class);
+		MemberAdminDTO dto = dao.memberDetail(mbId);
+
+		return dto;
 	}
 
 	// 회원 수정

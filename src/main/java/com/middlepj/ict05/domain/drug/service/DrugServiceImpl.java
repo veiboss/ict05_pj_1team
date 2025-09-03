@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import com.middlepj.ict05.common.Paging;
 import com.middlepj.ict05.domain.drug.dao.DrugDAO;
 import com.middlepj.ict05.domain.drug.dto.DrugDTO;
+import com.middlepj.ict05.domain.drug.dto.DrugReviewDTO;
 
 @Service
 public class DrugServiceImpl implements DrugService{
@@ -47,7 +48,8 @@ public class DrugServiceImpl implements DrugService{
 		System.out.println("total : " + total);
 		
 		int currentPage = (pageNum == null || pageNum.equals("0")) ? 1 : Integer.parseInt(pageNum);
-	      Paging paging = new Paging(String.valueOf(currentPage));
+	    
+		Paging paging = new Paging(String.valueOf(currentPage));
 		paging.setTotalCount(total);
 		
 		int start = paging.getStartRow();
@@ -130,7 +132,13 @@ public class DrugServiceImpl implements DrugService{
 			throws ServletException, IOException {
 		System.out.println("=== drugService - drugDetailAction() ===");
 		
-		int dr_id = Integer.parseInt(request.getParameter("dr_id"));
+		String drIdStr = request.getParameter("dr_id");
+
+		if (drIdStr == null || drIdStr.isEmpty()) {
+		    throw new IllegalArgumentException("dr_id 파라미터가 없습니다.");
+		}
+
+		int dr_id = Integer.parseInt(drIdStr);
 		
 		DrugDTO dto = dao.getDrugDetail(dr_id);
 		
@@ -143,6 +151,28 @@ public class DrugServiceImpl implements DrugService{
 			throws ServletException, IOException {
 		System.out.println("=== drugService - reviewListAction() ===");
 		
+		String pageNum = request.getParameter("pageNum");
+		
+		int currentPage = (pageNum == null || pageNum.equals("0")) ? 1 : Integer.parseInt(pageNum);
+	    
+		Paging paging = new Paging(String.valueOf(currentPage));
+		int total = dao.reviewCnt();
+		System.out.println("total : " + total);
+		
+		paging.setTotalCount(total);
+		
+		int start = paging.getStartRow();
+		int end = paging.getEndRow();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end", end);
+		
+		List<DrugReviewDTO> list = dao.drugReviewList(map);
+		System.out.println("list :" + list);
+		
+		model.addAttribute("paging", paging);
+		model.addAttribute("list", list);
 	}
 
 	// 후기 등록 처리 

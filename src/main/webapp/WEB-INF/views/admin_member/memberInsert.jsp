@@ -76,7 +76,7 @@
 								<div class="field col pack-down">
 									<label class="label medium required" for="passWord">비밀번호</label>
 									<div class="insert">
-										<input type="password" class="input-text medium" name="mb_password" id="passWord" placeholder="영문, 숫자, 특수문자 포함 8자 이상 입력" required>
+										<input type="text" class="input-text medium" name="mb_password" id="passWord" placeholder="영문, 숫자, 특수문자 포함 8자 이상 입력" required>
 									</div>
 								</div>
 							</div>

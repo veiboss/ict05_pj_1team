@@ -68,7 +68,7 @@ private static final Logger logger = LoggerFactory.getLogger(MyReviewController.
 		
 		service.reviewDeleteAction(request, response, model);
 		
-		return "myPage/myPageReview/myReviewList";
+		return "myPage/myPageReview/myReviewDelete";	
 	
 	}
 	

@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file="../common/setting.jsp" %>
+    <%@ include file="../../common/setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,39 +20,59 @@
 <!-- defer : html을 다 읽은 후에 자바스크립트를 실행한다. 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행된다. -->
 <script src="${path}/resources/js/lib/aos.js" defer></script>
 <script src="${path}/resources/js/yaksok.js" defer></script>
+
 </head>
 <body>
 	<div id="wrap" class="wrap">
 		<!-- PC 컨텐츠 -->
-		<%@ include file="../common/pc_left.jsp" %>
+		<%@ include file="../../common/pc_left.jsp" %>
 		<!-- PC 컨텐츠 끝 -->
 		
-		<div id="container" class="myPage">
+		<div id="container" class="">
 		<!-- [D] HEADER VIEW :  no class /.lines(2) / .only-back(1) / .only-close(1) -->
 			<!-- header 시각 -->
-			<%@ include file="../common/header.jsp" %>
+			<%@ include file="../../common/header.jsp" %>
 			<!-- header 끝 -->
 		
 			
 			<!-- 컨텐츠 시작 -->
 			<!-- SID : COM000 -->
-			<div id="content" class="main"><!-- [D] main / sub-main / sub && pagd name -->
-				<ul>
-					<li><a href="${path}/주소넣기" style="color:black">홍길동</a></li>
-					<li><a href="${path}/주소넣기" style="color:black">내설문목록</a></li>
-					<li><a href="${path}/주소넣기" style="color:black">내약목록</a></li>
-					<li><a href="${path}/주소넣기" style="color:black">내가쓴후기목록</a></li>
-					<li><a href="${path}/주소넣기" style="color:black">내가쓴qna</a></li>
-				</ul>
+			<div id="content" class="sub"><!-- [D] main / sub-main / sub && pagd name -->
+				
+				<h2 class="article-title ta-c">Q&A 수정</h2>
+				
+				<!-- 수정 폼 -->
+				<form action="${path}/myQnaUpdate.do" method="post">
+					<input type="hidden" name="qa_id" value="${dto.qa_id}"/>
+					
+					<!-- 제목 -->
+			        <div class="">
+		            	<textarea name="qa_title" class="textarea"><c:out value="${dto.qa_title}"/></textarea>
+			        </div>
+
+					<!-- 내용 -->
+			        <div class="">
+			            <textarea name="qa_content" class="textarea"><c:out value="${dto.qa_content}"/></textarea>
+			        </div>
+			        
+			        
+			
+					<!-- 버튼 -->
+					<div class="button-area pack-center">
+						<button type="submit" class="btn blue medium">수정</button>
+						<a class="btn bdr-blue medium" href="myQnaList.do">삭제</a>
+			   		</div>
+			    </form>
+				
 			</div><!-- // #content -->
 			<!-- 컨텐츠 끝 -->
 		
 			<!-- nav 시작 -->
-			<%@ include file="../common/nav.jsp" %>
+			<%@ include file="../../common/nav.jsp" %>
 			<!-- nav 끝 -->
 		
 			<!-- footer 시작 -->
-			<%@ include file="../common/footer.jsp" %>
+			<%@ include file="../../common/footer.jsp" %>
 			<!-- footer 끝 -->
 		</div><!-- // #container -->
 	</div><!-- // #wrap -->

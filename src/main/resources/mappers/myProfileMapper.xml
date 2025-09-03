@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.middlepj.ict05.domain.mypage.myprofile.dao.MyProfileDAO">
+ 	
+ 	
+ 	<select id="myProfileDetail" parameterType="int" resultType="com.middlepj.ict05.domain.mypage.myprofile.dto.MyProfileDTO">
+		SELECT * 
+			FROM MEMBER_PROFILE_TB 
+			WHERE MB_ID = #{sessionID}
+	</select>
+ 	
+ 	<update id="myProfileUpdate" parameterType="com.middlepj.ict05.domain.mypage.myprofile.dto.MyProfileDTO">
+		UPDATE MEMBER_PROFILE_TB
+			SET mbp_gender= #{mbp_gender}, mbp_height=#{mbp_height}, mbp_age=#{mbp_age}, mbp_weight=#{mbp_weight}
+				WHERE MB_ID = #{mb_id}
+	
+	</update>
+ 	
+ 	<delete id="myProfileDelete" parameterType="int">
+		DELETE FROM MEMBER_PROFILE_TB
+		  WHERE MB_ID IN (
+		    SELECT m.MB_ID
+		    FROM MEMBER_TB m
+		    WHERE m.MB_ID = #{sessionID}
+		  )
+	</delete>
+	
+ </mapper>
+ 

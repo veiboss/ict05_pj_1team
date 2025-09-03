@@ -77,11 +77,8 @@ public class MemberAdminServiceImpl implements MemberAdminService {
 		dto.setMb_password(request.getParameter("mb_password"));
 		dto.setMb_grade(request.getParameter("mb_grade"));
 		dto.setMb_writer_id(Integer.parseInt(request.getParameter("mb_writer_id")));
-
-		System.out.println("서비스 dto:" + dto);
 		
 		int insertCnt = dao.memberInsert(dto);
-		
 		model.addAttribute("insertCnt" , insertCnt);
 	}
 	
@@ -90,6 +87,19 @@ public class MemberAdminServiceImpl implements MemberAdminService {
 			throws ServletException, IOException{
 		System.out.println("MemberServiceImpl - memberDetailAction()");
 		
+		// 회원 목록에서 넘긴 파라미터 가져오기
+		// memberList.ad?pageNum=${paging.prev}&s_grade=${s_grade}&s_keyword=${s_keyword}
+		int mb_id = Integer.parseInt(request.getParameter("mbId"));
+		String pageNum = request.getParameter("pageNum");
+		String s_grade = request.getParameter("s_grade");
+		String s_keyword = request.getParameter("s_keyword");
+		
+		MemberAdminDTO dto = dao.memberDetail(mb_id);
+		
+		model.addAttribute("pageNum", pageNum);
+		model.addAttribute("dto", dto);
+		model.addAttribute("s_grade", s_grade);
+		model.addAttribute("s_keyword", s_keyword);
 	}
 	// 회원 수정
 	public void memberUpdateAction(HttpServletRequest request, HttpServletResponse response, Model model)
@@ -106,7 +116,7 @@ public class MemberAdminServiceImpl implements MemberAdminService {
 		int mb_id = Integer.parseInt(request.getParameter("mbId"));
 		
 		int deleteCnt = dao.memberDelete(mb_id);
-		System.out.println("deleteCnt : " + deleteCnt);
+//		System.out.println("deleteCnt : " + deleteCnt);
 		
 		model.addAttribute("deleteCnt", deleteCnt);
 		model.addAttribute("mbId", mb_id);

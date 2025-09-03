@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.middlepj.ict05.domain.admin.adminreview.dto.ReviewDTO;
 import com.middlepj.ict05.domain.faq.dto.FaqDTO;
 import com.middlepj.ict05.domain.faq.dto.FaqUserDTO;
 
@@ -49,7 +50,7 @@ public class FaqDAOImpl implements FaqDAO {
 	public int faqCount(Map<String, Object> map) {
 		System.out.println("FaqDAOImpl - faqCount()");
 		
-		int total = sqlSession.selectOne("com.middlepj.ict05.domain.faq.dao.FaqDAO.faqCount");
+		int total = sqlSession.selectOne("com.middlepj.ict05.domain.faq.dao.FaqDAO.faqCount", map);
 		return total;
 	}
 	
@@ -64,14 +65,34 @@ public class FaqDAOImpl implements FaqDAO {
 	// FAQ 상세
 	@Override
 	public FaqDTO faqDetail(int fa_id) {
-		return null;
+		System.out.println("FaqDAOImpl - faqDetail()");
+		
+		FaqDTO dto = sqlSession.selectOne("com.middlepj.ict05.domain.faq.dao.FaqDAO.faqDetail", fa_id);
+		return dto;
 	}
 
 	// FAQ 수정(노출/비노출)
 	@Override
-	public void updateFaq(FaqDTO dto) {
+	public int updateFaq(FaqDTO dto) {
+		System.out.println("FaqDAOImpl - updateFaq()");
 		
+		int updateCnt = sqlSession.update("com.middlepj.ict05.domain.faq.dao.FaqDAO.updateFaq", dto);
+		return updateCnt;
 	}
-	
-	
+
+	// FAQ 검색 total
+	@Override
+	public int faqSearchCount(Map<String, Object> map) {
+		System.out.println("FaqDAOImpl - faqSearchCount()");
+		int total = sqlSession.selectOne("com.middlepj.ict05.domain.faq.dao.FaqDAO.faqSearchCount", map);
+		return total;
+	}
+
+	// FAQ 목록 조회 영역
+	@Override
+	public List<FaqDTO> faqSearchList(Map<String, Object> map) {
+		System.out.println("FaqDAOImpl - faqSearchList()");
+		List<FaqDTO> list = sqlSession.selectList("com.middlepj.ict05.domain.faq.dao.FaqDAO.faqSearchList", map);
+		return list;
+	}	
 }

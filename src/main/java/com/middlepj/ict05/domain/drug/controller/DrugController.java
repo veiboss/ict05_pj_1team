@@ -76,7 +76,7 @@ public class DrugController {
 		
 		service.reviewListAction(request, response, model);
 		
-		return "drug/drug_reviewList";
+		return "drug/drug_detailAction";
 	}
 	
 	// 후기 등록 화면

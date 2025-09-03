@@ -34,7 +34,8 @@ public class MyReviewServiceImpl implements MyReviewService{
 		
 	     
 	    // 갯수 카운트
-		Paging paging = new Paging(pageNum);
+		int currentPage = (pageNum == null || pageNum.equals("0")) ? 1 : Integer.parseInt(pageNum);
+	      Paging paging = new Paging(String.valueOf(currentPage));
 	    int total = dao.listCnt(mbId);
 	    
 	    paging.setTotalCount(total);
@@ -54,7 +55,7 @@ public class MyReviewServiceImpl implements MyReviewService{
 	    List<MyReviewDTO> list = dao.reviewList(map);
 		
 	    System.out.println(list);
-	    
+	    																																																																
 	    // 6단계. jsp로 처리결과 전달
 	    model.addAttribute("list", list);
 	    model.addAttribute("paging", paging);
@@ -98,8 +99,12 @@ public class MyReviewServiceImpl implements MyReviewService{
 		System.out.println("ReviewServiceImpl - reviewDeleteAction()");
 		
 		int num = Integer.parseInt(request.getParameter("rv_id"));
+//		System.out.println("rv" + num); 
 		
-		dao.deleteReview(num);
+		int deleteCnt = dao.deleteReview(num);
+		
+		model.addAttribute("num", num);
+		model.addAttribute("deleteCnt", deleteCnt);
 	}
 	
 }

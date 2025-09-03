@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -26,6 +28,8 @@ public class FaqServiceImpl implements FaqService {
 	@Autowired
 	private FaqDAO dao;
 
+	private static final Logger logger = LoggerFactory.getLogger(FaqServiceImpl.class);
+	
 	// FAQ 회원 목록
 	@Override
 	public FaqList faqUserListAction(HttpServletRequest request, HttpServletResponse response, Model model)
@@ -70,10 +74,26 @@ public class FaqServiceImpl implements FaqService {
 
 		// 페이징 처리
 		String pageNum = request.getParameter("pageNum");
-
+		String keyword = request.getParameter("keyword");
+		
 		// 전체 게시글 갯수 카운터를 해야 페이징처리 가능
 		Paging paging = new Paging(pageNum);
-		int total = dao.userFaqCount();
+		Map<String, Object> map = new HashMap<String, Object>();
+		String safeKeyword = (keyword == null) ? "" : keyword.trim();
+		map.put("keyword", safeKeyword);
+		
+		int total;
+		try {
+            if (safeKeyword.isEmpty()) {
+            	total = dao.userFaqCount();
+            } else {
+                total = dao.faqSearchCount(map);
+            }
+        } catch (Exception e) {
+            logger.error("Failed to get total FAQ count", e);
+            throw new ServletException("FAQ 개수 조회 실패", e);
+        }
+		
 		System.out.println("total : " + total);
 
 		paging.setTotalCount(total);
@@ -82,18 +102,29 @@ public class FaqServiceImpl implements FaqService {
 		int start = paging.getStartRow();
 		int end = paging.getEndRow();
 
-		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end", end);
 
-		List<FaqDTO> list = dao.faqlist(map);
+		List<FaqDTO> list;
+		try {
+            if (safeKeyword.isEmpty()) {
+            	list = dao.faqlist(map);
+            } else {
+                list = dao.faqSearchList(map);
+            }
+        } catch (Exception e) {
+            logger.error("Failed to fetch FAQ list", e);
+            throw new ServletException("FAQ 목록 조회 실패", e);
+        }
+		
 		System.out.println("list : " + list);
 
 		FaqList faqList = new FaqList();
 
 		faqList.setFaqList(list);
 		faqList.setPaging(paging);
-
+		model.addAttribute("keyword", keyword); // 검색어 유지용
+		
 		return faqList;
 	}
 
@@ -114,28 +145,61 @@ public class FaqServiceImpl implements FaqService {
 		        writerId = Integer.parseInt((String) sid);
 		    } catch (NumberFormatException ignore) {}
 		}
-		dto.setFa_writer_id(writerId);
+		dto.setFa_writer_name(request.getParameter("fa_writer_name"));
 		dto.setFa_title(request.getParameter("fa_title"));
 		dto.setFa_content(request.getParameter("fa_content"));
 		dto.setFa_show(request.getParameter("fa_show"));
 		dao.insertFaq(dto);
 		
-		
 	}
-	
 
-	// FAQ 상세
+	// FAQ 상세 처리
 	@Override
 	public void faqDetailAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
-
+		System.out.println("FaqServiceImpl - faqInsertAction()");
+		
+		int fa_id = Integer.parseInt(request.getParameter("fa_id"));
+		FaqDTO dto;
+		try {
+			dto = dao.faqDetail(fa_id);
+        } catch (Exception e) {
+            logger.error("Failed to fetch FAQ detail", e);
+            throw new ServletException("FAQ 상세 조회 실패", e);
+        }
+		
+		model.addAttribute("dto", dto);
 	}
-
+	
+		
 	// FAQ 수정(노출/비노출)
 	@Override
 	public void faqUpdateAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
+		System.out.println("FaqServiceImpl - faqUpdateAction()");
 
+		int fa_id = Integer.parseInt(request.getParameter("fa_id"));
+		String fa_show = request.getParameter("fa_show");
+		String fa_writer_name = request.getParameter("fa_writer_name");
+		String fa_title = request.getParameter("fa_title");
+		String fa_content = request.getParameter("fa_content");
+
+		FaqDTO dto = new FaqDTO();
+		dto.setFa_id(fa_id);
+		dto.setFa_writer_name(fa_writer_name);
+		dto.setFa_show(fa_show);
+		dto.setFa_title(fa_title);
+		dto.setFa_content(fa_content);
+
+		int updateCnt = 0;
+		
+		try {
+			updateCnt = dao.updateFaq(dto);
+		} catch (Exception e) {
+			logger.error("Failed to fetch faq_updateAction", e);
+			throw new ServletException("FAQ 수정 로직 실패", e);
+		}
+		model.addAttribute("updateCnt", updateCnt);
 	}
 
 }

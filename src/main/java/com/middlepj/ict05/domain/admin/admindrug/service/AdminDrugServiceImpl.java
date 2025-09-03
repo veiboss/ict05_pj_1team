@@ -150,6 +150,42 @@ public class AdminDrugServiceImpl implements AdminDrugService{
 			throws ServletException, IOException {
 		logger.info("AdminDrugServiceImpl - drugModify");
 		
+		int dr_id = Integer.parseInt(request.getParameter("dr_id"));
+		String dr_product = request.getParameter("dr_product");
+		String dr_enterprise = request.getParameter("dr_enterprise");
+		Long dr_statement_id = Long.parseLong(request.getParameter("dr_statement_id"));
+		String dr_expiration_date = request.getParameter("dr_expiration_date");
+		String dr_sungsang = request.getParameter("dr_sungsang");
+		String dr_serve_use = request.getParameter("dr_serve_use");
+		String dr_intake_hint = request.getParameter("dr_intake_hint");
+		String dr_main_function = request.getParameter("dr_main_function");
+		String dr_preservation = request.getParameter("dr_preservation");
+		String dr_base_standard = request.getParameter("dr_base_standard");
+		
+		AdminDrugDetailDTO dto = new AdminDrugDetailDTO();
+		
+		int updateCnt = 0;
+		
+		dto.setDr_id(dr_id);
+		dto.setDr_product(dr_product);
+		dto.setDr_enterprise(dr_enterprise);
+		dto.setDr_statement_id(dr_statement_id);
+		dto.setDr_expiration_date(dr_expiration_date);
+		dto.setDr_sungsang(dr_sungsang);
+		dto.setDr_serve_use(dr_serve_use);
+		dto.setDr_intake_hint(dr_intake_hint);
+		dto.setDr_main_function(dr_main_function);
+		dto.setDr_preservation(dr_preservation);
+		dto.setDr_base_standard(dr_base_standard);
+		try {
+			updateCnt = dao.drugUpdate(dto);
+			
+        } catch (Exception e) {
+            logger.error("Failed to fetch review_modifyAction", e);
+            throw new ServletException("수정 로직 실패", e);
+        }
+		
+		model.addAttribute("updateCnt", updateCnt);
 	}
 
 	@Override
@@ -157,6 +193,19 @@ public class AdminDrugServiceImpl implements AdminDrugService{
 			throws ServletException, IOException {
 		logger.info("AdminDrugServiceImpl - drugDelete");
 		
+		int dr_id = Integer.parseInt(request.getParameter("dr_id"));
+		
+		int updateCnt = 0;
+		
+		try {
+			updateCnt = dao.drugDelete(dr_id);
+			
+        } catch (Exception e) {
+            logger.error("Failed to fetch review_modifyAction", e);
+            throw new ServletException("삭제 로직 실패", e);
+        }
+		
+		model.addAttribute("updateCnt", updateCnt);
 	}
 
 }
