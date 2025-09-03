@@ -18,6 +18,12 @@ public interface DrugDAO {
 	// 해당 영양제 개수 카운팅
 	public int drugCnt();
 	
+	// 영양제 추가 버튼 클릭 시 - 영양제 중복 확인
+	public int existCnt(Map<String, Object> map);
+	
+	// 영양제 정보 가져오기
+	public DrugDTO getDrugById(int dr_id);
+	
 	// 영양제 추가 버튼 클릭 시 - 내 영양제에 추가
 	public int addDrug(Map<String, Object> map);
 	
@@ -26,6 +32,9 @@ public interface DrugDAO {
 	
 	// 후기 목록
 	public List<DrugReviewDTO> drugReviewList(Map<String, Object> map);
+	
+	// 후기 개수 
+	public int reviewCnt();
 	
 	// 후기 등록 처리
 	public void insertReview(DrugReviewDTO dto);

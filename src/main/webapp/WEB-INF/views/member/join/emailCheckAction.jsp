@@ -35,13 +35,12 @@
 						아이디로 사용할 수 없습니다. 
 					</p>
 					
-					<div class="field pack-down">
-						<span class="field pack-down gap-8">
-							<span class="input-has-btn">
-								<input type="email" class="input-text" name="mb_email" id="emailAddress" placeholder="이메일 입력">
-								<button type="submit" class="btn">중복확인</button>
-							</span>
-						</span>
+					<div class="field">
+						<input type="email" class="input-text" name="mb_email" id="emailAddress" placeholder="이메일 입력"  style="min-width: 280px;">
+						
+						<div class="button-area pack-center">
+							<button type="submit" class="btn bdr-blue medium r4">중복확인</button>
+						</div>
 					</div>
 				</div>
 			</c:if>

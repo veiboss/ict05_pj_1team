@@ -54,11 +54,25 @@ public class DrugDAOImpl implements DrugDAO{
 		return selectCnt;
 	}
 	
+	// 영양제 추가 버튼 클릭 시 - 영양제 중복 확인
+	@Override
+	public int existCnt(Map<String, Object> map) {
+		System.out.println("=== drugDAO - existCnt() ===");
+		return sqlSession.selectOne("com.middlepj.ict05.domain.drug.dao.DrugDAO.existCnt", map);
+	}
+	
+	// 영양제 정보 가져오기
+	@Override
+	public DrugDTO getDrugById(int dr_id) {
+		System.out.println("=== drugDAO - getDrugById() ===");
+		
+		return sqlSession.selectOne("com.middlepj.ict05.domain.drug.dao.DrugDAO.getDrugById", dr_id);
+	}
+	
 	// 영양제 추가 버튼 클릭 시 - 내 영양제에 추가
 	@Override
 	public int addDrug(Map<String, Object> map) {
 		System.out.println("=== drugDAO - addDrug() ===");
-		
 		return sqlSession.insert("com.middlepj.ict05.domain.drug.dao.DrugDAO.addDrug", map);
 	}
 	
@@ -67,7 +81,7 @@ public class DrugDAOImpl implements DrugDAO{
 	public DrugDTO getDrugDetail(int dr_id) {
 		System.out.println("=== drugDAO - getDrugDetail() ===");
 		
-		return null;
+		return sqlSession.selectOne("com.middlepj.ict05.domain.drug.dao.DrugDAO.getDrugDetail", dr_id);
 	}
 	
 	// 후기 목록
@@ -75,7 +89,19 @@ public class DrugDAOImpl implements DrugDAO{
 	public List<DrugReviewDTO> drugReviewList(Map<String, Object> map) {
 		System.out.println("=== drugDAO - drugReviewList() ===");
 		
-		return null;
+		List<DrugReviewDTO> list = sqlSession.selectList("com.middlepj.ict05.domain.drug.dao.DrugDAO.drugReviewList", map);
+		
+		return list;
+	}
+	
+	// 후기 개수
+	@Override
+	public int reviewCnt() {
+		System.out.println("=== drugDAO - reviewCnt() ===");
+		
+		int reviewCnt = sqlSession.selectOne("com.middlepj.ict05.domain.drug.dao.DrugDAO.reviewCnt");
+		
+		return reviewCnt;
 	}
 	
 	// 후기 등록 처리
@@ -85,5 +111,4 @@ public class DrugDAOImpl implements DrugDAO{
 		
 	}
 
-	
 }

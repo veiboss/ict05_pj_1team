@@ -43,11 +43,64 @@
          WHERE rn BETWEEN #{start} AND #{end}
 	</select>
 	
+	<!-- 영양제 중복 확인 -->
+	<select id="existCnt" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*)
+		  FROM MEMBER_DRUG_TB
+		 WHERE MB_ID = #{mb_id}
+		   AND DR_ID = #{dr_id}
+	</select>
+	
+	<!-- 영양제 정보 담기 -->
+	<select id="getDrugById" resultType="com.middlepj.ict05.domain.drug.dto.DrugDTO">
+		SELECT DR_ID, DR_PRODUCT, DR_MAIN_FUNCTION
+		  FROM DRUG_TB
+		 WHERE DR_ID = #{dr_id}
+	</select>
+	
 	<!-- 영양제 추가 -->
 	<insert id="addDrug" parameterType="java.util.Map">
-		
+		INSERT INTO MEMBER_DRUG_TB (MBD_ID, 
+									MB_ID, 
+									DR_ID, 
+								    MBD_DRUG_NAME, 
+								    MBD_DRUG_EFFECT, 
+								    MBD_WRITER_ID, 
+								    MBD_REG_DATE)
+		 VALUES((SELECT NVL(max(MBD_ID)+1, 1)FROM MEMBER_DRUG_TB), 
+		 		#{mb_id}, 
+		 		#{dr_id}, 
+		 		#{mbd_drug_name}, 
+		 		#{mbd_drug_effect}, 
+		 		#{mb_id}, 
+		 		SYSDATE)
+		  
 	</insert>
 	
+	<!-- 영양제 상세 페이지 -->
+	<select id="getDrugDetail" parameterType="int" resultType="com.middlepj.ict05.domain.drug.dto.DrugDTO">
+		SELECT * FROM DRUG_TB
+		 WHERE DR_ID = #{dr_id}
+	</select>
+	
+	<!-- 후기 목록 -->
+	<select id="drugReviewList" parameterType="java.util.Map" resultType="com.middlepj.ict05.domain.drug.dto.DrugReviewDTO">
+		SELECT * 
+  		  FROM (SELECT A.*
+             		 , rownum AS rn 
+          		  FROM (SELECT * 
+                 		  FROM REVIEW_TB 
+                 		 WHERE RV_SHOW = 'Y' 
+                 		 ORDER BY RV_ID DESC) A)  
+         WHERE rn BETWEEN #{start} AND #{end} 
+	</select>
+	
+	<!-- 후기 개수 -->
+	<select id="reviewCnt" resultType="int">
+		SELECT COUNT(*) AS cnt FROM REVIEW_TB
+	</select>
+	
+	<!-- 후기 등록 -->
 	
 	
 	

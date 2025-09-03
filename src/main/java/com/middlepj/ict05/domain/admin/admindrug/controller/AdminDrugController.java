@@ -67,4 +67,54 @@ public class AdminDrugController {
         return "admindrug/druglistAjax";
     
     }
+    
+    
+    @RequestMapping("/drugAdd.ad")
+    public String drugAdd(HttpServletRequest request, HttpServletResponse response, Model model)
+    		throws ServletException, IOException {
+    	logger.info("<<< url ==> /drugAdd.ad >>>");
+    	return "admindrug/drugAdd";
+    }
+    
+    @RequestMapping("/drugAddAction.ad")
+    public String drugAddAction(HttpServletRequest request, HttpServletResponse response, Model model)
+    		throws ServletException, IOException {
+    	logger.info("<<< url ==> /drug_modify.ad >>>");
+    	
+    	service.drugAddAction(request, response, model);
+    	
+    	return "admindrug/drugAddAction";
+    }
+  
+    @RequestMapping("/drugDetail.ad")
+    public String drugDetail(HttpServletRequest request, HttpServletResponse response, Model model)
+    		throws ServletException, IOException {
+    	logger.info("<<< url ==> /drugDetail.ad >>>");
+    	
+    	service.drugDetail(request, response, model);
+    	
+    	return "admindrug/drugDetail";
+    }
+    
+    @RequestMapping("/drugModify.ad")
+    public String drugModify(HttpServletRequest request, HttpServletResponse response, Model model)
+    		throws ServletException, IOException {
+    	logger.info("<<< url ==> /drugModify.ad >>>");
+    	
+    	service.drugModify(request, response, model);
+    	
+    	return "admindrug/drugModify";
+    }
+    
+    @RequestMapping("/drugDelete.ad")
+    public String drugDelete(HttpServletRequest request, HttpServletResponse response, Model model)
+    		throws ServletException, IOException {
+    	logger.info("<<< url ==> /drugDelete.ad >>>");
+    	
+    	service.drugDelete(request, response, model);
+    	
+    	return "admindrug/drugDelete";
+    }
+    
+    
 }

@@ -56,23 +56,23 @@
 						</div>
 
 						<div class="field">
-							<label class="label-box" for="passWord">
+							<label class="label-box">
 								<span class="text-label">비밀번호 <i class="required">*</i></span>
-								<input type="password" class="input-text" name="mb_password" id="passWord" placeholder="영문, 숫자, 특수문자 포함 8자 이상 입력" required>
+								<input type="password" class="input-text" name="mb_password" placeholder="영문, 숫자, 특수문자 포함 8자 이상 입력" required>
 							</label>
 						</div>
 
 						<div class="field">
-							<label class="label-box" for="passwordRe">
+							<label class="label-box">
 								<span class="text-label">비밀번호 확인<i class="required">*</i></span>
-								<input type="password" class="input-text" name="mb_password_re" id="passwordRe" placeholder="비밀번호 재입력" required>
+								<input type="password" class="input-text" name="mb_password_re" placeholder="비밀번호 재입력" required>
 							</label>
 						</div>
 
 						<div class="field">
 							<label class="label-box">
 								<span class="text-label">이름 <i class="required">*</i></span>
-								<input type="text" class="input-text" name="mb_name" id="passwordChk" placeholder="이름 입력" required>
+								<input type="text" class="input-text" name="mb_name" placeholder="이름 입력" required>
 							</label>
 						</div>
 
