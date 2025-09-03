@@ -1,20 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ include file="../common/setting.jsp" %>
+	pageEncoding="UTF-8"%>
+<%@ include file="../common/setting.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!-- 반응형 웹 -->
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 <meta name="format-detection" content="telephone=no">
 <title>약을 쏘옥, 약속</title>
 <!-- css -->
 <link rel="stylesheet" href="${path}/resources/css/yaksok.css">
 
 <!--  js -->
-<script src="https://kit.fontawesome.com/d7162d59a4.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/d7162d59a4.js"
+	crossorigin="anonymous"></script>
 
 <!-- (3-4). 자바스크립트 소스 연결 -->
 <!-- defer : html을 다 읽은 후에 자바스크립트를 실행한다. 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행된다. -->
@@ -24,37 +26,59 @@
 <body>
 	<div id="wrap" class="wrap">
 		<!-- PC 컨텐츠 -->
-		<%@ include file="../common/pc_left.jsp" %>
+		<%@ include file="../common/pc_left.jsp"%>
 		<!-- PC 컨텐츠 끝 -->
-		
+
 		<div id="container" class="myPage">
-		<!-- [D] HEADER VIEW :  no class /.lines(2) / .only-back(1) / .only-close(1) -->
+			<!-- [D] HEADER VIEW :  no class /.lines(2) / .only-back(1) / .only-close(1) -->
 			<!-- header 시각 -->
-			<%@ include file="../common/header.jsp" %>
+			<%@ include file="../common/header.jsp"%>
 			<!-- header 끝 -->
-		
-			
+
+
 			<!-- 컨텐츠 시작 -->
 			<!-- SID : COM000 -->
-			<div id="content" class="main"><!-- [D] main / sub-main / sub && pagd name -->
-				<ul>
-					<li><a href="${path}/주소넣기" style="color:black">홍길동</a></li>
-					<li><a href="MA20" style="color:black">내설문목록</a></li>
-					<li><a href="${path}/주소넣기" style="color:black">내약목록</a></li>
-					<li><a href="myReviewList.do" style="color:black">내가쓴후기목록</a></li>
-					<li><a href="${path}/주소넣기" style="color:black">내가쓴qna</a></li>
-				</ul>
-			</div><!-- // #content -->
-			<!-- 컨텐츠 끝 -->
-		
-			<!-- nav 시작 -->
-			<%@ include file="../common/nav.jsp" %>
-			<!-- nav 끝 -->
-		
-			<!-- footer 시작 -->
-			<%@ include file="../common/footer.jsp" %>
-			<!-- footer 끝 -->
-		</div><!-- // #container -->
-	</div><!-- // #wrap -->
+			<div id="content" class="sub my my-home">
+				<!-- [D] main / sub-main / sub && pagd name -->
+				<div class="pack-down-center" style="gap:20px; padding:20px 0">
+					<div class="img-wrap circle s120">
+						<img src="https://www.palnews.co.kr/news/photo/201801/92969_25283_5321.jpg" class="centered" alt="프로필 대표 이미지">
+					</div>
+					<h2 class="section-title">
+						${sessionScope.sessionName}<span class="fw-300"> 님</span>
+					</h2>
+					<p class="pack-down-center">
+						<span>${sessionScope.sessionEmail}</span>					
+						<a class="btn xsmall bdr-blue" href="myProfileAction.do">마이프로필</a>
+					</p>
+				</div>
+				<hr class="out-cont section-bar">
+				<!-- 여기까지가 마이프로필 수정 -->
+				<section class="pack-down" style="padding:20px 0">
+					<h3 class="small-title"><span class="fc-dark-gray">나의 활동</span></h3>
+					<div class="pack-down">
+						<a href="MA20" class="btn transparent" style="padding:8px 0"><span class="fs-18">내설문목록</span></a>
+						<a href="주소넣기" class="btn transparent" style="padding:8px 0"><span class="fs-18">내약목록</span></a>
+						<a href="myReviewList.do" class="btn transparent" style="padding:8px 0"><span class="fs-18">내가쓴후기목록</span></a>
+						<a href="주소넣기" class="btn transparent" style="padding:8px 0"><span class="fs-18">내가쓴qna</span></a>
+					</div>
+				</section>
+				<!-- // #content -->
+				<!-- 컨텐츠 끝 -->
+				</div>
+				<!-- nav 시작 -->
+				
+					
+				<%@ include file="../common/nav.jsp"%>
+				<!-- nav 끝 -->
+
+				<!-- footer 시작 -->
+				<%@ include file="../common/footer.jsp"%>
+				<!-- footer 끝 -->
+				
+				</div>
+			<!-- // #container -->
+		</div>
+		<!-- // #wrap -->
 </body>
 </html>

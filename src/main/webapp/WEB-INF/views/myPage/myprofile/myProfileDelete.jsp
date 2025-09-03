@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file="../common/setting.jsp" %>
+    <%@ include file="../../common/setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +14,6 @@
 <link rel="stylesheet" href="${path}/resources/css/yaksok.css">
 
 <!--  js -->
-<script src="https://kit.fontawesome.com/d7162d59a4.js" crossorigin="anonymous"></script>
 
 <!-- (3-4). 자바스크립트 소스 연결 -->
 <!-- defer : html을 다 읽은 후에 자바스크립트를 실행한다. 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행된다. -->
@@ -24,35 +23,39 @@
 <body>
 	<div id="wrap" class="wrap">
 		<!-- PC 컨텐츠 -->
-		<%@ include file="../common/pc_left.jsp" %>
+		<%@ include file="../../common/pc_left.jsp" %>
 		<!-- PC 컨텐츠 끝 -->
 		
-		<div id="container" class="myPage">
+		<div id="container" class="lines">
 		<!-- [D] HEADER VIEW :  no class /.lines(2) / .only-back(1) / .only-close(1) -->
 			<!-- header 시각 -->
-			<%@ include file="../common/header.jsp" %>
+			<%@ include file="../../common/header.jsp" %>
 			<!-- header 끝 -->
-		
 			
 			<!-- 컨텐츠 시작 -->
-			<!-- SID : COM000 -->
-			<div id="content" class="main"><!-- [D] main / sub-main / sub && pagd name -->
-				<ul>
-					<li><a href="${path}/주소넣기" style="color:black">홍길동</a></li>
-					<li><a href="${path}/주소넣기" style="color:black">내설문목록</a></li>
-					<li><a href="${path}/주소넣기" style="color:black">내약목록</a></li>
-					<li><a href="${path}/주소넣기" style="color:black">내가쓴후기목록</a></li>
-					<li><a href="${path}/주소넣기" style="color:black">내가쓴qna</a></li>
-				</ul>
-			</div><!-- // #content -->
+			<!-- SID : SI20 -->
+			<div id="content" class="pack-down-center">
+				<h2 class="section-title">
+						${sessionScope.sessionName}<span class="fw-300"> 님</span>
+				</h2>
+				<p>
+					<span class="" style="width: 160px">비밀번호 입력</span>
+					<input type="password" class="input-text small" name="mb_password" placeholder="공백없이 20자 이내로 작성" required autofocus>
+				</p>
+			<!-- // #content -->
 			<!-- 컨텐츠 끝 -->
+			</div>
+			<div class="pack-down-center" style="display:flex; gap:10px;">
+				<a href="myProfileDeleteAction.do" class="btn bdr-blue medium" style="padding:8px 0"><span class="fs-18">탈퇴하기</span></a>
+			</div>
+		<!-- 컨텐츠 끝 -->
 		
 			<!-- nav 시작 -->
-			<%@ include file="../common/nav.jsp" %>
+			<%@ include file="../../common/nav.jsp" %>
 			<!-- nav 끝 -->
 		
 			<!-- footer 시작 -->
-			<%@ include file="../common/footer.jsp" %>
+			<%@ include file="../../common/footer.jsp" %>
 			<!-- footer 끝 -->
 		</div><!-- // #container -->
 	</div><!-- // #wrap -->
