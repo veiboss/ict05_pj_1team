@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 
 import com.middlepj.ict05.common.Paging;
 import com.middlepj.ict05.domain.admin.admindrug.dao.AdminDrugDAO;
+import com.middlepj.ict05.domain.admin.admindrug.dto.AdminDrugDetailDTO;
 import com.middlepj.ict05.domain.admin.admindrug.dto.AdminDrugListDTO;
 
 @Service
@@ -84,6 +85,48 @@ public class AdminDrugServiceImpl implements AdminDrugService{
 			model.addAttribute("paging", paging);
 			// model.addAttribute("userCnt", userCnt);
 		    model.addAttribute("keyword", keyword); // 검색어 유지용
+	}
+
+	@Override
+	public void drugAddAction(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("AdminDrugServiceImpl - drugAddAction");
+		
+		String dr_product = request.getParameter("dr_product");
+		String dr_enterprise = request.getParameter("dr_enterprise");
+		Long dr_statement_id = Long.parseLong(request.getParameter("dr_statement_id"));
+		String dr_expiration_date = request.getParameter("dr_expiration_date");
+		String dr_sungsang = request.getParameter("dr_sungsang");
+		String dr_serve_use = request.getParameter("dr_serve_use");
+		String dr_intake_hint = request.getParameter("dr_intake_hint");
+		String dr_main_function = request.getParameter("dr_main_function");
+		String dr_preservation = request.getParameter("dr_preservation");
+		String dr_base_standard = request.getParameter("dr_base_standard");
+		
+		AdminDrugDetailDTO dto = new AdminDrugDetailDTO();
+		
+		int insertCnt = 0;
+		
+		dto.setDr_product(dr_product);
+		dto.setDr_enterprise(dr_enterprise);
+		dto.setDr_statement_id(dr_statement_id);
+		dto.setDr_expiration_date(dr_expiration_date);
+		dto.setDr_sungsang(dr_sungsang);
+		dto.setDr_serve_use(dr_serve_use);
+		dto.setDr_intake_hint(dr_intake_hint);
+		dto.setDr_main_function(dr_main_function);
+		dto.setDr_preservation(dr_preservation);
+		dto.setDr_base_standard(dr_base_standard);
+		try {
+			insertCnt = dao.drugInsert(dto);
+			
+        } catch (Exception e) {
+            logger.error("Failed to fetch review_modifyAction", e);
+            throw new ServletException("등록 로직 실패", e);
+        }
+		
+		model.addAttribute("insertCnt", insertCnt);
+		
 	}
 
 }

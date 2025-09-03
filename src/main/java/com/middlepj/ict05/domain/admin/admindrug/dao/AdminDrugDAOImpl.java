@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.middlepj.ict05.domain.admin.admindrug.dto.AdminDrugDetailDTO;
 import com.middlepj.ict05.domain.admin.admindrug.dto.AdminDrugListDTO;
 
 @Repository
@@ -49,6 +50,15 @@ public class AdminDrugDAOImpl implements AdminDrugDAO{
 		List<AdminDrugListDTO> list = sqlSession.selectList("com.middlepj.ict05.domain.admin.admindrug.dao.AdminDrugDAO.drugSearchList", map);
 		
 		return list;
+	}
+
+	@Override
+	public int drugInsert(AdminDrugDetailDTO dto) {
+		System.out.println("AdminDrugDAOImpl - drugInsert()");
+		
+		int insertCnt = sqlSession.insert("com.middlepj.ict05.domain.admin.admindrug.dao.AdminDrugDAO.drugInsert", dto);
+		
+		return insertCnt;
 	}
 	
 }

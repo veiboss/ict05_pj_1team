@@ -4,26 +4,26 @@ import java.sql.Date;
 
 public class AdminDrugDetailDTO {
 
-	private int dr_id;
-	private String dr_enterprise;
-	private String dr_product;
-	private int dr_statement_id;
-	private Date dr_regist_date;
-	private String dr_expiration_date;
-	private String dr_sungsang;
-	private String dr_serve_use;
-	private String dr_intake_hint;
-	private String dr_main_function;
-	private String dr_preservation;
-	private String dr_base_standard;
-	private String dr_show;
+	private int dr_id;	// 제약 시퀀스
+	private String dr_enterprise; // 제약 업체명
+	private String dr_product; // 제약 제품명
+	private Long dr_statement_id; // 제약 품목번호
+	private Date dr_regist_date; // 제약 등록일자
+	private String dr_expiration_date; // 제약 유통기한
+	private String dr_sungsang; // 제약 성상
+	private String dr_serve_use; // 제약 용도
+	private String dr_intake_hint; // 제약 주의사항
+	private String dr_main_function; // 제약 기능
+	private String dr_preservation; // 제약 보관법
+	private String dr_base_standard; // 제약 규격
+	private String dr_show; // 노출여부
 	
 	public AdminDrugDetailDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public AdminDrugDetailDTO(int dr_id, String dr_enterprise, String dr_product, int dr_statement_id, Date dr_regist_date,
+	public AdminDrugDetailDTO(int dr_id, String dr_enterprise, String dr_product, Long dr_statement_id, Date dr_regist_date,
 			String dr_expiration_date, String dr_sungsang, String dr_serve_use, String dr_intake_hint,
 			String dr_main_function, String dr_preservation, String dr_base_standard, String dr_show) {
 		super();
@@ -66,11 +66,11 @@ public class AdminDrugDetailDTO {
 		this.dr_product = dr_product;
 	}
 
-	public int getDr_statement_id() {
+	public Long getDr_statement_id() {
 		return dr_statement_id;
 	}
 
-	public void setDr_statement_id(int dr_statement_id) {
+	public void setDr_statement_id(Long dr_statement_id) {
 		this.dr_statement_id = dr_statement_id;
 	}
 

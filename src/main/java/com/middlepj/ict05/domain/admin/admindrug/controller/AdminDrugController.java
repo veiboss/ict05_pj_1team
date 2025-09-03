@@ -67,4 +67,28 @@ public class AdminDrugController {
         return "admindrug/druglistAjax";
     
     }
+    
+    @RequestMapping("/drugDetail.ad")
+    public String drugDetail(HttpServletRequest request, HttpServletResponse response, Model model)
+            throws ServletException, IOException {
+    	logger.info("<<< url ==> /drugDetail.ad >>>");
+    	return "admindrug/drugDetail";
+    }
+    
+    @RequestMapping("/drugAdd.ad")
+    public String drugAdd(HttpServletRequest request, HttpServletResponse response, Model model)
+    		throws ServletException, IOException {
+    	logger.info("<<< url ==> /drugAdd.ad >>>");
+    	return "admindrug/drugAdd";
+    }
+    
+    @RequestMapping("/drugAddAction.ad")
+    public String drugAddAction(HttpServletRequest request, HttpServletResponse response, Model model)
+    		throws ServletException, IOException {
+    	logger.info("<<< url ==> /drug_modify.ad >>>");
+    	
+    	service.drugAddAction(request, response, model);
+    	
+    	return "admindrug/drugAddAction";
+    }
 }

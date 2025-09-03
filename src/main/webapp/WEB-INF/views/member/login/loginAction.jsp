@@ -39,10 +39,10 @@
 						<c:redirect url="main.do"/>
 					</c:if>
 					<c:if test="${sessionScope.sessionID == null}">
-						<fieldset class="pack-down-center">
-							<legend class="article-title">로그인</legend>
+						<fieldset class="pack-down">
+							<legend class="article-title ta-c">로그인</legend>
 	
-							<div class="pack-down-center">
+							<div class="pack-down">
 								<div class="field">
 									<input type="text" name="mb_email" class="input-text" placeholder="이메일 입력">
 									<span class="warning pack-left">이메일 혹은 비밀번호가 일치하지 않습니다</span>
