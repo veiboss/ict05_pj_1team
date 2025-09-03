@@ -10,15 +10,19 @@ import org.springframework.ui.Model;
 
 public interface MyQnaService {
 	
-	// 1. qna 상세 목록
+	// qna 상세 목록
 	public void qnaListAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException;
 	
-	// 2. 수정버튼 클릭시 - 전문가 댓글 없을 시에 수정 페이지 이동
-	
-	
-	// 3. 게시글 수정 
-	
-	
-	// 게시글 삭제 버튼 클릭시 - 전문가 댓글 없을 시에/ 삭제 (안보임처리)
+//	// 수정버튼 클릭시 - 전문가 댓글 없을 시에 수정 페이지 이동
+//	public void qnaDetailAction(HttpServletRequest request, HttpServletResponse response, Model model)
+//			throws ServletException, IOException;
+//	
+//	// qna 수정 
+//	public void qnaUpdateAction(HttpServletRequest request, HttpServletResponse response, Model model)
+//			throws ServletException, IOException;
+//	
+//	// qna 삭제 버튼 클릭시 - 전문가 댓글 없을 시에/ 삭제 (안보임처리)
+//	public void qnaDeleteAction(HttpServletRequest request, HttpServletResponse response, Model model)
+//			throws ServletException, IOException;
 }

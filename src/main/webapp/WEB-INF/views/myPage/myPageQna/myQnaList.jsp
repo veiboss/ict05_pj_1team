@@ -22,14 +22,17 @@
 <script src="${path}/resources/js/lib/aos.js" defer></script>
 <script src="${path}/resources/js/yaksok.js" defer></script>
 <script>
-function delReview(id){
+function delQna(id){
 	if(confirm('해당 질문을 삭제할까요?')){
 		const f = document.getElementById('delForm');
-		f.rv_id.value = id;
+		f.qa_id.value = id;
 		f.submit();
 	}
 }
 </script>
+<style>
+	.qna-item.pack-down{gap: 10px}
+</style>
 </head>
 <body>
 	<div id="wrap" class="wrap">
@@ -47,77 +50,77 @@ function delReview(id){
 			<!-- 컨텐츠 시작 -->
 			<!-- SID : COM000 -->
 			<div id="content" class="sub"><!-- [D] main / sub-main / sub && pagd name -->
-				<h2 class="article-title ta-c">내가 쓴 후기 목록</h2>
+				<h2 class="article-title ta-c">내가 쓴 Q&A 목록</h2>
 				<c:if test="${empty list}">
-				  <div style="padding:32px;border:1px dashed #ddd;border-radius:12px;text-align:center;color:#666">
-				    작성한 후기가 없습니다.
-				  </div>
+					<div style="padding:32px;border:1px dashed #ddd;border-radius:12px;text-align:center;color:#666">
+				    작성한 Q&A가 없습니다.
+				  	</div>
 				</c:if>
 				
 				<div class="pl20"><!-- ❌ id="content" 중복 금지 -->
-				  <ul class="data-list toon">
-				    <c:forEach var="dto" items="${list}">
-				      <li>
-				        <!-- 앵커로 전체 감싸지 말고 div로 -->
-				        <div class="item thumb-left">
-				          <div class="img-wrap s100">
-				            <img src="${path}/resources/images/drug_type/01.png" alt="분말" class="centered">
-				          </div>
-				
-				          <div class="data-content">
-				            <!-- 상품명 -->
-				            <p class="small-title"><c:out value="${dto.dr_product}"/></p>
-				
-				            <!-- 별점 (여분의 > 제거) -->
-				            <p class="data-wrap flex-wrap" aria-label="별점">
-				              <span class="article-type" style="margin-right:8px;">별점</span>
-				              <span>
-				                <c:forEach begin="1" end="${dto.rv_rating}">★</c:forEach>
-				                <c:forEach begin="1" end="${5 - dto.rv_rating}">☆</c:forEach>
-				              </span>
-				            </p>
-				
-				            <!-- 내용 -->
-				            <div class="data-wrap pack-both">
-				              <p><c:out value="${dto.rv_content}"/></p>
-				
-				              <!-- 버튼 (앵커 밖으로 분리) -->
-				              <p class="pack-left">
-				                <a class="btn blue small color1 r4"
-				                   href="${path}/myReviewDetail.do?rv_id=${dto.rv_id}"
-				                   style="cursor:pointer;">수정</a>
-				
-				                <button class="btn bdr-blue small color1 r4"
-				                        onclick="delReview(${dto.rv_id})"
-				                        type="button" style="cursor:pointer;">삭제</button>
-				              </p>
-				            </div>
-				          </div>
-				        </div><!-- /.item.thumb-left -->
-				      </li>
-				    </c:forEach>
-				  </ul>
-				</div>
-				
-				<!-- 삭제(비노출) POST 폼: ❗ forEach 밖, 단 한 개만 -->
-				<form id="delForm" action="${path}/myReviewDelete.do" method="post" style="display:none;">
-				  <input type="hidden" name="rv_id" value="">
-				</form>	
-					
-					<div class="pagination">
-						<a href="javascript:void(0);" class="prev"><i class="ico page-arr"><span>&lt;</span></i></a>
-						<ul>
-							<li><a href="javascript:void(0);">1</a></li>
-							<li><a href="javascript:void(0);">2</a></li>
-							<li class="current"><a href="javascript:void(0);">3</a></li>
-							<li><a href="javascript:void(0);">4</a></li>
-							<li><a href="javascript:void(0);">5</a></li>
-						</ul>
-						<a href="javascript:void(0);" class="next"><i class="ico page-arr"><span>&gt;;</span></i></a>
-					</div><!-- .pagination -->
-				</div><!-- .section.list-wrap -->
+					<ul class="data-list">
+				    	<c:forEach var="dto" items="${list}">
+				      		<li>
+				       		 <!-- 앵커로 전체 감싸지 말고 div로 -->
 			
-		       
+			          			<div class="pack-down qna-item">
+			          				<!-- 제목 -->
+			            			<p class="small-title"><c:out value="${dto.qa_title}"/></p>
+			            			
+          							<p class="qa-content fc-dark-gray"><c:out value="${dto.qa_content}"/></p>
+			
+				            		<!-- 내용 -->
+			    	        		<div class="data-wrap pack-both">
+										<span>&nbsp;</span>
+					              		<!-- 버튼 (앵커 밖으로 분리) -->
+					              		<p class="pack-left">
+						                	<a class="btn blue small color1 r4"
+						                  		href="${path}/myQnaDetail.do?qa_id=${dto.qa_id}"
+						                   		style="cursor:pointer;">수정</a>
+						
+						                	<button class="btn bdr-blue small color1 r4"
+						                        onclick="delQna(${dto.qa_id})"
+						                        type="button" style="cursor:pointer;">삭제</button>
+						                 </p>
+						            </div>
+						         </div>
+			          		</li>
+			          	</c:forEach>
+		          	</ul>
+	        	</div><!-- /.item.thumb-left -->
+			</div>
+			
+			<!-- 삭제(비노출) POST 폼: ❗ forEach 밖, 단 한 개만 -->
+			<form id="delForm" action="${path}/myQnaDelete.do" method="post" style="display:none;">
+			  <input type="hidden" name="qa_id" value="">
+			</form>	
+				
+				<div class="pagination">
+			    <!-- 이전 버튼 -->
+			    <c:if test="${paging.startPage > 5}">
+			        <a href="${path}/myQnaList.do?pageNum=${paging.prev}" class="btn prev page-link" data-page="${paging.prev}">
+			            &lt;
+			        </a>
+			    </c:if>
+			
+			    <!-- 페이지 번호 -->
+			    <ul>
+			        <c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+			            <li class="${num == paging.currentPage ? 'current' : ''}">
+			                <a href="${path}/myQnaList.do?pageNum=${num}" class="btn page-link" data-page="${num}">${num}</a>
+			            </li>
+			        </c:forEach>
+			    </ul>
+			
+			    <!-- 다음 버튼 -->
+			    <c:if test="${paging.endPage < paging.pageCount}">
+			        <a href="${path}/myQnaList.do?pageNum=${paging.next}" class="btn next page-link" data-page="${paging.next}">
+			            &gt;
+			        </a>
+			    </c:if>
+			</div><!-- .section.list-wrap -->
+		
+	       
 				
 				
 			

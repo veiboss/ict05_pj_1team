@@ -24,26 +24,52 @@ private static final Logger logger = LoggerFactory.getLogger(MyReviewController.
 	@Autowired
 	private MyQnaServiceImpl service;
 	
-	 // 1. qna 상세 목록
+	 // qna 상세 목록
 	 @RequestMapping("/myQnaList.do")
 	 public String myQnaList(HttpServletRequest request, HttpServletResponse response, Model model) 
 			 throws ServletException, IOException { 
 		 logger.info("<<< url ==> /myQnaList.do >>>");
-	
+		 
 		 service.qnaListAction(request, response, model);
 		 
 		 return "myPage/myPageQna/myQnaList"; 
-		 
 	 
 	 }
+	
+	 // 수정버튼 클릭시 - 전문가 댓글 없을 시에 수정 페이지 이동
+	 @RequestMapping("/myQnaDetail.do")
+	 public String myQnaDetail(HttpServletRequest request, HttpServletResponse response, Model model) 
+			 throws ServletException, IOException { 
+		 logger.info("<<< url ==> /myQnaDetail.do >>>");
+	
+		 // service.qnaDetailAction(request, response, model);
+		 
+		 return "myPage/myPageQna/myQnaDetail"; 
 	 
+	 } 
 	
 	
-	// 2. 수정버튼 클릭시 - 전문가 댓글 없을 시에 수정 페이지 이동
-	
-	
-	// 3. 게시글 수정 
-	
-	
-	// 게시글 삭제 버튼 클릭시 - 전문가 댓글 없을 시에/ 삭제 (안보임처리)
+//	 // qna 수정 
+//	 @RequestMapping("/myQnaUpdate.do")
+//	 public String myQnaUpdate(HttpServletRequest request, HttpServletResponse response, Model model) 
+//			 throws ServletException, IOException { 
+//		 logger.info("<<< url ==> /myQnaUpdate.do >>>");
+//	
+//		 service.qnaUpdateAction(request, response, model);
+//		 
+//		 return "myPage/myPageQna/myQnaDetail"; 
+//	 
+//	 } 
+//	
+//	 // qna 삭제 버튼 클릭시 - 전문가 댓글 없을 시에/ 삭제 (안보임처리)
+//	 @RequestMapping("/myQnaDelete.do")
+//	 public String myQnaDelete(HttpServletRequest request, HttpServletResponse response, Model model) 
+//			 throws ServletException, IOException { 
+//		 logger.info("<<< url ==> /myQnaDelete.do >>>");
+//	
+//		 service.qnaDeleteAction(request, response, model);
+//		 
+//		 return "myPage/myPageQna/myQnaList"; 
+//	 
+//	 } 
 }

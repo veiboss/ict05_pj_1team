@@ -30,6 +30,7 @@
           FROM REVIEW_TB rv
           JOIN DRUG_TB dr ON rv.dr_id = dr.dr_id
          WHERE rv.mb_id = #{mbId}
+           AND rv.rv_show = 'Y'
          ORDER BY rv.rv_id DESC
       ) x
       WHERE ROWNUM <= #{end}
@@ -68,8 +69,8 @@
 <update id="deleteReview" parameterType="int">
 	UPDATE REVIEW_TB
        SET rv_show = 'N'
-     WHERE rv_id = #{value}
+     WHERE rv_id = #{rv_id}
 </update> 
-
+ 
 
 </mapper> 
