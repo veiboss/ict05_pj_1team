@@ -86,4 +86,5 @@ public class MemberServiceImpl implements MemberService {
 		// 6단계. jsp로 처리결과 전달
 		model.addAttribute("insertCnt", insertCnt);
 	}
+
 }
