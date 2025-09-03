@@ -91,4 +91,10 @@
 			 , dr_base_standard = #{dr_base_standard}
 		 WHERE dr_id = #{dr_id}
 	</update>
+	
+	<update id="drugDelete" parameterType="int">
+		UPDATE DRUG_TB
+		   SET dr_show = 'N'
+		 WHERE dr_id = #{dr_id}
+	</update>
 </mapper> 

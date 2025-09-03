@@ -184,7 +184,7 @@ function validateForm() {
 								<div class="button-area pack-center">
 									<button type="submit" class="btn large color1">저장</button>
 									<a class="btn large bdr-color1" href="review.ad">취소</a>
-									<a class="btn large bdr-color1" href="drugDelete.ad?dr_id=${dto.dr_id}" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+									<a class="btn large bdr-color1" href="${path}/drugDelete.ad?dr_id=${dto.dr_id}" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
 								</div>
 							</fieldset>
 						</form>

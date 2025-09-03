@@ -77,5 +77,13 @@ public class AdminDrugDAOImpl implements AdminDrugDAO{
 		
 		return updateCnt;
 	}
+
+	@Override
+	public int drugDelete(int dr_id) {
+
+		int updateCnt = sqlSession.update("com.middlepj.ict05.domain.admin.admindrug.dao.AdminDrugDAO.drugDelete", dr_id);
+		
+		return updateCnt;
+	}
 	
 }

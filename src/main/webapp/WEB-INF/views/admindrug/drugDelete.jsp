@@ -25,10 +25,10 @@
 <script type="text/javascript">
     <c:choose>
         <c:when test="${updateCnt == 1}">
-            alert("삭제가 완료되었습니다.");
+            alert("삭제가 완료되었습니다.(숨김완료)");
         </c:when>
         <c:when test="${updateCnt == 0}">
-            alert("삭제에 실패했습니다.");
+            alert("삭제에 실패했습니다.(숨김실패)");
         </c:when>
         <c:otherwise>
             alert("오류가 발생했습니다.");

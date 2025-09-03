@@ -193,6 +193,19 @@ public class AdminDrugServiceImpl implements AdminDrugService{
 			throws ServletException, IOException {
 		logger.info("AdminDrugServiceImpl - drugDelete");
 		
+		int dr_id = Integer.parseInt(request.getParameter("dr_id"));
+		
+		int updateCnt = 0;
+		
+		try {
+			updateCnt = dao.drugDelete(dr_id);
+			
+        } catch (Exception e) {
+            logger.error("Failed to fetch review_modifyAction", e);
+            throw new ServletException("삭제 로직 실패", e);
+        }
+		
+		model.addAttribute("updateCnt", updateCnt);
 	}
 
 }
