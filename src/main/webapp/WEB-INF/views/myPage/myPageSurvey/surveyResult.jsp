@@ -152,43 +152,46 @@
 							<ul class="pack-left col-3">
 								<c:forEach var="drug_dto" items="${list}">
 									<li>
-										<div class="img-wrap">
-											<c:choose>
-									            <c:when test="${fn:contains(drug_dto.dr_sungsang, '분말')}">
-									                <img src="${path}/resources/images/drug_type/01.png" alt="분말">
-									            </c:when>
-									            <c:when test="${fn:contains(drug_dto.dr_sungsang, '원형캡슐')}">
-									                <img src="${path}/resources/images/drug_type/02.png" alt="원형캡슐">
-									            </c:when>
-									            <c:when test="${fn:contains(drug_dto.dr_sungsang, '원형정제')}">
-									                <img src="${path}/resources/images/drug_type/03.png" alt="원형정제">
-									            </c:when>
-									            <c:when test="${fn:contains(drug_dto.dr_sungsang, '제피정제')}">
-									                <img src="${path}/resources/images/drug_type/04.png" alt="제피정제">
-									            </c:when>
-									            <c:when test="${fn:contains(drug_dto.dr_sungsang, '젤리')}">
-									                <img src="${path}/resources/images/drug_type/05.png" alt="젤리">
-									            </c:when>
-									            <c:when test="${fn:contains(drug_dto.dr_sungsang, '액상')}">
-									                <img src="${path}/resources/images/drug_type/06.png" alt="유동성 액체">
-									            </c:when>
-									            <c:when test="${fn:contains(drug_dto.dr_sungsang, '경질캡슐')}">
-									                <img src="${path}/resources/images/drug_type/07.png" alt="경질캡슐">
-									            </c:when>
-									            <c:otherwise>
-									                <img src="${path}/resources/images/drug_type/03.png" alt="정제">
-									            </c:otherwise>
-									        </c:choose>
-										</div>
-										<p class="fs-16 ellipsis">${drug_dto.dr_product}</p>
-										<div id="drug-item" class="data-wrap pack-both">
-											<span> </span>
-											<p class="pack-center">
-												<button type="submit" class="btn blue small r4 add-btn" data-drid="${drug_dto.dr_id}">
-													내약추가
-												</button>
-											</p>
-										</div>
+											<a href="${path}/drug_detailAction.do?dr_id=${drug_dto.dr_id}">
+											<div class="img-wrap">
+												<c:choose>
+										            <c:when test="${fn:contains(drug_dto.dr_sungsang, '분말')}">
+										                <img src="${path}/resources/images/drug_type/01.png" alt="분말">
+										            </c:when>
+										            <c:when test="${fn:contains(drug_dto.dr_sungsang, '원형캡슐')}">
+										                <img src="${path}/resources/images/drug_type/02.png" alt="원형캡슐">
+										            </c:when>
+										            <c:when test="${fn:contains(drug_dto.dr_sungsang, '원형정제')}">
+										                <img src="${path}/resources/images/drug_type/03.png" alt="원형정제">
+										            </c:when>
+										            <c:when test="${fn:contains(drug_dto.dr_sungsang, '제피정제')}">
+										                <img src="${path}/resources/images/drug_type/04.png" alt="제피정제">
+										            </c:when>
+										            <c:when test="${fn:contains(drug_dto.dr_sungsang, '젤리')}">
+										                <img src="${path}/resources/images/drug_type/05.png" alt="젤리">
+										            </c:when>
+										            <c:when test="${fn:contains(drug_dto.dr_sungsang, '액상')}">
+										                <img src="${path}/resources/images/drug_type/06.png" alt="유동성 액체">
+										            </c:when>
+										            <c:when test="${fn:contains(drug_dto.dr_sungsang, '경질캡슐')}">
+										                <img src="${path}/resources/images/drug_type/07.png" alt="경질캡슐">
+										            </c:when>
+										            <c:otherwise>
+										                <img src="${path}/resources/images/drug_type/03.png" alt="정제">
+										            </c:otherwise>
+										        </c:choose>
+											</div>
+											<p class="fs-16 ellipsis">${drug_dto.dr_product}</p>
+											</a>
+											<div id="drug-item" class="data-wrap">
+												<span> </span>
+												<p class="btn">
+													<button type="submit" class="btn blue small r4 add-btn" data-drid="${drug_dto.dr_id}">
+														내약추가
+													</button>
+												</p>
+											</div>
+										
 									</li>
 								</c:forEach>
 							</ul>
