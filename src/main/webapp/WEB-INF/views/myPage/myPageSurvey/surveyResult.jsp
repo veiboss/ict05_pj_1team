@@ -50,41 +50,8 @@
 		console.log('jQuery:', typeof jQuery, jQuery && jQuery.fn && jQuery.fn.jquery);
 		console.log("counterUp 등록 여부:", typeof $.fn.counterUp); // function 이면 정상
 		console.log("easyPieChart 등록 여부:", typeof $.fn.easyPieChart);
+		console.log("waypoints 등록 여부:", typeof $.fn.waypoints); // function 이면 정상
 		/* =============================================================== */
-		// 1) 요소와 부모의 display/visibility 확인
-		const el = document.querySelector('.chart') || document.getElementById('score');
-		if (!el) { console.warn('요소 없음 (.chart 또는 #score)'); }
-		else {
-			console.log('element:', el);
-			console.log('computed display:', getComputedStyle(el).display);
-			console.log('computed visibility:', getComputedStyle(el).visibility);
-			console.log('computed opacity:', getComputedStyle(el).opacity);
-			console.log('offsetWidth/Height:', el.offsetWidth, el.offsetHeight);
-			// 부모 중에 display:none 인게 있는지 확인
-			let p = el;
-			while (p) {
-				const cs = getComputedStyle(p);
-				if (cs.display === 'none' || cs.visibility === 'hidden' || +cs.opacity === 0) {
-					console.warn('hidden ancestor found:', p, cs);
-					break;
-				}
-				p = p.parentElement;
-			}
-		}		
-		
-		/* =============================================================== */
-		$('.chart').easyPieChart({
-			animate: 2000,
-			easing: 'easeOutBounce',
-			barColor: '#687FE5',
-			scaleColor: false,
-			trackColor: '#f1f1f1',
-			lineWidth: 16,
-			size: 200,
-		});
-		$(".chart span").counterUp({
-			time: 1000
-		});
 		
 		const urlParams = new URLSearchParams(window.location.search);
 		const score = parseInt(urlParams.get("score")) || 0;
@@ -99,9 +66,22 @@
 						break;
 					}
 				}
-				document.getElementById("score").innerText = `\${score}`;
+				/*  document.getElementById("score").innerText = `\${score}`;*/
 				document.getElementById("comment").innerText = comment;
 			});
+		
+		$('.chart').easyPieChart({
+			animate: 2000,
+			easing: 'easeOutBounce',
+			barColor: '#687FE5',
+			scaleColor: false,
+			trackColor: '#f1f1f1',
+			lineWidth: 16,
+			size: 200
+		});
+		$(".chart .fc-blue").counterUp({
+			time: 1000
+		});
 		
 	    $(".add-btn").click(function() {
 	        var dr_id = $(this).data("drid"); // 버튼의 data-drid 가져오기
