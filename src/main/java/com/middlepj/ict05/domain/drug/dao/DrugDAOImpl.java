@@ -106,9 +106,12 @@ public class DrugDAOImpl implements DrugDAO{
 	
 	// 후기 등록 처리
 	@Override
-	public void insertReview(DrugReviewDTO dto) {
+	public int insertReview(DrugReviewDTO dto) {
 		System.out.println("=== drugDAO - insertReview() ===");
 		
+		int insertCnt = sqlSession.insert("com.middlepj.ict05.domain.drug.dao.DrugDAO.insertReview", dto);
+		
+		return insertCnt;
 	}
 
 }

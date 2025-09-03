@@ -85,14 +85,24 @@
 	
 	<!-- 후기 목록 -->
 	<select id="drugReviewList" parameterType="java.util.Map" resultType="com.middlepj.ict05.domain.drug.dto.DrugReviewDTO">
-		SELECT * 
-  		  FROM (SELECT A.*
-             		 , rownum AS rn 
-          		  FROM (SELECT * 
-                 		  FROM REVIEW_TB 
-                 		 WHERE RV_SHOW = 'Y' 
-                 		 ORDER BY RV_ID DESC) A)  
-         WHERE rn BETWEEN #{start} AND #{end} 
+		SELECT *
+		  FROM (
+		    SELECT A.*, ROWNUM AS rn
+		    FROM (
+		        SELECT R.rv_id,
+		               R.dr_id,
+		               R.mb_name,
+		               R.rv_content,
+		               R.rv_rating,
+		               R.rv_show,
+		               D.dr_product
+		          FROM REVIEW_TB R
+		          JOIN DRUG_TB D ON R.dr_id = D.dr_id
+		         WHERE R.rv_show = 'Y' and D.dr_id = #{dr_id}
+		         ORDER BY R.rv_id DESC
+		      ) A
+		 )
+		 WHERE rn BETWEEN #{start} AND #{end}
 	</select>
 	
 	<!-- 후기 개수 -->
@@ -101,7 +111,9 @@
 	</select>
 	
 	<!-- 후기 등록 -->
-	
-	
+	<insert id="insertReview" parameterType="com.middlepj.ict05.domain.drug.dto.DrugReviewDTO">
+	    INSERT INTO REVIEW_TB (rv_id, mb_id, mb_name, dr_id, rv_rating, rv_writer_id, rv_content, rv_show, rv_reg_date)
+	    VALUES ((SELECT NVL(max(rv_id)+1, 1)FROM REVIEW_TB), #{mb_id}, #{mb_name, jdbcType=VARCHAR}, #{dr_id, jdbcType=DECIMAL}, #{rv_rating}, #{mb_id}, #{rv_content, jdbcType=VARCHAR}, 'Y', SYSDATE)
+	</insert>
 	
 </mapper> 
