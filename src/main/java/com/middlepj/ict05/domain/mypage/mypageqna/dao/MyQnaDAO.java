@@ -14,9 +14,9 @@ public interface MyQnaDAO {
 	// qna 갯수 구하기
 	public int listCnt(Map<String, Object> map);
 	
-//	// 수정버튼 클릭시 - 전문가 댓글 없을 시에 수정 페이지 이동
-//	public MyQnaDTO qnaDetail(int qa_id);
-//
+	// 수정버튼 클릭시 - 전문가 댓글 없을 시에 수정 페이지 이동
+	public MyQnaDTO qnaDetail(int qa_id);
+
 //	// qna 수정 
 //	public void updateQna(MyQnaDTO dto);
 //	

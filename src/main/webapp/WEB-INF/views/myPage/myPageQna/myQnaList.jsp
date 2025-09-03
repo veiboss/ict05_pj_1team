@@ -62,37 +62,57 @@ function delQna(id){
 				    	<c:forEach var="dto" items="${list}">
 				      		<li>
 				       		 <!-- 앵커로 전체 감싸지 말고 div로 -->
-			
+								
+								
 			          			<div class="pack-down qna-item">
 			          				<!-- 제목 -->
+			          				<div class="pack-both" style="display:flex; gap:10px;">
 			            			<p class="small-title"><c:out value="${dto.qa_title}"/></p>
+			            				<span></span>
+							            <a href="myProfileUpdate.do" class="btn bdr-blue small" style="padding:8px 5px">
+							            	<span class="">답변 보기</span></a>
+							  	  	</div>
 			            			
+			            			<div class="pack-both" style="display:flex; gap:10px;">
           							<p class="qa-content fc-dark-gray"><c:out value="${dto.qa_content}"/></p>
+          								<span></span>
+						                	<a class="btn blue small color1 r4"
+						                  		href="${path}/myQnaDetail.do?qa_id=${dto.qa_id}" >수정</a>
+						                        
+						                	<button class="btn bdr-blue small color1 r4"
+						                        onclick="delQna(${dto.qa_id})" type="button" >삭제</button>
+						           </div>
+						         </div>     
+						          <div class="row-2">
+									<div class="field col">
+										<span class="label medium">비밀글 여부</span>
+										<div class="insert pack-left">
+											<label for="radio1" class="pack-left"><input type="radio" class="radio" name="qa_private" id="qa_private" value="Y" 
+												<c:if test="${dto.qa_private eq 'Y'}">checked</c:if>>노출</label>
+											<label for="radio2" class="pack-left"><input type="radio" class="radio" name="qa_private" id="qa_private" value="N" 
+												<c:if test="${dto.qa_private eq 'N'}">checked</c:if>>비노출</label>
+										</div>
+									</div>
+								</div>
 			
 				            		<!-- 내용 -->
 			    	        		<div class="data-wrap pack-both">
 										<span>&nbsp;</span>
 					              		<!-- 버튼 (앵커 밖으로 분리) -->
-					              		<p class="pack-left">
-						                	<a class="btn blue small color1 r4"
-						                  		href="${path}/myQnaDetail.do?qa_id=${dto.qa_id}"
-						                   		style="cursor:pointer;">수정</a>
-						
-						                	<button class="btn bdr-blue small color1 r4"
-						                        onclick="delQna(${dto.qa_id})"
-						                        type="button" style="cursor:pointer;">삭제</button>
-						                 </p>
+					              		
 						            </div>
-						         </div>
+								<hr class="out-cont section-bar">
 			          		</li>
+			          			
 			          	</c:forEach>
+			          	
 		          	</ul>
 	        	</div><!-- /.item.thumb-left -->
 			</div>
 			
 			<!-- 삭제(비노출) POST 폼: ❗ forEach 밖, 단 한 개만 -->
 			<form id="delForm" action="${path}/myQnaDelete.do" method="post" style="display:none;">
-			  <input type="hidden" name="qa_id" value="">
+			  <input type="hidden" name="qa_id" >
 			</form>	
 				
 				<div class="pagination">

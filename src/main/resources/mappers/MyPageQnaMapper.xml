@@ -29,7 +29,7 @@
                qa_show,
                qa_writer_id
           FROM QNA_TB
-         WHERE qa_writer_id = #{qa_writer_id}
+         WHERE qa_writer_id = #{mbId}
            AND qa_show = 'Y'
          ORDER BY qa_id DESC
       ) x
@@ -43,7 +43,7 @@
 <select id="listCnt" parameterType="java.util.Map" resultType="int" >
 	SELECT COUNT(*)	AS cnt
 	  FROM QNA_TB
-	 WHERE mb_id = #{mbId}
+	 WHERE qa_writer_id = #{mbId}
 </select>
 
 </mapper> 

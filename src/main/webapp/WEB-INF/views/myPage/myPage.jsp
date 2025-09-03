@@ -60,7 +60,7 @@
 						<a href="MA20" class="btn transparent" style="padding:8px 0"><span class="fs-18">내설문목록</span></a>
 						<a href="주소넣기" class="btn transparent" style="padding:8px 0"><span class="fs-18">내약목록</span></a>
 						<a href="myReviewList.do" class="btn transparent" style="padding:8px 0"><span class="fs-18">내가쓴후기목록</span></a>
-						<a href="주소넣기" class="btn transparent" style="padding:8px 0"><span class="fs-18">내가쓴qna</span></a>
+						<a href="myQnaList.do" class="btn transparent" style="padding:8px 0"><span class="fs-18">내가쓴qna</span></a>
 					</div>
 				</section>
 				<!-- // #content -->

@@ -14,10 +14,10 @@ public interface MyQnaService {
 	public void qnaListAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException;
 	
-//	// 수정버튼 클릭시 - 전문가 댓글 없을 시에 수정 페이지 이동
-//	public void qnaDetailAction(HttpServletRequest request, HttpServletResponse response, Model model)
-//			throws ServletException, IOException;
-//	
+	// 수정버튼 클릭시 - 전문가 댓글 없을 시에 수정 페이지 이동
+	public void qnaDetailAction(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException;
+	
 //	// qna 수정 
 //	public void qnaUpdateAction(HttpServletRequest request, HttpServletResponse response, Model model)
 //			throws ServletException, IOException;

@@ -36,18 +36,18 @@ public class MyQnaDAOImpl implements MyQnaDAO{
 				
 		return total;
 	}
-//
-//	// 수정버튼 클릭시 - 전문가 댓글 없을 시에 수정 페이지 이동
-//	@Override
-//	public MyQnaDTO qnaDetail(int qa_id) {
-//		
-//		System.out.println("MyQnaDAOImpl - qnaDetail()");
-//		
-//		MyQnaDTO dto = sqlsession.selectOne("com.middlepj.ict05.domain.mypage.mypageqna.dao.MyQnaDAO.qnaDetail", qa_id);
-//		
-//		return dto;
-//	}
-//
+
+	// 수정버튼 클릭시 - 전문가 댓글 없을 시에 수정 페이지 이동
+	@Override
+	public MyQnaDTO qnaDetail(int qa_id) {
+		
+		System.out.println("MyQnaDAOImpl - qnaDetail()");
+		
+		MyQnaDTO dto = sqlsession.selectOne("com.middlepj.ict05.domain.mypage.mypageqna.dao.MyQnaDAO.qnaDetail", qa_id);
+		
+		return dto;
+	}
+
 //	// 3. qna 수정
 //	@Override
 //	public void updateQna(MyQnaDTO dto) {

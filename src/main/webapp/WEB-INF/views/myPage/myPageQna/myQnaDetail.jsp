@@ -50,17 +50,16 @@
 		            	<textarea name="qa_title" class="textarea"><c:out value="${dto.qa_title}"/></textarea>
 			        </div>
 
+
 					<!-- 내용 -->
 			        <div class="">
 			            <textarea name="qa_content" class="textarea"><c:out value="${dto.qa_content}"/></textarea>
 			        </div>
 			        
-			        
-			
 					<!-- 버튼 -->
 					<div class="button-area pack-center">
 						<button type="submit" class="btn blue medium">수정</button>
-						<a class="btn bdr-blue medium" href="myQnaList.do">삭제</a>
+						<a class="btn bdr-blue medium" href="myQnaList.do">목록</a>
 			   		</div>
 			    </form>
 				

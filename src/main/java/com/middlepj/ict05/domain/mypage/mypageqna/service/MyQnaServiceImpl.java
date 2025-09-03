@@ -30,7 +30,7 @@ public class MyQnaServiceImpl implements MyQnaService{
 		System.out.println("MyQnaServiceImpl - qnaListAction()");
 		
 		String pageNum = request.getParameter("pageNum");
-		int mbId = (Integer)request.getSession().getAttribute("sessionID");
+		int mbId = (int) request.getSession().getAttribute("sessionID");
 		
 	     
 	    // 갯수 카운트
@@ -65,13 +65,13 @@ public class MyQnaServiceImpl implements MyQnaService{
 		
 	}
 
-//	// 2. 수정버튼 클릭시 - 전문가 댓글 없을 시에 수정 페이지 이동
-//	@Override
-//	public void qnaDetailAction(HttpServletRequest request, HttpServletResponse response, Model model)
-//			throws ServletException, IOException {
-//		
-//	}
-//
+	// 2. 수정버튼 클릭시 - 전문가 댓글 없을 시에 수정 페이지 이동
+	@Override
+	public void qnaDetailAction(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		
+	}
+
 //	// 3. qna 수정
 //	@Override
 //	public void qnaUpdateAction(HttpServletRequest request, HttpServletResponse response, Model model)
