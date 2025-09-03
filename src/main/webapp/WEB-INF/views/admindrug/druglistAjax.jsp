@@ -27,7 +27,7 @@
 	            <td data-th="유통기한">${dto.dr_expiration_date}</td>
 	            <td data-th="공개여부">${dto.dr_show}</td>
 	            <td data-th="버튼">
-					<button class="btn small color1" onclick="location.href='/drugDetail.ad/?dr_id=${dto.dr_id}'" style="cursor:pointer;">상세/수정</button>
+					<button class="btn small color1" onclick="location.href='drugDetail.ad/?dr_id=${dto.dr_id}'" style="cursor:pointer;">상세/수정</button>
 				</td>
 	        </tr>
 	    </c:forEach>

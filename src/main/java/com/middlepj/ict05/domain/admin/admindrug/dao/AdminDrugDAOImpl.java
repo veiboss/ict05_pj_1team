@@ -60,5 +60,14 @@ public class AdminDrugDAOImpl implements AdminDrugDAO{
 		
 		return insertCnt;
 	}
+
+	@Override
+	public AdminDrugDetailDTO drugSelectOne(int dr_id) {
+		System.out.println("AdminDrugDAOImpl - drugDetail()");
+		
+		AdminDrugDetailDTO dto = sqlSession.selectOne("com.middlepj.ict05.domain.admin.admindrug.dao.AdminDrugDAO.drugSelectOne", dr_id);
+		
+		return dto;
+	}
 	
 }

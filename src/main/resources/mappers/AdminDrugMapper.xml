@@ -72,4 +72,8 @@
 			 , #{dr_base_standard}
 			 , 'Y')
 	</insert>
+	
+	<select id="drugSelectOne">
+		SELECT * FROM DRUG_TB WHERE dr_id = #{dr_id}
+	</select>
 </mapper> 

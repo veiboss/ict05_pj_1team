@@ -129,4 +129,34 @@ public class AdminDrugServiceImpl implements AdminDrugService{
 		
 	}
 
+	@Override
+	public void drugDetail(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("AdminDrugServiceImpl - drugDetail");
+		int dr_id = Integer.parseInt(request.getParameter("dr_id"));
+		AdminDrugDetailDTO dto;
+		try {
+			dto = dao.drugSelectOne(dr_id);
+        } catch (Exception e) {
+            logger.error("Failed to fetch review detail", e);
+            throw new ServletException("영양제 상세 조회 실패", e);
+        }
+		
+		model.addAttribute("dto", dto);
+	}
+
+	@Override
+	public void drugModify(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("AdminDrugServiceImpl - drugModify");
+		
+	}
+
+	@Override
+	public void drugDelete(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("AdminDrugServiceImpl - drugDelete");
+		
+	}
+
 }

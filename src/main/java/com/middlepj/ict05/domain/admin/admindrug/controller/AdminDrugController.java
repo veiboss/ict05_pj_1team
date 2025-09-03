@@ -68,12 +68,6 @@ public class AdminDrugController {
     
     }
     
-    @RequestMapping("/drugDetail.ad")
-    public String drugDetail(HttpServletRequest request, HttpServletResponse response, Model model)
-            throws ServletException, IOException {
-    	logger.info("<<< url ==> /drugDetail.ad >>>");
-    	return "admindrug/drugDetail";
-    }
     
     @RequestMapping("/drugAdd.ad")
     public String drugAdd(HttpServletRequest request, HttpServletResponse response, Model model)
@@ -91,4 +85,36 @@ public class AdminDrugController {
     	
     	return "admindrug/drugAddAction";
     }
+  
+    @RequestMapping("/drugDetail.ad")
+    public String drugDetail(HttpServletRequest request, HttpServletResponse response, Model model)
+    		throws ServletException, IOException {
+    	logger.info("<<< url ==> /drugDetail.ad >>>");
+    	
+    	service.drugDetail(request, response, model);
+    	
+    	return "admindrug/drugDetail";
+    }
+    
+    @RequestMapping("/drugModify.ad")
+    public String drugModify(HttpServletRequest request, HttpServletResponse response, Model model)
+    		throws ServletException, IOException {
+    	logger.info("<<< url ==> /drugModify.ad >>>");
+    	
+    	
+    	
+    	return "admindrug/drugModify";
+    }
+    
+    @RequestMapping("/drugDelete.ad")
+    public String drugDelete(HttpServletRequest request, HttpServletResponse response, Model model)
+    		throws ServletException, IOException {
+    	logger.info("<<< url ==> /drugDelete.ad >>>");
+    	
+    	
+    	
+    	return "admindrug/drugDelete";
+    }
+    
+    
 }

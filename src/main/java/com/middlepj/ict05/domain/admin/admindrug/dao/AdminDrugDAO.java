@@ -17,4 +17,6 @@ public interface AdminDrugDAO {
 	public List<AdminDrugListDTO> drugSearchList(Map<String, Object> map);
 	
 	public int drugInsert(AdminDrugDetailDTO dto);
+	
+	public AdminDrugDetailDTO drugSelectOne(int dr_id);
 }
