@@ -19,4 +19,6 @@ public interface AdminDrugDAO {
 	public int drugInsert(AdminDrugDetailDTO dto);
 	
 	public AdminDrugDetailDTO drugSelectOne(int dr_id);
+	
+	public int drugUpdate(AdminDrugDetailDTO dto);
 }

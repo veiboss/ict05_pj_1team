@@ -101,7 +101,7 @@ public class AdminDrugController {
     		throws ServletException, IOException {
     	logger.info("<<< url ==> /drugModify.ad >>>");
     	
-    	
+    	service.drugModify(request, response, model);
     	
     	return "admindrug/drugModify";
     }
@@ -111,7 +111,7 @@ public class AdminDrugController {
     		throws ServletException, IOException {
     	logger.info("<<< url ==> /drugDelete.ad >>>");
     	
-    	
+    	service.drugDelete(request, response, model);
     	
     	return "admindrug/drugDelete";
     }

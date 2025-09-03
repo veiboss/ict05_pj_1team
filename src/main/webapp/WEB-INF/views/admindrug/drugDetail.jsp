@@ -65,7 +65,7 @@ function validateForm() {
 				</div>
 				<main id="content">
 					<div class="write-form box-wrap">
-						<form action="drugModify.ad" onsubmit="return validateForm();">
+						<form action="${path}/drugModify.ad" onsubmit="return validateForm();">
 							<fieldset>
 								<legend class="blind">기본 정보</legend>
 								<input type="hidden" name="dr_id" value="${dto.dr_id}">
