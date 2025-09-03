@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.middlepj.ict05.domain.drug.service.DrugService;
 import com.middlepj.ict05.domain.drug.service.DrugServiceImpl;
 import com.middlepj.ict05.domain.mypage.mypagesurvey.service.MypageSurveyServiceImpl;
 
