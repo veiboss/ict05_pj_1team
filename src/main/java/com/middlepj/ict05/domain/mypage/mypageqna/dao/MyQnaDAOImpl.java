@@ -5,9 +5,11 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.middlepj.ict05.domain.mypage.mypageqna.dto.MyQnaDTO;
 
+@Repository
 public class MyQnaDAOImpl implements MyQnaDAO{
 
 	@Autowired
@@ -24,28 +26,46 @@ public class MyQnaDAOImpl implements MyQnaDAO{
 		return list;
 	}
 
-	// 게시글 갯수 구하기
+	// qna 갯수 구하기
 	@Override
-	public int listCnt(int mb_id) {
+	public int listCnt(Map<String, Object> map) {
 		
 		System.out.println("MyQnaDAOImpl - listCnt()");
 		
-		int total = sqlsession.selectOne("com.middlepj.ict05.domain.mypage.mypageqna.dao.MyQnaDAO.listCnt", mb_id);
+		int total = sqlsession.selectOne("com.middlepj.ict05.domain.mypage.mypageqna.dao.MyQnaDAO.listCnt", map);
 				
 		return total;
 	}
-	
-	// 게시글 목록
-	
-	
-	// 게시글 갯수 구하기
-	
-	// 2. 수정버튼 클릭시 - 전문가 댓글 없을 시에 수정 페이지 이동
-	
-
-	// 3. 게시글 수정 
-	
-	
-	// 게시글 삭제 버튼 클릭시 - 전문가 댓글 없을 시에/ 삭제 (안보임처리)
+//
+//	// 수정버튼 클릭시 - 전문가 댓글 없을 시에 수정 페이지 이동
+//	@Override
+//	public MyQnaDTO qnaDetail(int qa_id) {
+//		
+//		System.out.println("MyQnaDAOImpl - qnaDetail()");
+//		
+//		MyQnaDTO dto = sqlsession.selectOne("com.middlepj.ict05.domain.mypage.mypageqna.dao.MyQnaDAO.qnaDetail", qa_id);
+//		
+//		return dto;
+//	}
+//
+//	// 3. qna 수정
+//	@Override
+//	public void updateQna(MyQnaDTO dto) {
+//		
+//		System.out.println("MyQnaDAOImpl - updateQna()");
+//		
+//		sqlsession.update("com.middlepj.ict05.domain.mypage.mypageqna.dao.MyQnaDAO.updateQna", dto);
+//		
+//	}
+//
+//	// 삭제 버튼 클릭시 - 전문가 댓글 없을 시에/ 삭제 (안보임처리)
+//	@Override
+//	public void deleteQna(int qa_id) {
+//		
+//		System.out.println("MyQnaDAOImpl - deleteQna()");
+//		
+//		sqlsession.update("com.middlepj.ict05.domain.mypage.mypageqna.dao.MyQnaDAO.deleteQna", qa_id);
+//		
+//	}
 
 }

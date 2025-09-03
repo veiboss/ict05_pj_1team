@@ -61,12 +61,13 @@ public class MyReviewDAOImpl implements MyReviewDAO{
 
 	// 3. 게시글 삭제 버튼 클릭시 - 삭제 (안보임처리)
 	@Override
-	public void deleteReview(int rv_id) {
+	public int deleteReview(int rv_id) {
 		
 		System.out.println("ReviewDAOImpl - deleteReview");
+		System.out.println("아이디" + rv_id);
+		int deleteCnt = sqlSession.update("com.middlepj.ict05.domain.mypage.mypagereview.dao.MyReviewDAO.deleteReview", rv_id);
 		
-		sqlSession.update("com.middlepj.ict05.domain.mypage.mypagereview.dao.MyReviewDAO.deleteReview", rv_id);
-		
+		return deleteCnt;
 	}
 	
 
