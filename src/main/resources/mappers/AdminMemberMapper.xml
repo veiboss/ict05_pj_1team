@@ -51,4 +51,29 @@
 		DELETE MEMBER_TB
 		 WHERE MB_ID=#{mbId}
 	</delete>
+	
+	<!-- 회원가입 처리 -->
+	<insert id="memberInsert" parameterType="com.middlepj.ict05.domain.admin.adminmember.dto.MemberAdminDTO">
+		INSERT INTO MEMBER_TB(MB_ID, 
+						MB_NAME, 
+						MB_EMAIL, 
+						MB_PASSWORD, 
+						MB_GRADE, 
+						MB_WRITER_ID,
+						MB_REG_DATE)
+		VALUES((SELECT NVL(max(MB_ID)+1, 1) FROM MEMBER_TB), 
+				#{mb_name}, 
+				#{mb_email}, 
+				#{mb_password},
+				#{mb_grade}, 
+				#{mb_writer_id}, 
+				sysdate)
+	</insert>
+	
+	<!-- 멤버상세 -->
+	<select id="memberDetail"  parameterType="int" resultType="com.middlepj.ict05.domain.admin.adminmember.dto.MemberAdminDTO">
+		SELECT *
+		  FROM MEMBER_TB
+		 WHERE MB_ID=#{mbId}
+	</select>
 </mapper> 

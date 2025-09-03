@@ -40,7 +40,7 @@ function emailChk() {
 			// 중복확인 버튼 클릭시 컨트롤러로 url을 전달, 컨트롤러에 소스 추가
 			// do로 컨트롤러 이동
 			modalOpen('#alertSignIn');
-			let url = "/ict05/emailCheckAction.do?mb_email=" + inputEmail.value;
+			let url = `${ctx}/emailCheckAction.do?mb_email=${encodeURIComponent(inputEmail.value)}`;
 			load(url);
 		}
 	}
@@ -80,6 +80,7 @@ function signUpCheck() {
 		document.joinform.mb_email.focus();
 		return false;
 	}
+	
 	// 비밀번호 불일치
 	if(document.joinform.mb_password.value != document.joinform.mb_password_re.value) {
 		alert("비밀번호가 일치하지 않습니다!!");

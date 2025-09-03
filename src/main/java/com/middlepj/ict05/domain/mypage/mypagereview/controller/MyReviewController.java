@@ -32,7 +32,7 @@ private static final Logger logger = LoggerFactory.getLogger(MyReviewController.
 		
 		service.reviewListAction(request, response, model);
 		
-		return "myPage/myPageReview/myReviewList";
+		return "mypage/myPageReview/myReviewList";
 		
 	}
 	
@@ -44,7 +44,7 @@ private static final Logger logger = LoggerFactory.getLogger(MyReviewController.
 		
 		service.reviewDetailAction(request, response, model);
 		
-		return "myPage/myPageReview/myReviewDetail";
+		return "mypage/myPageReview/myReviewDetail";
 	
 	}
 	
@@ -56,7 +56,7 @@ private static final Logger logger = LoggerFactory.getLogger(MyReviewController.
 		
 		service.reviewUpdateAction(request, response, model);
 		
-		return "myPage/myPageReview/myReviewDetail";
+		return "mypage/myPageReview/myReviewDetail";
 	
 	}
 	
@@ -68,7 +68,7 @@ private static final Logger logger = LoggerFactory.getLogger(MyReviewController.
 		
 		service.reviewDeleteAction(request, response, model);
 		
-		return "myPage/myPageReview/myReviewList";
+		return "mypage/myPageReview/myReviewList";
 	
 	}
 	

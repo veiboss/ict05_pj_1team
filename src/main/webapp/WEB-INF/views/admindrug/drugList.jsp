@@ -93,7 +93,7 @@
 			    	<div class="list-header pack-both">
 						<div></div>
 						<div>
-							<a class="btn medium color1" href="javascript:void(0);">영양제 등록</a>
+							<a class="btn medium color1" href="${path}/drugAdd.ad">영양제 등록</a>
 						</div>
 					</div>
 			    	<div id="searchResult"></div>

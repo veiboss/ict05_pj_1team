@@ -84,12 +84,14 @@ public class MemberController {
 		
 		return "member/join/joinAction";
 	}
+	
+	//마이 페이지 이동
 	@RequestMapping("/myPage.do")
 	public String myPage(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
 		logger.info("<<< url ==> /myPage.do >>>");
 
-	
+		
 		return "myPage/myPage";
 	}
 	

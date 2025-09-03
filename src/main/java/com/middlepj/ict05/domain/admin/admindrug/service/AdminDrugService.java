@@ -15,4 +15,16 @@ public interface AdminDrugService {
 	
 	public void drugList(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException;
+	
+	public void drugAddAction(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException;
+	
+	public void drugDetail(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException;
+	
+	public void drugModify(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException;
+	
+	public void drugDelete(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException;
 }

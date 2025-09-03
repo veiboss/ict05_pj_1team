@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file="../../common/setting.jsp" %>
+<%@ include file="../../common/setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +45,31 @@
 	}
 </style>
 <script>
+		
 	$(function() {
+		console.log('jQuery:', typeof jQuery, jQuery && jQuery.fn && jQuery.fn.jquery);
+		console.log("counterUp 등록 여부:", typeof $.fn.counterUp); // function 이면 정상
+		console.log("easyPieChart 등록 여부:", typeof $.fn.easyPieChart);
+		console.log("waypoints 등록 여부:", typeof $.fn.waypoints); // function 이면 정상
+		/* =============================================================== */
+		
+		const urlParams = new URLSearchParams(window.location.search);
+		const score = parseInt(urlParams.get("score")) || 0;
+		
+		fetch("${path}/resources/json/result.json")
+			.then(res => res.json())
+			.then(data => {
+				let comment = "결과를 찾을 수 없습니다.";
+				for (let r of data.results) {
+					if (score >= r.min && score <= r.max) {
+						comment = r.comment;
+						break;
+					}
+				}
+				/*  document.getElementById("score").innerText = `\${score}`;*/
+				document.getElementById("comment").innerText = comment;
+			});
+		
 		$('.chart').easyPieChart({
 			animate: 2000,
 			easing: 'easeOutBounce',
@@ -53,30 +77,31 @@
 			scaleColor: false,
 			trackColor: '#f1f1f1',
 			lineWidth: 16,
-			size: 200,
+			size: 200
 		});
-	});
-	
-	$(".chart span").counterUp({
-		time: 1000,
-	});
-
-	const urlParams = new URLSearchParams(window.location.search);
-	const score = parseInt(urlParams.get("score")) || 0;
-	
-	fetch("${path}/resources/json/result.json")
-		.then(res => res.json())
-		.then(data => {
-			let comment = "결과를 찾을 수 없습니다.";
-			for (let r of data.results) {
-				if (score >= r.min && score <= r.max) {
-					comment = r.comment;
-					break;
-				}
-			}
-			document.getElementById("score").innerText = `\${score}`;
-			document.getElementById("comment").innerText = comment;
+		$(".chart .fc-blue").counterUp({
+			time: 1000
 		});
+		
+	    $(".add-btn").click(function() {
+	        var dr_id = $(this).data("drid"); // 버튼의 data-drid 가져오기
+	
+	        $.ajax({
+	            url: '${path}/MA16',
+	            type: 'POST',
+	            data: { dr_id: dr_id },       // 객체로 보내면 application/x-www-form-urlencoded로 전송
+	            dataType: 'json',             // JSON 응답 받기
+	            success: function(response) {
+	                alert(response.msg);       // Service에서 보낸 메시지 표시
+	            },
+	            error: function(xhr, status, error) {
+	                console.error("에러 상태 :", status);
+	                console.error("에러 내용 :", error);
+	                alert("서버 오류가 발생했습니다.");
+	            }
+	        });
+	    });
+	});
 </script>
 </head>
 <body>
@@ -127,35 +152,46 @@
 							<ul class="pack-left col-3">
 								<c:forEach var="drug_dto" items="${list}">
 									<li>
-										<div class="img-wrap">
-											<c:choose>
-									            <c:when test="${fn:contains(drug_dto.dr_sungsang, '분말')}">
-									                <img src="${path}/resources/images/drug_type/01.png" alt="분말">
-									            </c:when>
-									            <c:when test="${fn:contains(drug_dto.dr_sungsang, '원형캡슐')}">
-									                <img src="${path}/resources/images/drug_type/02.png" alt="원형캡슐">
-									            </c:when>
-									            <c:when test="${fn:contains(drug_dto.dr_sungsang, '원형정제')}">
-									                <img src="${path}/resources/images/drug_type/03.png" alt="원형정제">
-									            </c:when>
-									            <c:when test="${fn:contains(drug_dto.dr_sungsang, '제피정제')}">
-									                <img src="${path}/resources/images/drug_type/04.png" alt="제피정제">
-									            </c:when>
-									            <c:when test="${fn:contains(drug_dto.dr_sungsang, '젤리')}">
-									                <img src="${path}/resources/images/drug_type/05.png" alt="젤리">
-									            </c:when>
-									            <c:when test="${fn:contains(drug_dto.dr_sungsang, '액상')}">
-									                <img src="${path}/resources/images/drug_type/06.png" alt="유동성 액체">
-									            </c:when>
-									            <c:when test="${fn:contains(drug_dto.dr_sungsang, '경질캡슐')}">
-									                <img src="${path}/resources/images/drug_type/07.png" alt="경질캡슐">
-									            </c:when>
-									            <c:otherwise>
-									                <img src="${path}/resources/images/drug_type/03.png" alt="정제">
-									            </c:otherwise>
-									        </c:choose>
-										</div>
-										<p class="fs-16 ellipsis">${drug_dto.dr_product}</p>
+											<a href="${path}/drug_detailAction.do?dr_id=${drug_dto.dr_id}">
+											<div class="img-wrap">
+												<c:choose>
+										            <c:when test="${fn:contains(drug_dto.dr_sungsang, '분말')}">
+										                <img src="${path}/resources/images/drug_type/01.png" alt="분말">
+										            </c:when>
+										            <c:when test="${fn:contains(drug_dto.dr_sungsang, '원형캡슐')}">
+										                <img src="${path}/resources/images/drug_type/02.png" alt="원형캡슐">
+										            </c:when>
+										            <c:when test="${fn:contains(drug_dto.dr_sungsang, '원형정제')}">
+										                <img src="${path}/resources/images/drug_type/03.png" alt="원형정제">
+										            </c:when>
+										            <c:when test="${fn:contains(drug_dto.dr_sungsang, '제피정제')}">
+										                <img src="${path}/resources/images/drug_type/04.png" alt="제피정제">
+										            </c:when>
+										            <c:when test="${fn:contains(drug_dto.dr_sungsang, '젤리')}">
+										                <img src="${path}/resources/images/drug_type/05.png" alt="젤리">
+										            </c:when>
+										            <c:when test="${fn:contains(drug_dto.dr_sungsang, '액상')}">
+										                <img src="${path}/resources/images/drug_type/06.png" alt="유동성 액체">
+										            </c:when>
+										            <c:when test="${fn:contains(drug_dto.dr_sungsang, '경질캡슐')}">
+										                <img src="${path}/resources/images/drug_type/07.png" alt="경질캡슐">
+										            </c:when>
+										            <c:otherwise>
+										                <img src="${path}/resources/images/drug_type/03.png" alt="정제">
+										            </c:otherwise>
+										        </c:choose>
+											</div>
+											<p class="fs-16 ellipsis">${drug_dto.dr_product}</p>
+											</a>
+											<div id="drug-item" class="data-wrap">
+												<span> </span>
+												<p class="btn">
+													<button type="submit" class="btn blue small r4 add-btn" data-drid="${drug_dto.dr_id}">
+														내약추가
+													</button>
+												</p>
+											</div>
+										
 									</li>
 								</c:forEach>
 							</ul>

@@ -181,7 +181,7 @@ textarea								{}
 .input-has-btn .unit					{ 
 	flex: 1 1 auto;
 }
-.input-has-btn .btn						{min-width: 100px; height: 46px; border-radius: 0;}
+.input-has-btn .btn						{min-width: 100px; border-radius: 0; word-break: keep-all;}
 
 
 

@@ -93,7 +93,7 @@
 					setTimeout(function(){
 						document.querySelector('.spinner').style.display = "none"
 						window.location="${path}/MA15?score=${dto.mbs_score}";
-					}, 3000);
+					}, 2000);
 				</script>
 			</c:if>
 			<c:if test="${insertCnt != 1}">

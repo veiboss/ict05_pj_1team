@@ -27,7 +27,7 @@
 	            <td data-th="유통기한">${dto.dr_expiration_date}</td>
 	            <td data-th="공개여부">${dto.dr_show}</td>
 	            <td data-th="버튼">
-					<button class="btn small color1" onclick="location.href='//?dr_id=${dto.dr_id}'" style="cursor:pointer;">상세/수정</button>
+					<button class="btn small color1" onclick="location.href='drugDetail.ad/?dr_id=${dto.dr_id}'" style="cursor:pointer;">상세/수정</button>
 				</td>
 	        </tr>
 	    </c:forEach>
@@ -44,7 +44,7 @@
 <div class="pagination">
     <!-- 이전 버튼 -->
     <c:if test="${paging.startPage > 5}">
-        <a href="drug.ad?page=${paging.prev}" class="btn prev page-link" data-page="${paging.prev}">
+        <a href="${path}/drug.ad?page=${paging.prev}" class="btn prev page-link" data-page="${paging.prev}">
             <svg xmlns="http://www.w3.org/2000/svg" class="svg">
                 <path d="m2 6 6-4.33v8.66L2 6z" />
             </svg>
@@ -55,14 +55,14 @@
     <ul>
         <c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
             <li class="${num == paging.currentPage ? 'current' : ''}">
-                <a href="drug.ad?page=${num}" class="btn page-link" data-page="${num}">${num}</a>
+                <a href="${path}/drug.ad?page=${num}" class="btn page-link" data-page="${num}">${num}</a>
             </li>
         </c:forEach>
     </ul>
 
     <!-- 다음 버튼 -->
     <c:if test="${paging.endPage < paging.pageCount}">
-        <a href="drug.ad?page=${paging.next}" class="btn next page-link" data-page="${paging.next}">
+        <a href="${path}/drug.ad?page=${paging.next}" class="btn next page-link" data-page="${paging.next}">
             <svg xmlns="http://www.w3.org/2000/svg" class="svg">
                 <path d="m2 6 6-4.33v8.66L2 6z" />
             </svg>

@@ -39,13 +39,18 @@
 			
 			
 			<div class="title-bar">
+			<div class="pack-left">
 				<h2 class="page-title ellipsis">회원 관리</h2>
+				<a href="${path}/memberInsert.ad" class="btn medium color1">
+					<span class="material-symbols-outlined">person_add</span>
+				</a>
+			</div>
 			</div>
 			
 			<main id="content">
 				<div id="search" class="search box-wrap">
 					<form  action="${path}/memberList.ad" method="GET">
-						<fieldset>
+						<fieldset class="pack-left">
 							<legend class="blind">검색</legend>
 							<div class="field insert">
 								<select class="select medium" title="등급조회" name="s_grade">
@@ -60,14 +65,12 @@
 							</div>
 							<div class="button-area pack-left">
 								<button type="submit" class="btn medium color1">검색</button>
-								<button type="reset" class="btn medium bdr-color1">초기화</button>
 							</div>
 						</fieldset>
 					</form>
 				</div>
 
 				<div class="box-wrap">
-					
 					<form name="memberList">
 						<table class="data-table">
 							<thead>

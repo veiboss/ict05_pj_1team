@@ -247,7 +247,7 @@ fieldset						{display: block;}
 .label-box > .textarea					{margin-top: 21px;}
 .label-box .input-has-btn {height: auto; border: 0;}
 .label-box .input-has-btn .input-text {height: 48px;}
-.label-box .input-has-btn .btn {position: relative; min-width: auto; padding-left: 16px; padding-right: 16px; font-weight: bold; word-break: keep-all;}
+.label-box .input-has-btn .btn {position: relative; min-width: auto; padding-left: 16px; padding-right: 16px; font-weight: bold;}
 .label-box .input-has-btn .btn + .btn::before {content: ''; position: absolute; top: 50%; left: 0; width: 1px; height: 16px; background-color: var(--light-gray); transform: translateY(-50%);}
 
 /* text-area */
@@ -366,7 +366,7 @@ div.field:not(.both)							{
 .input-has-btn .select					{height: 46px; border: 0 none}
 .input-has-btn .input-text				{min-width: 50%;}
 .input-has-btn .input-text:first-child	{padding-right: 0}
-.input-has-btn .btn						{min-width: 55px; height: 46px;}
+.input-has-btn .btn						{min-width: 55px; height: 46px; word-break: keep-all;}
 .input-has-btn .unit					{min-width: 44px; padding-right: 16px; line-height: 46px; text-align: right;}
 .input-has-btn > .ico.shuffle			{margin-left: 16px;}
 .input-has-btn .unit.time				{min-width: 108px;}

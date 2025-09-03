@@ -55,4 +55,46 @@
 	    )
 	    WHERE rn BETWEEN #{start} AND #{end}
 	</select>
+	
+	<insert id="drugInsert" parameterType="com.middlepj.ict05.domain.admin.admindrug.dto.AdminDrugDetailDTO">
+		INSERT INTO DRUG_TB(dr_id, dr_enterprise, dr_product, dr_statement_id, dr_regist_date, dr_expiration_date, dr_sungsang, dr_serve_use, dr_intake_hint, dr_main_function, dr_preservation, dr_base_standard, dr_show)
+		VALUES ((SELECT NVL(MAX(dr_id)+1, 1) FROM DRUG_TB)
+			 , #{dr_enterprise}
+			 , #{dr_product}
+			 , #{dr_statement_id}
+			 , sysdate
+			 , #{dr_expiration_date}
+			 , #{dr_sungsang}
+			 , #{dr_serve_use}
+			 , #{dr_intake_hint}
+			 , #{dr_main_function}
+			 , #{dr_preservation}
+			 , #{dr_base_standard}
+			 , 'Y')
+	</insert>
+	
+	<select id="drugSelectOne">
+		SELECT * FROM DRUG_TB WHERE dr_id = #{dr_id}
+	</select>
+	
+	<update id="drugUpdate">
+		UPDATE DRUG_TB
+		   SET dr_enterprise = #{dr_enterprise}
+		     , dr_product = #{dr_product}
+			 , dr_statement_id = #{dr_statement_id}
+			 , dr_expiration_date = #{dr_expiration_date}
+			 , dr_sungsang = #{dr_sungsang}
+			 , dr_serve_use = #{dr_serve_use}
+			 , dr_intake_hint = #{dr_intake_hint}
+			 , dr_main_function = #{dr_main_function}
+			 , dr_preservation = #{dr_preservation}
+			 , dr_base_standard = #{dr_base_standard}
+		 WHERE dr_id = #{dr_id}
+	</update>
+	
+	<update id="drugDelete" parameterType="int">
+		UPDATE DRUG_TB
+		   SET dr_show = 'N'
+		 WHERE dr_id = #{dr_id}
+	</update>
 </mapper> 
