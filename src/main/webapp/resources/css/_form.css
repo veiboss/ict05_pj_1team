@@ -12,12 +12,8 @@ fieldset,
 .radio:before,
 .radio:after,
 .checkbox:before,
-.checkbox:after{
+.checkbox:after 					{
 	box-sizing: border-box;
-	-o-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
 }
 input,
 select,
@@ -25,21 +21,16 @@ textarea,
 input::-webkit-search-cancel-button,
 input::-webkit-calendar-picker-indicator{
 	appearance: none;
-	-moz-appearance: none;
 	-webkit-appearance: none;
 }
 input,
 select,
-textarea {font-size:14px; line-height: 21px; color:#000; background:  #fff;
-	outline: none;
-	border:0;
-	border-radius: 0;
-	-moz-border-radius: 0;
-	-webkit-border-radius: 0;
+textarea 							{font-size: 14px; line-height: 21px; color:#000; background:  #fff;
+	outline: none; border:0; border-radius: 0;
 }
 select::-ms-expand 						{display: none;}
 input,
-textarea								{font-size:14px; caret-color: black;}
+textarea								{font-size: 14px; caret-color: black;}
 ::placeholder							{color: var(--gray);}
 input:focus,
 select:focus,
@@ -51,15 +42,12 @@ textarea,
 .checkbox:before,
 .upload-wrap .upload-file.img {
 	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
 }
 fieldset						{display: block;}
 
 /* checkbox */
 .check-wrap						{
-	display: inline-flex;
-	align-items: center;
+	display: inline-flex; align-items: center;
 }
 .radio,
 .checkbox						{vertical-align: middle; display: inline-block;}
@@ -83,8 +71,6 @@ fieldset						{display: block;}
 .toggle [type="checkbox"],
 .toggle [type="checkbox"] + span:after					{
 	border-radius: 12px;
-	-moz-border-radius: 12px;
-	-webkit-border-radius: 12px;
 }
 .checkbox,
 .radio,
@@ -125,13 +111,11 @@ fieldset						{display: block;}
 .toggle [type="checkbox"] + span:after	{content:""; position: absolute; left: 0; bottom: 4px; width:20px; height:20px; background-color: white;
 	box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
 	-webkit-transform: translateX(0);
-	-ms-transform: translateX(0);
 	transform: translateX(0);
 }
 .toggle [type="checkbox"]:checked	{background: var(--blue);}
 .toggle [type="checkbox"]:checked + span:after	{
 	-webkit-transform: translateX(15px);
-	-ms-transform: translateX(15px);
 	transform: translateX(15px);
 }
 .toggle [type="checkbox"],
@@ -149,11 +133,9 @@ fieldset						{display: block;}
 }
 .select-options:before			{content: ''; display: block; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border: solid 1px var(--light-gray);
 	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
 }
 .select-options label{position: relative; width: auto;
-	-webkit-flex: 1; -ms-flex: 1; flex: 1;
+	flex: 1;
 	-webkit-transition: all 0.1s ease-in-out;
 			transition: all 0.1s ease-in-out;
 }
@@ -164,8 +146,7 @@ fieldset						{display: block;}
 
 /* select-icons */
 .select-icons			{
-	display: flex;
-	flex-wrap: wrap;
+	display: flex; flex-wrap: wrap;
 }
 .select-icons label.btn,
 .select-icons .icon-wrap	{position: relative; display: block; width: 64px; margin-bottom: 28px; text-align: center;}
@@ -254,14 +235,10 @@ fieldset						{display: block;}
 .textarea				{display: block; width:100%; min-height: 48px; border: solid 1px var(--light-gray); padding: 14px 16px 10px; resize: none;}
 .textarea::-webkit-scrollbar-track{background-color: inherit;
 	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
 }
 .textarea::-webkit-scrollbar{width: 10px; padding: 3px; background-color: transparent;}
 .textarea::-webkit-scrollbar-thumb{border: 3px solid white; background-color: black;
 	border-radius: 20px;
-	-moz-border-radius: 20px;
-	-webkit-border-radius: 20px;
 }
 .textarea:disabled::-webkit-scrollbar-thumb{border-color: var(--very-light-gray);}
 
@@ -308,7 +285,7 @@ fieldset						{display: block;}
 /* rating */
 .rating {position: relative; overflow: hidden; width: 100%; height: 48px; background-color: var(--very-light-gray-2);
 	display: flex;
-	-webkit-flex-direction: row-reverse; -ms-flex-direction: row-reverse; flex-direction: row-reverse;
+	flex-direction: row-reverse;
 	justify-content: center;
 	align-items: center;
 }
@@ -337,7 +314,7 @@ div.field.both									{
 	align-items: center;
 }
 div.field:not(.both)							{
-	-webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column;
+	flex-direction: column;
 }
 .insert									{display: block;}
 .insert.scroll-x						{width: 100%; max-width: calc(100vw - 16px);}
@@ -470,7 +447,7 @@ div.field:not(.both)							{
 .write-form .accordion-content .select-icons:last-child	{margin-bottom: -28px;}
 .write-form .insert-dep > .select,
 .write-form .insert-dep > div			{min-width: 50%;
-	-webkit-flex: 1; -ms-flex: 1; flex: 1;
+	flex: 1;
 }
 .write-form .fee-total .unit			{width: 110px;}
 .write-form .new-field-title			{padding: 2px 0 12px;}

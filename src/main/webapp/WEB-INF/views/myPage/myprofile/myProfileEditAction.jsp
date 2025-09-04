@@ -37,31 +37,20 @@
 			<!-- SID : SI20 -->
 			<div id="content" class="sub my my-home">
 				<!-- [D] main / sub-main / sub && pagd name -->
-				<div class="pack-down-center" style="gap:20px; padding:20px 0">
-					<div class="img-wrap circle s120">
-						<img src="https://www.palnews.co.kr/news/photo/201801/92969_25283_5321.jpg" class="centered" alt="프로필 대표 이미지">
-					</div>
-					<h2 class="section-title">
-						${sessionScope.sessionName}<span class="fw-300"> 님</span>
-					</h2>
-					<p class="pack-down">
-						<span>${sessionScope.sessionEmail}</span>					
-					</p>
-				</div>
-				<hr class="out-cont section-bar">	
+					
 				<section class="pack-down" style="padding:20px 0">
-					<h3 class="small-title"><span class="fc-dark-gray">프로필 수정</span></h3>
+					<h3 class="page-title">프로필 수정</h3>
 						<form name="profileInfo" id="info" action="${path}/myProfileUpdateAction.do" method="post">
-						    <div class="pack-down" style="gap:12px">
-							    <p class="pack-left">
-							        <span style="width: 160px">성별</span>
-							        <span style="height: 48px; width: 100%; gap:24px" class="pack-left">
-							            <label>
-							                <input type="radio" class="radio" name="mbp_gender" value="M"> 남
-							            </label>
-							            <label>
-							                <input type="radio" class="radio" name="mbp_gender" value="W"> 여
-							            </label>
+							<div class="pack-down" style="gap:12px">
+								<p class="pack-left">
+									<span style="width: 160px">성별</span>
+									<span style="height: 48px; width: 100%; gap:24px" class="pack-left">
+										<label>
+											<input type="radio" class="radio" name="mbp_gender" value="M"> 남
+										</label>
+										<label>
+											<input type="radio" class="radio" name="mbp_gender" value="W"> 여
+										</label>
 							        </span>
 							    </p>
 							    <p class="pack-left">
@@ -77,8 +66,8 @@
 							        <input type="text" class="input-text" name="mbp_weight">
 							    </p>
 							
-							    <div class="pack-down-center" style="display:flex; gap:10px;">
-							        <button type="submit" class="btn bdr-blue medium" style="padding:8px 0">
+							    <div class="button-area pack-center">
+							        <button type="submit" class="btn black medium r-full" style="padding:8px 0">
 							            <span class="fs-18">수정하기</span>
 							        </button>
 							    </div>

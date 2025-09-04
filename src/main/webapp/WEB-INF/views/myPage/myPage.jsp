@@ -22,6 +22,26 @@
 <!-- defer : html을 다 읽은 후에 자바스크립트를 실행한다. 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행된다. -->
 <script src="${path}/resources/js/lib/aos.js" defer></script>
 <script src="${path}/resources/js/yaksok.js" defer></script>
+<style>
+.my-home .pack-down-center.bg-blue.out-cont {
+	margin-top: 80px;
+	padding: 0 40px 40px;
+	gap: 40px;
+}
+
+.my-home .my-info {
+	width: 100%;
+	gap: 16px;
+}
+.my-home .my-info + .my-info{}
+.my-home .my-info .pack-down-left{gap: 0} 
+
+.my-home .img-wrap.circle {
+	margin-top: -60px;
+}
+.section.pack-down{padding: 40px calc(40px - 16px) 20px;}
+.section.pack-down .btn.transparent{width: 100%; padding: 8px 0; display: block; text-align: left;}
+</style>
 </head>
 <body>
 	<div id="wrap" class="wrap">
@@ -39,46 +59,103 @@
 			<!-- 컨텐츠 시작 -->
 			<!-- SID : COM000 -->
 			<div id="content" class="sub my my-home">
+				<h2 class="blind">마이페이지</h2>
 				<!-- [D] main / sub-main / sub && pagd name -->
-				<div class="pack-down-center" style="gap:20px; padding:20px 0">
+				<div class="pack-down-center bg-blue out-cont">
 					<div class="img-wrap circle s120">
-						<img src="https://www.palnews.co.kr/news/photo/201801/92969_25283_5321.jpg" class="centered" alt="프로필 대표 이미지">
+						<img
+							src="https://www.palnews.co.kr/news/photo/201801/92969_25283_5321.jpg"
+							class="centered" alt="프로필 대표 이미지">
 					</div>
-					<h2 class="section-title">
-						${sessionScope.sessionName}<span class="fw-300"> 님</span>
-					</h2>
-					<p class="pack-down-center">
-						<span>${sessionScope.sessionEmail}</span>					
-						<a class="btn xsmall bdr-blue" href="myProfileAction.do">마이프로필</a>
-					</p>
+					<div class="pack-down my-info">
+						<div class="pack-both-top my-info">
+							<p class="pack-down-left">
+								<span class="pack-left">
+									<strong class="fs-18">${sessionScope.sessionName}</strong>
+									<span class="fw-300"> 님</span>
+									<span class="op38"> (여, 32세)</span>
+								</span>
+								<span>${sessionScope.sessionEmail}</span>
+							</p>
+						</div>
+						
+						<hr class="line op25">
+						
+						<div class="pack-both-top my-info">
+							<div class="pack-down-left">
+								<p class="pack-left has-bar">
+									<span>키 </span>
+									<span>165</span>
+								</p>
+								<p class="pack-left has-bar">
+									<span>체중 </span>
+									<span>55</span>
+								</p>
+							</div>
+							
+							<a class="btn small black r-full" href="myProfileAction.do">
+								프로필 수정
+							</a>
+						</div>
+					</div>
 				</div>
+				
 				<hr class="out-cont section-bar">
+				
 				<!-- 여기까지가 마이프로필 수정 -->
-				<section class="pack-down" style="padding:20px 0">
-					<h3 class="small-title"><span class="fc-dark-gray">나의 활동</span></h3>
+				<section class="section pack-down">
+					<h3 class="small-title">
+						<span class="fc-dark-gray">나의 활동</span>
+					</h3>
 					<div class="pack-down">
-						<a href="MA20" class="btn transparent" style="padding:8px 0"><span class="fs-18">내설문목록</span></a>
-						<a href="주소넣기" class="btn transparent" style="padding:8px 0"><span class="fs-18">내약목록</span></a>
-						<a href="myReviewList.do" class="btn transparent" style="padding:8px 0"><span class="fs-18">내가쓴후기목록</span></a>
-						<a href="주소넣기" class="btn transparent" style="padding:8px 0"><span class="fs-18">내가쓴qna</span></a>
+						<a href="MA20" class="btn transparent">
+							<span class="fs-18">내설문목록</span>
+						</a>
+						<a href="주소넣기" class="btn transparent">
+							<span class="fs-18">내약목록</span>
+						</a>
+						<a href="myReviewList.do" class="btn transparent">
+							<span class="fs-18">내가쓴후기목록</span>
+						</a>
+						<a href="주소넣기" class="btn transparent">
+							<span class="fs-18">내가쓴qna</span>
+						</a>
 					</div>
 				</section>
-				<!-- // #content -->
-				<!-- 컨텐츠 끝 -->
-				</div>
-				<!-- nav 시작 -->
 				
-					
-				<%@ include file="../common/nav.jsp"%>
-				<!-- nav 끝 -->
+				<hr class="out-cont section-bar">
+				
+				<section class="section pack-down">
+					<div class="pack-down">
+						<a href="#" class="btn transparent">
+							<span class="fs-18 fc-dark-gray">로그아웃</span>
+						</a>
+						<a href="mailto:admin@admin.com" class="btn transparent">
+							<span class="fs-18 fc-dark-gray">전문가 등급 요청</span>
+						</a>
+					</div>
+					<div class="pack-both">
+						<span></span>
+						<a href="#" class="btn linkline">회원탈퇴</a>
+					</div>
+				</section>
+				
+				
+			<!-- 컨텐츠 끝 -->
+			</div><!-- // #content -->
+			<!-- nav 시작 -->
 
-				<!-- footer 시작 -->
-				<%@ include file="../common/footer.jsp"%>
-				<!-- footer 끝 -->
-				
-				</div>
-			<!-- // #container -->
+
+			<%@ include file="../common/nav.jsp"%>
+			<!-- nav 끝 -->
+
+			<!-- footer 시작 -->
+			<%@ include file="../common/footer.jsp"%>
+			<!-- footer 끝 -->
+
 		</div>
-		<!-- // #wrap -->
+		<!-- // #container -->
+	</div>
+	<!-- // #wrap -->
 </body>
 </html>
