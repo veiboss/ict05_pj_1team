@@ -105,8 +105,8 @@
 						<div class="pagination">
 							<!-- 페이징처리 -->
 							<!-- 이전 버튼 활성화 -->
-							<c:if test="${paging.startPage > 5}">
-								<a href="j${path}/memberList.ad?pageNum=${paging.prev}&s_grade=${s_grade}&s_keyword=${s_keyword}" class="btn prev">
+							<c:if test="${paging.startPage > paging.pageBlock}">
+								<a href="${path}/memberList.ad?pageNum=${paging.prev}&s_grade=${s_grade}&s_keyword=${s_keyword}" class="btn prev">
 									<svg xmlns="http://www.w3.org/2000/svg" class="svg">
 										<path d="m2 6 6-4.33v8.66L2 6z" />
 									</svg>

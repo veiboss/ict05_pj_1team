@@ -24,15 +24,18 @@ public class Paging {
 
 	public Paging(String pageNum) {
 
-		// pageNum이 없는 경우(맨처음 board_list.jsp를 클릭하거나, 수정 삭제 등 다른 게시글에서 페이지를 클릭할 때) null처리되므로 1로 설정
-		if(pageNum == null) {
+		if (pageNum == null || pageNum.isBlank()) {
 			pageNum = "1";
 		}
-
-		this.pageNum = pageNum;
-
-		currentPage = Integer.parseInt(pageNum);  // 현재페이지
-
+		try {
+			currentPage = Integer.parseInt(pageNum);
+		} 
+		catch (NumberFormatException e) {
+			currentPage = 1;
+		}
+		if (currentPage < 1) currentPage = 1; // 하한 보정
+		this.pageNum = String.valueOf(currentPage);
+		
 		System.out.println("=====================");
 		System.out.println("pageNum => " + pageNum);
 		System.out.println("currentPage => " + currentPage);
@@ -148,14 +151,23 @@ public class Paging {
 	public void setTotalCount(int count) {
 		this.count = count;		// 전체 게시글 건수
 
-		startRow = (currentPage - 1) * pageSize + 1;	// 페이지별 시작번호 => start에 해당 (1)
-		endRow =  currentPage * pageSize;				// 페이지별 끝번호 => end에 해당(10)
-
-		System.out.println("startRow => " + startRow);
-		System.out.println("endRow => " + endRow);
-
-		this.number = count - (currentPage - 1) * pageSize;		// 페이지번호(1)
-
+		// 페이지 수 먼저 계산
+		pageCount = count / pageSize + (count % pageSize == 0 ? 0 : 1);
+		if (pageCount == 0) pageCount = 1;
+		
+		// 상한 보정
+		if (currentPage > pageCount) currentPage = pageCount;
+		
+		// 구간 계산
+		startRow = (currentPage - 1) * pageSize + 1;
+		endRow = Math.min(currentPage * pageSize, count);
+		
+		// 번호 갱신
+		this.number = count - (currentPage - 1) * pageSize;
+		
+		// pageNum도 currentPage로 덮어써서 일관성 유지
+		this.pageNum = String.valueOf(currentPage);
+		
 		// 페이지 계산
 		pageCalculator();
 	}
