@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.ui.Model;
 
+import com.middlepj.ict05.domain.mypage.mypageqna.dto.MyQnaDTO;
+
 public interface MyQnaService {
 	
 	// qna 상세 목록
@@ -18,11 +20,14 @@ public interface MyQnaService {
 	public void qnaDetailAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException;
 	
-//	// qna 수정 
-//	public void qnaUpdateAction(HttpServletRequest request, HttpServletResponse response, Model model)
-//			throws ServletException, IOException;
-//	
-//	// qna 삭제 버튼 클릭시 - 전문가 댓글 없을 시에/ 삭제 (안보임처리)
-//	public void qnaDeleteAction(HttpServletRequest request, HttpServletResponse response, Model model)
-//			throws ServletException, IOException;
+	// 답변 여부 확인용 dto
+	public MyQnaDTO getQnaById(int qa_id) ;
+	
+	// qna 수정 
+	public void qnaUpdateAction(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException;
+	
+	// qna 삭제 버튼 클릭시 - 전문가 댓글 없을 시에/ 삭제 (안보임처리)
+	public void qnaDeleteAction(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException;
 }

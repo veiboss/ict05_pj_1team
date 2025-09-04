@@ -70,20 +70,52 @@ public class MyQnaServiceImpl implements MyQnaService{
 	public void qnaDetailAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
 		
+//		System.out.println("MyQnaServiceImpl - qnaListAction()");
+//		
+//		int qaId = Integer.parseInt(request.getParameter("qa_id"));
+//		
+//		MyQnaDTO dto = dao.qnaDetail(rvId);
+//			
+//		model.addAttribute("dto", dto);
+		
+	}
+	
+	//  답변 여부 확인용 dto
+	public MyQnaDTO getQnaById(int qa_id) {
+		
+	    return dao.selectQnaDetail(qa_id);
+	}
+ 
+	// 3. qna 수정
+	@Override
+	public void qnaUpdateAction(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		System.out.println("MyQnaServiceImpl - qnaUpdateAction()");
+		
+		MyQnaDTO dto = new MyQnaDTO();
+		
+		dto.setQa_id(Integer.parseInt(request.getParameter("qa_id")));
+		dto.setQa_title(request.getParameter("qa_title"));
+		dto.setQa_content(request.getParameter("qa_content"));
+		dto.setQa_show((String)request.getParameter("qa_show"));
+		
+		dao.updateQna(dto);
+		model.addAttribute("dto", dto);
+		
 	}
 
-//	// 3. qna 수정
-//	@Override
-//	public void qnaUpdateAction(HttpServletRequest request, HttpServletResponse response, Model model)
-//			throws ServletException, IOException {
-//		
-//	}
-//
-//	// qna 삭제 버튼 클릭시 - 전문가 댓글 없을 시에/ 삭제 (안보임처리)
-//	@Override
-//	public void qnaDeleteAction(HttpServletRequest request, HttpServletResponse response, Model model)
-//			throws ServletException, IOException {
-//		
-//	}
+	// qna 삭제 버튼 클릭시 - 전문가 댓글 없을 시에/ 삭제 (안보임처리)
+	@Override
+	public void qnaDeleteAction(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		System.out.println("MyQnaServiceImpl - qnaDeleteAction()");
+		
+		int num = Integer.parseInt(request.getParameter("qa_id"));
+		
+		int deleteCnt = dao.deleteQna(num);
+		
+		model.addAttribute("num", num);
+		model.addAttribute("deleteCnt", deleteCnt);	
+	}
 
 }

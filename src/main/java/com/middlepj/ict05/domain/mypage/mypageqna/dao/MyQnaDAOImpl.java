@@ -48,24 +48,37 @@ public class MyQnaDAOImpl implements MyQnaDAO{
 		return dto;
 	}
 
-//	// 3. qna 수정
-//	@Override
-//	public void updateQna(MyQnaDTO dto) {
-//		
-//		System.out.println("MyQnaDAOImpl - updateQna()");
-//		
-//		sqlsession.update("com.middlepj.ict05.domain.mypage.mypageqna.dao.MyQnaDAO.updateQna", dto);
-//		
-//	}
-//
-//	// 삭제 버튼 클릭시 - 전문가 댓글 없을 시에/ 삭제 (안보임처리)
-//	@Override
-//	public void deleteQna(int qa_id) {
-//		
-//		System.out.println("MyQnaDAOImpl - deleteQna()");
-//		
-//		sqlsession.update("com.middlepj.ict05.domain.mypage.mypageqna.dao.MyQnaDAO.deleteQna", qa_id);
-//		
-//	}
+	// qna 답변 여부확인
+	@Override
+	public MyQnaDTO selectQnaDetail(int qa_id) {
+		
+		System.out.println("MyQnaDAOImpl - selectQnaDetail()");
+		
+		MyQnaDTO dto = sqlsession.selectOne("com.middlepj.ict05.domain.mypage.mypageqna.dao.MyQnaDAO.selectQnaDetail", qa_id);
+		
+		return dto;
+	}
+	
+ 
+	// 3. qna 수정
+	@Override
+	public void updateQna(MyQnaDTO dto) {
+		
+		System.out.println("MyQnaDAOImpl - updateQna()");
+		
+		sqlsession.update("com.middlepj.ict05.domain.mypage.mypageqna.dao.MyQnaDAO.updateQna", dto);
+		
+	}
+
+	// 삭제 버튼 클릭시 - 전문가 댓글 없을 시에/ 삭제 (안보임처리)
+	@Override
+	public int deleteQna(int qa_id) {
+		
+		System.out.println("MyQnaDAOImpl - deleteQna()");
+		
+		int deleteCnt = sqlsession.update("com.middlepj.ict05.domain.mypage.mypageqna.dao.MyQnaDAO.deleteQna", qa_id);
+		
+		return deleteCnt;
+	}
 
 }
