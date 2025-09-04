@@ -112,7 +112,7 @@ function delReview(id){
 				
 				            <!-- 내용 -->
 				            <div class="data-wrap pack-both">
-				              <p><c:out value="${dto.rv_content}"/></p>
+				              <p><c:out value="${fn:replace(fn:replace(dto.rv_content,'<p>',''),'</p>','<br/>')}"/></p>
 				
 				              <!-- 버튼 (앵커 밖으로 분리) -->
 				              <p class="pack-left">

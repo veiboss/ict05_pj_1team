@@ -122,8 +122,7 @@ $("#recommendBtn").click(function() {
 							  	  	</div>
 			            			
 			            			<div class="pack-both" style="display:flex; gap:10px;">
-          							<p class="qa-content fc-dark-gray"><c:out value="${fn:replace(fn:replace(dto.qa_content,'<p>',''),'</p>','<br/>')}"
-										    escapeXml="false"/></p>
+          							<p class="qa-content fc-dark-gray"><c:out value="${fn:replace(fn:replace(dto.qa_content,'<p>',''),'</p>','<br/>')}"/></p>
           								<span></span>
 						                	<a class="btn blue small color1 r4"
 						                  		href="${path}/myQnaDetail.do?qa_id=${dto.qa_id}" >수정</a>
