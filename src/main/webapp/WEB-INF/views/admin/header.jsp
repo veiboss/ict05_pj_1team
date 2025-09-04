@@ -19,42 +19,42 @@
 
 			<div>
 				<div class="user">
-					<ul>
-						<li>
-							<button type="button" class="btn btn-toggle">
-								<img src="https://img.imbc.com/adams/Program/20237/133342330004430266.jpg" alt="{user name}" class="img profile">
-							</button>
-							<div class="toggle-cont">
-								<ul>
-									<li>
-										<div class="item pack-left">
-											<img src="https://img.imbc.com/adams/Program/20237/133342330004430266.jpg" alt="{user name}" class="img profile">
-											<div>
-												<p>Hong Gil Dong</p>
-												<p class="fs-s">admin</p>
-											</div>
-										</div>
-									</li>
-									<li>
-										<a href="javascript:void(0);" class="btn">
-											<span class="material-symbols-outlined">
-												account_circle
-											</span>
-											<span>계정 관리</span>
-										</a>
-									</li>
-									<li>
-										<a href="javascript:void(0);" class="btn">
-											<span class="material-symbols-outlined">
-											logout
-											</span>
-											<span>로그아웃</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-					</ul>
+				
+					<c:if test="${sessionID != null}">
+						<ul>
+							<li>
+								<button type="button" class="btn btn-toggle">
+									<span class="fs-s mo-pack-down">${sessionID}<strong>${sessionName}</strong></span>
+									<img src="https://img.imbc.com/adams/Program/20237/133342330004430266.jpg" alt="{user name}" class="img profile">
+								</button>
+								<div class="toggle-cont">
+									<ul>
+										<li>
+											<a href="${path}/memberList.ad?s_grade=ADMIN" class="btn">
+												<span class="material-symbols-outlined">
+													account_circle
+												</span>
+												<span>계정 관리</span>
+											</a>
+										</li>
+										<li>
+											<a href="${path}/logout.ad" class="btn">
+												<span class="material-symbols-outlined">logout</span>
+												<span>로그아웃</span>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</c:if>
+					
+					<c:if test="${sessionID == null}">
+						<a href="${path}/login.ad" class="btn">
+							<span>로그인 필요</span>
+							<img src="https://img.imbc.com/adams/Program/20237/133342330004430266.jpg" alt="{user name}" class="img profile">
+						</a>
+					</c:if>
 				</div>
 			</div><!-- #header > div : right-->
 		</header>

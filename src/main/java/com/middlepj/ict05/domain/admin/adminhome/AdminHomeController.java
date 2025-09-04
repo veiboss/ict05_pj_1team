@@ -49,4 +49,14 @@ public class AdminHomeController {
 		return "admin_login/loginAction";
 	}
 
+	@RequestMapping("/logout.ad")
+	public String logout(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("<<< url ==> /logout.ad >>>");
+
+		request.getSession().invalidate();
+	
+		return "redirect:/login.ad";
+	}
+
 }
