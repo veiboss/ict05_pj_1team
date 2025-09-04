@@ -40,9 +40,9 @@ public class MemberAdminServiceImpl implements MemberAdminService {
 		
 		// total 구할 때 조건 반영
 		int total = dao.memberCnt(searchDTO);
-		System.out.println("total : " + total);
 		
 		Paging paging = new Paging(pageNum);
+		
 		paging.setTotalCount(total);
 		
 		int start = paging.getStartRow();
@@ -106,6 +106,23 @@ public class MemberAdminServiceImpl implements MemberAdminService {
 			throws ServletException, IOException{
 		System.out.println("MemberServiceImpl - memberUpdateAction()");
 		
+		String hiddenPageNum = request.getParameter("hiddenPageNum");
+		int hiddenMbId = Integer.parseInt(request.getParameter("hiddenMbId"));
+		
+		System.out.println("hiddenPageNum" + hiddenPageNum);
+		System.out.println("hiddenMbId" + hiddenMbId);
+		
+		MemberAdminDTO dto = new MemberAdminDTO();
+		dto.setMb_id(hiddenMbId);
+		dto.setMb_name(request.getParameter("mb_name"));
+		dto.setMb_password(request.getParameter("mb_password"));
+		dto.setMb_grade(request.getParameter("mb_grade"));
+		dto.setMb_modify_id(Integer.parseInt(request.getParameter("mb_modify_id")));
+		
+		int updateCnt = dao.memberUpdate(dto);
+		model.addAttribute("updateCnt" , updateCnt);
+		model.addAttribute("hiddenPageNum" , hiddenPageNum);
+		model.addAttribute("hiddenMbId" , hiddenMbId);
 	}
 	
 	// 회원 삭제

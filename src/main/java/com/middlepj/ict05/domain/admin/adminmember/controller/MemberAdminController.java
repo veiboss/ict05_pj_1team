@@ -65,6 +65,14 @@ public class MemberAdminController {
 	}
 	
 	// 회원 수정
+	@RequestMapping("/memberUpdateAction.ad")
+	public String member_updateAction(HttpServletRequest request, HttpServletResponse response, Model model) 
+			throws ServletException, IOException{
+		logger.info("<<< url ==> member_detailAction >>>");
+		
+		service.memberUpdateAction(request, response, model);
+		return "admin_member/memberUpdateAction";
+	}
 
 	// 회원 삭제
 	@RequestMapping("/memberDeleteAction.ad")
