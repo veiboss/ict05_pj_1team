@@ -52,7 +52,7 @@
 
 					<!-- 내용 -->
 			        <div class="">
-			            <textarea name="qa_content" class="textarea"><c:out value="${dto.qa_content}"/></textarea>
+			            <textarea name="qa_content" class="textarea"><c:out value="${fn:replace(fn:replace(dto.qa_content,'<p>',''),'</p>','<br/>')}"/></textarea>
 			        </div>
 			        
 			        
