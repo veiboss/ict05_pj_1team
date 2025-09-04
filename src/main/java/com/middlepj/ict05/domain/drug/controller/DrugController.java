@@ -1,6 +1,7 @@
 package com.middlepj.ict05.domain.drug.controller;
 
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.middlepj.ict05.domain.drug.dto.DrugReviewDTO;
 import com.middlepj.ict05.domain.drug.service.DrugServiceImpl;
 
 @Controller
@@ -53,26 +55,20 @@ public class DrugController {
 	@RequestMapping(value = "/drug_addAction.do", method = RequestMethod.POST)
 	@ResponseBody // JSON을 바로 반환
 	public Map<String, String> drug_addAction(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException, ServletException {
-	    
+		logger.info("<<< url ==> drug_addAction.do");
+		
 		Map<String, String> messageMap = service.drugAddAction(request, null, null);
 	    
 		return messageMap; // {"msg":"..."}
 	}
 	
-	// 영양제 상세 처리
+	// 영양제 상세 처리 & 후기 목록
 	@RequestMapping("/drug_detailAction.do")
 	public String drug_detailAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
+		logger.info("<<< url ==> drug_detailAction.do");
 		
 		service.drugDetailAction(request, response, model);
-		
-		return "drug/drug_detailAction";
-	}
-	
-	// 후기 목록 
-	@RequestMapping("/drug_reviewList.do")
-	public String drug_reviewList(HttpServletRequest request, HttpServletResponse response, Model model)
-			throws ServletException, IOException {
 		
 		service.reviewListAction(request, response, model);
 		
@@ -83,6 +79,13 @@ public class DrugController {
 	@RequestMapping("/drug_reviewInsert.do")
 	public String drug_reviewInsert(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
+		logger.info("<<< url ==> drug_reviewInsert.do");
+		
+//		DrugReviewDTO dto = service.reviewInsertAction(request, response, model);
+//		model.addAttribute("dto", dto);
+		
+		DrugReviewDTO dto = service.reviewInsertAction(request, response, model);
+		model.addAttribute("dto", dto);
 		
 		return "drug/drug_reviewInsert";
 	}
@@ -91,11 +94,11 @@ public class DrugController {
 	@RequestMapping("/drug_reviewInsertAction.do")
 	public String drug_reviewInsertAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
+		logger.info("<<< url ==> drug_reviewInsertAction.do");
 		
-		service.reviewInsertAction(request, response, model);
+		DrugReviewDTO dto = service.reviewInsertAction(request, response, model);
+		model.addAttribute("dto", dto);
 		
-		String viewPage = request.getContextPath() + "/drug_reviewList.do";
-		response.sendRedirect(viewPage);
-		return null;
+		return "drug/drug_reviewInsertAction";		
 	}
 }

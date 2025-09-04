@@ -1,7 +1,6 @@
 package com.middlepj.ict05.domain.drug.service;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,7 +69,7 @@ public class DrugServiceImpl implements DrugService{
 		model.addAttribute("total", total);
 	}
 
-	// 영양제 추가 클릭 시 - 내 영양제에 추가
+	// 추가 버튼 클릭 시 - 내 영양제에 추가
 	@Override
 	public Map<String, String> drugAddAction(HttpServletRequest request, HttpServletResponse response, Model model)
 				throws ServletException, IOException {
@@ -80,6 +79,7 @@ public class DrugServiceImpl implements DrugService{
 	    HttpSession session = request.getSession(false); // 세션 없으면 null
 	    if (session == null || session.getAttribute("sessionID") == null) {
 	        messageMap.put("msg", "로그인이 필요합니다.");
+	        messageMap.put("redirect", request.getContextPath() + "/drug_list.do");
 	        return messageMap;
 	    }
 	    int mb_id = (int) session.getAttribute("sessionID");
@@ -152,6 +152,9 @@ public class DrugServiceImpl implements DrugService{
 		System.out.println("=== drugService - reviewListAction() ===");
 		
 		String pageNum = request.getParameter("pageNum");
+
+		String drIdParam = request.getParameter("dr_id");
+		int dr_id = (drIdParam != null && !drIdParam.isEmpty()) ? Integer.parseInt(drIdParam) : 0;
 		
 		int currentPage = (pageNum == null || pageNum.equals("0")) ? 1 : Integer.parseInt(pageNum);
 	    
@@ -167,21 +170,71 @@ public class DrugServiceImpl implements DrugService{
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end", end);
+		map.put("dr_id", dr_id);
 		
 		List<DrugReviewDTO> list = dao.drugReviewList(map);
 		System.out.println("list :" + list);
 		
 		model.addAttribute("paging", paging);
 		model.addAttribute("list", list);
+		map.put("dr_id", dr_id);
 	}
 
-	// 후기 등록 처리 
+	// 후기 등록 처리
 	@Override
-	public void reviewInsertAction(HttpServletRequest request, HttpServletResponse response, Model model)
-			throws ServletException, IOException {
-		System.out.println("=== drugService - reviewAddAction() ===");
-		
+	public DrugReviewDTO reviewInsertAction(HttpServletRequest request, HttpServletResponse response, Model model)
+	        throws ServletException, IOException {
+	    System.out.println("=== drugService - reviewAddAction() ===");
+
+	    String pageNum = request.getParameter("pageNum");
+	    
+	    DrugReviewDTO dto = new DrugReviewDTO();
+
+	    HttpSession session = request.getSession(false);
+	    if (session == null || session.getAttribute("sessionID") == null) {
+	    	throw new IllegalStateException("로그인한 회원만 후기 작성 가능");
+	    }
+
+	    Integer mb_id = (Integer) session.getAttribute("sessionID");
+	    if (mb_id == null) {
+	    	throw new IllegalStateException("로그인한 회원만 후기 작성 가능");
+	    }
+	    System.out.println("Session exists? " + (session != null));
+	    System.out.println("Session sessionID: " + session.getAttribute("sessionID"));
+	    System.out.println("Session sessionName: " + session.getAttribute("sessionName"));
+
+	    dto.setMb_id((Integer) session.getAttribute("sessionID"));
+	    
+	    String dr_id = request.getParameter("dr_id");
+	    if (dr_id != null && !dr_id.isEmpty()) {
+	    	dto.setDr_id(Integer.parseInt(dr_id));
+	    }
+	    else {
+	    	throw new IllegalArgumentException("dr_id가 전달되지 않았습니다.");
+	    }
+
+	    dto.setRv_content(request.getParameter("rv_content"));
+	    if(dto.getRv_content() == null || dto.getRv_content().trim().isEmpty()) {
+	        dto.setRv_content("내용 없음");
+	    }
+	    
+	    String mb_name = String.valueOf(session.getAttribute("sessionName")); 
+	    dto.setMb_name((mb_name == null || mb_name.trim().isEmpty()) ? "이름 없음" : mb_name);
+
+	    String rv_rating = request.getParameter("rv_rating");
+	    if (rv_rating != null && !rv_rating.isEmpty()) {
+	        dto.setRv_rating(Integer.parseInt(rv_rating));
+	    }
+
+	    int insertCnt = dao.insertReview(dto);
+
+	    model.addAttribute("pageNum", pageNum);
+	    model.addAttribute("insertCnt", insertCnt);
+	    model.addAttribute("dr_id", dr_id);
+	    
+	    return dto;
 	}
+
 
 }
 
