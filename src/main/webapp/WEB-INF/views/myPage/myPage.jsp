@@ -120,6 +120,7 @@
 						<a href="myQnaList.do" class="btn transparent">
 							<span class="fs-18">내가쓴qna</span>
 						</a>
+
 					</div>
 				</section>
 				
