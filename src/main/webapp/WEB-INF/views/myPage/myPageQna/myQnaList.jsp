@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ include file="../../common/setting.jsp" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,14 +23,59 @@
 <script src="${path}/resources/js/lib/aos.js" defer></script>
 <script src="${path}/resources/js/yaksok.js" defer></script>
 <script>
-function delQna(id){
+ function delQna(id){
 	if(confirm('해당 질문을 삭제할까요?')){
 		const f = document.getElementById('delForm');
 		f.qa_id.value = id;
 		f.submit();
 	}
 }
+
+/* $(document).ready(function(){
+	
+	$("#answer").click(function() {
+        $.ajax({
+            type: "GET",
+            url: "faq_admin_ajax.fc",
+            data: { keyword: $("#searchTxt").val(), pageNum: page },
+            success: function(result){
+                $("#searchResult").html(result);
+            }
+        });
+    }
+    
+});
+
+
+$("#recommendBtn").click(function() {
+    var btn = $("#recommendBtn");
+    var b_num = btn.data("bnum");
+    
+    if(${sessionScope.sessionid != null}) {
+       if (!btn.hasClass("active")) {
+           // 추천 추가
+           $.ajax({
+               url: "${path}/recommend",
+               type: "POST",
+               data: { b_num: b_num, click: 1 },
+               success: function(result) {
+                   if (parseInt(result.success) === 1) {
+                       btn.addClass("active"); // 이미지 교체
+                      $("#recommendTotal").text(result.b_recommend); 
+                   }
+               },
+               error: function() {
+                   alert("추천 처리 중 오류가 발생했습니다.");
+               }
+           }); */
 </script>
+<script>
+	  document.addEventListener('DOMContentLoaded', function () {
+	    if (window.AOS) AOS.init();
+	    if (window.nav) { nav.init(); nav.current('4'); }
+	    if (window.accordion) { accordion(1); }   // 아래에서 정의할 함수
+	  });
+	</script>
 <style>
 	.qna-item.pack-down{gap: 10px}
 </style>
@@ -60,7 +106,7 @@ function delQna(id){
 				<div class="pl20"><!-- ❌ id="content" 중복 금지 -->
 					<ul class="data-list">
 				    	<c:forEach var="dto" items="${list}">
-				      		<li>
+				      		<li class="accordion">
 				       		 <!-- 앵커로 전체 감싸지 말고 div로 -->
 								
 								
@@ -69,12 +115,15 @@ function delQna(id){
 			          				<div class="pack-both" style="display:flex; gap:10px;">
 			            			<p class="small-title"><c:out value="${dto.qa_title}"/></p>
 			            				<span></span>
-							            <a href="myProfileUpdate.do" class="btn bdr-blue small" style="padding:8px 5px">
+			            				<c:if test="${dto.qa_answer != null}">
+							            <a id="answer"  class="btn bdr-blue small pack-both accordion-switche" style="padding:8px 5px">
 							            	<span class="">답변 보기</span></a>
+			            				</c:if>
 							  	  	</div>
 			            			
 			            			<div class="pack-both" style="display:flex; gap:10px;">
-          							<p class="qa-content fc-dark-gray"><c:out value="${dto.qa_content}"/></p>
+          							<p class="qa-content fc-dark-gray"><c:out value="${fn:replace(fn:replace(dto.qa_content,'<p>',''),'</p>','<br/>')}"
+										    escapeXml="false"/></p>
           								<span></span>
 						                	<a class="btn blue small color1 r4"
 						                  		href="${path}/myQnaDetail.do?qa_id=${dto.qa_id}" >수정</a>
@@ -83,18 +132,20 @@ function delQna(id){
 						                        onclick="delQna(${dto.qa_id})" type="button" >삭제</button>
 						           </div>
 						         </div>     
-						          <div class="row-2">
-									<div class="field col">
-										<span class="label medium">비밀글 여부</span>
-										<div class="insert pack-left">
-											<label for="radio1" class="pack-left"><input type="radio" class="radio" name="qa_private" id="qa_private" value="Y" 
-												<c:if test="${dto.qa_private eq 'Y'}">checked</c:if>>노출</label>
-											<label for="radio2" class="pack-left"><input type="radio" class="radio" name="qa_private" id="qa_private" value="N" 
-												<c:if test="${dto.qa_private eq 'N'}">checked</c:if>>비노출</label>
+							      <div class="row-2">
+										<div class="field col">
+											<span class="label medium">비밀글 여부</span>
+											<div class="insert pack-left">
+												<label for="radio1" class="pack-left"><input type="radio" class="radio" name="qa_private" id="qa_private" value="Y" 
+													<c:if test="${dto.qa_private eq 'Y'}">checked</c:if>>노출</label>
+												<label for="radio2" class="pack-left"><input type="radio" class="radio" name="qa_private" id="qa_private" value="N" 
+													<c:if test="${dto.qa_private eq 'N'}">checked</c:if>>비노출</label>
+											</div>
 										</div>
 									</div>
-								</div>
-			
+									<div class="accordion-content">
+										<p>${dto.qa_answer}</p>
+									</div>
 				            		<!-- 내용 -->
 			    	        		<div class="data-wrap pack-both">
 										<span>&nbsp;</span>

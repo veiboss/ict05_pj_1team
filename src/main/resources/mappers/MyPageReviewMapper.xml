@@ -19,6 +19,7 @@
            , x.rv_show
            , x.dr_product
            , x.dr_id
+           , x.dr_sungsang
       FROM (
         SELECT rv.rv_content
         	 , rv.rv_id
@@ -27,6 +28,7 @@
              , rv.rv_show
              , dr.dr_product
              , dr.dr_id
+             , dr.dr_sungsang
           FROM REVIEW_TB rv
           JOIN DRUG_TB dr ON rv.dr_id = dr.dr_id
          WHERE rv.mb_id = #{mbId}
