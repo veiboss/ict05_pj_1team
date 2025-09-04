@@ -73,7 +73,7 @@ textarea								{}
 
 /* checkbox & radio*/
 .check-wrap					{gap: .5rem;
-	display: -webkit-inline-flex; display: inline-flex;
+	display: inline-flex;
 	align-items: center;
 }
 .checkbox,
@@ -88,15 +88,10 @@ textarea								{}
 	-webkit-transform: translate(-50%, -50%) scale(0);
 			transform: translate(-50%, -50%) scale(0);
 	-webkit-transition: all .2s ease-in-out;
-	-moz-transition: all .2s ease-in-out;
-	-ms-transition: all .2s ease-in-out;
-	-o-transition: all .2s ease-in-out;
 	transition: all .2s ease-in-out;
 }
 .checkbox:before				{
 	border-radius: 2px;
-	-moz-border-radius: 2px;
-	-webkit-border-radius: 2px;
 }
 .checkbox:after					{width: inherit; height: inherit;
 	background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='20' height='20' rx='2' /%3E%3Cpath d='M5 9.294 8.75 13 15 6' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E");
@@ -105,8 +100,6 @@ textarea								{}
 .radio:before,
 .radio:after					{
 	border-radius: 1.25rem;
-	-moz-border-radius: 1.25rem;
-	-webkit-border-radius: 1.25rem;
 }
 .radio:after					{width: .875rem; height: .875rem;
 	-webkit-transform: translate(-50%, -50%) scale(0);

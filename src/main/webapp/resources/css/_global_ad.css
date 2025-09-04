@@ -71,10 +71,7 @@ strong,
 /* ico */
 .ico		{display: inline-block; background-repeat: no-repeat; background-position: center;}
 .ico.red-dot	{width: 4px; height: 4px; background-color: var(--color1); border: 1px solid #fff;
-	border-radius: 4px;
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-}
+	border-radius: 4px;}
 .ico.iconname	{width: 32px; height: 32px; background-image: url('../images/common/icon-name.svg');}
 .ico.svg-close	{width: 32px; height: 32px;}
 .ico.svg-close path	{fill: #000;}
@@ -99,9 +96,7 @@ strong,
 /* img-wrap */
 .img		{display: block;}
 .profile	{width: 60px; height: 60px; border-radius: 50%; margin: 0 auto;
-	-o-object-fit: cover;
 	object-fit: cover;
-	-o-object-position: center center;
 	object-position: center center;
 }
 
@@ -144,7 +139,7 @@ hr.line			{border-width: 2px 0 0 0; border-color: var(--body-bg-color); border-s
 .pack-down-center				{
 	flex-direction: column;
 }
-.pack-left.has-bar > span + span:before		{content: ''; display: inline-block; width: 1px; height: 12px; margin: 0 12px; border-radius: 2px; background-color: var(--temp); vertical-align: middle;}
+.pack-left.has-bar > span + span:before		{content: ''; display: inline-block; width: 1px; height: 12px; margin: 0 12px; border-radius: 2px; background-color: var(--light-gray); vertical-align: middle;}
 
 
 @media (max-width: 768px) {
@@ -158,10 +153,10 @@ hr.line			{border-width: 2px 0 0 0; border-color: var(--body-bg-color); border-s
 /* data-list */
 .data-list				{gap: 1rem;
 	display: flex;
-	-webkit-flex-wrap: wrap; flex-wrap: wrap;
+	flex-wrap: wrap;
 }
 .data-list[class*="col"]			{
-	-webkit-justify-content: flex-start; justify-content: flex-start;
+	justify-content: flex-start;
 }
 .data-list > [class*="pack-"]		{width: 100%;}
 .data-list li + li		{}
@@ -173,7 +168,7 @@ hr.line			{border-width: 2px 0 0 0; border-color: var(--body-bg-color); border-s
 	display: flex;
 }
 .pagination ul			{
-	display: -webkit-inline-flex; display: inline-flex;
+	display: inline-flex;
 }
 .pagination,
 .pagination ul,
@@ -182,17 +177,14 @@ hr.line			{border-width: 2px 0 0 0; border-color: var(--body-bg-color); border-s
 	align-items: center;
 }
 .pagination ul			{
-	display: -webkit-inline-flex; display: inline-flex;
+	display: inline-flex;
 }
 .pagination ul,
 .pagination li			{list-style: none;}
 .pagination a			{min-width: 40px; height: 40px; line-height: 40px; text-decoration: none; text-align: center;}
 .pagination > a .svg	{display: block; width: 12px; height: 12px;}
 .pagination > a.next .svg	{
-	-moz-transform: scaleX(-1);
 	-webkit-transform: scaleX(-1);
-	-o-transform: scaleX(-1);
-	-ms-transform: scaleX(-1);
 	transform: scaleX(-1);
 }
 .pagination ul			{margin: 0 4px;}
@@ -222,7 +214,7 @@ table p + p						{margin-top: 1rem;}
 	.data-table tbody				{display: block; width: 100%;}
 	.data-table tbody tr			{width: 100%; gap: 4px;
 		display: flex;
-		-webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column;
+		flex-direction: column;
 	}
 	.data-table tbody th			{display: none;}
 	.data-table tbody td			{padding: .3rem 0;}
@@ -247,7 +239,7 @@ table p + p						{margin-top: 1rem;}
 	.data-list[class*="col"]			{
 		display: flex;
 		flex-wrap: wrap;
-		-webkit-justify-content: flex-start; -ms-flex-pack: start; justify-content: flex-start;
+		justify-content: flex-start;
 	}
 }
 @media all and (min-width: 1200px){
@@ -271,7 +263,7 @@ table p + p						{margin-top: 1rem;}
 	display: flex;
 }
 .pagination ul			{
-	display: -webkit-inline-flex; display: inline-flex;
+	display: inline-flex;
 }
 .pagination,
 .pagination ul,
@@ -280,7 +272,7 @@ table p + p						{margin-top: 1rem;}
 	align-items: center;
 }
 .pagination ul			{
-	display: -webkit-inline-flex; display: inline-flex;
+	display: inline-flex;
 }
 .pagination ul,
 .pagination li			{list-style: none;}
@@ -369,7 +361,7 @@ table p + p						{margin-top: 1rem;}
 #content > .search fieldset		{gap: 1.5rem;
 	display: flex;
 	align-items: center;
-	-webkit-flex-wrap: wrap; flex-wrap: wrap;
+	flex-wrap: wrap;
 }
 #content > .search fieldset > .field	{width: 25%; min-width: 150px;}
 #content > .search .button-area.pack-left		{gap: .5rem;}

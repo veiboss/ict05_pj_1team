@@ -16,8 +16,8 @@
 /* 관리자 로그인 */
 #wrap.login {background-image: url("../../resources/images/logo/man.svg"); background-repeat: no-repeat; background-size: auto 80%; background-position: 50% 200%;
 	display: flex;
-	-webkit-justify-content: flex-end; justify-content: flex-end;
-	-webkit-align-items: stretch; align-items: stretch;
+	justify-content: flex-end;
+	align-items: stretch;
 }
 #wrap.login #container	{width: 50%; min-width: 360px; max-width: 480px; min-height: var(--vh100); padding: 3rem; background: #fff;
 	display: flex;
@@ -27,7 +27,7 @@
 #wrap.login #content,
 #wrap.login .login-form .fieldset	{
 	display: flex;
-	-webkit-flex-direction: column; flex-direction: column;
+	flex-direction: column;
 }
 #wrap.login #content				{margin: 16px 0; gap: 16px;}
 #wrap.login .logo					{display: block; height: var(--large);}
@@ -35,6 +35,6 @@
 #wrap.login .label					{font-size: smaller; font-weight: 400;}
 #wrap.login .btn.large				{width: 100%;}
 #wrap.login #footer					{
-	-webkit-flex-direction: column; flex-direction: column;
+	flex-direction: column;
 }
 
