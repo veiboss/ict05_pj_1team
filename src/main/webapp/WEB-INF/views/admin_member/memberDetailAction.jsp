@@ -52,11 +52,7 @@
 							
 							<h3 class="section-title">회원 정보</h3>
 							<hr class="line">
-							<!-- 목록 페이징 처리를 위한  -->
-							<input type="hidden" name="hiddenPageNum" value="${num}">
-							<input type="hidden" name="hiddenGrade" value="${s_grade}">
-							<input type="hidden" name="hiddenKeyword" value="${s_keyword}">
-							
+							<input type="hidden" name="hiddenPageNum" value="${pageNum}">
 							<input type="hidden" name="hiddenMbId" value="${dto.mb_id}">
 							
 							<!-- 회원정보수정 관리자 아이디 -->

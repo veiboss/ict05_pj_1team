@@ -147,7 +147,7 @@ hr.line			{border-width: 2px 0 0 0; border-color: var(--body-bg-color); border-s
 .pack-left.has-bar > span + span:before		{content: ''; display: inline-block; width: 1px; height: 12px; margin: 0 12px; border-radius: 2px; background-color: var(--temp); vertical-align: middle;}
 
 
-@media (min-width: 768px) {
+@media (max-width: 768px) {
 	.mo-pack-down			{
 		flex-direction: column;
 	}
@@ -317,8 +317,7 @@ table p + p						{margin-top: 1rem;}
 	flex: 1;
 }
 @media (max-width: 767px) {
-	[class*="row-"],
-	.mo-pack-down								{
+	[class*="row-"]							{
 		flex-direction: column;
 	}
 	
