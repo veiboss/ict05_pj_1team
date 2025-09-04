@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.middlepj.ict05.domain.mypage.mypagedrug.dao.MyPageDrugDAO"><!-- namespace="패키지명.인터페이스" -->
+<!-- 	
+	<select id="myPageDrugList" parameterType="int" resultType="com.middlepj.ict05.domain.mypage.mypagedrug.dto.MyPageDrugDTO">
+		SELECT *FROM MEMBER_DRUG_TB
+			WHERE MB_ID= #{mb_id}
+	
+	</select>
+	 -->
+	<select id="myPageDrugList" parameterType="int" resultType="com.middlepj.ict05.domain.mypage.mypagedrug.dto.MyPageDrugDTO">
+	    SELECT
+	      mbd.mbd_id,
+	      mbd.mb_id,
+	      mbd.dr_id,
+	      mbd.mbd_drug_name,
+	      mbd.mbd_drug_effect,
+	      mbd.mbd_writer_id,
+	      mbd.mbd_reg_date,
+	      dr.dr_sungsang   <!-- 여기서 DrugDTO 테이블의 성상 값을 가져옴 -->
+	    FROM MEMBER_DRUG_TB mbd
+	    JOIN DRUG_TB dr ON mbd.dr_id = dr.dr_id
+	    WHERE mbd.mb_id = #{mb_id}
+  </select>
+	
+	
+</mapper>
