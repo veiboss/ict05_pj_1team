@@ -20,7 +20,7 @@ public interface MyReviewDAO {
 	public void updateReview(MyReviewDTO dto);
 	
 	// 3. 게시글 삭제 버튼 클릭시 - 삭제 (안보임처리)
-	public void deleteReview(int rv_id);
+	public int deleteReview(int rv_id);
 		
 	
 	

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.middlepj.ict05.domain.mypage.mypageqna.dao.MyQnaDAO">
+	
+<!-- qna 상세 목록  -->
+<select id="qnaList" parameterType="java.util.Map" resultType="com.middlepj.ict05.domain.mypage.mypageqna.dto.MyQnaDTO">
+	<![CDATA[
+	 SELECT * FROM (
+     SELECT ROWNUM AS rn
+      	   , x.qa_id
+      	   , x.mb_id
+           , x.qa_title
+           , x.qa_content
+           , x.qa_private
+           , x.qa_answer
+           , x.qa_show
+           , x.qa_writer_id
+      FROM (
+        SELECT qa_id,
+        	   mb_id,
+               qa_title,
+               qa_content,
+               qa_private,
+               qa_answer,
+               qa_show,
+               qa_writer_id
+          FROM QNA_TB
+         WHERE qa_writer_id = #{qa_writer_id}
+           AND qa_show = 'Y'
+         ORDER BY qa_id DESC
+      ) x
+      WHERE ROWNUM <= #{end}
+    )
+    WHERE rn >= #{start}
+     ]]>
+</select>
+
+<!-- 게시글 갯수 구하기 -->
+<select id="listCnt" parameterType="java.util.Map" resultType="int" >
+	SELECT COUNT(*)	AS cnt
+	  FROM QNA_TB
+	 WHERE mb_id = #{mbId}
+</select>
+
+</mapper> 

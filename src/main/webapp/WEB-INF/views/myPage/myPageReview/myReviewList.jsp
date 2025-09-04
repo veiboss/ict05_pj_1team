@@ -57,6 +57,7 @@ function delReview(id){
 				<div class="pl20"><!-- ❌ id="content" 중복 금지 -->
 				  <ul class="data-list toon">
 				    <c:forEach var="dto" items="${list}">
+				   	 <input type="hidden" name="rv_id" value="${dto.rv_id}">
 				      <li>
 				        <!-- 앵커로 전체 감싸지 말고 div로 -->
 				        <div class="item thumb-left">
@@ -101,20 +102,33 @@ function delReview(id){
 				
 				<!-- 삭제(비노출) POST 폼: ❗ forEach 밖, 단 한 개만 -->
 				<form id="delForm" action="${path}/myReviewDelete.do" method="post" style="display:none;">
-				  <input type="hidden" name="rv_id" value="">
+				  <input type="hidden" name="rv_id">
 				</form>	
 					
-					<div class="pagination">
-						<a href="javascript:void(0);" class="prev"><i class="ico page-arr"><span>&lt;</span></i></a>
-						<ul>
-							<li><a href="javascript:void(0);">1</a></li>
-							<li><a href="javascript:void(0);">2</a></li>
-							<li class="current"><a href="javascript:void(0);">3</a></li>
-							<li><a href="javascript:void(0);">4</a></li>
-							<li><a href="javascript:void(0);">5</a></li>
-						</ul>
-						<a href="javascript:void(0);" class="next"><i class="ico page-arr"><span>&gt;;</span></i></a>
-					</div><!-- .pagination -->
+				<div class="pagination">
+				    <!-- 이전 버튼 -->
+				    <c:if test="${paging.startPage > 5}">
+				        <a href="${path}/myReviewList.do?pageNum=${paging.prev}" class="btn prev page-link" data-page="${paging.prev}">
+				            &lt;
+				        </a>
+				    </c:if>
+				
+				    <!-- 페이지 번호 -->
+				    <ul>
+				        <c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+				            <li class="${num == paging.currentPage ? 'current' : ''}">
+				                <a href="${path}/myReviewList.do?pageNum=${num}" class="btn page-link" data-page="${num}">${num}</a>
+				            </li>
+				        </c:forEach>
+				    </ul>
+				
+				    <!-- 다음 버튼 -->
+				    <c:if test="${paging.endPage < paging.pageCount}">
+				        <a href="${path}/myReviewList.do?pageNum=${paging.next}" class="btn next page-link" data-page="${paging.next}">
+				            &gt;
+				        </a>
+				    </c:if>
+				</div>
 				</div><!-- .section.list-wrap -->
 			
 		       

@@ -1,4 +1,4 @@
-    <%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ include file="../../common/setting.jsp" %>
 <!DOCTYPE html>
@@ -39,40 +39,30 @@
 			<!-- SID : COM000 -->
 			<div id="content" class="sub"><!-- [D] main / sub-main / sub && pagd name -->
 				
-				<h2 class="article-title ta-c">후기 수정</h2>
+				<h2 class="article-title ta-c">Q&A 수정</h2>
 				
 				<!-- 수정 폼 -->
-				<form action="${path}/myReviewUpdate.do" method="post">
-					<input type="hidden" name="rv_id" value="${dto.rv_id}"/>
+				<form action="${path}/myQnaUpdate.do" method="post">
+					<input type="hidden" name="qa_id" value="${dto.qa_id}"/>
 					
-					<!-- 별점 -->
-			        <div class="rating r4">
-		            	<input type="radio" name="rv_rating" id="rating5" value="5" <c:if test="${dto.rv_rating == 5}">checked</c:if> />
-						<label for="rating5"></label>
-						<input type="radio" name="rv_rating" id="rating4" value="4" <c:if test="${dto.rv_rating == 4}">checked</c:if> />
-						<label for="rating4"></label>
-						<input type="radio" name="rv_rating" id="rating3" value="3" <c:if test="${dto.rv_rating == 3}">checked</c:if> />
-						<label for="rating3"></label>
-						<input type="radio" name="rv_rating" id="rating2" value="2" <c:if test="${dto.rv_rating == 2}">checked</c:if> />
-						<label for="rating2"></label>
-						<input type="radio" name="rv_rating" id="rating1" value="1" <c:if test="${dto.rv_rating == 1}">checked</c:if> />
-						<label for="rating1"></label>
+					<!-- 제목 -->
+			        <div class="">
+		            	<textarea name="qa_title" class="textarea"><c:out value="${dto.qa_title}"/></textarea>
 			        </div>
 
-					
 					<!-- 내용 -->
 			        <div class="">
-			            <textarea name="rv_content" class="textarea"><c:out value="${dto.rv_content}"/></textarea>
+			            <textarea name="qa_content" class="textarea"><c:out value="${dto.qa_content}"/></textarea>
 			        </div>
+			        
+			        
 			
 					<!-- 버튼 -->
 					<div class="button-area pack-center">
-						<button type="submit" class="btn blue medium">저장</button>
-						<a class="btn bdr-blue medium" href="myReviewList.do">목록</a>
+						<button type="submit" class="btn blue medium">수정</button>
+						<a class="btn bdr-blue medium" href="myQnaList.do">삭제</a>
 			   		</div>
 			    </form>
-			    
-				
 				
 			</div><!-- // #content -->
 			<!-- 컨텐츠 끝 -->
