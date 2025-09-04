@@ -15,11 +15,27 @@
     <script src="${path}/resources/js/yaksok.js" defer></script>
     <link rel="stylesheet" href="${path}/resources/ckeditor/style.css">
     <link rel="stylesheet" href="${path}/resources/ckeditor/ckeditor5.css">
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
-    <style>
-        .ck-editor__editable:not(.ck-editor__nested-editable) {
-            height: 450px;
-        }
+		    <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
+	<style>
+	.ck-editor__editable:not(.ck-editor__nested-editable) {
+		height: 450px;
+	}
+	
+	.label-box .input-text[name="fa_writer_name"] {
+		width: 200px; /* 원하시는 픽셀로 조정 */
+		max-width: 100%;
+		flex: 0 0 200px; /* flex로 늘어나지 않게 고정 */
+	}
+	/* 라벨과 입력칸을 나란히 보이게 (필요 시) */
+	.label-box.writer {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+	}
+	
+	.label-box .text-label {
+		white-space: nowrap;
+	}
 	</style>
 	
 </head>
@@ -31,42 +47,41 @@
         <div id="content" class="sub si20">
         
             <form name="insertForm" id="frm" action="${path}/faq_insertAction.fc" method="POST">
-            	
-                <div>
-                    <div>
-                        <label class="label-box">
-                            <span class="text-label">제목</span>
-                            <input type="text" name="fa_title" class="input-text" maxlength="100" placeholder="제목을 입력해주세요">
-                        </label>
-                    </div>
-                 <!--    <div>
-                        <label class="label-box">
-                            <span class="text-label">작성자id</span>
-                            <input type="text" name="fa_writer_id" class="input-text" maxlength="100" placeholder="작성자id를 입력해주세요">
-                        </label>
-                    </div> -->
-                    <div>
-                        <label class="label-box">
-                            <span class="text-label">작성자</span>
-                            <input type="text" name="fa_writer_name" class="input-text" maxlength="100" placeholder="작성자를 입력해주세요">
-                        </label>
-                    </div>
-                    <div style="margin-top:10px;">
-                        <textarea name="fa_content" id="fa_content"  maxlength="4000"></textarea>
-                    </div>
-                    
-                    <div class="insert pack-left">
-						<label for="radio1" class="pack-left"><input type="radio" class="radio" name="fa_show" id="fa_show" value="Y" checked>노출</label>
-						<label for="radio2" class="pack-left"><input type="radio" class="radio" name="fa_show" id="fa_show" value="N" >비노출</label>
+
+					<div>
+						<div>
+							<label class="label-box writer"> <span class="text-label">작성자</span>
+								<input type="text" name="fa_writer_name" class="input-text"
+								maxlength="40" placeholder="작성자를 입력해주세요">
+							</label>
+						</div>
+						<br>
+						<div>
+							<label class="label-box"> <span class="text-label">제목</span>
+								<input type="text" name="fa_title" class="input-text"
+								maxlength="100" placeholder="제목을 입력해주세요">
+							</label>
+						</div>
+
+
+						<div style="margin-top: 10px;">
+							<textarea name="fa_content" id="fa_content" maxlength="4000"></textarea>
+						</div>
+						<br>
+						<div class="insert pack-left">
+							<label for="radio1" class="pack-left"><input type="radio"
+								class="radio" name="fa_show" id="fa_show" value="Y" checked>노출</label>
+							<label for="radio2" class="pack-left"><input type="radio"
+								class="radio" name="fa_show" id="fa_show" value="N">비노출</label>
+						</div>
+
 					</div>
-                 
-                    </div>
-					
+
 					<div style="text-align: center; margin-top: 20px;">
 						<button type="submit" class="btn blue medium">등록하기</button>
 					</div>
 
-            </form>
+				</form>
         </div>
 
         <%@ include file="../common/nav.jsp" %>
