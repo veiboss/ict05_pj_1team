@@ -62,8 +62,40 @@ function delReview(id){
 				        <!-- 앵커로 전체 감싸지 말고 div로 -->
 				        <div class="item thumb-left">
 				          <div class="img-wrap s100">
-				            <img src="${path}/resources/images/drug_type/01.png" alt="분말" class="centered">
-				          </div>
+					        <c:choose>
+					            <c:when test="${fn:contains(dto.dr_sungsang, '분말')}">
+					                <img src="${path}/resources/images/drug_type/01.png" alt="분말">
+					            </c:when>
+					
+					            <c:when test="${fn:contains(dto.dr_sungsang, '원형캡슐')}">
+					                <img src="${path}/resources/images/drug_type/02.png" alt="원형캡슐">
+					            </c:when>
+					
+					            <c:when test="${fn:contains(dto.dr_sungsang, '원형정제')}">
+					                <img src="${path}/resources/images/drug_type/03.png" alt="원형정제">
+					            </c:when>
+					
+					            <c:when test="${fn:contains(dto.dr_sungsang, '제피정제')}">
+					                <img src="${path}/resources/images/drug_type/04.png" alt="제피정제">
+					            </c:when>
+					            
+					            <c:when test="${fn:contains(dto.dr_sungsang, '젤리')}">
+					                <img src="${path}/resources/images/drug_type/05.png" alt="젤리">
+					            </c:when>
+					            
+					            <c:when test="${fn:contains(dto.dr_sungsang, '액상')}">
+					                <img src="${path}/resources/images/drug_type/06.png" alt="유동성 액체">
+					            </c:when>
+					            
+					            <c:when test="${fn:contains(dto.dr_sungsang, '경질캡슐')}">
+					                <img src="${path}/resources/images/drug_type/07.png" alt="경질캡슐">
+					            </c:when>
+					
+					            <c:otherwise>
+					                <img src="${path}/resources/images/drug_type/03.png" alt="정제">
+					            </c:otherwise>
+					        </c:choose>
+					</div>
 				
 				          <div class="data-content">
 				            <!-- 상품명 -->
@@ -80,7 +112,7 @@ function delReview(id){
 				
 				            <!-- 내용 -->
 				            <div class="data-wrap pack-both">
-				              <p><c:out value="${dto.rv_content}"/></p>
+				              <p><c:out value="${fn:replace(fn:replace(dto.rv_content,'<p>',''),'</p>','<br/>')}"/></p>
 				
 				              <!-- 버튼 (앵커 밖으로 분리) -->
 				              <p class="pack-left">

@@ -36,6 +36,7 @@ public class MyReviewServiceImpl implements MyReviewService{
 	    // 갯수 카운트
 		int currentPage = (pageNum == null || pageNum.equals("0")) ? 1 : Integer.parseInt(pageNum);
 	      Paging paging = new Paging(String.valueOf(currentPage));
+	      
 	    int total = dao.listCnt(mbId);
 	    
 	    paging.setTotalCount(total);

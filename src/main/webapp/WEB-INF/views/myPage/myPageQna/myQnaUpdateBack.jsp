@@ -15,7 +15,12 @@
 
 <!--  js -->
 <script src="https://kit.fontawesome.com/d7162d59a4.js" crossorigin="anonymous"></script>
+<script type="text/javascript">
+alert("답변이 있는 Q&A는 수정이 불가합니다.");
 
+location.href = "myQnaList.do";
+
+</script>
 <!-- (3-4). 자바스크립트 소스 연결 -->
 <!-- defer : html을 다 읽은 후에 자바스크립트를 실행한다. 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행된다. -->
 <script src="${path}/resources/js/lib/aos.js" defer></script>
@@ -39,29 +44,6 @@
 			<!-- SID : COM000 -->
 			<div id="content" class="sub"><!-- [D] main / sub-main / sub && pagd name -->
 				
-				<h2 class="article-title ta-c">Q&A 수정</h2>
-				
-				<!-- 수정 폼 -->
-				<form action="${path}/myQnaUpdate.do" method="post">
-					<input type="hidden" name="qa_id" value="${dto.qa_id}"/>
-					
-					<!-- 제목 -->
-			        <div class="">
-		            	<textarea name="qa_title" class="textarea"><c:out value="${dto.qa_title}"/></textarea>
-			        </div>
-
-
-					<!-- 내용 -->
-			        <div class="">
-			            <textarea name="qa_content" class="textarea"><c:out value="${fn:replace(fn:replace(dto.qa_content,'<p>',''),'</p>','<br/>')}"/></textarea>
-			        </div>
-			        
-					<!-- 버튼 -->
-					<div class="button-area pack-center">
-						<button type="submit" class="btn blue medium">수정</button>
-						<a class="btn bdr-blue medium" href="myQnaList.do">목록</a>
-			   		</div>
-			    </form>
 				
 			</div><!-- // #content -->
 			<!-- 컨텐츠 끝 -->
