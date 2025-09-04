@@ -20,12 +20,9 @@
 	</update>
  	
  	<delete id="myProfileDelete" parameterType="int">
-		DELETE FROM MEMBER_PROFILE_TB
-		  WHERE MB_ID IN (
-		    SELECT m.MB_ID
-		    FROM MEMBER_TB m
-		    WHERE m.MB_ID = #{sessionID}
-		  )
+		DELETE FROM MEMBER_TB
+		  WHERE MB_ID = #{sessionID}
+		  
 	</delete>
 	
  </mapper>

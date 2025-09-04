@@ -33,7 +33,7 @@ public class MypageSurveyController {
 	@RequestMapping("MA13")
 	public String addSurvey(HttpServletRequest request, HttpServletResponse response, Model model) 
 			throws ServletException, IOException {
-		logger.info("ProfileCMypageSurveyControllerontroller-addSurvey");
+		logger.info("MypageSurveyController-addSurvey");
 		return "myPage/myPageSurvey/survey";
 	}
 	
