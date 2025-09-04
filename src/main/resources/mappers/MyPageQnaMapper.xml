@@ -46,4 +46,25 @@
 	 WHERE mb_id = #{mbId}
 </select>
 
+<!-- qna 답변 여부 확인 -->
+<select id="selectQnaDetail" parameterType="int" resultType="com.middlepj.ict05.domain.mypage.mypageqna.dto.MyQnaDTO">
+    SELECT * FROM QNA_TB
+    WHERE qa_id = #{qa_id}
+</select>
+
+<!-- qna 수정 -->
+<update id="updateQna" parameterType="com.middlepj.ict05.domain.mypage.mypageqna.dto.MyQnaDTO">
+	UPDATE QNA_TB
+	   SET qa_title = #{qa_title}
+	   	 , qa_content =#{qa_content}
+	 WHERE qa_id = #{qa_id}
+</update>
+
+<!-- qna 삭제 -->
+<update id="deleteQna" parameterType="int">
+	UPDATE QNA_TB
+       SET qa_show = 'N'
+     WHERE qa_id = #{qa_id}
+</update> 
+
 </mapper> 
