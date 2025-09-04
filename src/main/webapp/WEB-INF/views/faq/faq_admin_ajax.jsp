@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../common/setting.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <section class="box-wrap">
 	<table class="data-table">
 		<thead>
@@ -58,7 +57,8 @@
 		<ul>
 			<c:forEach var="num" begin="${paging.startPage}"
 				end="${paging.endPage}">
-				<li class="${num == paging.currentPage ? 'current' : ''}"><a href="#" class="btn page-link" data-page="${num}">${num}</a></li>
+				<li class="${num == paging.currentPage ? 'current' : ''}">
+				<a href="#" class="btn page-link" data-page="${num}">${num}</a></li>
 			</c:forEach>
 		</ul>
 
