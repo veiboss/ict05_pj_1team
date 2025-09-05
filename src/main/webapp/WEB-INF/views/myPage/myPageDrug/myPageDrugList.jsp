@@ -14,7 +14,12 @@
 <title>영양제 검색</title>
 <!-- css -->
 <link rel="stylesheet" href="${path}/resources/css/yaksok.css">
+<style>
+	.list-wrap {margin-top: 40px;}
+	.list-wrap .pack-left.col-3		{align-items: flex-start; flex-wrap: wrap; gap: 40px;}
+	.list-wrap .pack-left.col-3 li	{width: calc((100% - 80px)/3);}
 
+</style>
 <!--  js -->
 
 <!-- (3-4). 자바스크립트 소스 연결 -->
@@ -38,83 +43,74 @@
 			<!-- SID : PL20 -->
 			<div id="content" class="pl20"><!-- [D] main / sub-main / sub && pagd name -->
 				<div class="header-line pack-both" style="display:flex; gap:10px;">
-					<h3 class="section-title">내 영양제 목록</h3>
-					<span></span>
-			            <a href="drug_list.do" class="btn linkline" style="padding:8px 0">내 영양제 추가</a>
-			    </div>
-			    <!-- <hr class="out-cont section-bar"> -->
-				<ul class="data-list toon">
-					<c:forEach var="dto" items="${list}">
-					<li>
-					<a href="${path}/drug_detailAction.do?dr_id=${dto.dr_id}" class="item thumb-left">
-							<!-- 01	분말, 
-							02	원형캡슐, 
-							03	원형정제, 
-							04	제피정제, 
-							05	젤리, 
-							06	유동성 액체, 
-							07	경질캡슐 -->
-							<div class="img-wrap s100">
-							        <c:choose>
-							            <c:when test="${fn:contains(dto.dr_sungsang, '분말')}">
-							                <img src="${path}/resources/images/drug_type/01.png" alt="분말">
-							            </c:when>
-							
-							            <c:when test="${fn:contains(dto.dr_sungsang, '원형캡슐')}">
-							                <img src="${path}/resources/images/drug_type/02.png" alt="원형캡슐">
-							            </c:when>
-							
-							            <c:when test="${fn:contains(dto.dr_sungsang, '원형정제')}">
-							                <img src="${path}/resources/images/drug_type/03.png" alt="원형정제">
-							            </c:when>
-							
-							            <c:when test="${fn:contains(dto.dr_sungsang, '제피정제')}">
-							                <img src="${path}/resources/images/drug_type/04.png" alt="제피정제">
-							            </c:when>
-							            
-							            <c:when test="${fn:contains(dto.dr_sungsang, '젤리')}">
-							                <img src="${path}/resources/images/drug_type/05.png" alt="젤리">
-							            </c:when>
-							            
-							            <c:when test="${fn:contains(dto.dr_sungsang, '액상')}">
-							                <img src="${path}/resources/images/drug_type/06.png" alt="유동성 액체">
-							            </c:when>
-							            
-							            <c:when test="${fn:contains(dto.dr_sungsang, '경질캡슐')}">
-							                <img src="${path}/resources/images/drug_type/07.png" alt="경질캡슐">
-							            </c:when>
-							
-							            <c:otherwise>
-							                <img src="${path}/resources/images/drug_type/03.png" alt="정제">
-							            </c:otherwise>
-							        </c:choose>
-							</div>
-						
-							<div class="data-content">
-								
-								<p class="small-title">${dto.mbd_drug_name}</p>
-								
-							</div>
+					<h3 class="page-title">내 약 목록</h3>
+
+					<a href="drug_list.do" class="btn black small r-full">내 영양제 추가</a>
+				</div>
+				<!-- <hr class="out-cont section-bar"> -->
+				<div class="list-wrap">
+					<ul class="pack-left col-3">
+						<c:forEach var="dto" items="${list}">
+						<li class="pack-down-center gap-12">
+							<a href="${path}/drug_detailAction.do?dr_id=${dto.dr_id}" class="pack-down-center gap-12">
+								<!-- 01	분말, 
+								02	원형캡슐, 
+								03	원형정제, 
+								04	제피정제, 
+								05	젤리, 
+								06	유동성 액체, 
+								07	경질캡슐 -->
+								<div class="img-wrap s100">
+									<c:choose>
+									<c:when test="${fn:contains(dto.dr_sungsang, '분말')}">
+										<img src="${path}/resources/images/drug_type/01.png" alt="분말">
+									</c:when>
+									
+									<c:when test="${fn:contains(dto.dr_sungsang, '원형캡슐')}">
+										<img src="${path}/resources/images/drug_type/02.png" alt="원형캡슐">
+									</c:when>
+									
+									<c:when test="${fn:contains(dto.dr_sungsang, '원형정제')}">
+										<img src="${path}/resources/images/drug_type/03.png" alt="원형정제">
+									</c:when>
+									
+									<c:when test="${fn:contains(dto.dr_sungsang, '제피정제')}">
+										<img src="${path}/resources/images/drug_type/04.png" alt="제피정제">
+									</c:when>
+									
+									<c:when test="${fn:contains(dto.dr_sungsang, '젤리')}">
+										<img src="${path}/resources/images/drug_type/05.png" alt="젤리">
+									</c:when>
+									
+									<c:when test="${fn:contains(dto.dr_sungsang, '액상')}">
+										<img src="${path}/resources/images/drug_type/06.png" alt="유동성 액체">
+									</c:when>
+									
+									<c:when test="${fn:contains(dto.dr_sungsang, '경질캡슐')}">
+										<img src="${path}/resources/images/drug_type/07.png" alt="경질캡슐">
+									</c:when>
+									
+									<c:otherwise>
+										<img src="${path}/resources/images/drug_type/03.png" alt="정제">
+									</c:otherwise>
+									</c:choose>
+								</div>
+								<div class="data-content">
+									<p class="fc">${dto.mbd_drug_name}</p>
+								</div>
 							</a>
+				
+							<div class="data-wrap">
 								<form method="post" action="myPageDrugDelete.do" class="pack-left">
-							        <input type="hidden" name="dr_id" value="${dto.dr_id}">
-							        <input type="hidden" name="sessionID" value="${sessionScope.sessionID}">
-							        <button type="submit" class="btn blue small r4">내약 삭제</button>
-							      </form>
-								<%-- 	
-								<div id="drug-item" class="data-wrap pack-both">
-									<span> </span>
-									<p class="pack-left">
-										<input type="hidden" name="dr_id" value="${dto.dr_id}">
-										<button type="submit" class="btn blue small r4 add-btn" data-drid="${dto.dr_id}">
-											내약추가
-										</button>
-									</p>
-								</div> --%>
-							
-					</li>
-			    </c:forEach>
-				</ul>
+									<input type="hidden" name="dr_id" value="${dto.dr_id}">
+									<input type="hidden" name="sessionID" value="${sessionScope.sessionID}">
+									<button type="submit" class="btn bdr-blue xsmall r-full">내약 삭제</button>
+								</form>
+							</div>
+						</li>
+					</c:forEach>
+					</ul>
+				</div><!-- .list-wrap -->
 			</div>
 			<!-- nav 시작 -->
 			<%@ include file="../../common/nav.jsp" %>

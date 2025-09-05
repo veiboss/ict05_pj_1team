@@ -34,21 +34,28 @@
 			
 			<!-- 컨텐츠 시작 -->
 			<!-- SID : SI20 -->
-			<div id="content" class="pack-down-center">
-				<h2 class="section-title">
-						${sessionScope.sessionName}<span class="fw-300"> 님</span>
-				</h2>
-				<p>
-					<span class="" style="width: 160px">비밀번호 입력</span>
-					<input type="password" class="input-text small" name="mb_password" placeholder="공백없이 20자 이내로 작성" required autofocus>
-				</p>
+			<div id="content" class="">
+				<h2 class="page-title">회원탈퇴</h2>
+				
+				<div class="pack-down-center gap-20" style="padding: 50px 0;">
+					<p class="pack-left">
+						<strong class="fs-18">${sessionScope.sessionName}</strong>
+						<span class="fw-300"> 님</span>
+					</p>
+					<label class="pack-down-center gap-4">
+						<span class="fc-dark-gray">비밀번호</span>
+						<input type="password" class="input-text small" name="mb_password" placeholder="공백없이 20자 이내로 작성" required autofocus>
+					</label>
+					
+					<div class="button-area">
+						<a href="myProfileDeleteAction.do" class="btn black medium r-full">
+							<span class="fs-18">탈퇴하기</span>
+						</a>
+					</div>
+				</div>
+			</div>
 			<!-- // #content -->
 			<!-- 컨텐츠 끝 -->
-			</div>
-			<div class="pack-down-center" style="display:flex; gap:10px;">
-				<a href="myProfileDeleteAction.do" class="btn bdr-blue medium" style="padding:8px 0"><span class="fs-18">탈퇴하기</span></a>
-			</div>
-		<!-- 컨텐츠 끝 -->
 		
 			<!-- nav 시작 -->
 			<%@ include file="../../common/nav.jsp" %>
