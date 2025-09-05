@@ -12,6 +12,7 @@
 <title>약을 쏘옥, 약속</title>
 <!-- css -->
 <link rel="stylesheet" href="${path}/resources/css/yaksok.css">
+<link rel="stylesheet" href="${path}/resources/css/survey/survey.css">
 
 <!--  js -->
 <script src="https://kit.fontawesome.com/d7162d59a4.js" crossorigin="anonymous"></script>
@@ -20,27 +21,6 @@
 <!-- defer : html을 다 읽은 후에 자바스크립트를 실행한다. 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행된다. -->
 <script src="${path}/resources/js/lib/aos.js" defer></script>
 <script src="${path}/resources/js/yaksok.js" defer></script>
-<style>
-	.article.card .card:not(.active){display:none;}
-	.article-header + .pack-down-center {padding-top: 20px;}
-	.article.card .btn{ border-radius: 100px;}
-	
-	.article.card .select-options {height: fit-content;}
-	.article.card .select-options:before{display: none;} 
-	.article.card .select-options .btn{padding: 12px 16px 12px; min-width: 50%; font-size: 18px;}
-	
-	.article.card .input-text.large	{width: 50%; height: var(--large); line-height: var(--large); text-align:center; font-size: 18px; font-weight: bold;}
-	
-	.article.card .card > .button-area{margin: 0 auto; padding: 40px 0; width: 80%; text-align:center;}
-	
-	.btn.bdr-gray:has(input:checked){border: solid 1px var(--blue);}
-	
-	.article.card .button-area .btn.large {width: 50%; text-align: center;}
-	
-	#survey-container .article-type {padding: 20px 0; text-align: right;}
-	
-}
-</style>
 <script>
 	// 다음 프로필 입력으로
 	function nextStep(current) {
@@ -222,8 +202,7 @@
 			<!-- 컨텐츠 시작 -->
 			<!-- SID : MA10 -->
 			<div id="content" class="MA10"><!-- [D] main / sub-main / sub && pagd name -->
-			
-				<div class="bg-gray">
+				<div class="bg-gray out-cont">
 					<div class="article card acitve">
 						<c:if test="${checkCnt != 0}">
 							<script type="text/javascript">
@@ -252,7 +231,7 @@
 							</div>
 							
 							<div class="button-area">
-								<button type="button" class="btn blue large" onclick="nextStep(1)">다음</button>
+								<button type="button" class="btn black large" onclick="nextStep(1)">다음</button>
 							</div>
 						</div><!-- //.card -->
 		
@@ -267,7 +246,7 @@
 							</label>
 							
 							<div class="button-area">
-								<button type="button" class="btn blue large" onclick="nextStep(2)">다음</button>
+								<button type="button" class="btn black large" onclick="nextStep(2)">다음</button>
 							</div>
 						</div><!-- //.card -->
 		
@@ -281,7 +260,7 @@
 									oninput="this.value=this.value.replace(/[^0-9]/g,'')" class="input-text large" required>
 							</label>
 							<div class="button-area">
-								<button type="button" class="btn blue large" onclick="nextStep(3)">다음</button>
+								<button type="button" class="btn black large" onclick="nextStep(3)">다음</button>
 							</div>
 						</div>
 		
@@ -295,7 +274,7 @@
 									oninput="this.value=this.value.replace(/[^0-9]/g,'')" class="input-text large" required>
 							</label>
 							<div class="button-area">
-								<button type="button" class="btn blue large" onclick="nextStep(4)">다음</button>
+								<button type="button" class="btn black large" onclick="nextStep(4)">다음</button>
 							</div>
 						</div>
 		
@@ -325,7 +304,7 @@
 							</div>
 							
 							<div class="button-area">
-								<button type="button" class="btn blue large" onclick="goToSurvey()">다음</button>
+								<button type="button" class="btn black large" onclick="goToSurvey()">다음</button>
 							</div>
 						</div>
 		
@@ -340,7 +319,7 @@
 							</div>
 							
 							<div class="button-area">
-								<button type="button" class="btn blue large" onclick="nextSurveyOrStep7()">다음</button>
+								<button type="button" class="btn black large" onclick="nextSurveyOrStep7()">다음</button>
 							</div>
 						</div>
 		
@@ -372,7 +351,7 @@
 								</label>
 							</div>
 							<div class="button-area">
-						        <button type="button" class="btn blue large" onclick="submitForm()">다음</button>
+						        <button type="button" class="btn black large" onclick="submitForm()">다음</button>
 						    </div>
 						</div>
 						
@@ -403,5 +382,7 @@
 			<!-- footer 끝 -->
 		</div><!-- // #container -->
 	</div><!-- // #wrap -->
+	
+	<%@ include file="../common/loading.jsp" %><!-- 약속 로딩 -->
 </body>
 </html>

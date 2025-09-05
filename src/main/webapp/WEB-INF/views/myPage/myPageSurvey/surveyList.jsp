@@ -12,11 +12,12 @@
 <title>약을 쏘옥, 약속</title>
 <!-- css -->
 <link rel="stylesheet" href="${path}/resources/css/yaksok.css">
+<link rel="stylesheet" href="${path}/resources/css/survey/survey.css">
 
 <!--  js -->
 <script src="${path}/resources/js/lib/aos.js" defer></script>
 <script src="${path}/resources/js/yaksok.js" defer></script>
-<script src="https://kit.fontawesome.com/d7162d59a4.js" crossorigin="anonymous"></script>
+
 <script src="${path}/resources/js/lib/jquery.waypoints.min.js" defer></script>
 <script src="${path}/resources/js/lib/jquery.counterup.js" defer></script>
 <script src="${path}/resources/js/lib/easy-pie-chart/jquery.easypiechart.min.js" defer></script>
@@ -25,28 +26,9 @@
 <!-- defer : html을 다 읽은 후에 자바스크립트를 실행한다. 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행된다. -->
 <script src="${path}/resources/js/lib/aos.js" defer></script>
 <script src="${path}/resources/js/yaksok.js" defer></script>
-<style>
-	#content > .bg-gray{padding: 68px 16px 16px;}
-	.section.result {position: relative; padding: 50px 20px 24px; border-radius: 12px;}
-	.section.result  .badge-wrap	{position: absolute; top: -12px; right: calc(50% - 30px); min-width: 186px; font-size: 14px;}
-	#comment {max-width: 60%;}
-	.result .chart {position: relative; display: block; margin: 0 auto;}
-	.result .chart .point{position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); line-height: 1; letter-spacing: -1px;}
-	
-	.list-wrap {margin-top: 40px;}
-	.list-wrap .pack-left		{flex-wrap: wrap; gap: 40px;}
-	.list-wrap .pack-left.col-3	{align-items: flex-start;}
-	.list-wrap .pack-left.col-3 li	{width: calc((100% - 80px)/3);}
-	
-	/* ellipsis */
-	.ellipsis		{display: block; overflow: hidden; text-overflow: ellipsis;
-		-webkit-line-clamp: 2;
-		display: -webkit-box; -webkit-box-orient: vertical;
-	}
-</style>
 <script>
 	$(function() {
-		$('.chart').easyPieChart({
+		$('.chart:not(.small)').easyPieChart({
 			animate: 2000,
 			easing: 'easeOutBounce',
 			barColor: '#687FE5',
@@ -58,18 +40,18 @@
 	});
 	
 	$(function() {
-		$('.chart2').easyPieChart({
+		$('.chart.small').easyPieChart({
 			animate: 2000,
 			easing: 'easeOutBounce',
 			barColor: '#687FE5',
 			scaleColor: false,
 			trackColor: '#f1f1f1',
 			lineWidth: 6,
-			size: 40,
+			size: 52,
 		});
 	});
 	
-	$(".chart span").counterUp({
+	$(".chart .fc-blue").counterUp({
 		time: 1000,
 	});
 	const urlParams = new URLSearchParams(window.location.search);
@@ -108,7 +90,6 @@
 			<div id="content" class="sub"><!-- [D] main / sub-main / sub && pagd name -->
 				<div class="out-cont bg-gray">
 					<div class="section result bg-white">
-					
 						<div class="card" id="resultCard">
 							<p class="badge-wrap">
 								<span class="badge ballon blue">약속에서 체크한</span>
@@ -116,40 +97,34 @@
 							<div class="pack-down-center gap-20">
 								<h2 class="card-title fw-600">${sessionName}님의 최근 점수는</h2>
 								<div id="score" class="chart" data-percent="${dto.mbs_score}">
-									<span class="point pack-left">
-										<strong class="fs-32 fc-blue">${dto.mbs_score}</strong>
+									<span class="point pack-left gap-4">
+										<strong class="fs-40 fc-blue">${dto.mbs_score}</strong>
 										<span class="fc-gray">점</span>
 									</span>
 								</div>
 								<div class="fs-14 fc-gray fw-500" id="comment"></div>
 							</div>
 							<div class="button-area pack-center gap-12">
-								<a class="btn blue medium r8" href="MA13">다시 테스트하기</a>
+								<a class="btn black large r-full" href="MA13">다시 테스트하기</a>
 							</div>
 						</div>
 						
 						<div class="section list-wrap">
 							<ul class="data-list toon">
 								<c:forEach var="dto" items="${list}">
-								<li>
-									<a href="#" class="item thumb-left">
-										<div class="img-wrap s100">
-										</div>
-										<div class="data-content">
-											<span class="point pack-left">
-												<div id="score" class="chart2" data-percent="${dto.mbs_score}"></div>
-												<strong class="fs-32 fc-blue">${dto.mbs_score}</strong>
-												<span class="fc-gray">점</span>
-												<div class="data-wrap pack-both">
-													<p class="pack-left">
-														<span class="small-title">${dto.mbs_servey_date}</span>
-													</p>
-												</div>
+									<li>
+										<a href="#" class="pack-both gap-40">
+											<span class="fs-14 fc-dark-gray">${dto.mbs_servey_date}</span>
+											<span class="pack-left gap-16">
+												<span class="point pack-left gap-4">
+													<strong class="fs-20 fc-blue">${dto.mbs_score}</strong>
+													<span class="fc-dark-gray">점</span>
+												</span>
+												<span class="chart small" data-percent="${dto.mbs_score}"></span>
 											</span>
-										</div>
-									</a><!-- .item.thumb-left -->
-								</li>
-						   		</c:forEach>
+										</a><!-- .item.thumb-left -->
+									</li>
+								</c:forEach>
 							</ul>
 						</div>
 					</div><!-- //.article.card -->
@@ -167,5 +142,7 @@
 			<!-- footer 끝 -->
 		</div><!-- // #container -->
 	</div><!-- // #wrap -->
+	
+	<%@ include file="../../common/loading.jsp" %><!-- 약속 로딩 -->
 </body>
 </html>

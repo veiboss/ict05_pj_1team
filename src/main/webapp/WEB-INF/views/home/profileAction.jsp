@@ -12,6 +12,7 @@
 <title>약을 쏘옥, 약속</title>
 <!-- css -->
 <link rel="stylesheet" href="${path}/resources/css/yaksok.css">
+<link rel="stylesheet" href="${path}/resources/css/survey/survey.css">
 
 <!--  js -->
 <script src="https://kit.fontawesome.com/d7162d59a4.js" crossorigin="anonymous"></script>
@@ -20,57 +21,6 @@
 <!-- defer : html을 다 읽은 후에 자바스크립트를 실행한다. 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행된다. -->
 <script src="${path}/resources/js/lib/aos.js" defer></script>
 <script src="${path}/resources/js/yaksok.js" defer></script>
-<style type="text/css">
-	@charset "UTF-8";
-	/* ICT TeamONE _ 약을 쏘옥, 약속 _ KimJuyeon _ 20250818 */
-	
-	@import url(${path}/resources/css/_colors.css);
-	@import url(${path}/resources/css/_fonts.css);
-	
-	body {
-		margin: 0;
-		height: 100vh;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		background: var(--mostly-white);
-	}
-	
-	.loader-container {
-		text-align: center;
-	}
-	
-	/* 원형 스피너 */
-	.spinner {
-		width: 60px;
-		height: 60px;
-		border: 8px solid var(--light-gray);
-		border-top: 8px solid var(--blue);
-		border-radius: 50%;
-		animation: spin 1s linear infinite;
-		margin: 0 auto 20px auto;
-	}
-	
-	@keyframes spin {
-		0%   { transform: rotate(0deg); }
-		100% { transform: rotate(360deg); }
-	}
-	
-	/* 점점 나타나는 로딩 텍스트 */
-	.loading-text {
-		font-size: 20px;
-		color: black;
-		letter-spacing: 2px;
-		animation: blink 1.5s infinite;
-	}
-	
-	@keyframes blink {
-		0%   { opacity: 1; }
-		50%  { opacity: 0.4; }
-		100% { opacity: 1; }
-	}
-
-</style>
 <script>
 	let questions = [];
 	let currentIndex = 0;
@@ -140,27 +90,26 @@
 			<!-- 컨텐츠 시작 -->
 			<!-- SID : COM000 -->
 			<div id="content" class="sub"><!-- [D] main / sub-main / sub && pagd name -->
-			<c:if test="${insertCnt == 1}">
-				<script type="text/javascript">
-					setTimeout(function(){
-						alert("다음 설문을 계속 진행해주세요!")
-						window.location="${path}/MA13";
-					}, 1000);
-				</script>
-			</c:if>
-			<c:if test="${insertCnt != 1}">
-				<script type="text/javascript">
-					setTimeout(function(){
-						alert("프로필을 다시 등록해주세요!")
-						window.location="${path}/MA10";
-					}, 1000);
-				</script>
-			</c:if>
-				
+				<c:if test="${insertCnt == 1}">
+					<script type="text/javascript">
+						setTimeout(function(){
+							alert("다음 설문을 계속 진행해주세요!")
+							window.location="${path}/MA13";
+						}, 1000);
+					</script>
+				</c:if>
+				<c:if test="${insertCnt != 1}">
+					<script type="text/javascript">
+						setTimeout(function(){
+							alert("프로필을 다시 등록해주세요!")
+							window.location="${path}/MA10";
+						}, 1000);
+					</script>
+				</c:if>
 				
 				<div class="loader-container">
-				  <div class="spinner"></div>
-				  <div class="loading-text">로딩중...</div>
+					<div class="spinner"></div>
+					<div class="loading-text">로딩중...</div>
 				</div>
 				
 			</div><!-- // #content -->
@@ -175,5 +124,7 @@
 			<!-- footer 끝 -->
 		</div><!-- // #container -->
 	</div><!-- // #wrap -->
+	
+	<%@ include file="../common/loading.jsp" %><!-- 약속 로딩 -->
 </body>
 </html>
