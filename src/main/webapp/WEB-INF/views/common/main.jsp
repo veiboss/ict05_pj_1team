@@ -70,6 +70,6 @@
 		</div><!-- // #container -->
 	</div><!-- // #wrap -->
 	
-	<%@ include file="../../common/loading.jsp" %><!-- 약속 로딩 -->
+	<%@ include file="loading.jsp" %><!-- 약속 로딩 -->
 </body>
 </html>

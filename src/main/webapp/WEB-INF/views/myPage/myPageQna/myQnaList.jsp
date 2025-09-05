@@ -33,51 +33,7 @@
 	}
 }
 
-/* $(document).ready(function(){
-	
-	$("#answer").click(function() {
-        $.ajax({
-            type: "GET",
-            url: "faq_admin_ajax.fc",
-            data: { keyword: $("#searchTxt").val(), pageNum: page },
-            success: function(result){
-                $("#searchResult").html(result);
-            }
-        });
-    }
-    
-});
-
-
-$("#recommendBtn").click(function() {
-    var btn = $("#recommendBtn");
-    var b_num = btn.data("bnum");
-    
-    if(${sessionScope.sessionid != null}) {
-       if (!btn.hasClass("active")) {
-           // 추천 추가
-           $.ajax({
-               url: "${path}/recommend",
-               type: "POST",
-               data: { b_num: b_num, click: 1 },
-               success: function(result) {
-                   if (parseInt(result.success) === 1) {
-                       btn.addClass("active"); // 이미지 교체
-                      $("#recommendTotal").text(result.b_recommend); 
-                   }
-               },
-               error: function() {
-                   alert("추천 처리 중 오류가 발생했습니다.");
-               }
-           }); */
 </script>
-<script>
-	  document.addEventListener('DOMContentLoaded', function () {
-	    if (window.AOS) AOS.init();
-	    if (window.nav) { nav.init(); nav.current('4'); }
-	    if (window.accordion) { accordion(1); }   // 아래에서 정의할 함수
-	  });
-	</script>
 <style>
 	.qna-item.pack-down{gap: 10px}
 </style>
@@ -107,74 +63,100 @@ $("#recommendBtn").click(function() {
 				
 				<div class="pl20"><!-- ❌ id="content" 중복 금지 -->
 					<ul class="data-list">
-				    	<c:forEach var="dto" items="${list}">
-				      		<li class="accordion">
-				       		 <!-- 앵커로 전체 감싸지 말고 div로 -->
+			    	<c:forEach var="dto" items="${list}">
+			      		<li class="accordion">
+			       		 <!-- 앵커로 전체 감싸지 말고 div로 -->
+	          			<div class="pack-down qna-item">
+	          				<!-- 제목 -->
+	          				<div class="pack-both" style="display:flex; gap:10px;">
+	            			<p class="small-title"><c:out value="${dto.qa_title}"/></p>
+					  	  	</div>
+	            			
+	            			<div class="pack-both" style="display:flex; gap:10px;">
+       							<p class="qa-content fc-dark-gray">
+       							<c:out value="${
+							      fn:replace(
+							        fn:replace(
+							          fn:replace(
+							            fn:replace(fn:replace(dto.qa_content,'<p>',''),'</p>',''),
+							          '<br/>',''),
+							        '<br />',''),
+							      '<br>','')}"/>
+					 			</p>
+				           </div>
+				       </div>     
+					     <div class="row-2">
+							<div class="field col">
 								
-								
-			          			<div class="pack-down qna-item">
-			          				<!-- 제목 -->
-			          				<div class="pack-both" style="display:flex; gap:10px;">
-			            			<p class="small-title"><c:out value="${dto.qa_title}"/></p>
-			            				<span></span>
-			            				<c:if test="${dto.qa_answer != null}">
-							            <a id="answer"  class="btn bdr-blue small pack-both accordion-switche" style="padding:8px 5px">
-							            	<span class="">답변 보기</span></a>
-			            				</c:if>
-							  	  	</div>
-			            			
-			            			<div class="pack-both" style="display:flex; gap:10px;">
-          							<p class="qa-content fc-dark-gray"><c:out value="${
-								      fn:replace(
-								        fn:replace(
-								          fn:replace(
-								            fn:replace(fn:replace(dto.qa_content,'<p>',''),'</p>',''),
-								          '<br/>',''),
-								        '<br />',''),
-								      '<br>','')
-								  }"/></p>
-          								<span></span>
-						                	<a class="btn blue small color1 r4"
-						                  		href="${path}/myQnaDetail.do?qa_id=${dto.qa_id}" >수정</a>
-						                        
-						                	<button class="btn bdr-blue small color1 r4"
-						                        onclick="delQna(${dto.qa_id})" type="button" >삭제</button>
-						           </div>
-						         </div>     
-							      <div class="row-2">
-										<div class="field col">
-											
-											<div class="insert pack-left">
-												<label>
-												  <input type="radio" class="radio"
-												         name="qa_private_${dto.qa_id}" value="N" disabled
-												         <c:if test="${fn:trim(dto.qa_private) == 'N'}">checked="checked"</c:if> />
-												  공개
-												</label>
-												<label>
-												  <input type="radio" class="radio"
-												         name="qa_private_${dto.qa_id}" value="Y" disabled
-												         <c:if test="${fn:trim(dto.qa_private) == 'Y'}">checked="checked"</c:if> />
-												  비밀글
-												</label>
-
-											</div>
-										</div>
+								<div class="insert pack-left">
+									<label>
+									  <input type="radio" class="radio"
+									         name="qa_private_${dto.qa_id}" value="N" disabled
+									         <c:if test="${fn:trim(dto.qa_private) == 'N'}">checked="checked"</c:if> />
+									  공개
+									</label>
+									<label>
+									  <input type="radio" class="radio"
+									         name="qa_private_${dto.qa_id}" value="Y" disabled
+									         <c:if test="${fn:trim(dto.qa_private) == 'Y'}">checked="checked"</c:if> />
+									  비밀글
+									</label>
+								</div>
+								<span></span>
+			                	<a class="btn blue small color1 r4"
+			                  		href="${path}/myQnaDetail.do?qa_id=${dto.qa_id}" >수정</a>
+			                        
+			                	<button class="btn bdr-blue small color1 r4"
+			                        onclick="delQna(${dto.qa_id})" type="button" >삭제</button>
+							</div>
+						</div>
+						<!-- 내 QnA 끝 -->
+						
+						<!-- 전문가 답변 시작 -->
+						<div class="">
+							<p>
+								<c:out value="${
+							      fn:replace(
+							        fn:replace(
+							          fn:replace(
+							            fn:replace(fn:replace(dto.qa_answer,'<p>',''),'</p>',''),
+							          '<br/>',''),
+							        '<br />',''),
+							      '<br>','')}"/>
+					 		</p>
+							
+							<!-- 수정 버튼: sessionGrade가 expert일 때만 보임 -->
+							<%-- <c:if test="${sessionScope.sessionGrade eq 'EXPERT' and dto.qa_answer != null} ">
+							<button type="button" class="btn blue small r4"
+							        onclick="editAnswer(${dto.qa_id})">수정</button>
+							</c:if> --%>
+							<c:if test="${not empty sessionScope.sessionGrade 
+							             and fn:toLowerCase(fn:trim(sessionScope.sessionGrade)) eq 'expert' 
+							             and not empty dto.qa_answer}">
+							  <button type="button" class="btn blue small r4"
+							          onclick="answerUpdate(${dto.qa_id})">수정</button>
+							</c:if>
+							<!-- 🔽 숨김 편집 박스(전문가만 사용) -->
+							<c:if test="${not empty sessionScope.sessionGrade 
+											and fn:toLowerCase(fn:trim(sessionScope.sessionGrade)) eq 'expert' 
+											and not empty dto.qa_answer}">
+								<div id="ans${dto.qa_id}" style="display:none; margin-top:8px;">
+									<textarea id="ans-ta-${dto.qa_id}" rows="6" class="textarea" style="width:100%;">
+										${fn:escapeXml(dto.qa_answer)}
+									</textarea>
+									<div style="margin-top:8px; display:flex; gap:8px;">
+										<button type="button" class="btn blue small r4"
+										        onclick="saveAnswer(${dto.qa_id})">저장</button>
+										<button type="button" class="btn bdr-blue small r4"
+										        onclick="deleteAnswer(${dto.qa_id})">삭제</button>
 									</div>
-									<div class="accordion-content">
-										<p>${dto.qa_answer}</p>
-									</div>
-				            		<!-- 내용 -->
-			    	        		<div class="data-wrap pack-both">
-										<span>&nbsp;</span>
-					              		<!-- 버튼 (앵커 밖으로 분리) -->
-					              		
-						            </div>
+								</div>
+							</c:if>
+	            		</div> 
 								<hr class="out-cont section-bar">
 			          		</li>
 			          			
 			          	</c:forEach>
-			          	
 		          	</ul>
 	        	</div><!-- /.item.thumb-left -->
 			</div>
@@ -184,8 +166,8 @@ $("#recommendBtn").click(function() {
 			  <input type="hidden" name="qa_id" >
 			</form>	
 				
-				<div class="pagination">
-			    <!-- 이전 버튼 -->
+			<div class="pagination">
+		    <!-- 이전 버튼 -->
 			    <c:if test="${paging.startPage > 5}">
 			        <a href="${path}/myQnaList.do?pageNum=${paging.prev}" class="btn prev page-link" data-page="${paging.prev}">
 			            &lt;
@@ -208,11 +190,6 @@ $("#recommendBtn").click(function() {
 			        </a>
 			    </c:if>
 			</div><!-- .section.list-wrap -->
-		
-	       
-				
-				
-			
 			<!-- 컨텐츠 끝 -->
 		
 			<!-- nav 시작 -->

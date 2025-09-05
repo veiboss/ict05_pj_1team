@@ -1,7 +1,6 @@
 package com.middlepj.ict05.domain.mypage.mypageqna.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,12 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.middlepj.ict05.domain.mypage.mypageqna.dto.MyQnaDTO;
 import com.middlepj.ict05.domain.mypage.mypageqna.service.MyQnaServiceImpl;
-import com.middlepj.ict05.domain.mypage.mypagereview.controller.MyReviewController;
 
 @Controller
 public class MyQnaController {
 
-private static final Logger logger = LoggerFactory.getLogger(MyReviewController.class);	
+private static final Logger logger = LoggerFactory.getLogger(MyQnaController.class);	
 	
 	@Autowired
 	private MyQnaServiceImpl service;
@@ -91,4 +89,32 @@ private static final Logger logger = LoggerFactory.getLogger(MyReviewController.
 		 }
 		 
 	 } 
+	 
+	 //
+	 @RequestMapping("/myQnaAnswerUpdate.do")
+	 public String myQnaAnswerUpdate(HttpServletRequest request, HttpServletResponse response, Model model) 
+			 throws ServletException, IOException { 
+		 logger.info("<<< url ==> /myQnaAnswerUpdate.do >>>");
+	
+		 service.updateAnswer(request, response, model);
+		 
+		 return "myPage/myPageQna/myQnaList"; 
+	 
+	 } 
+	 
+	 //
+	 @RequestMapping("/myQnaAnswerDelete.do")
+	 public String myQnaAnswerDelete(HttpServletRequest request, HttpServletResponse response, Model model) 
+			 throws ServletException, IOException { 
+		 logger.info("<<< url ==> /myQnaAnswerDelete.do >>>");
+	
+		 service.deleteAnswer(request, response, model);
+		 
+		 return "myPage/myPageQna/myQnaList"; 
+	 
+	 } 
+	 
+	 
+	 
+	 
 }

@@ -10,13 +10,14 @@ public class MyQnaDTO {
 	private String qa_answer;		// 답변
 	private String qa_show;			// 노출여부
 	private int qa_writer_id;		// 작성자
+	private String mb_grade;
 	
 	public MyQnaDTO() {
 		super();
 	}
 
 	public MyQnaDTO(int qa_id, int mb_id, String qa_title, String qa_content, String qa_private, String qa_answer,
-			String qa_show, int qa_writer_id) {
+			String qa_show, int qa_writer_id, String mb_grade) {
 		super();
 		this.qa_id = qa_id;
 		this.mb_id = mb_id;
@@ -26,6 +27,7 @@ public class MyQnaDTO {
 		this.qa_answer = qa_answer;
 		this.qa_show = qa_show;
 		this.qa_writer_id = qa_writer_id;
+		this.mb_grade = mb_grade;
 	}
 
 	public int getQa_id() {
@@ -91,14 +93,21 @@ public class MyQnaDTO {
 	public void setQa_writer_id(int qa_writer_id) {
 		this.qa_writer_id = qa_writer_id;
 	}
+	
+	public String getMb_grade() {
+		return mb_grade;
+	}
+	
+	public void setMb_grade(String mb_grade) {
+		this.mb_grade = mb_grade;
+	}
 
 	@Override
 	public String toString() {
 		return "MyQnaDTO [qa_id=" + qa_id + ", mb_id=" + mb_id + ", qa_title=" + qa_title + ", qa_content=" + qa_content
 				+ ", qa_private=" + qa_private + ", qa_answer=" + qa_answer + ", qa_show=" + qa_show + ", qa_writer_id="
-				+ qa_writer_id + "]";
+				+ qa_writer_id + ", mb_grade=" + mb_grade + "]";
 	}
-
 	
 }
 

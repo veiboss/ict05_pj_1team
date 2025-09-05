@@ -30,4 +30,12 @@ public interface MyQnaService {
 	// qna 삭제 버튼 클릭시 - 전문가 댓글 없을 시에/ 삭제 (안보임처리)
 	public void qnaDeleteAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException;
+	
+	public int updateAnswer(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException;
+
+	public int deleteAnswer(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException;
+
+
 }

@@ -25,4 +25,10 @@ public interface MyQnaDAO {
 	
 	// 삭제 버튼 클릭시 - 전문가 댓글 없을 시에/ 삭제 (안보임처리)
 	public int deleteQna(int qa_id);
+	
+	// 답변 수정
+	public int updateAnswer(MyQnaDTO dto);
+	
+	// 답변 삭제
+	public int deleteAnswer(int qa_id);
 }

@@ -81,4 +81,19 @@ public class MyQnaDAOImpl implements MyQnaDAO{
 		return deleteCnt;
 	}
 
+	@Override
+	public int updateAnswer(MyQnaDTO dto) {
+		System.out.println("MyQnaDAOImpl - updateAnswer()");
+	    return sqlsession.update("com.middlepj.ict05.domain.mypage.mypageqna.dao.MyQnaDAO.updateAnswer", dto);
+	
+	}
+
+	@Override
+	public int deleteAnswer(int qa_id) {
+		   System.out.println("MyQnaDAOImpl - deleteAnswer()");
+		   
+		    return sqlsession.update(
+		      "com.middlepj.ict05.domain.mypage.mypageqna.dao.MyQnaDAO.deleteAnswer", qa_id);
+	}
+
 }

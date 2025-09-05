@@ -31,14 +31,16 @@ public class MyQnaServiceImpl implements MyQnaService{
 		
 		String pageNum = request.getParameter("pageNum");
 		int mbId = (int) request.getSession().getAttribute("sessionID");
+		String mbGrade = (String)request.getSession().getAttribute("sessionGrade");
 		
 	     
 	    // 갯수 카운트
 		int currentPage = (pageNum == null || pageNum.equals("0")) ? 1 : Integer.parseInt(pageNum);
-	      Paging paging = new Paging(String.valueOf(currentPage));
+	    Paging paging = new Paging(String.valueOf(currentPage));
 
 		Map<String,Object> mapCnt = new HashMap<>();
-		mapCnt.put("mbId", mbId); 
+		mapCnt.put("mbId", mbId);
+		
 		
 	    int total = dao.listCnt(mapCnt);
 	    
@@ -53,6 +55,7 @@ public class MyQnaServiceImpl implements MyQnaService{
         map.put("start", start);
         map.put("end", end);
         map.put("mbId", mbId);
+        map.put("mbGrade",mbGrade);
 	      
 	    // qna 목록 조회
 	    List<MyQnaDTO> list = dao.qnaList(map);
@@ -119,5 +122,32 @@ public class MyQnaServiceImpl implements MyQnaService{
 		model.addAttribute("num", num);
 		model.addAttribute("deleteCnt", deleteCnt);	
 	}
+	
+	@Override
+	public int updateAnswer(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		System.out.println("MyQnaServiceImpl - updateAnswer()");
+		
+		MyQnaDTO dto = new MyQnaDTO();
+		
+		dto.setQa_id(Integer.parseInt(request.getParameter("qa_id")));
+		dto.setQa_answer(request.getParameter("qa_answer"));
+	   
+		model.addAttribute("dto", dto);
+	    
+	    return dao.updateAnswer(dto);
+	}
+	
+	@Override
+	public int deleteAnswer(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		System.out.println("MyQnaServiceImpl - deleteAnswer()");
+		
+		int qaId = Integer.parseInt(request.getParameter("qa_id"));
+		
+	    return dao.deleteAnswer(qaId);
+	}
+
+
 
 }
