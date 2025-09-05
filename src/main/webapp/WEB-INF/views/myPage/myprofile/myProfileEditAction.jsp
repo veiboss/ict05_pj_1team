@@ -44,14 +44,14 @@
 							<div class="pack-down" style="gap:12px">
 								<p class="pack-left">
 									<span style="width: 160px">성별</span>
-									<span style="height: 48px; width: 100%; gap:24px" class="pack-left">
-										<label>
-											<input type="radio" class="radio" name="mbp_gender" value="M"
-												<c:if test="${dto.mbp_gender eq 'M'}">checked</c:if>>남
+									<span style="height: 48px; width: 100%; gap:36px" class="pack-left">
+										<label class="pack-left gap-0">
+											<input type="radio" class="radio" name="mbp_gender" value="M" <c:if test="${dto.mbp_gender eq 'M'}">checked</c:if>>
+											<span>남</span>
 										</label>
-										<label>
-											<input type="radio" class="radio" name="mbp_gender" value="W"
-												<c:if test="${dto.mbp_gender eq 'W'}">checked</c:if>> 여
+										<label class="pack-left gap-0">
+											<input type="radio" class="radio" name="mbp_gender" value="W" <c:if test="${dto.mbp_gender eq 'W'}">checked</c:if>>
+											<span>여</span>
 										</label>
 							        </span>
 							    </p>

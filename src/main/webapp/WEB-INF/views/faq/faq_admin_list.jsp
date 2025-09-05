@@ -67,11 +67,16 @@
 		<%@ include file="../admin/header.jsp"%>
 		<!-- header 끝 -->
 
-		<div id="container" class="container">
-			
+		<div id="container" class="container">	
 			<!-- 컨텐츠 시작 -->
 			<div class="title-bar">
-				<h2 class="page-title ellipsis">FAQ 관리자 게시판</h2>
+				<div class="pack-left">
+					<h2 class="page-title ellipsis">FAQ 관리</h2>
+					<a href="${path}/faq_insert.fc" class="btn medium color1">
+						<span class="material-symbols-outlined">playlist_add</span>
+						<span>새글등록</span>
+					</a>
+				</div>
 			</div>
 
 			<main id="content">

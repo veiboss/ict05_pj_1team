@@ -95,7 +95,7 @@
 						setTimeout(function(){
 							alert("다음 설문을 계속 진행해주세요!")
 							window.location="${path}/MA13";
-						}, 1000);
+						}, 100);
 					</script>
 				</c:if>
 				<c:if test="${insertCnt != 1}">
@@ -103,14 +103,14 @@
 						setTimeout(function(){
 							alert("프로필을 다시 등록해주세요!")
 							window.location="${path}/MA10";
-						}, 1000);
+						}, 100);
 					</script>
 				</c:if>
-				
+<!-- 				
 				<div class="loader-container">
 					<div class="spinner"></div>
 					<div class="loading-text">로딩중...</div>
-				</div>
+				</div> -->
 				
 			</div><!-- // #content -->
 			<!-- 컨텐츠 끝 -->

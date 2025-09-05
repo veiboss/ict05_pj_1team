@@ -68,7 +68,13 @@
 			
 			
 			<div class="title-bar">
-				<h2 class="page-title ellipsis">영양제 관리</h2>
+				<div class="pack-left">
+					<h2 class="page-title ellipsis">영양제 관리</h2>
+					<a class="btn medium color1" href="${path}/drugAdd.ad">
+						<span class="material-symbols-outlined">admin_meds</span>
+						<span>약 등록</span>
+					</a>
+				</div>
 			</div>
 			
 
@@ -90,12 +96,6 @@
 			
 			    <!-- 검색 결과 들어올 div -->
 			    <section class="box-wrap">
-			    	<div class="list-header pack-both">
-						<div></div>
-						<div>
-							<a class="btn medium color1" href="${path}/drugAdd.ad">영양제 등록</a>
-						</div>
-					</div>
 			    	<div id="searchResult"></div>
 				</section>
 			</main>

@@ -16,6 +16,9 @@
 <title>약쏙 관리자</title>
 <!-- css -->
 <link rel="stylesheet" href="${path}/resources/css/yaksokAd.css">
+<link rel="stylesheet" href="${path}/resources/ckeditor/style.css">
+<link rel="stylesheet" href="${path}/resources/ckeditor/ckeditor5.css">
+<script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
 
 <!-- (3-4). 자바스크립트 소스 연결 -->
 <!-- defer : html을 다 읽은 후에 자바스크립트를 실행한다. 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행된다. -->
@@ -42,46 +45,56 @@
 		
 		<div id="container" class="container">
 		<!-- 컨텐츠 시작 -->
-			<div id="container" class="container">
-				<div class="title-bar">
-					<h2 class="page-title ellipsis">
-						FAQ 상세/수정
-					</h2>
+		
+			<div class="title-bar">
+				<div class="pack-left">
+					<h2 class="page-title ellipsis">FAQ 상세/수정</h2>
 				</div>
+			</div>
+			
 				<main id="content">
-					<div class="write-form box-wrap">
+					<div class="write-form box-wrap" style="max-width: 960px;">
 						<form action="faq_update.fc">
-							<fieldset>
-								<legend class="blind">기본 정보</legend>
-								<input type="hidden" name="fa_id" value="${dto.fa_id}"/>
-								<div class="row-3">
-									<div class="field col">
-										<label class="label medium required" for="fa_writer_id">작성자</label>
-										<div class="insert">
-											${dto.fa_writer_name}
-										</div>
+							<input type="hidden" name="fa_id" value="${dto.fa_id}"/>
+							<fieldset class="pack-down" style="gap: 20px;">
+								<div class="row-2">
+								<div class="field col pack-down">
+									<label class="label medium required" for="writerName">작성자</label>
+									<div class="insert">
+										<input type="text" class="input-text medium"  name="fa_writer_name" id="writerName" placeholder="작성자를 입력해주세요" required>
 									</div>
 								</div>
-								<br>
-								<div class="row-3">
-									<div class="field col">
-										<label class="label medium required" for="fa_writer_name">수정자</label>
-										<p class="pack-left">
-											<input type="text" class="input-text small short-writer"
-												name="fa_writer_name">
-										</p>
+								
+								<div class="field col pack-down">
+									<label class="label medium required" for="modifyName">수정자</label>
+									<div class="insert">
+										<input type="text" class="input-text medium"  name="fa_modify_name" id="modifyName" placeholder="수자를 입력해주세요" required>
 									</div>
 								</div>
-								<br>
-								<div class="row-3">
-									<div class="field col">
-										<label class="label medium required" for="fa_title">FAQ 제목</label>
-										 <p class="pack-left">
-				                             <input type="text" class="input-text small" name="fa_title">
-				                         </p>
+								
+								<div class="field col pack-down">
+									<span class="label medium">회원등급</span>
+									<div class="insert pack-left">
+										<label class="pack-left">
+											<input type="radio" class="radio" name="fa_show"value="Y">
+											<span>노출</span>
+										</label>
+										<label class="pack-left">
+											<input type="radio" class="radio" name="fa_show" value="N">
+											<span>비노출</span>
+										</label>
 									</div>
 								</div>
-								<br>
+								
+								<div class="row">
+								<div class="field col pack-down">
+									<label class="label medium required" for="faTitle">제목</label>
+									<div class="insert">
+										<input type="text" class="input-text medium"  name="fa_title" id="faTitle" placeholder="제목을 입력해주세요" required>
+									</div>
+								</div>
+							</div>
+							
 								<div class="row">
 									<div class="field">
 										<label class="label medium" for="inputSet02">FAQ 내용</label>
@@ -91,19 +104,6 @@
 									</div>
 								</div>
 
-								<div class="row-2">
-									<div class="field col">
-										<span class="label medium">노출/비노출 여부</span><br>
-										<div class="insert pack-left">
-											<label for="radio1" class="pack-left"><input
-												type="radio" class="radio" name="fa_show" id="fa_show"
-												value="Y" <c:if test="${dto.fa_show eq 'Y'}">checked</c:if>>노출</label>
-											<label for="radio2" class="pack-left"><input
-												type="radio" class="radio" name="fa_show" id="fa_show"
-												value="N" <c:if test="${dto.fa_show eq 'N'}">checked</c:if>>비노출</label>
-										</div>
-									</div>
-								</div>
 								<div class="button-area pack-center">
 									<button type="submit" class="btn large color1">수정</button>
 									<a class="btn large bdr-color1" href="faq_admin_list.fc">취소</a>

@@ -34,42 +34,19 @@
 	</div>
 
 	<div id="wrap" class="wrap">
-		<div class="pc-content">
-			<div class="typing-wrap" data-aos="fade-right">
-				<p class="typing-fix">
-					약을 쏘옥,<br>
-					약속
-				</p>
-				<p class="typing">
-					<span id="pcTyping">믿음까지 쏘옥 담아</span>
-					<span id="pcTyping2">약속할께요</span>
-				</p>
-			</div>
-		</div>
-
-		<div id="container" class="lines"><!-- [D] HEADER VIEW :  no class /.lines(2) / .only-back(1) / .only-close(1) -->
-			<header id="header">
-				<h1>
-					<a href="<c:url value='/' />"><span class="logo"><span class="blind">약을 쏘옥</span></span></a>
-				</h1>
-
-				<div class="btns">
-
-				</div>
-
-				<div class="detail-line">
-					<button type="button" class="btn back">
-						<i class="ico back"><span>뒤로</span></i>
-					</button>
-
-					<button type="button" class="btn close">
-						<i class="ico close"><span>닫기</span></i>
-					</button>
-				</div>
-			</header>
-
-
-			<!-- SID : AQ10 -->
+		<!-- PC 컨텐츠 -->
+		<%@ include file="../common/pc_left.jsp" %>
+		<!-- PC 컨텐츠 끝 -->
+		
+		<div id="container" class="lines">
+		<!-- [D] HEADER VIEW :  no class /.lines(2) / .only-back(1) / .only-close(1) -->
+			<!-- header 시각 -->
+			<%@ include file="../common/header.jsp" %>
+			<!-- header 끝 -->
+		
+			
+			<!-- 컨텐츠 시작 -->
+			<!-- SID : aq10 -->
 			<div id="content" class="aq10"><!-- [D] main / sub-main / sub && pagd name -->
 				<h1 class="page-title">FAQ - 자주 묻는 질문</h1>
 				<div class="section list-wrap">
@@ -79,53 +56,48 @@
 							<div class="item normal">
 								<a href="javascript:void(0);" class="pack-both accordion-switche" title="게시물 열고/닫기">
 									<div class="text-wrap">
-										<p class="item-title">${dto.fa_title}</p>
+										<p class="fs-18 fw-700">${dto.fa_title}</p>
 									</div>
 									<i class="ico accordion"></i>
 								</a>
-								<div class="accordion-content fc-dark-gray">
-									<p>${dto.fa_content}</p>
+								<div class="accordion-content fs-16 fc-dark-gray">
+									${dto.fa_content}
 								</div><!-- // .accordion-content -->
 							</div><!-- // .item -->
 						</li>
 					</c:forEach>
 					</ul>
 					
-				<!-- 페이징 -->
-				<div class="pagination">
-					<!-- 이전 버튼 -->
-					<c:if test="${paging.startPage > 5}">
-						<a href="${path}/faq_user_list.fc?page=${paging.prev}" class="btn prev page-link" data-page="${paging.prev}"> 
-						<svg xmlns="http://www.w3.org/2000/svg" class="svg">
-			                <path d="m2 6 6-4.33v8.66L2 6z" />
-			            </svg>
-						</a>
-					</c:if>
-			
-					<!-- 페이지 번호 -->
-					<ul class="pagination-list">
-					  <c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
-					    <li class="${num == paging.currentPage ? 'current' : ''}">
-					      <c:url var="pageUrl" value="/faq_user_list.fc">
-					        <c:param name="pageNum" value="${num}"/>
-					      </c:url>
-					      <!-- 공용 핸들러가 막을 수 있으니 .page-link/.btn는 빼는 걸 권장 -->
-					      <a href="${pageUrl}" class="pagination-link" aria-current="${num == paging.currentPage ? 'page' : ''}">
-					        ${num}
-					      </a>
-					    </li>
-					  </c:forEach>
-					</ul>
-
-					<!-- 다음 버튼 -->
-					<c:if test="${paging.endPage < paging.pageCount}">
-						<a href="${path}/faq_user_list.fc?page=${paging.next}" class="btn next page-link" data-page="${paging.next}"> 
-						<svg xmlns="http://www.w3.org/2000/svg" class="svg">
-			                <path d="m2 6 6-4.33v8.66L2 6z" />
-			            </svg>
-						</a>
-					</c:if>
-				</div>
+					<div class="pagination">
+						<!-- 페이징처리 -->
+						<!-- 이전 버튼 활성화 -->
+						<c:if test="${paging.startPage > paging.pageBlock}">
+							<a href="${path}/faq_user_list.fc?pageNum=${paging.prev}" class="btn prev">
+								<svg xmlns="http://www.w3.org/2000/svg" class="svg">
+									<path d="m2 6 6-4.33v8.66L2 6z" />
+								</svg>
+							</a>
+						</c:if>
+						
+						<!-- 페이지 번호 활성화 -->
+						<ul>
+							<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+								<li class="<c:if test='${num == paging.currentPage}'>current</c:if>">
+									<a href="${path}/faq_user_list.fc?pageNum=${num}" class="btn">${num}</a>
+								</li>
+							</c:forEach>
+						</ul>
+						
+						<!-- 다음 버튼 활성화 -->
+						<c:if test="${paging.endPage < paging.pageCount}">
+							<a href="${path}/faq_user_list.fc?pageNum=${paging.next}" class="btn next">
+								<svg xmlns="http://www.w3.org/2000/svg" class="svg">
+									<path d="m2 6 6-4.33v8.66L2 6z" />
+								</svg>
+							</a>
+						</c:if>
+					</div><!-- // .pagination -->
+					
 				</div><!-- .section.list-wrap -->
 
 			</div><!-- // #content -->
@@ -137,15 +109,11 @@
 			<!-- footer 시작 -->
 			<%@ include file="../common/footer.jsp" %>
 			<!-- footer 끝 -->
-
-	
 			
 		</div><!-- // #container -->
 	</div><!-- // #wrap -->
 
-	<div id="loading" class="loading">
-		<img src="../@resource/images/common/loading.svg" alt="loading">
-	</div><!-- // #loading -->
+	<%@ include file="../common/loading.jsp" %><!-- 약속 로딩 -->
 
 	<script>
 	  document.addEventListener('DOMContentLoaded', function () {

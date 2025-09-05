@@ -42,7 +42,7 @@
 						setTimeout(function(){
 							loadingActive();
 							window.location="${path}/MA15?score=${dto.mbs_score}";
-						}, 2000);
+						}, 200);
 					</script>
 				</c:if>
 				<c:if test="${insertCnt != 1}">
@@ -50,7 +50,7 @@
 						setTimeout(function(){
 							alert("설문을 다시 해주세요!")
 							window.location="${path}/MA13";
-						}, 2000);
+						}, 200);
 					</script>
 				</c:if>
 			</div><!-- // #content -->
