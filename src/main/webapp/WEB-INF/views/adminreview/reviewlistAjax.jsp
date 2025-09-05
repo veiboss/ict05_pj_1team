@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- 검색 결과 리스트 -->
-<div>
 	<table class="data-table">
 		<thead>
 		    <tr>
@@ -18,14 +17,14 @@
 	    <tbody>
 	    <c:forEach var="dto" items="${list}">
 	        <tr>
-	        	<td data-th="번호">${dto.rv_id}</td>
-	            <td data-th="제약명">${dto.dr_product}</td>
+	        	<td>${dto.rv_id}</td>
+	            <td data-th="제약명" class="ta-l">${dto.dr_product}</td>
 	            <td data-th="별점">${dto.rv_rating}</td>
 	            <td data-th="작성자">${dto.mb_name}</td>
 	            <td data-th="등록일">${dto.rv_reg_date}</td>
 	            <td data-th="공개여부">${dto.rv_show}</td>
 	            <td data-th="버튼">
-					<button class="btn small color1" onclick="location.href='review_detailAction.ad?rv_id=${dto.rv_id}'" style="cursor:pointer;">상세/수정</button>
+					<button class="btn small color1" onclick="location.href='review_detailAction.ad?rv_id=${dto.rv_id}'" style="cursor:pointer;">수정</button>
 				</td>
 	        </tr>
 	    </c:forEach>
@@ -36,12 +35,12 @@
 		</c:if>
 		</tbody>
 	</table>
-</div>
+
 <!-- 리스트 끝 -->
 <!-- 페이징 -->
 <div class="pagination">
     <!-- 이전 버튼 -->
-    <c:if test="${paging.startPage > 5}">
+    <c:if test="${paging.startPage > paging.pageBlock}">
         <a href="${path}/review.ad?page=${paging.prev}" class="btn prev page-link" data-page="${paging.prev}">
             <svg xmlns="http://www.w3.org/2000/svg" class="svg">
                 <path d="m2 6 6-4.33v8.66L2 6z" />
