@@ -76,7 +76,7 @@
 								<div class="field col pack-down">
 									<label class="label medium required" for="writerName">작성자</label>
 									<div class="insert">
-										<input type="email" class="input-text medium"  name="fa_writer_name" id="writerName" placeholder="작성자를 입력해주세요" required>
+										<input type="text" class="input-text medium"  name="fa_writer_name" id="writerName" placeholder="작성자를 입력해주세요" required>
 									</div>
 								</div>
 								
@@ -99,7 +99,7 @@
 								<div class="field col-2 pack-down">
 									<label class="label medium required" for="faTitle">제목</label>
 									<div class="insert">
-										<input type="email" class="input-text medium"  name="fa_title" id="faTitle" placeholder="제목을 입력해주세요" required>
+										<input type="text" class="input-text medium"  name="fa_title" id="faTitle" placeholder="제목을 입력해주세요" required>
 									</div>
 								</div>
 							</div>

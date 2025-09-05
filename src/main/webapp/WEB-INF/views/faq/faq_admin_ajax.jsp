@@ -39,7 +39,7 @@
 		<!-- 페이징처리 -->
 		<!-- 이전 버튼 활성화 -->
 		<c:if test="${paging.startPage > paging.pageBlock}">
-			<a href="#" class="btn prev" data-page="${paging.prev}">
+			<a href="#" class="btn prev page-link" data-page="${paging.prev}">
 				<svg xmlns="http://www.w3.org/2000/svg" class="svg">
 					<path d="m2 6 6-4.33v8.66L2 6z" />
 				</svg>
@@ -50,14 +50,14 @@
 		<ul>
 			<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
 				<li class="${num == paging.currentPage ? 'current' : ''}">
-					<a href="#" class="btn" data-page="${num}">${num}</a>
+					<a href="#" class="btn page-link" data-page="${num}">${num}</a>
 				</li>
 			</c:forEach>
 		</ul>
 		
 		<!-- 다음 버튼 활성화 -->
 		<c:if test="${paging.endPage < paging.pageCount}">
-			<a href="#" class="btn next" data-page="${paging.next}">
+			<a href="#" class="btn next page-link" data-page="${paging.next}">
 				<svg xmlns="http://www.w3.org/2000/svg" class="svg">
 					<path d="m2 6 6-4.33v8.66L2 6z" />
 				</svg>

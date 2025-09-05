@@ -16,10 +16,14 @@
 <title>약쏙 관리자</title>
 <!-- css -->
 <link rel="stylesheet" href="${path}/resources/css/yaksokAd.css">
+<link rel="stylesheet" href="${path}/resources/ckeditor/style.css">
+<link rel="stylesheet" href="${path}/resources/ckeditor/ckeditor5.css">
+<script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
 
 <!-- (3-4). 자바스크립트 소스 연결 -->
 <!-- defer : html을 다 읽은 후에 자바스크립트를 실행한다. 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행된다. -->
 <script src="${path}/resources/js/yaksokAd.js" defer></script>
+<script>window.APP_CTX='${path}';</script>
 <c:set var="updateCnt" value="${updateCnt}" />
 
 <script type="text/javascript">
@@ -51,7 +55,6 @@
 		
 		<div id="container" class="container">
 			<!-- 컨텐츠 시작 -->
-			
 			
 			<div class="title-bar">
 				<h2 class="page-title ellipsis">FAQ 관리</h2>
