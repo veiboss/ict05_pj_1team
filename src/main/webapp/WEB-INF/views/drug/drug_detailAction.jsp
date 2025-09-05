@@ -110,6 +110,13 @@ dl.pack-left-top dd{width: 100%;}
 					<button type="button" class="btn blue large r4 add-btn" data-drid="${dto.dr_id}">
 						내약추가
 					</button>
+					
+				</div>
+				<div class="pack-both" style="display:flex; gap:10px;">
+					<input type="hidden" name="dr_id" value="${dto.dr_id}">
+					<span></span>
+		            <a href="${path}/drug_reviewInsert.do?dr_id=${dto.dr_id}" class="btn bdr-blue small" style="padding:10px 5px">
+		            	<span class="">후기 작성</span></a>
 				</div>
 				
 				<ul class="tabs line out-cont">
@@ -179,11 +186,7 @@ dl.pack-left-top dd{width: 100%;}
 				<!-- 후기 게시판 -->
 				<div id="tabLife" class="tab-content">
 					<div class="section list-wrap">
-						<div class="pack-both" style="display:flex; gap:10px;">
-							<span></span>
-					            <a href="${path}/drug_reviewInsert.do?dr_id=${dto.dr_id}" class="btn bdr-blue small" style="padding:10px 5px">
-					            	<span class="">후기 작성</span></a>
-					    </div>
+						
 					   <%--  <form id="reviewForm" action="${path}/drug_reviewInsert.do" method="post">
 						    <input type="hidden" name="dr_id" value="${dto.dr_id}">
 						    <button type="submit" class="btn bdr-blue small" style="padding:10px 5px">

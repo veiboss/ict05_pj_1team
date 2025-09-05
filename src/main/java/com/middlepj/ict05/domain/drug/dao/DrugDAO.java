@@ -34,7 +34,7 @@ public interface DrugDAO {
 	public List<DrugReviewDTO> drugReviewList(Map<String, Object> map);
 	
 	// 후기 개수 
-	public int reviewCnt();
+	public int reviewCnt(int dr_id);
 	
 	// 후기 등록 처리
 	public int insertReview(DrugReviewDTO dto);
