@@ -330,5 +330,7 @@
 			<!-- footer 끝 -->
 		</div><!-- // #container -->
 	</div><!-- // #wrap -->
+	
+	<%@ include file="loading.jsp" %><!-- 약속 로딩 -->
 </body>
 </html>
