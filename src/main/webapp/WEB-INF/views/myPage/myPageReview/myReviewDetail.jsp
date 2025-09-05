@@ -62,7 +62,15 @@
 					
 					<!-- 내용 -->
 			        <div class="">
-			            <textarea name="rv_content" class="textarea"><c:out value="${fn:replace(fn:replace(dto.rv_content,'<p>',''),'</p>','<br/>')}"/></textarea>
+			            <textarea name="rv_content" class="textarea"> <c:out value="${
+						      fn:replace(
+						        fn:replace(
+						          fn:replace(
+						            fn:replace(fn:replace(dto.rv_content,'<p>',''),'</p>',''),
+						          '<br/>',''),
+						        '<br />',''),
+						      '<br>','')
+						  }"/></textarea>
 			        </div>
 			
 					<!-- 버튼 -->

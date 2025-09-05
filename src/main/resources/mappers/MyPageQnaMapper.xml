@@ -57,6 +57,7 @@
 	UPDATE QNA_TB
 	   SET qa_title = #{qa_title}
 	   	 , qa_content =#{qa_content}
+	   	 , qa_private =#{qa_private}
 	 WHERE qa_id = #{qa_id}
 </update>
 

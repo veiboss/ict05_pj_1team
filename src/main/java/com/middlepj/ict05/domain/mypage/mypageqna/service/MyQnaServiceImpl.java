@@ -59,6 +59,7 @@ public class MyQnaServiceImpl implements MyQnaService{
 		
 	    System.out.println(list);
 	    
+	    
 	    // 6단계. jsp로 처리결과 전달
 	    model.addAttribute("list", list);
 	    model.addAttribute("paging", paging);
@@ -98,6 +99,7 @@ public class MyQnaServiceImpl implements MyQnaService{
 		dto.setQa_title(request.getParameter("qa_title"));
 		dto.setQa_content(request.getParameter("qa_content"));
 		dto.setQa_show((String)request.getParameter("qa_show"));
+		dto.setQa_private(request.getParameter("qa_private"));
 		
 		dao.updateQna(dto);
 		model.addAttribute("dto", dto);

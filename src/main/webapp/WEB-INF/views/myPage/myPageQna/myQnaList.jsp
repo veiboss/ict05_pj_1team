@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
     <%@ include file="../../common/setting.jsp" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+    
     
 <!DOCTYPE html>
 <html>
@@ -122,7 +124,15 @@ $("#recommendBtn").click(function() {
 							  	  	</div>
 			            			
 			            			<div class="pack-both" style="display:flex; gap:10px;">
-          							<p class="qa-content fc-dark-gray"><c:out value="${fn:replace(fn:replace(dto.qa_content,'<p>',''),'</p>','<br/>')}"/></p>
+          							<p class="qa-content fc-dark-gray"><c:out value="${
+								      fn:replace(
+								        fn:replace(
+								          fn:replace(
+								            fn:replace(fn:replace(dto.qa_content,'<p>',''),'</p>',''),
+								          '<br/>',''),
+								        '<br />',''),
+								      '<br>','')
+								  }"/></p>
           								<span></span>
 						                	<a class="btn blue small color1 r4"
 						                  		href="${path}/myQnaDetail.do?qa_id=${dto.qa_id}" >수정</a>
@@ -133,12 +143,21 @@ $("#recommendBtn").click(function() {
 						         </div>     
 							      <div class="row-2">
 										<div class="field col">
-											<span class="label medium">비밀글 여부</span>
+											
 											<div class="insert pack-left">
-												<label for="radio1" class="pack-left"><input type="radio" class="radio" name="qa_private" id="qa_private" value="Y" 
-													<c:if test="${dto.qa_private eq 'Y'}">checked</c:if>>노출</label>
-												<label for="radio2" class="pack-left"><input type="radio" class="radio" name="qa_private" id="qa_private" value="N" 
-													<c:if test="${dto.qa_private eq 'N'}">checked</c:if>>비노출</label>
+												<label>
+												  <input type="radio" class="radio"
+												         name="qa_private_${dto.qa_id}" value="N" disabled
+												         <c:if test="${fn:trim(dto.qa_private) == 'N'}">checked="checked"</c:if> />
+												  공개
+												</label>
+												<label>
+												  <input type="radio" class="radio"
+												         name="qa_private_${dto.qa_id}" value="Y" disabled
+												         <c:if test="${fn:trim(dto.qa_private) == 'Y'}">checked="checked"</c:if> />
+												  비밀글
+												</label>
+
 											</div>
 										</div>
 									</div>

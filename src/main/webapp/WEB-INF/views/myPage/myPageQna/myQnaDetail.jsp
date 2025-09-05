@@ -53,9 +53,33 @@
 
 					<!-- 내용 -->
 			        <div class="">
-			            <textarea name="qa_content" class="textarea"><c:out value="${fn:replace(fn:replace(dto.qa_content,'<p>',''),'</p>','<br/>')}"/></textarea>
+			            <textarea name="qa_content" class="textarea"><c:out value="${
+								      fn:replace(
+								        fn:replace(
+								          fn:replace(
+								            fn:replace(fn:replace(dto.qa_content,'<p>',''),'</p>',''),
+								          '<br/>',''),
+								        '<br />',''),
+								      '<br>','')
+								  }"/></textarea>
 			        </div>
-			        
+			        <div class="field col">
+						<span class="label medium">비밀글 여부</span>
+							<div class="insert pack-left">
+								<label>
+								  <input type="radio" class="radio"
+								         name="qa_private" value="N" 
+								         <c:if test="${fn:trim(dto.qa_private) == 'N'}">checked="checked"</c:if> />
+								  공개
+								</label>
+								<label>
+								  <input type="radio" class="radio"
+								         name="qa_private" value="Y" 
+								         <c:if test="${fn:trim(dto.qa_private) == 'Y'}">checked="checked"</c:if> />
+								  비밀글
+								</label>
+							</div>
+						</div>
 					<!-- 버튼 -->
 					<div class="button-area pack-center">
 						<button type="submit" class="btn blue medium">수정</button>
