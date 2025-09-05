@@ -8,4 +8,5 @@ public interface MyPageDrugDAO {
 	
 	public List<MyPageDrugDTO> myPageDrugList(int mb_id);
 
+	public int myPageDrugDelete(int dr_id);
 }

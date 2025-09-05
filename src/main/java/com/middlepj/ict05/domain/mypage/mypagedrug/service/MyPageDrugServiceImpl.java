@@ -23,15 +23,33 @@ public class MyPageDrugServiceImpl implements MyPageDrugService{
 	@Override
 	public void myPageDrugList(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
+		int mb_id = (int) request.getSession().getAttribute("sessionID");
+		System.out.println("deleteCnt => " + mb_id);
+		
 		System.out.println("=== drugService - myPageDrugList() ===");
 		
-		int mb_id = (int) request.getSession().getAttribute("sessionID");
 		
 		List<MyPageDrugDTO> list = dao.myPageDrugList(mb_id);
 		
 		model.addAttribute("list", list);
 		
 		
+		
+	}
+
+	@Override
+	public void myPageDrugDelete(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		
+		int dr_id = Integer.parseInt(request.getParameter("dr_id"));
+ 		
+		int mb_id = (int) request.getSession().getAttribute("sessionID");
+		System.out.println("sessionID => " + mb_id);
+		
+		int deleteCnt = dao.myPageDrugDelete(dr_id);
+		System.out.println("deleteCnt => " + deleteCnt);
+	
+		model.addAttribute("deleteCnt", deleteCnt);
 		
 	}
 }

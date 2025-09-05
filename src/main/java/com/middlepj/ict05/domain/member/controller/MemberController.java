@@ -91,7 +91,7 @@ public class MemberController {
 			throws ServletException, IOException {
 		logger.info("<<< url ==> /myPage.do >>>");
 
-		
+		service.myProfileDetail(request, response, model);
 		return "myPage/myPage";
 	}
 	

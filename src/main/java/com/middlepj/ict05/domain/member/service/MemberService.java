@@ -21,5 +21,9 @@ public interface MemberService {
 	// 회원가입처리
 	public void signUpAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException;	
+	
+	// 마이페이지 정보 제공
+	public void myProfileDetail(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException;
 
 }

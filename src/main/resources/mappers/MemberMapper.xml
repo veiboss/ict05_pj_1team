@@ -40,4 +40,11 @@
 				(SELECT NVL(max(MB_ID)+1, 1) FROM MEMBER_TB), 
 				sysdate)
 	</insert>
+	
+	<select id="myProfileDetail" parameterType="int" resultType="com.middlepj.ict05.domain.mypage.myprofile.dto.MyProfileDTO">
+		SELECT * 
+			FROM MEMBER_PROFILE_TB 
+			WHERE MB_ID = #{sessionID}
+	</select>
+	
 </mapper> 

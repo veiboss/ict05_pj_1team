@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 
 import com.middlepj.ict05.domain.member.dao.MemberDAO;
 import com.middlepj.ict05.domain.member.dto.MemberDTO;
+import com.middlepj.ict05.domain.mypage.myprofile.dto.MyProfileDTO;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -85,6 +86,20 @@ public class MemberServiceImpl implements MemberService {
 		
 		// 6단계. jsp로 처리결과 전달
 		model.addAttribute("insertCnt", insertCnt);
+	}
+	
+	// 마이페이지 정보 제공
+	@Override
+	public void myProfileDetail(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		System.out.println("service-myProfileUpdate");
+		
+		int md_id = (int) request.getSession().getAttribute("sessionID");
+		
+		MyProfileDTO dto = dao.myProfileDetail(md_id);
+		System.out.println("찍");
+		System.out.println("dto =>"+dto);
+		model.addAttribute("dto",dto);
 	}
 
 }

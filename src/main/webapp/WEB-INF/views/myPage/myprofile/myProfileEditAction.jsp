@@ -46,24 +46,26 @@
 									<span style="width: 160px">성별</span>
 									<span style="height: 48px; width: 100%; gap:24px" class="pack-left">
 										<label>
-											<input type="radio" class="radio" name="mbp_gender" value="M"> 남
+											<input type="radio" class="radio" name="mbp_gender" value="M"
+												<c:if test="${dto.mbp_gender eq 'M'}">checked</c:if>>남
 										</label>
 										<label>
-											<input type="radio" class="radio" name="mbp_gender" value="W"> 여
+											<input type="radio" class="radio" name="mbp_gender" value="W"
+												<c:if test="${dto.mbp_gender eq 'W'}">checked</c:if>> 여
 										</label>
 							        </span>
 							    </p>
 							    <p class="pack-left">
 							        <span style="width: 160px">키</span>
-							        <input type="text" class="input-text small" name="mbp_height">
+							        <input type="text" class="input-text small" name="mbp_height" value="${dto.mbp_height}">
 							    </p>
 							    <p class="pack-left">
 							        <span style="width: 160px">나이</span>
-							        <input type="text" class="input-text" name="mbp_age">
+							        <input type="text" class="input-text" name="mbp_age" value="${dto.mbp_age}">
 							    </p>
 							    <p class="pack-left">
 							        <span style="width: 160px">몸무게</span>
-							        <input type="text" class="input-text" name="mbp_weight">
+							        <input type="text" class="input-text" name="mbp_weight" value="${dto.mbp_weight}">
 							    </p>
 							
 							    <div class="button-area pack-center">
