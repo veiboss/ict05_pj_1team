@@ -113,7 +113,7 @@
 							<ul class="data-list toon">
 								<c:forEach var="dto" items="${list}">
 									<li>
-										<a href="#" class="pack-both gap-40">
+										<a class="pack-both gap-40">
 											<span class="fs-14 fc-dark-gray">${dto.mbs_servey_date}</span>
 											<span class="pack-left gap-16">
 												<span class="point pack-left gap-4">
