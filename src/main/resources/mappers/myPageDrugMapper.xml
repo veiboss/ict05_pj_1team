@@ -25,7 +25,10 @@
 	    FROM MEMBER_DRUG_TB mbd
 	    JOIN DRUG_TB dr ON mbd.dr_id = dr.dr_id
 	    WHERE mbd.mb_id = #{mb_id}
-  </select>
+    </select>
 	
-	
+	<delete id="myPageDrugDelete" parameterType="int">
+		DELETE FROM MEMBER_DRUG_TB
+		  WHERE dr_id = #{dr_id}
+	</delete>
 </mapper>

@@ -3,6 +3,7 @@ package com.middlepj.ict05.domain.member.dao;
 import java.util.Map;
 
 import com.middlepj.ict05.domain.member.dto.MemberDTO;
+import com.middlepj.ict05.domain.mypage.myprofile.dto.MyProfileDTO;
 
 public interface MemberDAO {
 
@@ -17,5 +18,7 @@ public interface MemberDAO {
 	// 회원정보 가져옴
 	public MemberDTO memberSelect(Map<String, Object> map);
 
+	// 마이페이지 정보 제공
+	public MyProfileDTO myProfileDetail(int name);
 
 }

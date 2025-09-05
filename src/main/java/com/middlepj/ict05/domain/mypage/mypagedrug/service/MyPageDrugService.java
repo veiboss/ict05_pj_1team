@@ -13,4 +13,6 @@ public interface MyPageDrugService {
 	public void myPageDrugList(HttpServletRequest request, HttpServletResponse response, Model model)
 		throws ServletException, IOException;
 	
+	public void myPageDrugDelete(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException;
 }

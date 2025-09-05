@@ -24,16 +24,16 @@ private static final Logger logger = LoggerFactory.getLogger(MyProfileController
 	
 	@Autowired
 	private MyProfileService service;
-	// 1. 마이페이지 상세화면
-	@RequestMapping("/myProfileAction.do")
-	public String myProfileAction(HttpServletRequest request, HttpServletResponse response, Model model)
-			throws ServletException, IOException {
-		logger.info("<<< url ==> /myProfileAction.do >>>");
-		
-		service.myProfileDetail(request, response, model);
-		return "myPage/myprofile/myProfileAction";
-		
-	}
+//	// 1. 마이페이지 상세화면
+//	@RequestMapping("/myProfileAction.do")
+//	public String myProfileAction(HttpServletRequest request, HttpServletResponse response, Model model)
+//			throws ServletException, IOException {
+//		logger.info("<<< url ==> /myProfileAction.do >>>");
+//		
+//		service.myProfileDetail(request, response, model);
+//		return "myPage/myprofile/myProfileAction";
+//		
+//	}
 	
 	// 2. 수정버튼 클릭시 - 수정창으로 
 		@RequestMapping("/myProfileUpdate.do")
@@ -41,6 +41,7 @@ private static final Logger logger = LoggerFactory.getLogger(MyProfileController
 				throws ServletException, IOException {
 			logger.info("<<< url ==> /myProfileUpdate.do >>>");
 			
+			service.myProfileDetail(request, response, model);
 //			service.myProfileUpdate(request, response, model);
 			return "myPage/myprofile/myProfileEditAction";
 		
@@ -53,7 +54,7 @@ private static final Logger logger = LoggerFactory.getLogger(MyProfileController
 				logger.info("<<< url ==> /myProfileUpdate.do >>>");
 				
 				service.myProfileUpdate(request, response, model);
-				return "myPage/myprofile/myProfileAction";
+				return "myPage/myPage";
 			
 			}
 	

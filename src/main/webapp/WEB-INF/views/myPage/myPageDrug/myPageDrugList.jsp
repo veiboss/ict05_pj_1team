@@ -46,7 +46,7 @@
 				<ul class="data-list toon">
 					<c:forEach var="dto" items="${list}">
 					<li>
-						<a href="${path}/drug_detailAction.do?dr_id=${dto.dr_id}" class="item thumb-left">
+					<a href="${path}/drug_detailAction.do?dr_id=${dto.dr_id}" class="item thumb-left">
 							<!-- 01	분말, 
 							02	원형캡슐, 
 							03	원형정제, 
@@ -94,9 +94,13 @@
 								
 								<p class="small-title">${dto.mbd_drug_name}</p>
 								
-								<p class="data-wrap pack-both">
-									<span class="">${dto.mbd_drug_effect}</span>
-									</p>
+							</div>
+							</a>
+								<form method="post" action="myPageDrugDelete.do" class="pack-left">
+							        <input type="hidden" name="dr_id" value="${dto.dr_id}">
+							        <input type="hidden" name="sessionID" value="${sessionScope.sessionID}">
+							        <button type="submit" class="btn blue small r4">내약 삭제</button>
+							      </form>
 								<%-- 	
 								<div id="drug-item" class="data-wrap pack-both">
 									<span> </span>
@@ -107,8 +111,7 @@
 										</button>
 									</p>
 								</div> --%>
-							</div>
-						</a><!-- .item.thumb-left -->
+							
 					</li>
 			    </c:forEach>
 				</ul>

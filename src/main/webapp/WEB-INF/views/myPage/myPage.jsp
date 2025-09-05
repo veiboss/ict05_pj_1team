@@ -73,7 +73,9 @@
 								<span class="pack-left">
 									<strong class="fs-18">${sessionScope.sessionName}</strong>
 									<span class="fw-300"> 님</span>
-									<span class="op38"> (여, 32세)</span>
+									<span class="op38">
+									(${dto.mbp_gender == 'M' ? '남' : (dto.mbp_gender == 'W' ? '여' : '-')}, ${dto.mbp_age}세)
+									</span>
 								</span>
 								<span>${sessionScope.sessionEmail}</span>
 							</p>
@@ -85,15 +87,15 @@
 							<div class="pack-down-left">
 								<p class="pack-left has-bar">
 									<span>키 </span>
-									<span>165</span>
+									<span>${dto.mbp_height}</span>
 								</p>
 								<p class="pack-left has-bar">
 									<span>체중 </span>
-									<span>55</span>
+									<span>${dto.mbp_weight}</span>
 								</p>
 							</div>
 							
-							<a class="btn small black r-full" href="myProfileAction.do">
+							<a class="btn small black r-full" href="myProfileUpdate.do">
 								프로필 수정
 							</a>
 						</div>
@@ -111,7 +113,7 @@
 						<a href="MA20" class="btn transparent">
 							<span class="fs-18">내설문목록</span>
 						</a>
-						<a href="주소넣기" class="btn transparent">
+						<a href="myPageDrugList.do" class="btn transparent">
 							<span class="fs-18">내약목록</span>
 						</a>
 						<a href="myReviewList.do" class="btn transparent">
@@ -120,6 +122,7 @@
 						<a href="myQnaList.do" class="btn transparent">
 							<span class="fs-18">내가쓴qna</span>
 						</a>
+
 					</div>
 				</section>
 				
@@ -127,7 +130,7 @@
 				
 				<section class="section pack-down">
 					<div class="pack-down">
-						<a href="#" class="btn transparent">
+						<a href="logout.do" class="btn transparent">
 							<span class="fs-18 fc-dark-gray">로그아웃</span>
 						</a>
 						<a href="mailto:admin@admin.com" class="btn transparent">
@@ -136,7 +139,7 @@
 					</div>
 					<div class="pack-both">
 						<span></span>
-						<a href="#" class="btn linkline">회원탈퇴</a>
+						<a href="myProfileDelete.do" class="btn linkline">회원탈퇴</a>
 					</div>
 				</section>
 				

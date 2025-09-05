@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.middlepj.ict05.domain.member.dto.MemberDTO;
+import com.middlepj.ict05.domain.mypage.myprofile.dto.MyProfileDTO;
 
 
 @Repository
@@ -57,4 +58,12 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 
+	// 마이페이지 정보 제공
+	@Override
+	public MyProfileDTO myProfileDetail(int md_id) {
+		System.out.println("dao-myProfileDetail");
+		
+		MyProfileDTO dto = session.selectOne("com.middlepj.ict05.domain.member.dao.MemberDAO.myProfileDetail",md_id);
+		return dto;
+	}
 }

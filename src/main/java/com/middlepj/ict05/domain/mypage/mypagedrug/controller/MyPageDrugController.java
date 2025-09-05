@@ -38,4 +38,20 @@ private static final Logger logger = LoggerFactory.getLogger(MyPageDrugControlle
 		return "myPage/myPageDrug/myPageDrugList";
 	}
 	
+	@RequestMapping("/myPageDrugDelete.do")
+	public String myPageDrugDelete(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
+		logger.info("<<< url ==> myPageDrugDelete.do >>>");
+		
+		service.myPageDrugDelete(request, response, model);
+	
+//		Object deleteCntObj = request.getSession().getAttribute("deleteCnt");
+//	    if (deleteCntObj != null) {
+//	        model.addAttribute("deleteCnt", deleteCntObj);
+//	        request.getSession().removeAttribute("deleteCnt"); // 1회성으로만 사용
+//	    }
+	    
+		return "myPage/myPageDrug/myPageDrugDelete";
+	}
+	
 }

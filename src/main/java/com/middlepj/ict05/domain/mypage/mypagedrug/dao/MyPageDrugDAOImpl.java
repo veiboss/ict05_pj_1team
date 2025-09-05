@@ -22,6 +22,14 @@ public class MyPageDrugDAOImpl implements MyPageDrugDAO{
 		
 		return list;
 	}
+
+	@Override
+	public int myPageDrugDelete(int dr_id) {
+		System.out.println("dao - myPageDrugDelete");
+		
+		int deleteCnt = session.delete("com.middlepj.ict05.domain.mypage.mypagedrug.dao.MyPageDrugDAO.myPageDrugDelete",dr_id);
+		return deleteCnt;
+	}
 	
 	
 	
