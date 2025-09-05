@@ -159,7 +159,7 @@ public class DrugServiceImpl implements DrugService{
 		int currentPage = (pageNum == null || pageNum.equals("0")) ? 1 : Integer.parseInt(pageNum);
 	    
 		Paging paging = new Paging(String.valueOf(currentPage));
-		int total = dao.reviewCnt();
+		int total = dao.reviewCnt(dr_id);
 		System.out.println("total : " + total);
 		
 		paging.setTotalCount(total);
@@ -205,12 +205,9 @@ public class DrugServiceImpl implements DrugService{
 
 	    dto.setMb_id((Integer) session.getAttribute("sessionID"));
 	    
-	    String dr_id = request.getParameter("dr_id");
-	    if (dr_id != null && !dr_id.isEmpty()) {
-	    	dto.setDr_id(Integer.parseInt(dr_id));
-	    }
-	    else {
-	    	throw new IllegalArgumentException("dr_id가 전달되지 않았습니다.");
+	    Integer dr_id = Integer.parseInt(request.getParameter("dr_id"));
+	    if (dr_id != null) {
+	    	dto.setDr_id(dr_id);
 	    }
 
 	    dto.setRv_content(request.getParameter("rv_content"));
@@ -226,9 +223,23 @@ public class DrugServiceImpl implements DrugService{
 	        dto.setRv_rating(Integer.parseInt(rv_rating));
 	    }
 
+	    Map<String, Object> map = new HashMap<String, Object>();
+	    int total = dao.reviewCnt(dr_id);
+	    int currentPage = (pageNum == null || pageNum.equals("0")) ? 1 : Integer.parseInt(pageNum);
+	    	    
+		Paging paging = new Paging(String.valueOf(currentPage));
+		paging.setTotalCount(total);
+		
+		int start = paging.getStartRow();
+		int end = paging.getEndRow();
+		
+		map.put("start", start);
+		map.put("end", end);
+
+	    
 	    int insertCnt = dao.insertReview(dto);
 
-	    model.addAttribute("pageNum", pageNum);
+	    model.addAttribute("paging", paging);
 	    model.addAttribute("insertCnt", insertCnt);
 	    model.addAttribute("dr_id", dr_id);
 	    

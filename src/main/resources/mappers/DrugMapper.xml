@@ -107,7 +107,10 @@
 	
 	<!-- 후기 개수 -->
 	<select id="reviewCnt" resultType="int">
-		SELECT COUNT(*) AS cnt FROM REVIEW_TB
+		SELECT COUNT(*) 
+		  FROM REVIEW_TB 
+		 WHERE rv_show = 'Y' 
+		   AND dr_id = #{dr_id}
 	</select>
 	
 	<!-- 후기 등록 -->

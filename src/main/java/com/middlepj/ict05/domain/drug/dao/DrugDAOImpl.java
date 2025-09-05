@@ -96,10 +96,10 @@ public class DrugDAOImpl implements DrugDAO{
 	
 	// 후기 개수
 	@Override
-	public int reviewCnt() {
+	public int reviewCnt(int dr_id) {
 		System.out.println("=== drugDAO - reviewCnt() ===");
 		
-		int reviewCnt = sqlSession.selectOne("com.middlepj.ict05.domain.drug.dao.DrugDAO.reviewCnt");
+		int reviewCnt = sqlSession.selectOne("com.middlepj.ict05.domain.drug.dao.DrugDAO.reviewCnt", dr_id);
 		
 		return reviewCnt;
 	}
