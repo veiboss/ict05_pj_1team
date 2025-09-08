@@ -474,7 +474,6 @@ a.img-wrap,
 .banner.check-list-home .btn		{margin-top: 32px; width: 180px; border: solid 1px var(--light-gray); }
 
 /* item */
-a.item:not([class*="pack"]) 				{display: block;}
 .item .data-wrap:not(.mdot):not(.pack-wrap) > span + span	{margin-left: 12px;}
 .item .data-wrap:not(.mdot) > span + .btn	{margin-left: 16px;}
 .item .data-wrap.pack-wrap > span + span	{margin-top: 4px;}
