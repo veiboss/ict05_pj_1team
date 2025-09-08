@@ -100,7 +100,7 @@
 								
 								<div class="button-area pack-center mo-pack-down">
 									<button type="submit" class="btn large color1">저장</button>
-									<a class="btn large bdr-color1" href="review.ad">취소</a>
+									<a class="btn large bdr-color1" href="${path}/review.ad">취소</a>
 								</div>
 							</fieldset>
 						</form>
