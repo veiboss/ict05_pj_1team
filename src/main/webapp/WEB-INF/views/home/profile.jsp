@@ -183,6 +183,90 @@
 		
 		document.querySelector("form").submit();
 	}
+	
+	$(function() {
+		var $all = $('#step7 .dis_chk');                // 모든 체크박스
+		if ($all.length === 0) return;
+		
+		var $none = $all.filter('[value="none"]').first(); // '없음' 체크박스
+		var $others = $all.not($none);                     // 나머지 체크박스
+		
+		// '없음' 변경 처리
+		$none.on('change', function() {
+			var checked = $(this).prop('checked');
+			
+			if (checked) {
+				// 다른 항목이 이미 체크되어 있으면 경고 + '없음' 체크 취소
+				if ($others.is(':checked')) {
+					alert("다른 항목이 선택되어 있습니다. '없음'을 선택하려면 다른 항목의 선택을 먼저 해제하세요.");
+					$(this).prop('checked', false);
+					return;
+				}
+				// 다른 항목 비활성화
+				$others.prop('disabled', true).closest('label').addClass('disabled');
+				// (선택) 배경 등 시각처리: .css 사용 가능
+				$others.closest('label').find('input').css('background', '#f5f5f5');
+			} else {
+				// none 해제 -> others 활성화
+				$others.prop('disabled', false).closest('label').removeClass('disabled');
+				$others.closest('label').find('input').css('background', 'none');
+			}
+		});
+		
+		// 다른 항목 변경 처리
+		$others.on('change', function() {
+			var anyChecked = $others.is(':checked');
+			if (anyChecked) {
+				// 하나라도 체크되면 '없음' 비활성화
+				$none.prop('checked', false).prop('disabled', true).closest('label').addClass('disabled');
+			} else {
+				// 모두 해제되면 '없음' 활성화
+				$none.prop('disabled', false).closest('label').removeClass('disabled');
+			}
+		});
+		
+		// 초기 상태 보정
+		$none.trigger('change');
+		$others.trigger('change');
+		
+		// 선택값 수집: ['없음'] 또는 체크된 값 배열 반환
+		window.collectDiseases = function() {
+			if ($none.prop('checked')) return ['없음'];
+			return $others.filter(':checked').map(function(){ return $(this).val(); }).get();
+		};
+		
+		// 제출 전 검증 + hidden 채우기 + submitForm() 호출
+		window.validateStep7BeforeSubmit = function() {
+			var noneChecked = $none.prop('checked');
+			var anyOtherChecked = $others.is(':checked');
+			
+			// 안전검사: 동시 선택이면 차단
+			if (noneChecked && anyOtherChecked) {
+				alert("'없음'과 다른 항목이 동시에 선택되어 있습니다. 다른 항목의 선택을 해제해주세요.");
+				return;
+			}
+			
+			var diseases = collectDiseases();
+			
+			if (diseases.length === 0) {
+			    // 원치 않으면 이 확인을 제거하세요 (현재는 사용자에게 확인을 요구)
+				if (!confirm("기저질환이 선택되지 않았습니다. 계속 진행하시겠습니까?")) return;
+			}
+			
+			// hidden input에 값 채우기 (콤마 구분)
+			$('#diseasesInput').val(diseases.join(','));
+			
+			// 기존 submitForm() 있으면 호출, 없으면 가장 첫 <form>을 submit
+			if (typeof submitForm === 'function') {
+				submitForm();
+			} else {
+				var $form = $('form').first();
+				if ($form.length) $form.submit();
+				else alert('submitForm 함수 또는 form 요소가 없습니다.');
+			}
+		};
+	});
+
 </script>
 
 </head>
@@ -330,23 +414,23 @@
 						    </div>
 							<div class="select-options pack-down-center gap-12">
 								<label class="btn bdr-gray medium">
-									<input type="checkbox" value="고혈압/심혈관">
+									<input type="checkbox" class="dis_chk" name="chk1" value="고혈압/심혈관">
 									<strong class="fs-18">고혈압/심혈관</strong>
 								</label>
 								<label class="btn bdr-gray medium">
-									<input type="checkbox" value="당뇨">
+									<input type="checkbox" class="dis_chk" name="chk2" value="당뇨">
 									<strong class="fs-18">당뇨</strong>
 								</label>
 								<label class="btn bdr-gray medium">
-									<input type="checkbox" value="골다공증/관절">
+									<input type="checkbox" class="dis_chk" name="chk3" value="골다공증/관절">
 									<strong class="fs-18">골다공증/관절</strong>
 								</label>
 								<label class="btn bdr-gray medium">
-									<input type="checkbox" value="위장질환">
+									<input type="checkbox" class="dis_chk" name="chk4" value="위장질환">
 									<strong class="fs-18">위장질환</strong>
 								</label>
 								<label class="btn bdr-gray medium">
-									<input type="checkbox" value="">
+									<input type="checkbox" class="dis_chk" name="chk5" value="none">
 									<strong class="fs-18">없음</strong>
 								</label>
 							</div>

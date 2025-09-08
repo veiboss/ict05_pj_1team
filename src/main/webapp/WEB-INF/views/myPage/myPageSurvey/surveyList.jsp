@@ -88,6 +88,14 @@
 			<!-- 컨텐츠 시작 -->
 			<!-- SID : COM000 -->
 			<div id="content" class="sub"><!-- [D] main / sub-main / sub && pagd name -->
+			<c:if test="${checkCnt == 0}">
+				<script type="text/javascript">
+					setTimeout(function(){
+						alert("프로필이 등록되지않았습니다. 프로필 등록페이지로 이동합니다.")
+						window.location="${path}/MA10";
+					}, 1000);
+				</script>
+			</c:if>
 				<div class="out-cont bg-gray">
 					<div class="section result bg-white">
 						<div class="card" id="resultCard">

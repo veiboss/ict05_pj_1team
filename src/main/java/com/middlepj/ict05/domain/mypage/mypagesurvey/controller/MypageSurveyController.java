@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.middlepj.ict05.domain.drug.service.DrugServiceImpl;
+import com.middlepj.ict05.domain.home.service.ProfileServiceImpl;
 import com.middlepj.ict05.domain.mypage.mypagesurvey.service.MypageSurveyServiceImpl;
 
 @Controller
@@ -28,6 +29,8 @@ public class MypageSurveyController {
 	private MypageSurveyServiceImpl service;
 	@Autowired
 	private DrugServiceImpl drugService;
+	@Autowired
+	private ProfileServiceImpl profileService;
 	
 	// 회원 설문 내용 등록 페이지
 	@RequestMapping("MA13")
@@ -68,11 +71,12 @@ public class MypageSurveyController {
 		return messageMap; // {"msg":"..."}
 	}
 	
-	// 회원 최근 설문 목록
+	// 회원 설문 목록
 	@RequestMapping("MA20")
 	public String recentSurvey(HttpServletRequest request, HttpServletResponse response, Model model) 
 			throws ServletException, IOException {
 		logger.info("MypageSurveyController-recentSurvey");
+		profileService.insertProfile(request, response, model);
 		service.resultScoreSurvey(request, response, model);
 		service.listSurvey(request, response, model);
 		return "myPage/myPageSurvey/surveyList";
