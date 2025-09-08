@@ -79,11 +79,11 @@ public class DrugServiceImpl implements DrugService{
 	    HttpSession session = request.getSession(false); // 세션 없으면 null
 	    if (session == null || session.getAttribute("sessionID") == null) {
 	        messageMap.put("msg", "로그인이 필요합니다.");
-	        messageMap.put("redirect", request.getContextPath() + "/drug_list.do");
+	        messageMap.put("redirect", request.getContextPath() + "/login.do");
 	        return messageMap;
 	    }
 	    int mb_id = (int) session.getAttribute("sessionID");
-
+	    
 	    // 2. dr_id 가져오기 & 유효성 체크
 	    String drIdStr = request.getParameter("dr_id");
 	    int dr_id = 0;
@@ -120,7 +120,9 @@ public class DrugServiceImpl implements DrugService{
 	    insertMap.put("mbd_write_id", mb_id);
 
 	    int result = dao.addDrug(insertMap);
-	    messageMap.put("msg", result > 0 ? "마이페이지에 약이 추가되었습니다."
+	    
+	    String mb_name = String.valueOf(session.getAttribute("sessionName")); 
+	    messageMap.put("msg", result > 0 ? mb_name + "님의 '내약목록'에 추가되었습니다."
 	                                     : "약 추가에 실패했습니다. 다시 시도해주세요.");
 
 	    return messageMap;
@@ -192,12 +194,14 @@ public class DrugServiceImpl implements DrugService{
 
 	    HttpSession session = request.getSession(false);
 	    if (session == null || session.getAttribute("sessionID") == null) {
-	    	throw new IllegalStateException("로그인한 회원만 후기 작성 가능");
+	    	response.sendRedirect(request.getContextPath() + "/login.do");
+	        return null;
 	    }
 
 	    Integer mb_id = (Integer) session.getAttribute("sessionID");
 	    if (mb_id == null) {
-	    	throw new IllegalStateException("로그인한 회원만 후기 작성 가능");
+	    	response.sendRedirect(request.getContextPath() + "/login.do");
+	        return null;
 	    }
 	    System.out.println("Session exists? " + (session != null));
 	    System.out.println("Session sessionID: " + session.getAttribute("sessionID"));
@@ -245,7 +249,6 @@ public class DrugServiceImpl implements DrugService{
 	    
 	    return dto;
 	}
-
 
 }
 

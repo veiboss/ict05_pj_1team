@@ -7,7 +7,9 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
-    $(".add-btn").click(function() {
+    $(".add-btn").click(function(e) {
+    	e.preventDefault();
+    	
         var dr_id = $(this).data("drid"); // 버튼의 data-drid 가져오기
 
         $.ajax({
@@ -17,6 +19,11 @@ $(document).ready(function() {
             dataType: 'json',             // JSON 응답 받기
             success: function(response) {
                 alert(response.msg);       // Service에서 보낸 메시지 표시
+                
+                if (response.redirect) {
+                    // redirect 경로가 응답에 포함돼 있다면 이동
+                    window.location.href = response.redirect;
+                }
             },
             error: function(xhr, status, error) {
                 console.error("에러 상태 :", status);
