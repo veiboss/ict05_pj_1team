@@ -35,10 +35,10 @@ $(document).ready(function() {
 });
 </script>
 
-<div>
-	<p class="total"><br>
+	<p class="total fc-body fw-500">
+		총 
 		<c:if test="${total > 0}">
-			<span class="count">총 ${total}</span>
+			<span class="count">${total}</span>
 		</c:if>
 	</p>
 	
@@ -90,22 +90,19 @@ $(document).ready(function() {
 					        </c:choose>
 					</div>
 				
-					<div class="data-content">
+					<div class="data-content pack-down">
 						
 						<p class="small-title">${dto.dr_product}</p>
 						
-						<p class="data-wrap flex-wrap">
-							<span class="article-type">${dto.dr_serve_use}</span>
-							</p>
+						<p class="data-wrap">
+							${dto.dr_serve_use}
+						</p>
 							
-						<div id="drug-item" class="data-wrap pack-both">
-							<span> </span>
-							<p class="pack-left">
-								<%-- <input type="hidden" name="dr_id" value="${dto.dr_id}"> --%>
-								<button type="submit" class="btn blue small r4 add-btn" data-drid="${dto.dr_id}">
-									내약추가
-								</button>
-							</p>
+						<div id="drug-item" class="pack-right">
+							<%-- <input type="hidden" name="dr_id" value="${dto.dr_id}"> --%>
+							<button type="submit" class="btn blue small r4 add-btn" data-drid="${dto.dr_id}">
+								내약추가
+							</button>
 						</div>
 					</div>
 				</a><!-- .item.thumb-left -->
@@ -115,9 +112,9 @@ $(document).ready(function() {
 		
 			<div class="pagination">
 			    <!-- 이전 버튼 -->
-			    <c:if test="${paging.startPage > 5}">
+			    <c:if test="${paging.startPage > paging.pageBlock}">
 			        <a href="${path}/drug_list.do?pageNum=${paging.prev}" class="btn prev page-link" data-page="${paging.prev}">
-			            &lt;
+			            <i class="ico page-arr"><span>&lt;</span></i>
 			        </a>
 			    </c:if>
 			
@@ -133,12 +130,11 @@ $(document).ready(function() {
 			    <!-- 다음 버튼 -->
 			    <c:if test="${paging.endPage < paging.pageCount}">
 			        <a href="${path}/drug_list.do?pageNum=${paging.next}" class="btn next page-link" data-page="${paging.next}">
-			            &gt;
+			            <i class="ico page-arr"><span>&gt;;</span></i>
 			        </a>
 			    </c:if>
 			</div>
 		</div><!-- .section.list-wrap -->
-	</div>
 
 
 

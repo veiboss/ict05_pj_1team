@@ -51,20 +51,6 @@
         });
     </script>
 <style>
-.total .count{
-	color : #687FE5;
-	font-size : 15px;
-	font-weight : 600;
-}
-
-.article-type {
-	color : black;
-	margin-top: 16px;
-}
-
-.btn.search {
-	font : black;
-}
 </style>
 </head>
 <body>
@@ -82,22 +68,23 @@
 			<!-- 검색창 시작 -->
 			<!-- SID : PL20 -->
 			<div id="content" class="pl20"><!-- [D] main / sub-main / sub && pagd name -->
-				<h1 class="page-title">영양제 검색</h1><br>
+				<h1 class="page-title">영양제 검색</h1>
 
-				<div id="searchForm" class="search-bar">
-					<!--[D] 검색폼  -->
-					<form action="drug_list.jsp" class="search-form">
-						<fieldset>
-							<legend class="blind">통합 검색</legend>
-							<div class="search-box pack-both r4">
-								<input type="search" id="searchTxt" class="input-text r4" placeholder="검색어를 입력해주세요" autocomplete="off">
-								<button type="submit" class="btn search">검색</button>
-							</div>
-						</fieldset>
-					</form>
-				</div> <!-- .pack-both -->
-				<section class="box-wrap">
-			    	<div id="searchResult"></div>
+				<section class="section list-wrap">
+					<div id="searchForm" class="search-bar">
+						<!--[D] 검색폼  -->
+						<form action="drug_list.jsp" class="search-form">
+							<fieldset>
+								<legend class="blind">통합 검색</legend>
+								<div class="search-box pack-both r4">
+									<input type="search" id="searchTxt" class="input-text r4" placeholder="검색어를 입력해주세요" autocomplete="off">
+									<button type="submit" class="btn search">검색</button>
+								</div>
+							</fieldset>
+						</form>
+					</div> <!-- .pack-both -->
+					
+					<div id="searchResult"></div>
 				</section> 	
 			</div>
 			<!-- nav 시작 -->

@@ -43,16 +43,16 @@ $(document).ready(function() {
 });
 </script>
 <style>
-.drug-txt{margin-top: 40px; }
-dl.pack-left-top{gap: 0; text-align: left; }
-dl.pack-left-top dt{width: 80px; }
+.detail-btns .btn{width: 36%}
+.tabs.line {margin-bottom: 0}
+.pack-down.gap-20.fc-body {padding-top: 24px;}
+dl.pack-left-top dt{width: 80px; color: var(--dark-gray);}
 dl.pack-left-top dd{width: 100%;}
-.review-title{margin-top: 60px; }
+
 .data-content{padding: 40px;}
-.small-title, .article-type{margin-top:15px;}
-.rv-name{margin-top:30; color:grey;}
+
 .img-wrap.s100{width: 100%; max-width: 375px; margin: 0 auto;}
-.rv-list{padding: 20px;}
+.rv-list{padding: 0 20px;}
 </style>
 </head>
 <body>
@@ -69,7 +69,12 @@ dl.pack-left-top dd{width: 100%;}
 		
 			<!-- 상세 내용 시작 -->
 			<div id="content" class="pl20">
+				<h1 class="blind">약 상세</h1>
 				<input type="hidden" name="dr_id" value="${dto.dr_id}"/>
+				<article class="article pack-down gap-16">
+				<div class="article-header ta-c">
+					<h2 class="article-title">${dto.dr_product}</h2>
+				</div>
 				<div class="img-wrap s100">
 			        <c:choose>
 			            <c:when test="${fn:contains(dto.dr_sungsang, '분말')}">
@@ -105,18 +110,15 @@ dl.pack-left-top dd{width: 100%;}
 			            </c:otherwise>
 			        </c:choose>
 				</div>
-				<div class="pack-both">
-					<span></span>
-					<button type="button" class="btn blue large r4 add-btn" data-drid="${dto.dr_id}">
-						내약추가
+				
+				<div class="pack-center detail-btns">
+					<button type="button" class="btn blue medium r-full add-btn" data-drid="${dto.dr_id}">
+						내약 추가
 					</button>
-					
-				</div>
-				<div class="pack-both" style="display:flex; gap:10px;">
 					<input type="hidden" name="dr_id" value="${dto.dr_id}">
-					<span></span>
-		            <a href="${path}/drug_reviewInsert.do?dr_id=${dto.dr_id}" class="btn bdr-blue small" style="padding:10px 5px">
-		            	<span class="">후기 작성</span></a>
+					<a href="${path}/drug_reviewInsert.do?dr_id=${dto.dr_id}" class="btn bdr-blue medium  r-full">
+						후기 작성
+					</a>
 				</div>
 				
 				<ul class="tabs line out-cont">
@@ -125,7 +127,7 @@ dl.pack-left-top dd{width: 100%;}
 				</ul>
 				
 				<div id="tabAll" class="tab-content active">
-					<div class="pack-down drug-txt" style="gap: 30px">
+					<div class="pack-down gap-20 fc-body">
 						<dl class="pack-left-top">
 							<dt>업체명</dt>
 							<dd>${dto.dr_enterprise}</dd>
@@ -194,15 +196,12 @@ dl.pack-left-top dd{width: 100%;}
 						    </button> 
 						</form>	--%>
 						<ul class="data-list toon">
-							
 							<c:forEach var="dto" items="${list}">
 							<li>
 								<%-- <a href="${path}/drug_detailAction.do?dr_id=${dto.dr_id}" class="item thumb-left"> --%>
-								<div class="data-content rv-list">
-									<p class="data-wrap flex-wrap">
-										<!-- <span class="article-type">카테고리</span> -->
-										<div class="star-score">
-											<div class="star-score">
+								<div class="pack-down gap-12 rv-list">
+									<p class="pack-left">
+										<span class="star-score">
 											    <c:forEach begin="1" end="${dto.rv_rating}" var="i">
 											        <i class="ico star small active"><span>★</span></i>
 											    </c:forEach>
@@ -210,18 +209,21 @@ dl.pack-left-top dd{width: 100%;}
 											    <c:forEach begin="1" end="${5 - dto.rv_rating}" var="i">
 											        <i class="ico star small"><span>☆</span></i>
 											    </c:forEach>
-											
-											    <span>${dto.rv_rating}</span>
-											</div>
+										</span>
+										<strong class="fs-18 fc-body">${dto.rv_rating}</strong>
+									</p>
+									<div class="pack-down gap-4 fc-body">
+										<p class="small-title fc-000">${dto.dr_product}</p>
+										<p>${dto.rv_content}</p>
+									</div>
+									<div class="pack-left">
+										<div class="img-wrap circle s36">
+											<img src="https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_640.png" alt="프로필아이디" class="centered">
 										</div>
-									</p>
-									<p class="small-title">${dto.dr_product}</p>
-									<p class="data-wrap flex-wrap">
-										<span class="article-type">${dto.rv_content}</span>
-									</p>
-									<p class="rv-name">${dto.mb_name}</p>
-										
-									
+										<div class="user">
+											<span class="user-name fc-body rv-name">${dto.mb_name}</span>
+										</div>
+									</div>
 								</div>
 								<!-- </a>.item.thumb-left -->
 							</li>
@@ -231,9 +233,9 @@ dl.pack-left-top dd{width: 100%;}
 						<div class="pagination">
 						    <!-- 이전 버튼 -->
 						    <input type="hidden" name="hiddenPageNum" value="${pageNum}">
-						    <c:if test="${paging.startPage > 5}">
+						    <c:if test="${paging.startPage > paging.pageBlock}">
 						        <a href="${path}/drug_detailAction.do?pageNum=${paging.prev}&dr_id=${dto.dr_id}" class="btn prev page-link" data-page="${paging.prev}">
-						            &lt;
+						            <i class="ico page-arr"><span>&lt;</span></i>
 						        </a>
 						    </c:if>
 						
@@ -249,13 +251,14 @@ dl.pack-left-top dd{width: 100%;}
 						    <!-- 다음 버튼 -->
 						    <c:if test="${paging.endPage < paging.pageCount}">
 						        <a href="${path}/drug_detailAction.do?pageNum=${paging.next}&dr_id=${dto.dr_id}" class="btn next page-link" data-page="${paging.next}">
-						            &gt;
+						            <i class="ico page-arr"><span>&gt;;</span></i>
 						        </a>
 						    </c:if>
 						</div>
 					</div><!-- .section.list-wrap -->
 				</div>
-			</div>
+				</article>
+			</div><!-- #content -->
 			<!-- 상세 내용 끝 -->
 			<!-- nav 시작 -->
 			<%@ include file="../common/nav.jsp" %>

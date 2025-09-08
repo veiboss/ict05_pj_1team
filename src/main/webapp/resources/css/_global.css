@@ -448,6 +448,9 @@ a.img-wrap,
 /* grey-box */
 .grey-box{padding: 14px 16px 13px; color: var(--gray); background-color: var(--mostly-white);}
 
+/*.total*/
+.total 						{margin-top: 8px; padding: 8px 0; border-bottom: 1px solid var(--light-gray);}
+
 /* list & detail data */
 .data-wrap							{color: var(--dark-gray); font-weight: 500;}
 .data-wrap:not([class*="pack-"])					{gap: 8px;
@@ -471,7 +474,7 @@ a.img-wrap,
 .banner.check-list-home .btn		{margin-top: 32px; width: 180px; border: solid 1px var(--light-gray); }
 
 /* item */
-a.item 									{display: block;}
+a.item:not([class*="pack"]) 				{display: block;}
 .item .data-wrap:not(.mdot):not(.pack-wrap) > span + span	{margin-left: 12px;}
 .item .data-wrap:not(.mdot) > span + .btn	{margin-left: 16px;}
 .item .data-wrap.pack-wrap > span + span	{margin-top: 4px;}

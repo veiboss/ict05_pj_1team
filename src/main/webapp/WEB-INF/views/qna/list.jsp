@@ -70,7 +70,7 @@
 	
 	                                <!-- [D] 약에 관한 질문일 경우 -->
 	                                <div class="pack-left" style="display:none;">
-	                                    <div class="item thumb-left r4">
+	                                    <div class="item pack-left r4">
 	                                        <div class="img-wrap s48">
 	                                            <img src="${path}/resources/images/drug_type/01.png" alt="분말" class="centered">
 	                                            <!--
