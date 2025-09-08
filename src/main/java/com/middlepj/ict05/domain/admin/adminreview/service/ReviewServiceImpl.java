@@ -67,11 +67,7 @@ public class ReviewServiceImpl implements ReviewService{
 	    map.put("start", start);
 	    map.put("end", end);
 		
-		// 세션 올라간거 관리자인지 체크, 관리자아니면 안띄워줌
-	    
-		// int userCnt = dao.userCheck(sessionID);
-		
-		// 목록띄워줌 리스트로 가져올거임
+		// 목록 띄우기위해 리스트로 가져오기
 	    List<ReviewDTO> list;
         try {
             if (safeKeyword.isEmpty()) {
@@ -86,7 +82,6 @@ public class ReviewServiceImpl implements ReviewService{
 		
 		model.addAttribute("list", list);
 		model.addAttribute("paging", paging);
-		// model.addAttribute("userCnt", userCnt);
 	    model.addAttribute("keyword", keyword); // 검색어 유지용
 	}
 

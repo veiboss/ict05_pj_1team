@@ -59,7 +59,7 @@ function validateForm() {
 		<!-- 컨텐츠 시작 -->
 				<div class="title-bar">
 					<h2 class="page-title ellipsis">
-						영양제(관리자) 등록
+						영양제 수정
 					</h2>
 				</div>
 				<main id="content">

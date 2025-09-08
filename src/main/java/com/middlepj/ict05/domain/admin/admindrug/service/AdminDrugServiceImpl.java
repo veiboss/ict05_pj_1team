@@ -33,7 +33,7 @@ public class AdminDrugServiceImpl implements AdminDrugService{
 			throws ServletException, IOException {
 		logger.info("AdminDrugServiceImpl - drugList");
 		
-		// 페이징 연산 해줄거임
+		// 페이징 연산해줄 준비
 		String pageNum = request.getParameter("pageNum");
 		String keyword = request.getParameter("keyword");  // 검색어
 		
@@ -68,7 +68,7 @@ public class AdminDrugServiceImpl implements AdminDrugService{
 		    map.put("end", end);
 			
 			
-			// 목록띄워줌 리스트로 가져올거임
+			// 목록띄워줌 리스트로 가져오기
 		    List<AdminDrugListDTO> list;
 	        try {
 	            if (safeKeyword.isEmpty()) {
