@@ -39,12 +39,12 @@
 			
 			
 			<div class="title-bar">
-			<div class="pack-left">
-				<h2 class="page-title ellipsis">회원 관리</h2>
-				<a href="${path}/memberInsert.ad" class="btn medium color1">
-					<span class="material-symbols-outlined">person_add</span>
-				</a>
-			</div>
+				<div class="pack-left">
+					<h2 class="page-title ellipsis">회원 관리</h2>
+					<a href="${path}/memberInsert.ad" class="btn medium color1">
+						<span class="material-symbols-outlined">person_add</span>
+					</a>
+				</div>
 			</div>
 			
 			<main id="content">

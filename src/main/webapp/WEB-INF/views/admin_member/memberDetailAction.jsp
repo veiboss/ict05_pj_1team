@@ -59,7 +59,7 @@
 							<input type="hidden" name="mb_modify_id" value="${sessionID}">
 							
 							<div class="row">
-								<div class="field col-2 pack-down">
+								<div class="field pack-down">
 									<label class="label medium required" for="emailAddress">이메일주소</label>
 									<div class="insert">
 										<input type="email" class="input-text medium" name="mb_email" id="emailAddress" placeholder="이메일 입력" required disabled value="${dto.mb_email}">
@@ -82,7 +82,7 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="field col pack-down">
+								<div class="field pack-down">
 									<span class="label medium">회원등급</span>
 									<div class="insert pack-left">
 										<label for="radio1" class="pack-left">
@@ -103,34 +103,40 @@
 
 							<hr class="line">
 							
-							
 							<div class="row-2">
 								<div class="field col pack-down">
-									<label class="label medium required" for="regId">가입 아이디</label>
+									<label class="label medium required" for="regId">가입 정보</label>
 									<div class="insert">
 										<input type="hidden" class="input-text medium" name="regId" id="regId" placeholder="등록 ID 입력" required value="${dto.mb_writer_id}" disabled>
-										
+										<span>${dto.mb_reg_date}</span>,
 										<c:if test="${dto.mb_id == dto.mb_writer_id}">
 											<span class="fc-light">본인</span>
 										</c:if>
 										<c:if test="${dto.mb_id != dto.mb_writer_id}">
 											관리자 <a href="${path}/memberDetailAction.ad?mbId=${dto.mb_writer_id}"><span class="fc-primary">${dto.mb_writer_id}</span></a>
 										</c:if>
+										가입
 									</div>
 								</div>
 								
-								<div class="field col pack-down">
-									<label class="label medium required" for="regDate">가입일</label>
-									<div class="insert">
-										<input type="text" class="input-text medium" name="regDate" id="regDate" placeholder="영문, 숫자, 특수문자 포함 8자 이상 입력" required value="${dto.mb_reg_date}" disabled>
+								<c:if test="${dto.mb_modify_date} != ''">
+									<div class="field col pack-down">
+										<label class="label medium required" for="regDate">관리자 수정정보</label>
+										<div class="insert">
+												<span>${dto.mb_modify_date}</span>,
+												<a href="${path}/memberDetailAction.ad?mbId=${dto.mb_modify_id}"><span class="fc-primary">${dto.mb_modify_id}</span></a>
+												수정
+										</div>
 									</div>
-								</div>
+								</c:if>
 							</div>
 	
-							<div class="button-area pack-center mo-pack-down">
+							<div class="button-area pack-center">
 								<button type="submit" class="btn large color1">회원 정보 수정</button>
-								<button type="reset" class="btn large bdr-color1">초기화</button>
-								<button type="button" class="btn large bdr-color1" onclick="history.back()">회원목록</a>
+							</div>
+							<div class="button-area pack-both">
+								<button type="reset" class="btn medium bdr-color1">초기화</button>
+								<button type="button" class="btn medium bdr-color1" onclick="history.back()">회원목록</a>
 							</div>
 						</fieldset>
 					</form>
