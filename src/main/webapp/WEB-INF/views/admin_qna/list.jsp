@@ -24,31 +24,44 @@
 <div id="wrap" class="frame">
     <%@ include file="../admin/aside.jsp" %>
     <%@ include file="../admin/header.jsp" %>
-    <div id="container" class="container">
+
+		
+		<div id="container" class="container">
+			<!-- 컨텐츠 시작 -->
         <div class="title-bar">
-            <h2 class="page-title ellipsis">전문가 Q&A</h2>
+				<div class="pack-left">
+            <h2 class="page-title ellipsis">전문가 Q&amp;A</h2>
+            <a class="btn bdr-gray medium" href="${path}/qna/write">
+            	<span class="material-symbols-outlined">chat_add_on</span>
+            	<span>새 Q&amp;A</span>
+            </a>
+				</div>
         </div>
+        
         <main id="content">
-            <div class="search-bar">
+            <div class="search box-wrap">
                 <form class="sign-up-form" action="" method="GET">
-                    <fieldset>
+                    <fieldset class="pack-left">
                         <legend class="blind">통합 검색</legend>
-                        <div class="search-box pack-both r4">
-                            <select name="mode" class="select" style="width:100px;">
+                        <div class="field insert" style="width: 150px;">
+                            <select name="mode" class="select medium">
                                 <option value="t" ${param.mode == 't'?'selected':''}>제목</option>
                                 <option value="c" ${param.mode == 'c'?'selected':''}>내용</option>
                             </select>
-
-                            <input type="search" class="input-text r4" name="s" value="${param.s}"
+						</div>
+						<div class="field insert">
+                            <input type="search" class="input-text medium" name="s" value="${param.s}"
                                    placeholder="검색어를 입력해주세요"
                                    autocomplete="off">
-
-                            <button type="submit" class="btn"><strong>검색</strong></button>
-                        </div>
+						</div>
+						<div class="button-area pack-left">
+                            <button type="submit" class="btn medium color1"><strong>검색</strong></button>
+						</div>
                     </fieldset>
                 </form>
             </div>
-            <div class="table-wrap">
+            
+            <div class="box-wrap">
 				<table class="data-table">
 					<colgroup>
 						<col width="80">
@@ -74,46 +87,47 @@
 					<c:forEach var="qna" items="${qnaList}">
 						<tr>
 							<th scope="row">${qna.qa_id}</th>
-							<td style="text-align:left;"><a href="${path}/admin/qna/detail/${qna.qa_id}">${qna.qa_title}</a></td>
-							<td>
+							<td data-th="제목" class="ta-l"><a href="${path}/admin/qna/detail/${qna.qa_id}">${qna.qa_title}</a></td>
+							<td data-th="답변">
 								<c:if test="${empty qna.qa_answer}">N</c:if>
 								<c:if test="${not empty qna.qa_answer}">Y</c:if>
 							</td>
-							<td>${qna.qa_private}</td>
-							<td>${qna.qa_show}</td>
-							<td>${qna.mb_name}</td>
-							<td><fmt:formatDate value="${qna.qa_reg_date}" pattern="yyyy. MM. dd"/></td>
+							<td data-th="비밀글">${qna.qa_private}</td>
+							<td data-th="노출여부">${qna.qa_show}</td>
+							<td data-th="작성자">${qna.mb_name}</td>
+							<td data-th="작성일"><fmt:formatDate value="${qna.qa_reg_date}" pattern="yyyy. MM. dd"/></td>
 						</tr>
 						</c:forEach>
 					</tbody>
 				</table>
-			</div>
-            <div class="pagination" style="margin-top:10px;">
-                <ul>
-                    <c:if test="${paging.startPage > 10}">
-                        <li>
-                            <a href="${path}/admin/qna/list?pageNum=${paging.prev}&mode=${param.mode}&s=${param.s}"
-                               class="prevPage"> [이전] </a>
-                        </li>
-                    </c:if>
 
+					<div class="pagination">
+                    <c:if test="${paging.startPage > paging.pageBlock}">
+                            <a href="${path}/admin/qna/list?pageNum=${paging.prev}&mode=${param.mode}&s=${param.s}"
+                               class="btn prev">
+									<svg xmlns="http://www.w3.org/2000/svg" class="svg">
+										<path d="m2 6 6-4.33v8.66L2 6z" />
+									</svg>
+                            </a>
+                    </c:if>
+					<!-- 페이지 번호 활성화 -->
+					<ul>
                     <c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
-                        <li>
-                            <a href="${path}/admin/qna/list?pageNum=${num}&mode=${param.mode}&s=${param.s}"
-                               class="<c:if test='${num == paging.currentPage}'>active</c:if>">${num}</a>
+                        <li class="<c:if test='${num == paging.currentPage}'>current</c:if>">
+                            <a href="${path}/admin/qna/list?pageNum=${num}&mode=${param.mode}&s=${param.s}" class="btn">${num}</a>
                         </li>
                     </c:forEach>
+					</ul>
 
-                    <c:if test="${paging.startPage < paging.pageCount}">
-                        <li>
+                    <c:if test="${paging.endPage < paging.pageCount}">
                             <a href="${path}/admin/qna/list?pageNum=${paging.next}&mode=${param.mode}&s=${param.s}"
-                               class="nextPage"> [다음] </a>
-                        </li>
+                               class="btn next">
+									<svg xmlns="http://www.w3.org/2000/svg" class="svg">
+										<path d="m2 6 6-4.33v8.66L2 6z" />
+									</svg>
+                               </a>
                     </c:if>
-                </ul>
-            </div>
-            <div style="margin-top:10px;text-align:right">
-                <a class="btn bdr-gray medium" href="${path}/qna/write">전문가 Q&A 작성</a>
+					</div><!-- // .pagination -->
             </div>
         </main>
         <%@ include file="../admin/footer.jsp" %>

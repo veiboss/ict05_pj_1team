@@ -15,9 +15,8 @@ button 						{border: 0 none; font: inherit; color: inherit;
 button:focus,
 a:focus						{outline-color: transparent; outline-style: none;}
 .btn 						{width: fit-content; font-size: inherit; text-align: center; vertical-align: middle; border: 0 none; outline: none; cursor: pointer; background-color: transparent; box-sizing: border-box; border-radius: 0; gap: 8px;
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
+	display: inline-flex; justify-content: center; align-items: center;
+	word-break: keep-all; white-space: normal;
 }
 
 a.btn						{text-decoration: none;}
@@ -38,12 +37,16 @@ button.btn					{overflow: visible; margin: 0;}
 .btn.xsmall,
 .btn.small,
 .btn.regular	{font-size: 13px;}
-.btn.xsmall		{padding: 0 8px;}
-.btn.small		{padding: 0 12px; min-width: 96px;}
-.btn.regular	{padding: 0 12px;}
-.btn.medium		{padding: 0 12px; height: var(--medium); line-height: var(--medium); font-size: 14px;}
-.btn.large		{padding: 0 20px; height: var(--large); line-height: var(--large); font-size: 14px;}
-.btn.xlarge		{padding: 0 40px; padding: 0 calc(var(--xlarge)*.8); height: var(--xlarge); line-height: var(--xlarge); font-size: 20px;}
+.btn.small		{min-width: 80px;}
+.btn.medium		{height: var(--medium); line-height: var(--medium); font-size: 14px;}
+.btn.large		{height: var(--large); line-height: var(--large); font-size: 14px;}
+.btn.xlarge		{height: var(--xlarge); line-height: var(--xlarge); font-size: 20px;}
+.btn.xsmall:not(.circle)		{padding: 0 8px;}
+.btn.small:not(.circle)			{padding: 0 12px;}
+.btn.regular:not(.circle)		{padding: 0 16px;}
+.btn.medium:not(.circle)		{padding: 0 20px;}
+.btn.large:not(.circle)			{padding: 0 24px; }
+.btn.xlarge:not(.circle)		{padding: 0 calc(var(--xlarge)*.8);}
 
 
 /* button circle */
@@ -55,7 +58,6 @@ button.btn					{overflow: visible; margin: 0;}
 .btn.small.circle		{width: var(--small);}
 .btn.regular.circle		{width: var(--regular);}
 .btn.medium.circle		{width: var(--medium);}
-.btn.medium:not(.circle)		{width: 148px;}
 
 /* button style */
 .btn.white				{background-color: #fff; color: black;}
@@ -69,7 +71,7 @@ button.btn					{overflow: visible; margin: 0;}
 /* .btn.etc */
 .btn.link,
 .btn.linkline		{font-size: 13px; line-height: 20px; font-weight: 600; color: var(--dark-gray);}
-.btn.linkline {text-decoration: underline;}
+.btn.linkline 		{text-decoration: underline;}
 .data-list.card + .ta-c		{margin-top: 24px; border-top: 1px solid var(--very-light-gray);} /* 더 보기 */
 
 /* .btn.more */

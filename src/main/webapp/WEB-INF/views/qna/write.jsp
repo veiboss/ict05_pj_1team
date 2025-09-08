@@ -28,39 +28,42 @@
     <div id="container" class="lines">
         <%@ include file="../common/header.jsp" %>
         <div id="content" class="sub si20">
-            <form name="frm" id="frm" method="POST">
-                <div>
+        	<h2 class="blind">전문가에게 물어보기</h2>
+            <form name="frm" id="frm" method="POST" class="write-form">
+                <fieldset class="pack-down gap-12">
+                	<legend class="section-title">전문가에게 물어보기</legend>
                     <div>
                         <label class="label-box">
                             <span class="text-label">제목</span>
                             <input type="text" name="qa_title" class="input-text" placeholder="제목을 입력해주세요">
                         </label>
                     </div>
-                    <div style="margin-top:10px;">
+                    <div>
                         <textarea name="qa_content" id="qa_content"></textarea>
                     </div>
-                    <div style="margin:10px 0">
+                    <div>
                         <label class="check-wrap">
                             <input type="checkbox" class="checkbox" name="qa_private" value="Y">
                             <span>비밀글</span>
                         </label>
                     </div>
-                    <div style="margin:10px 0">
+                    <div>
                         <label class="check-wrap">
                             <input type="checkbox" class="checkbox" name="qa_show" checked>
                             <span>노출여부</span>
                         </label>
                     </div>
-                    <div>
-                        <button type="submit" class="btn blue medium">작성하기</button>
-                    </div>
-                    <div style="margin-top:10px;text-align:right">
-                        <a class="btn bdr-gray medium" href="${path}/qna/list">목록</a>
-                        <a class="btn bdr-gray medium" href="${path}/qna/write">전문가 QnA 작성</a>
+                    <div class="button-area pack-center">
+                        <button type="submit" class="btn black medium r-full">작성하기</button>
                     </div>
 
-                </div>
+                </fieldset>
             </form>
+            <hr class="out-cont section-bar" style="height:1px; margin-top: 20px;">
+            <div class="button-area pack-both">
+                <a class="btn bdr-blue medium r-full" href="${path}/qna/list">목록</a>
+                <a class="btn black medium r-full" href="${path}/qna/write">전문가 QnA 작성</a>
+            </div>
         </div>
 
         <%@ include file="../common/nav.jsp" %>

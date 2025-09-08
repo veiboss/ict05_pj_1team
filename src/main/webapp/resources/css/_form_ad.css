@@ -174,7 +174,7 @@ textarea								{}
 .input-has-btn .unit					{ 
 	flex: 1 1 auto;
 }
-.input-has-btn .btn						{min-width: 100px; border-radius: 0; word-break: keep-all;}
+.input-has-btn .btn						{min-width: 100px; border-radius: 0;}
 
 
 
@@ -193,4 +193,5 @@ textarea								{}
 .box-wrap.pack-down > hr.line{margin-top: -.5rem}
 .box-wrap.pack-down + .box-wrap.pack-down	{border-top: 1px solid var(--body-bg-color);}
 .write-form .button-area {padding: 3.6rem 0 2rem}
+.write-form .button-area + .button-area {margin: 0; padding: 1rem 0; border-top: 1px solid var(--bdr-color);}
 .write-form .button-area .btn.large{min-width: 160px;}

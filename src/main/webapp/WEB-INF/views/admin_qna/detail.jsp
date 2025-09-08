@@ -32,46 +32,58 @@
 <div id="wrap" class="frame">
     <%@ include file="../admin/aside.jsp" %>
     <%@ include file="../admin/header.jsp" %>
-    <div id="container" class="container">
+		<div id="container" class="container">
+			<!-- 컨텐츠 시작 -->
         <div class="title-bar">
             <h2 class="page-title ellipsis">전문가 Q&A</h2>
         </div>
+        
         <main id="content">
+        	<div class="write-form box-wrap" style="max-width: 960px; gap: 40px;">
             <form name="frm" id="frm" method="POST">
+            <fieldset class="pack-down" style="gap: 20px;">
+            	<legend class="blind">기본 정보</legend>
+            	
                 <input type="hidden" name="qa_id" value="${dto.qa_id}">
-                <div>
+                <div class="row">
+                    <label class="field pack-down">
+                    	<span class="label medium required">제목</span>
+                    	<span class="insert">
+                            <input type="text" name="qa_title" class="input-text medium" value="${dto.qa_title}" placeholder="제목을 입력해주세요">
+                    	</span>
+                    </label>
+				</div>
+				<div class="row">
                     <div>
-                        <label class="label-box">
-                            <span class="text-label">제목</span>
-                            <input type="text" name="qa_title" class="input-text" value="${dto.qa_title}"
-                                   placeholder="제목을 입력해주세요">
-                        </label>
-                    </div>
-                    <div style="margin-top:10px;">
                         <textarea name="qa_content" id="qa_content">${dto.qa_content}</textarea>
                     </div>
-                    <div style="margin:10px 0">
+				</div>
+				<div class="row">
+					<div class="insert pack-left">
                         <label class="check-wrap">
                             <input type="checkbox" class="checkbox" name="qa_private" value="Y" ${dto.qa_private == 'Y' ? 'checked' : ''}>
                             <span>비밀글</span>
                         </label>
-                    </div>
-                    <div style="margin:10px 0">
+
                         <label class="check-wrap">
                             <input type="checkbox" class="checkbox" name="qa_show" ${dto.qa_show == 'Y' ? 'checked' : ''}>
                             <span>노출여부</span>
                         </label>
                     </div>
-                    <div>
-                        <button type="submit" class="btn blue medium">수정하기</button>
+
+					<div class="button-area pack-center">
+                        <button type="submit" class="btn large color1">수정하기</button>
                     </div>
-                    <div style="margin-top:10px;text-align:right">
-                        <a class="btn bdr-gray medium" href="${path}/admin/qna/list">목록</a>
-                        <a class="btn bdr-gray medium" href="${path}/qna/write">전문가 QnA 작성</a>
+                    
+					<div class="button-area pack-both">
+                        <a class="btn medium bdr-color1" href="${path}/admin/qna/list">QnA 목록</a>
+                        <a class="btn medium color1" href="${path}/qna/write">전문가 QnA 등록</a>
                     </div>
 
                 </div>
+            </fieldset>
             </form>
+            </div>
         </main>
         <%@ include file="../admin/footer.jsp" %>
     </div>
