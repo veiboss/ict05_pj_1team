@@ -102,6 +102,10 @@ public class ReviewServiceImpl implements ReviewService{
             logger.error("Failed to fetch review detail", e);
             throw new ServletException("후기 상세 조회 실패", e);
         }
+		String plain = dto.getRv_content()
+			    .replaceAll("<br\\s*/?>", "\n")
+			    .replaceAll("<[^>]+>", "");
+		dto.setRv_content(plain);
 		
 		model.addAttribute("dto", dto);
 	}
