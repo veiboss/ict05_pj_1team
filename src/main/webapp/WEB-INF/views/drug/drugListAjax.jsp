@@ -3,12 +3,14 @@
 <%@ include file="../common/setting.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
+<!-- === Chatbot Widget === -->
+<%@ include file="../common/chat-widget.jspf" %>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
     $(".add-btn").click(function(e) {
-    	e.preventDefault();
+    	e.preventDefault();	
     	
         var dr_id = $(this).data("drid"); // 버튼의 data-drid 가져오기
 
@@ -99,7 +101,6 @@ $(document).ready(function() {
 						</p>
 							
 						<div id="drug-item" class="pack-right">
-							<%-- <input type="hidden" name="dr_id" value="${dto.dr_id}"> --%>
 							<button type="submit" class="btn blue small r-full add-btn" data-drid="${dto.dr_id}">
 								내약추가
 							</button>

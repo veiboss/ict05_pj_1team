@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ include file="../common/setting.jsp" %>
+<!-- === Chatbot Widget === -->
+<%@ include file="../common/chat-widget.jspf" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -188,17 +190,9 @@ dl.pack-left-top dd{width: 100%;}
 				<!-- 후기 게시판 -->
 				<div id="tabLife" class="tab-content">
 					<div class="section list-wrap">
-						
-					   <%--  <form id="reviewForm" action="${path}/drug_reviewInsert.do" method="post">
-						    <input type="hidden" name="dr_id" value="${dto.dr_id}">
-						    <button type="submit" class="btn bdr-blue small" style="padding:10px 5px">
-						        후기 작성
-						    </button> 
-						</form>	--%>
 						<ul class="data-list toon">
 							<c:forEach var="dto" items="${list}">
 							<li>
-								<%-- <a href="${path}/drug_detailAction.do?dr_id=${dto.dr_id}" class="item thumb-left"> --%>
 								<div class="pack-down gap-12 rv-list">
 									<p class="pack-left">
 										<span class="star-score">

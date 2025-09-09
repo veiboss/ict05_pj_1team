@@ -73,6 +73,7 @@ public class DrugDAOImpl implements DrugDAO{
 	@Override
 	public int addDrug(Map<String, Object> map) {
 		System.out.println("=== drugDAO - addDrug() ===");
+		
 		return sqlSession.insert("com.middlepj.ict05.domain.drug.dao.DrugDAO.addDrug", map);
 	}
 	
