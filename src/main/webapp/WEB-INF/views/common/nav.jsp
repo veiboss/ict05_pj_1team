@@ -51,11 +51,15 @@
 				<a id="btnTop" class="btn bdr-blue medium circle shadow" href="#content">
 					<i class="ico top"><span>처음으로</span></i>
 				</a>
-
-				<a id="btnWrite" class="btn blue medium circle" href="../write/talk.html">
-					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-						<path data-name="글쓰기" class="fill-white" d="M18076 21667.875V21656h6v11.877l-2.975 3.127zm0-13.125v-3.75h6v3.752z" transform="rotate(45 35178.19 -10976.286)" />
+				
+				<button type="button" class="btn blue medium circle shadow"  id="cw-fab" onclick="cwOpen()">
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<rect x="3" y="11" width="18" height="10" rx="2"/>
+						<circle cx="12" cy="5" r="2"/>
+						<path d="M12 7v4"/>
+						<line x1="8" y1="16" x2="8" y2="16"/>
+						<line x1="16" y1="16" x2="16" y2="16"/>
 					</svg>
-				</a>
+				</button>
 			</nav>
 			<!-- nav 끝 -->
