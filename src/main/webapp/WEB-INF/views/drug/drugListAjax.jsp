@@ -8,7 +8,7 @@
 <script>
 $(document).ready(function() {
     $(".add-btn").click(function(e) {
-    	e.preventDefault();
+    	e.preventDefault();	
     	
         var dr_id = $(this).data("drid"); // 버튼의 data-drid 가져오기
 
@@ -99,8 +99,7 @@ $(document).ready(function() {
 						</p>
 							
 						<div id="drug-item" class="pack-right">
-							<%-- <input type="hidden" name="dr_id" value="${dto.dr_id}"> --%>
-							<button type="submit" class="btn blue small r4 add-btn" data-drid="${dto.dr_id}">
+							<button type="submit" class="btn blue small r-full add-btn" data-drid="${dto.dr_id}">
 								내약추가
 							</button>
 						</div>
@@ -135,6 +134,8 @@ $(document).ready(function() {
 			    </c:if>
 			</div>
 		</div><!-- .section.list-wrap -->
+		<!-- === Chatbot Widget === -->
+		<%@ include file="../common/chat-widget.jspf" %>
 
 
 

@@ -34,6 +34,76 @@
 }
 
 </script>
+
+<style>
+  /* 저장 후 포커스 항목 하이라이트 */
+  .flash { animation: flash-bg 1.2s ease-in-out 1; }
+  @keyframes flash-bg {
+    0% { background: #fff8c4; }
+    100% { background: transparent; }
+  }
+</style>
+
+<script>
+  // 답변 수정
+  // 인라인 편집 토글
+	function answerUpdate(id){
+    	document.getElementById('ans-text-'+id).style.display = 'none';
+    	document.getElementById('ans-edit-'+id).style.display = 'block';
+  	}
+  	function cancelAnswer(id){
+    	document.getElementById('ans-edit-'+id).style.display = 'none';
+    	document.getElementById('ans-text-'+id).style.display = 'block';
+  	}
+
+  	// 폼 제출(페이지 리다이렉트로 목록 유지 + 갱신)
+  	function saveAnswer(id){
+	    const ta = document.getElementById('ans-ta-'+id);
+	    const form = document.getElementById('ansForm');
+	    form.qa_id.value = id;
+	    document.getElementById('ansFormAnswer').value = ta.value;
+	    form.submit(); // ← 일반 submit (JSON 아님)
+  	}
+
+  	// 리다이렉트 후 focusId로 해당 항목 위치로 스크롤 + 하이라이트
+  	(function(){
+	    const params = new URLSearchParams(location.search);
+	    const fid = params.get('focusId');
+	    if (!fid) return;
+	    const target = document.getElementById('qa-'+fid);
+	    if (target){
+			target.scrollIntoView({behavior:'instant', block:'start'});
+			target.classList.add('flash');
+			setTimeout(()=>target.classList.remove('flash'), 1500);
+	    }
+  	})();
+</script>
+
+<script>
+	// 답변 삭제
+    function deleteAnswer(id){
+    	if(!confirm('이 답변을 삭제할까요?')) return;
+    	const f = document.getElementById('ansDelForm');
+    	f.qa_id.value = id;
+    	f.submit(); 
+  	}
+
+    // redirect 후 focusId로 해당 항목으로 스크롤/하이라이트
+    (function(){
+    	const p = new URLSearchParams(location.search);
+    	const fid = p.get('focusId');
+    	if(!fid) return;
+   	 	const target = document.getElementById('qa-'+fid); 
+   	 	if(target){
+      		target.scrollIntoView({behavior:'instant', block:'start'});
+      		target.classList.add('flash');
+      		setTimeout(()=>target.classList.remove('flash'), 1500);
+	   }
+  	})();
+</script>
+
+
+
 <style>
 	.qna-item.pack-down{gap: 10px}
 </style>
@@ -85,21 +155,21 @@
 					 			</p>
 				           </div>
 				       </div>     
-					     <div class="row-2">
-							<div class="field col">
-								
-								<div class="insert pack-left">
+					    <div class="row-2">
+						    <div class="field col">
+									
+						    	<div class="insert pack-left">
 									<label>
-									  <input type="radio" class="radio"
-									         name="qa_private_${dto.qa_id}" value="N" disabled
-									         <c:if test="${fn:trim(dto.qa_private) == 'N'}">checked="checked"</c:if> />
-									  공개
+										<input type="radio" class="radio"
+										      name="qa_private_${dto.qa_id}" value="N" disabled
+											<c:if test="${fn:trim(dto.qa_private) == 'N'}">checked="checked"</c:if> />
+										  	공개
 									</label>
 									<label>
-									  <input type="radio" class="radio"
-									         name="qa_private_${dto.qa_id}" value="Y" disabled
-									         <c:if test="${fn:trim(dto.qa_private) == 'Y'}">checked="checked"</c:if> />
-									  비밀글
+										 <input type="radio" class="radio"
+										        name="qa_private_${dto.qa_id}" value="Y" disabled
+										 	<c:if test="${fn:trim(dto.qa_private) == 'Y'}">checked="checked"</c:if> />
+											비밀글
 									</label>
 								</div>
 								<span></span>
@@ -114,7 +184,7 @@
 						
 						<!-- 전문가 답변 시작 -->
 						<div class="">
-							<p>
+							<p id="ans-text-${dto.qa_id}" align=left>
 								<c:out value="${
 							      fn:replace(
 							        fn:replace(
@@ -126,40 +196,62 @@
 					 		</p>
 							
 							<!-- 수정 버튼: sessionGrade가 expert일 때만 보임 -->
-							<%-- <c:if test="${sessionScope.sessionGrade eq 'EXPERT' and dto.qa_answer != null} ">
-							<button type="button" class="btn blue small r4"
-							        onclick="editAnswer(${dto.qa_id})">수정</button>
-							</c:if> --%>
 							<c:if test="${not empty sessionScope.sessionGrade 
 							             and fn:toLowerCase(fn:trim(sessionScope.sessionGrade)) eq 'expert' 
 							             and not empty dto.qa_answer}">
-							  <button type="button" class="btn blue small r4"
+								<button type="button" class="btn blue small r4"
 							          onclick="answerUpdate(${dto.qa_id})">수정</button>
 							</c:if>
-							<!-- 🔽 숨김 편집 박스(전문가만 사용) -->
+							<!-- 숨김 편집 박스(전문가만 사용) -->
 							<c:if test="${not empty sessionScope.sessionGrade 
 											and fn:toLowerCase(fn:trim(sessionScope.sessionGrade)) eq 'expert' 
 											and not empty dto.qa_answer}">
-								<div id="ans${dto.qa_id}" style="display:none; margin-top:8px;">
-									<textarea id="ans-ta-${dto.qa_id}" rows="6" class="textarea" style="width:100%;">
-										${fn:escapeXml(dto.qa_answer)}
+								<div id="ans-edit-${dto.qa_id}" style="display:none; margin-top:8px;">
+									<textarea id="ans-ta-${dto.qa_id}" rows="6" class="textarea" style="width:100%; text-align:left;">
+										<c:out value="${fn:trim(
+										  fn:replace(
+										    fn:replace(
+										      fn:replace(
+										        fn:replace(
+										          fn:replace(dto.qa_answer,'<p>',''),
+										        '</p>',''),
+										      '<br/>','&#10;'),
+										    '<br />','&#10;'),
+										  '<br>','&#10;')
+										)}"/>
 									</textarea>
-									<div style="margin-top:8px; display:flex; gap:8px;">
+									<div >
 										<button type="button" class="btn blue small r4"
-										        onclick="saveAnswer(${dto.qa_id})">저장</button>
+										        onclick="saveAnswer(${dto.qa_id})">수정하기</button>
 										<button type="button" class="btn bdr-blue small r4"
 										        onclick="deleteAnswer(${dto.qa_id})">삭제</button>
 									</div>
 								</div>
 							</c:if>
 	            		</div> 
-								<hr class="out-cont section-bar">
-			          		</li>
+						<hr class="out-cont section-bar">
+			          	</li>
 			          			
-			          	</c:forEach>
+			          </c:forEach>
 		          	</ul>
 	        	</div><!-- /.item.thumb-left -->
 			</div>
+			
+			<!-- 답변 수정  (공용 1개) -->
+			<form id="ansForm" action="${path}/myQnaAnswerUpdate.do" method="post" style="display:none;">
+				<input type="hidden" name="qa_id">
+				<input type="hidden" name="pageNum" value="${paging.currentPage}">
+					<!-- 답변 본문은 개행이 많을 수 있어서 textarea로 -->
+					<textarea name="qa_answer" id="ansFormAnswer"></textarea>
+			</form>
+			
+			<!-- 답변 삭제 -->
+			<form id="ansDelForm" action="${path}/myQnaAnswerDelete.do" method="post" style="display:none;">
+				<input type="hidden" name="qa_id">
+				<input type="hidden" name="pageNum" value="${paging.currentPage}">
+			</form>
+			
+						
 			
 			<!-- 삭제(비노출) POST 폼: ❗ forEach 밖, 단 한 개만 -->
 			<form id="delForm" action="${path}/myQnaDelete.do" method="post" style="display:none;">
@@ -201,5 +293,6 @@
 			<!-- footer 끝 -->
 		</div><!-- // #container -->
 	</div><!-- // #wrap -->
+	<%@ include file="../../common/chat-widget.jspf" %>
 </body>
 </html>

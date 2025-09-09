@@ -9,7 +9,7 @@
 <!-- 반응형 웹 -->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 <meta name="format-detection" content="telephone=no">
-<title>영양제 검색</title>
+<title>영양제 후기</title>
 <!-- css -->
 <link rel="stylesheet" href="${path}/resources/css/yaksok.css">
 
@@ -59,5 +59,7 @@
 			<!-- footer 끝 -->
 		</div><!-- // #container -->
 	</div><!-- // #wrap -->
+	<!-- === Chatbot Widget === -->
+	<%@ include file="../common/chat-widget.jspf" %>
 </body>
 </html>

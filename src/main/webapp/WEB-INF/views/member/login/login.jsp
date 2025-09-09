@@ -73,5 +73,9 @@
 			<!-- footer 끝 -->
 		</div><!-- // #container -->
 	</div><!-- // #wrap -->
+	
+	<%@ include file="../../common/loading.jsp" %><!-- 약속 로딩 -->
+	<!-- === Chatbot Widget === -->
+	<%@ include file="../../common/chat-widget.jspf" %>
 </body>
 </html>

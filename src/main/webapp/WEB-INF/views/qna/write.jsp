@@ -31,8 +31,47 @@
         	<h2 class="blind">전문가에게 물어보기</h2>
             <form name="frm" id="frm" method="POST" class="write-form">
             	<input type="hidden" name="dr_id" value="${dr_id}">
+            	<input type="hidden" name="qa_show" value="Y">
                 <fieldset class="pack-down gap-12">
                 	<legend class="section-title">전문가에게 물어보기</legend>
+                	<c:if test="${not empty dr_id}">
+		        	<h3>${drug.dr_product}</h3>
+		        	<div class="img-wrap s100">
+				        <c:choose>
+				            <c:when test="${fn:contains(dto.dr_sungsang, '분말')}">
+				                <img src="${path}/resources/images/drug_type/01.png" alt="분말">
+				            </c:when>
+				
+				            <c:when test="${fn:contains(dto.dr_sungsang, '원형캡슐')}">
+				                <img src="${path}/resources/images/drug_type/02.png" alt="원형캡슐">
+				            </c:when>
+				
+				            <c:when test="${fn:contains(dto.dr_sungsang, '원형정제')}">
+				                <img src="${path}/resources/images/drug_type/03.png" alt="원형정제">
+				            </c:when>
+				
+				            <c:when test="${fn:contains(dto.dr_sungsang, '제피정제')}">
+				                <img src="${path}/resources/images/drug_type/04.png" alt="제피정제">
+				            </c:when>
+				            
+				            <c:when test="${fn:contains(dto.dr_sungsang, '젤리')}">
+				                <img src="${path}/resources/images/drug_type/05.png" alt="젤리">
+				            </c:when>
+				            
+				            <c:when test="${fn:contains(dto.dr_sungsang, '액상')}">
+				                <img src="${path}/resources/images/drug_type/06.png" alt="유동성 액체">
+				            </c:when>
+				            
+				            <c:when test="${fn:contains(dto.dr_sungsang, '경질캡슐')}">
+				                <img src="${path}/resources/images/drug_type/07.png" alt="경질캡슐">
+				            </c:when>
+				
+				            <c:otherwise>
+				                <img src="${path}/resources/images/drug_type/03.png" alt="정제">
+				            </c:otherwise>
+				        </c:choose>
+					</div>
+					</c:if>
                     <div>
                         <label class="label-box">
                             <span class="text-label">제목</span>
@@ -48,13 +87,13 @@
                             <span>비밀글</span>
                         </label>
                     </div>
-                    <div>
+<!--                     <div>
                         <label class="check-wrap">
                             <input type="checkbox" class="checkbox" name="qa_show" checked>
                             <span>노출여부</span>
                         </label>
                     </div>
-                    <div class="button-area pack-center">
+ -->                    <div class="button-area pack-center">
                         <button type="submit" class="btn black medium r-full">작성하기</button>
                     </div>
 
@@ -123,6 +162,6 @@
         });
     });
 </script>
-
+<%@ include file="../common/chat-widget.jspf" %>
 </body>
 </html>

@@ -57,5 +57,6 @@ location.href = "myQnaList.do";
 			<!-- footer 끝 -->
 		</div><!-- // #container -->
 	</div><!-- // #wrap -->
+	<%@ include file="../../common/chat-widget.jspf" %>
 </body>
 </html>

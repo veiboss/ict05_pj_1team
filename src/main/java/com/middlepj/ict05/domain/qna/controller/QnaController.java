@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.middlepj.ict05.domain.drug.dao.DrugDAO;
+import com.middlepj.ict05.domain.drug.dto.DrugDTO;
 import com.middlepj.ict05.domain.qna.dto.QnaDto;
 import com.middlepj.ict05.domain.qna.dto.QnaForm;
 import com.middlepj.ict05.domain.qna.dto.QnaList;
@@ -29,6 +31,9 @@ public class QnaController {
 	
 	@Autowired
 	private QnaService qnaService;
+	
+	@Autowired
+	private DrugDAO drugDAOImpl;
 	
 	@GetMapping("/list")
     public String list(HttpServletRequest request, HttpServletResponse response, Model model) {
@@ -75,14 +80,14 @@ public class QnaController {
 			return null; // 더 이상 뷰 리턴하지 않음
 		}
 		
+		DrugDTO drug = drugDAOImpl.getDrugDetail(dr_id);
+		
+		model.addAttribute("drug", drug);
 		model.addAttribute("dr_id", dr_id);
 		
 		return "qna/write";
 	}
 
-
-	
-	
 	@PostMapping("/write")
 	public String writeAction(QnaForm form, HttpServletRequest request, Model model) {
 		

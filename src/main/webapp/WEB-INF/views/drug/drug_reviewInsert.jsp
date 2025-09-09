@@ -9,7 +9,7 @@
 <!-- 반응형 웹 -->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 <meta name="format-detection" content="telephone=no">
-<title>영양제 검색</title>
+<title>영양제 후기</title>
 <!-- css -->
 <link rel="stylesheet" href="${path}/resources/css/yaksok.css">
 
@@ -40,10 +40,42 @@
 					
 					<a href="${path}/drug_detailAction.do?dr_id=${dto.dr_id}" class="item pack-left r4">
 						<div class="img-wrap s48">
-							<img src="${path}/resources/images/drug_type/01.png" alt="분말">
+							<c:choose>
+					            <c:when test="${fn:contains(dto.dr_sungsang, '분말')}">
+					                <img src="${path}/resources/images/drug_type/01.png" alt="분말">
+					            </c:when>
+					
+					            <c:when test="${fn:contains(dto.dr_sungsang, '원형캡슐')}">
+					                <img src="${path}/resources/images/drug_type/02.png" alt="원형캡슐">
+					            </c:when>
+					
+					            <c:when test="${fn:contains(dto.dr_sungsang, '원형정제')}">
+					                <img src="${path}/resources/images/drug_type/03.png" alt="원형정제">
+					            </c:when>
+					
+					            <c:when test="${fn:contains(dto.dr_sungsang, '제피정제')}">
+					                <img src="${path}/resources/images/drug_type/04.png" alt="제피정제">
+					            </c:when>
+					            
+					            <c:when test="${fn:contains(dto.dr_sungsang, '젤리')}">
+					                <img src="${path}/resources/images/drug_type/05.png" alt="젤리">
+					            </c:when>
+					            
+					            <c:when test="${fn:contains(dto.dr_sungsang, '액상')}">
+					                <img src="${path}/resources/images/drug_type/06.png" alt="유동성 액체">
+					            </c:when>
+					            
+					            <c:when test="${fn:contains(dto.dr_sungsang, '경질캡슐')}">
+					                <img src="${path}/resources/images/drug_type/07.png" alt="경질캡슐">
+					            </c:when>
+					
+					            <c:otherwise>
+					                <img src="${path}/resources/images/drug_type/03.png" alt="정제">
+					            </c:otherwise>
+					        </c:choose>
 						</div>
 					
-						<p class="fc-dark-gray">약이름</p>
+						<p class="fc-dark-gray">${dto.dr_product}</p>
 					</a><!-- .item.pack-left -->
 				</div>
 				<!-- 등록 폼 -->
@@ -87,5 +119,7 @@
 			<!-- footer 끝 -->
 		</div><!-- // #container -->
 	</div><!-- // #wrap -->
+	<!-- === Chatbot Widget === -->
+	<%@ include file="../common/chat-widget.jspf" %>
 </body>
 </html>

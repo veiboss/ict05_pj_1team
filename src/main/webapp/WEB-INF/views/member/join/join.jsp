@@ -94,10 +94,8 @@
 		</div><!-- // #container -->
 	</div><!-- // #wrap -->
 	
-	<div id="alertSignIn" class="overlay not-close">
-		<div id="emailCheckWrap" class="alert">
-			
-		</div>
-	</div><!-- // #alertSignIn -->
+	<%@ include file="../../common/loading.jsp" %><!-- 약속 로딩 -->
+	<!-- === Chatbot Widget === -->
+	<%@ include file="../../common/chat-widget.jspf" %>
 </body>
 </html>

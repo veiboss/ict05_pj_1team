@@ -90,7 +90,7 @@ private static final Logger logger = LoggerFactory.getLogger(MyQnaController.cla
 		 
 	 } 
 	 
-	 //
+	 // 답변 수정
 	 @RequestMapping("/myQnaAnswerUpdate.do")
 	 public String myQnaAnswerUpdate(HttpServletRequest request, HttpServletResponse response, Model model) 
 			 throws ServletException, IOException { 
@@ -98,11 +98,16 @@ private static final Logger logger = LoggerFactory.getLogger(MyQnaController.cla
 	
 		 service.updateAnswer(request, response, model);
 		 
-		 return "myPage/myPageQna/myQnaList"; 
+		 // 현재 페이지 번호 & 포커스용 id 유지
+	    String pageNum = request.getParameter("pageNum");
+	    String qaId    = request.getParameter("qa_id");
+	    if (pageNum == null || pageNum.isBlank()) pageNum = "1";
+		 
+	    return "redirect:/myQnaList.do?pageNum=" + pageNum + "&focusId=" + qaId;
 	 
 	 } 
 	 
-	 //
+	 // 답변 삭제
 	 @RequestMapping("/myQnaAnswerDelete.do")
 	 public String myQnaAnswerDelete(HttpServletRequest request, HttpServletResponse response, Model model) 
 			 throws ServletException, IOException { 
@@ -110,7 +115,12 @@ private static final Logger logger = LoggerFactory.getLogger(MyQnaController.cla
 	
 		 service.deleteAnswer(request, response, model);
 		 
-		 return "myPage/myPageQna/myQnaList"; 
+		// 현재 페이지/포커스 유지
+	    String pageNum = request.getParameter("pageNum");
+	    String qaId    = request.getParameter("qa_id");
+	    if (pageNum == null || pageNum.isBlank()) pageNum = "1";
+	    
+	    return "redirect:/myQnaList.do?pageNum=" + pageNum + "&focusId=" + qaId + "&deleted=1"; 
 	 
 	 } 
 	 
