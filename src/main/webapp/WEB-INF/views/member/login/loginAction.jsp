@@ -76,8 +76,8 @@
 		</div><!-- // #container -->
 	</div><!-- // #wrap -->
 	
-	<%@ include file="loading.jsp" %><!-- 약속 로딩 -->
+	<%@ include file="../../loading.jsp" %><!-- 약속 로딩 -->
 	<!-- === Chatbot Widget === -->
-	<%@ include file="chat-widget.jspf" %>
+	<%@ include file="../../chat-widget.jspf" %>
 </body>
 </html>
