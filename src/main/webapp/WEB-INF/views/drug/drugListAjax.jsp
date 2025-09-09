@@ -3,8 +3,6 @@
 <%@ include file="../common/setting.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions"%>
-<!-- === Chatbot Widget === -->
-<%@ include file="../common/chat-widget.jspf" %>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -136,6 +134,8 @@ $(document).ready(function() {
 			    </c:if>
 			</div>
 		</div><!-- .section.list-wrap -->
+		<!-- === Chatbot Widget === -->
+		<%@ include file="../common/chat-widget.jspf" %>
 
 
 

@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ include file="../common/setting.jsp" %>
-<!-- === Chatbot Widget === -->
-<%@ include file="../common/chat-widget.jspf" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +43,7 @@ $(document).ready(function() {
 });
 </script>
 <style>
-.detail-btns .btn{width: 36%}
+.detail-btns .btn{width: 25%}
 .tabs.line {margin-bottom: 0}
 .pack-down.gap-20.fc-body {padding-top: 24px;}
 dl.pack-left-top dt{width: 80px; color: var(--dark-gray);}
@@ -114,12 +112,15 @@ dl.pack-left-top dd{width: 100%;}
 				</div>
 				
 				<div class="pack-center detail-btns">
-					<button type="button" class="btn blue medium r-full add-btn" data-drid="${dto.dr_id}">
-						내약 추가
-					</button>
 					<input type="hidden" name="dr_id" value="${dto.dr_id}">
 					<a href="${path}/drug_reviewInsert.do?dr_id=${dto.dr_id}" class="btn bdr-blue medium  r-full">
 						후기 작성
+					</a>
+					<button type="button" class="btn blue medium r-full add-btn" data-drid="${dto.dr_id}">
+						내약 추가
+					</button>
+					<a href="${path}/qna/write/drug/${dto.dr_id}" class="btn bdr-blue medium  r-full">
+						물어보기
 					</a>
 				</div>
 				
@@ -263,5 +264,7 @@ dl.pack-left-top dd{width: 100%;}
 			<!-- footer 끝 -->
 		</div><!-- // #container -->
 	</div><!-- // #wrap -->
+	<!-- === Chatbot Widget === -->
+	<%@ include file="../common/chat-widget.jspf" %>
 </body>
 </html>

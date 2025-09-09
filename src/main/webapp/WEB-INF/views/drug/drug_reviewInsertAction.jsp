@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ include file="../common/setting.jsp" %>
-<!-- === Chatbot Widget === -->
-<%@ include file="../common/chat-widget.jspf" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,5 +59,7 @@
 			<!-- footer 끝 -->
 		</div><!-- // #container -->
 	</div><!-- // #wrap -->
+	<!-- === Chatbot Widget === -->
+	<%@ include file="../common/chat-widget.jspf" %>
 </body>
 </html>
