@@ -35,5 +35,12 @@
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.ict.ict05_pj_1team"/>
     </bean>
+    
+    <!-- FaqMapper를 명시적으로 빈 등록 -->
+	<bean id="faqMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	    <property name="mapperInterface" value="com.middlepj.ict05.chatbot.dao.FaqMapper"/>
+	    <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	    
 
 </beans>

@@ -1,0 +1,277 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!-- === Floating Button === -->
+<div id="cw-fab" title="챗봇 열기" onclick="cwOpen()">
+  <img src="${path}/resources/images/chabot.svg"
+     alt="챗봇"
+     style="width:32px; height:32px;"/>
+
+</div>
+
+<!-- === Chat Popup === -->
+<div id="cw-popup" aria-hidden="true">
+  <div id="cw-header">
+    <span>도움이 필요하신가요?</span>
+    <button type="button" id="cw-close" onclick="cwClose()">✖</button>
+  </div>
+
+  <!-- 토글 바 -->
+  <button id="cw-sugs-toggle" type="button" class="cw-toggle" onclick="cwToggleSuggestions()">
+    <span class="cw-toggle-title">자주 묻는 질문이에요!</span>
+    <span id="cw-toggle-caret" class="cw-caret">▾</span>
+  </button>
+
+  <!-- 추천 질문 (기본: 닫힘) -->
+  <div id="cw-sugs" class="cw-sugs" style="display:none;">로딩 중…</div>
+
+  <!-- 메시지 영역 -->
+  <div id="cw-body" class="cw-body"></div>
+
+  <!-- 입력창 -->
+  <div id="cw-input">
+    <input id="cw-msg" type="text" placeholder="질문을 입력하세요"
+           onkeydown="if(event.key==='Enter')cwSend()"/>
+    <button type="button" onclick="cwSend()">보내기</button>
+  </div>
+</div>
+
+<style>
+  /* FAB */
+  #cw-fab{
+    position:fixed; right:20px; bottom:20px;
+    width:56px; height:56px; border-radius:50%;
+    background:#0078d7; color:#fff; font-size:26px; line-height:56px; text-align:center;
+    box-shadow:0 6px 14px rgba(0,0,0,.25); cursor:pointer; z-index:99998;
+  }
+  
+  #cw-fab img {
+	  width: 70%;
+	  height: 70%;
+	  object-fit: contain;
+	}
+
+
+  #cw-fab:hover{ filter:brightness(1.05); }
+
+  /* Popup as flex column */
+  #cw-popup{
+    display:none; /* JS에서 flex로 변경 */
+    position:fixed; right:20px; bottom:90px;
+    width:360px; height:520px; z-index:99999;
+    background:#fff; border:1px solid #dcdcdc; border-radius:12px;
+    box-shadow:0 12px 24px rgba(0,0,0,.2);
+    overflow:hidden; font-family:system-ui,-apple-system,Segoe UI,Roboto,'Noto Sans KR',sans-serif;
+  }
+  #cw-header{
+    height:48px; background:#0078d7; color:#fff; display:flex; align-items:center; justify-content:space-between;
+    padding:0 12px; font-weight:600; flex:0 0 auto;
+  }
+  #cw-close{ background:transparent; border:0; color:#fff; font-size:18px; cursor:pointer; }
+
+  /* 토글 바 */
+  .cw-toggle{
+    width:100%; text-align:left; display:flex; align-items:center; justify-content:space-between;
+    padding:10px 12px; border:0; border-bottom:1px solid #eee; background:#f8fafc; cursor:pointer;
+    font-size:14px; color:#111; flex:0 0 auto;
+  }
+  .cw-toggle:hover{ background:#f1f5f9; }
+  .cw-caret{ font-size:14px; transition:transform .15s ease; }
+  .cw-caret.open{ transform:rotate(180deg); }
+
+  /* 추천 영역: 기본 4개 정도만 보이고 내부 스크롤 */
+  .cw-sugs{
+    padding:8px 10px; border-bottom:1px solid #eee; flex:0 0 auto; background:#fff;
+    max-height:150px;            /* 필요시 140~160px로 조절 */
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+  }
+  .cw-sugs::-webkit-scrollbar{ width:6px }
+  .cw-sugs::-webkit-scrollbar-thumb{ background:#ddd; border-radius:999px }
+
+  .cw-sugs button{
+    margin:0 6px 6px 0; padding:6px 10px; border:1px solid #ddd; border-radius:999px;
+    background:#fafafa; cursor:pointer; font-size:13px;
+  }
+  .cw-sugs button:hover{ background:#f0f0f0; }
+
+  /* 메시지 영역: 세로 스택 */
+  .cw-body{
+    padding:10px; flex:1 1 auto; overflow-y:auto; background:#fff;
+    display:flex; flex-direction:column; gap:4px;  /* ▶ 간격 촘촘하게(gap=4px) */
+  }
+
+  /* 말풍선(촘촘 스타일) */
+  .cw-msg{
+    margin: 0;                  /* 추가 여백 제거 */
+    padding: 6px 8px;
+    line-height: 1.3;
+    display: inline-block;
+    border-radius: 8px;
+    max-width: 80%;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .cw-msg.user{ background:#e6f0ff; align-self:flex-end; color:#000; }
+  .cw-msg.bot{ background:#f5f5f5; align-self:flex-start; color:#111; }
+  .cw-msg.system{ background:transparent; color:#666; font-style:italic; align-self:center; }
+
+  #cw-input{
+    display:flex; gap:6px; padding:8px; border-top:1px solid #eee; background:#fff; flex:0 0 auto;
+    box-shadow:0 -4px 8px rgba(0,0,0,.04);
+  }
+  #cw-input input{ flex:1; padding:8px; border:1px solid #ccc; border-radius:6px; }
+  #cw-input button{ padding:8px 12px; border:0; border-radius:6px; background:#0078d7; color:#fff; cursor:pointer; }
+  #cw-input button:hover{ filter:brightness(1.05); }
+</style>
+
+<script>
+  let cwBusy=false;
+  let cwGreeted=false; // 인사말 1회만
+
+  function cwOpen(){
+    const p = document.getElementById('cw-popup');
+    p.style.display = 'flex';
+    p.style.flexDirection = 'column';
+    p.setAttribute('aria-hidden','false');
+
+    // 인사말 1회
+    if(!cwGreeted){
+      cwAppend('bot', '안녕하세요 챗봇 AI 입니다! 무엇이 궁금하실까요?');
+      cwGreeted = true;
+    }
+
+    // 기본: 닫힘 상태 유지
+    const sugs = document.getElementById('cw-sugs');
+    sugs.style.display = 'none';
+    const caret = document.getElementById('cw-toggle-caret');
+    if (caret) caret.classList.remove('open');
+
+    setTimeout(()=>{
+      const input = document.getElementById('cw-msg');
+      if (input) input.focus();
+      cwScrollBottom();
+    },0);
+  }
+
+  function cwClose(){
+    const p = document.getElementById('cw-popup');
+    p.style.display = 'none';
+    p.setAttribute('aria-hidden','true');
+  }
+
+  // 토글(펼치기/접기)
+  async function cwToggleSuggestions(){
+    const sugs = document.getElementById('cw-sugs');
+    const caret = document.getElementById('cw-toggle-caret');
+    if (sugs.style.display === 'none') {
+      sugs.style.display = 'block';
+      if (caret) caret.classList.add('open');
+      cwLoadSuggestions(50); // 펼칠 때 넉넉히 로드
+    } else {
+      sugs.style.display = 'none';
+      if (caret) caret.classList.remove('open');
+    }
+  }
+
+  // 추천 질문 로드 (limit 파라미터)
+  async function cwLoadSuggestions(limit=6){
+    const box = document.getElementById('cw-sugs');
+    try{
+      const base = '<c:url value="/chat/suggestions"/>';
+      const res = await fetch(base + '?limit=' + encodeURIComponent(limit), {
+        headers:{'Accept':'application/json; charset=UTF-8'}
+      });
+      const data = await res.json();
+      box.innerHTML = '';
+      (data.items || []).forEach(title=>{
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = title;
+        b.onclick = ()=>{ document.getElementById('cw-msg').value = title; cwSend(); };
+        box.appendChild(b);
+      });
+      if ((data.items||[]).length === 0) box.textContent = '(추천 없음)';
+    }catch(e){
+      box.textContent = '(추천 로딩 실패)';
+    }
+  }
+
+  async function cwSend(){
+    if(cwBusy) return;
+    const input = document.getElementById('cw-msg');
+    const q = input.value.trim();
+    if(!q) return;
+
+    cwBusy = true;
+    cwAppend('me', q);
+    input.value = '';
+    cwTyping(true);
+
+    try{
+      const res = await fetch('<c:url value="/chat/api"/>', {
+        method:'POST',
+        headers:{'Content-Type':'application/json; charset=UTF-8', 'Accept':'application/json; charset=UTF-8'},
+        body: JSON.stringify({ message: q })
+      });
+      const data = await res.json();
+      cwTyping(false);
+      cwAppend('bot', data.reply || '(응답 없음)');
+      cwScrollBottom();
+    }catch(e){
+      cwTyping(false);
+      cwAppend('system', '(네트워크 오류)');
+      cwScrollBottom();
+    }finally{
+      cwBusy = false;
+    }
+  }
+
+  async function cwReset(){
+    await fetch('<c:url value="/chat/reset"/>', {method:'POST'});
+    const body = document.getElementById('cw-body');
+    body.textContent = '';
+    cwAppend('system','대화를 새로 시작합니다.');
+  }
+
+  function cwAppend(who, text){
+    const body = document.getElementById('cw-body');
+
+    const div = document.createElement('div');
+    if (who === '나' || who === 'me') {
+      div.className = 'cw-msg user';
+      div.textContent = '[나] ' + text;
+    } else if (who === '봇' || who === 'bot') {
+      div.className = 'cw-msg bot';
+      div.textContent = '[봇] ' + text;
+    } else {
+      div.className = 'cw-msg system';
+      div.textContent = '[시스템] ' + text;
+    }
+
+    body.appendChild(div);
+    cwScrollBottom();
+  }
+
+  function cwTyping(on){
+    const body = document.getElementById('cw-body');
+    if(on){
+      const t = document.createElement('div');
+      t.id = 'cw-typing';
+      t.className = 'cw-msg system';
+      t.textContent = '…응답 작성 중…';
+      body.appendChild(t);
+      cwScrollBottom();
+    }else{
+      const t = document.getElementById('cw-typing');
+      if(t) t.remove();
+    }
+  }
+
+  function cwScrollBottom(){
+    const body = document.getElementById('cw-body');
+    body.scrollTop = body.scrollHeight;
+  }
+</script>
