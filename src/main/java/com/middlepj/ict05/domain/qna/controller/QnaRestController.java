@@ -38,7 +38,6 @@ public class QnaRestController {
 		}
 
 		QnaDto dto = new QnaDto();
-
 		
 		if(errors.size() > 0) {
 			String message = String.join(", ", errors);
@@ -48,7 +47,6 @@ public class QnaRestController {
 		}
 		
 		int insertCnt = qnaService.insertQna(form, request);
-		
 		
 		return ResponseEntity.ok(ApiResponse.success(dto, "Q&A 정상등록 되었습니다."));
 	}

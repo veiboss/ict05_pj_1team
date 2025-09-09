@@ -30,7 +30,7 @@
         <div id="content" class="sub si20">
         	<h2 class="blind">전문가에게 물어보기</h2>
             <form name="frm" id="frm" method="POST" class="write-form">
-            	<input type="hidden" name="dr_id" value="{dr_id}">
+            	<input type="hidden" name="dr_id" value="${dr_id}">
                 <fieldset class="pack-down gap-12">
                 	<legend class="section-title">전문가에게 물어보기</legend>
                     <div>
@@ -92,6 +92,7 @@
 
             // FormData 생성
             const formData = new FormData();
+            formData.append("dr_id", form.dr_id.value);
             formData.append("qa_title", form.qa_title.value);
             formData.append("qa_content", form.qa_content.value);
             formData.append("qa_private", form.qa_private.checked ? "Y" : "N");
