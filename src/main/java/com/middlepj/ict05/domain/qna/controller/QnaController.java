@@ -80,9 +80,6 @@ public class QnaController {
 		return "qna/write";
 	}
 
-
-	
-	
 	@PostMapping("/write")
 	public String writeAction(QnaForm form, HttpServletRequest request, Model model) {
 		

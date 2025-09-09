@@ -118,6 +118,6 @@
         });
     });
 </script>
-
+<%@ include file="../common/chat-widget.jspf" %>
 </body>
 </html>
