@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../common/setting.jsp" %>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,21 +54,21 @@
 			
 				<main id="content">
 					<div class="write-form box-wrap" style="max-width: 960px;">
-						<form action="faq_update.fc">
+						<form action="faq_update.fc" method="post">
 							<input type="hidden" name="fa_id" value="${dto.fa_id}"/>
 							<fieldset class="pack-down" style="gap: 20px;">
 								<div class="row-2">
 								<div class="field col pack-down">
 									<label class="label medium required" for="writerName">작성자</label>
 									<div class="insert">
-										<input type="text" class="input-text medium"  name="fa_writer_name" id="writerName" placeholder="작성자를 입력해주세요" required>
+										<strong><input value="${dto.fa_writer_name}"></strong>
 									</div>
 								</div>
 								
 								<div class="field col pack-down">
-									<label class="label medium required" for="modifyName">수정자</label>
+									<label class="label medium required" for="writerName">수정자</label>
 									<div class="insert">
-										<input type="text" class="input-text medium"  name="fa_modify_name" id="modifyName" placeholder="수자를 입력해주세요" required>
+										<input type="text" class="input-text medium" name="fa_writer_name" id="writerName" placeholder="수정자를 입력해주세요" required>
 									</div>
 								</div>
 								
@@ -76,11 +76,11 @@
 									<span class="label medium">회원등급</span>
 									<div class="insert pack-left">
 										<label class="pack-left">
-											<input type="radio" class="radio" name="fa_show"value="Y">
+											<input type="radio" class="radio" name="fa_show"value="Y" <c:if test="${dto.fa_show eq 'Y'}"> checked </c:if>>
 											<span>노출</span>
 										</label>
 										<label class="pack-left">
-											<input type="radio" class="radio" name="fa_show" value="N">
+											<input type="radio" class="radio" name="fa_show" value="N" <c:if test="${dto.fa_show eq 'N'}"> checked </c:if>>
 											<span>비노출</span>
 										</label>
 									</div>
@@ -88,22 +88,29 @@
 								
 								<div class="row">
 								<div class="field col pack-down">
-									<label class="label medium required" for="faTitle">제목</label>
+									<label class="label medium required" for="faTitle">FAQ 제목</label>
 									<div class="insert">
-										<input type="text" class="input-text medium"  name="fa_title" id="faTitle" placeholder="제목을 입력해주세요" required>
+										<input type="text" class="input-text medium" name="fa_title" id="faTitle" value="${dto.fa_title}" required>
 									</div>
 								</div>
 							</div>
-							
+						
 								<div class="row">
 									<div class="field">
 										<label class="label medium" for="inputSet02">FAQ 내용</label>
 										<div class="insert">
-											<textarea class="textarea medium" rows="4" cols="50" name="fa_content" placeholder="텍스트에리어">${dto.fa_content}</textarea>
+											<textarea name="fa_content" class="textarea medium" rows="6" cols="50" placeholder="텍스트에리어"><c:out value="${
+		                                       fn:replace(
+		                                         fn:replace(
+		                                           fn:replace(
+		                                             fn:replace(fn:replace(dto.fa_content,'<p>',''),'</p>',''),
+		                                           '<br/>',''),
+		                                         '<br />',''),
+		                                       '<br>','')}"/>
+		                                    </textarea>
 										</div>
 									</div>
 								</div>
-
 								<div class="button-area pack-center">
 									<button type="submit" class="btn large color1">수정</button>
 									<a class="btn large bdr-color1" href="faq_admin_list.fc">취소</a>
@@ -119,5 +126,7 @@
 			<!-- footer 끝 -->
 		</div><!-- // #container  -->
 	</div><!-- // #wrap  -->
+	<!-- === Chatbot Widget === -->
+	<%@ include file="../common/chat-widget.jspf"%>
 </body>
 </html>

@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.middlepj.ict05.HomeController;
+import com.middlepj.ict05.common.Paging;
 import com.middlepj.ict05.domain.faq.dto.FaqList;
 import com.middlepj.ict05.domain.faq.service.FaqServiceImpl;
 
@@ -37,6 +38,7 @@ public class FaqController {
 		
 		model.addAttribute("list", faqList.getFaqUserList());
 		model.addAttribute("paging", faqList.getPaging());
+		
 
 		return "faq/faq_user_list";
 	}
