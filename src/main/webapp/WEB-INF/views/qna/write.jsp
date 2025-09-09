@@ -31,6 +31,7 @@
         	<h2 class="blind">전문가에게 물어보기</h2>
             <form name="frm" id="frm" method="POST" class="write-form">
             	<input type="hidden" name="dr_id" value="${dr_id}">
+            	<input type="hidden" name="qa_show" value="Y">
                 <fieldset class="pack-down gap-12">
                 	<legend class="section-title">전문가에게 물어보기</legend>
                 	<c:if test="${not empty dr_id}">
@@ -86,13 +87,13 @@
                             <span>비밀글</span>
                         </label>
                     </div>
-                    <div>
+<!--                     <div>
                         <label class="check-wrap">
                             <input type="checkbox" class="checkbox" name="qa_show" checked>
                             <span>노출여부</span>
                         </label>
                     </div>
-                    <div class="button-area pack-center">
+ -->                    <div class="button-area pack-center">
                         <button type="submit" class="btn black medium r-full">작성하기</button>
                     </div>
 
