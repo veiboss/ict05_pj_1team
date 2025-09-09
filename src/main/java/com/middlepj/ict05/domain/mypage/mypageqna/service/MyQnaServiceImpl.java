@@ -123,6 +123,7 @@ public class MyQnaServiceImpl implements MyQnaService{
 		model.addAttribute("deleteCnt", deleteCnt);	
 	}
 	
+	//
 	@Override
 	public int updateAnswer(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
@@ -138,6 +139,7 @@ public class MyQnaServiceImpl implements MyQnaService{
 	    return dao.updateAnswer(dto);
 	}
 	
+	//
 	@Override
 	public int deleteAnswer(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
