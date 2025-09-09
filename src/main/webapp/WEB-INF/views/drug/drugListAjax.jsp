@@ -100,7 +100,7 @@ $(document).ready(function() {
 							
 						<div id="drug-item" class="pack-right">
 							<%-- <input type="hidden" name="dr_id" value="${dto.dr_id}"> --%>
-							<button type="submit" class="btn blue small r4 add-btn" data-drid="${dto.dr_id}">
+							<button type="submit" class="btn blue small r-full add-btn" data-drid="${dto.dr_id}">
 								내약추가
 							</button>
 						</div>

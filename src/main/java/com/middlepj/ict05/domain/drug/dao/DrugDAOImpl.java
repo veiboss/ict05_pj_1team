@@ -114,4 +114,13 @@ public class DrugDAOImpl implements DrugDAO{
 		return insertCnt;
 	}
 
+	// 후기 작성 - 약 이미지
+	@Override
+	public DrugReviewDTO reviewImg(DrugReviewDTO dto) {
+		System.out.println("=== drugDAO - reviewImg() ===");
+		
+		return sqlSession.selectOne("com.middlepj.ict05.domain.drug.dao.DrugDAO.reviewImg", dto);
+		
+	}
+
 }

@@ -191,7 +191,8 @@ public class DrugServiceImpl implements DrugService{
 	    String pageNum = request.getParameter("pageNum");
 	    
 	    DrugReviewDTO dto = new DrugReviewDTO();
-
+	    //DrugDTO drdto = new DrugDTO();
+	    
 	    HttpSession session = request.getSession(false);
 	    if (session == null || session.getAttribute("sessionID") == null) {
 	    	response.sendRedirect(request.getContextPath() + "/login.do");
@@ -240,8 +241,14 @@ public class DrugServiceImpl implements DrugService{
 		map.put("start", start);
 		map.put("end", end);
 
-	    
 	    int insertCnt = dao.insertReview(dto);
+	    
+	    // 약 정보 조회 후 dto에 세팅
+	    DrugReviewDTO drugInfo = dao.reviewImg(dto);
+	    if (drugInfo != null) {
+	        dto.setDr_product(drugInfo.getDr_product());
+	        dto.setDr_sungsang(drugInfo.getDr_sungsang());
+	    }
 
 	    model.addAttribute("paging", paging);
 	    model.addAttribute("insertCnt", insertCnt);

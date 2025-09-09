@@ -39,5 +39,8 @@ public interface DrugDAO {
 	// 후기 등록 처리
 	public int insertReview(DrugReviewDTO dto);
 	
+	// 후기 작성 - 약 이미지
+	public DrugReviewDTO reviewImg(DrugReviewDTO drdto);
+	
 }
 
