@@ -116,6 +116,7 @@
 	<insert id="insertQna" parameterType="com.middlepj.ict05.domain.qna.dto.QnaDto">
 		    INSERT INTO qna_tb (
 		        qa_id,
+		        dr_id,
 		        qa_title,
 		        qa_content,
 		        qa_private,
@@ -126,6 +127,7 @@
 		    )
 		    VALUES (
 		        (SELECT NVL(MAX(qa_id) + 1, 1) FROM qna_tb),
+		        #{dr_id},
 		        #{qa_title},
 		        #{qa_content},
 		        #{qa_private},

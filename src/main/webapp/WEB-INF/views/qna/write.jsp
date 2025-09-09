@@ -30,6 +30,7 @@
         <div id="content" class="sub si20">
         	<h2 class="blind">전문가에게 물어보기</h2>
             <form name="frm" id="frm" method="POST" class="write-form">
+            	<input type="hidden" name="dr_id" value="{dr_id}">
                 <fieldset class="pack-down gap-12">
                 	<legend class="section-title">전문가에게 물어보기</legend>
                     <div>

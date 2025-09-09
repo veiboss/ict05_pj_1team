@@ -55,9 +55,34 @@ public class QnaController {
 			return null; // 더 이상 뷰 리턴하지 않음
 		}
 		
+		model.addAttribute("dr_id", "");
+		
 		return "qna/write";
 	}
 
+	@GetMapping("/write/drug/{dr_id}")
+	public String writeForm(@PathVariable Integer dr_id, HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
+		HttpSession session = request.getSession();
+		Object sessionIdObj = session.getAttribute("sessionID");
+		String sessionID = sessionIdObj != null ? sessionIdObj.toString():null;
+		
+		if(sessionID == null || sessionID.isEmpty()) {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('로그인후 작성해주세요'); location.href='"
+					+ request.getContextPath() + "/login.do?redirect=/ict05/qna/write';</script>");
+			out.flush();
+			return null; // 더 이상 뷰 리턴하지 않음
+		}
+		
+		model.addAttribute("dr_id", dr_id);
+		
+		return "qna/write";
+	}
+
+
+	
+	
 	@PostMapping("/write")
 	public String writeAction(QnaForm form, HttpServletRequest request, Model model) {
 		

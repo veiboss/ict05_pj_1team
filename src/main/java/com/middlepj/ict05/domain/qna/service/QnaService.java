@@ -96,6 +96,7 @@ public class QnaService {
 		String sessionID = sessionIdObj != null ? sessionIdObj.toString():null;
 		
 		QnaDto dto = new QnaDto();
+		dto.setDr_id(form.getDr_id());
 		dto.setQa_title(form.getQa_title());
 		dto.setQa_content(form.getQa_content());
 		dto.setQa_private(form.getQa_private());

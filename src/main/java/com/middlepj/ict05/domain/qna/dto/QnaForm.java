@@ -2,6 +2,7 @@ package com.middlepj.ict05.domain.qna.dto;
 
 public class QnaForm {
 	private int qa_id;
+	private int dr_id;
 	private String qa_title;
 	private String qa_content;
 	private String qa_private;
@@ -12,16 +13,15 @@ public class QnaForm {
 		// TODO Auto-generated constructor stub
 	}
 
-	public QnaForm(int qa_id, String qa_title, String qa_content, String qa_private, String qa_show) {
+	public QnaForm(int qa_id, int dr_id, String qa_title, String qa_content, String qa_private, String qa_show) {
 		super();
 		this.qa_id = qa_id;
+		this.dr_id = dr_id;
 		this.qa_title = qa_title;
 		this.qa_content = qa_content;
 		this.qa_private = qa_private;
 		this.qa_show = qa_show;
 	}
-	
-	
 
 	public int getQa_id() {
 		return qa_id;
@@ -29,6 +29,14 @@ public class QnaForm {
 
 	public void setQa_id(int qa_id) {
 		this.qa_id = qa_id;
+	}
+
+	public int getDr_id() {
+		return dr_id;
+	}
+
+	public void setDr_id(int dr_id) {
+		this.dr_id = dr_id;
 	}
 
 	public String getQa_title() {
@@ -65,9 +73,8 @@ public class QnaForm {
 
 	@Override
 	public String toString() {
-		return "QnaForm [qa_title=" + qa_title + ", qa_content=" + qa_content + ", qa_private=" + qa_private
-				+ ", qa_show=" + qa_show + "]";
+		return "QnaForm [qa_id=" + qa_id + ", dr_id=" + dr_id + ", qa_title=" + qa_title + ", qa_content=" + qa_content
+				+ ", qa_private=" + qa_private + ", qa_show=" + qa_show + "]";
 	}
-	
-	
+
 }
