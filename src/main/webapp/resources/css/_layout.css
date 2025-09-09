@@ -309,6 +309,7 @@ hr.line		{display: block; margin: 0; width: 100%; height: 1px; background-color:
 
 
 /* 챗봇 버튼 */
+#cw-fab.btn.blue{background:var(--light-red)}
 #cw-fab:hover{ filter:brightness(1.05);}
 /* 챗봇  Popup*/
 #cw-popup{

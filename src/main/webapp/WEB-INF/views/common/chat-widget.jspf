@@ -23,7 +23,6 @@
 	<button id="cw-sugs-toggle" type="button" class="btn cw-toggle" onclick="cwToggleSuggestions()">
 		<span class="cw-toggle-title">자주 묻는 질문이에요!</span>
 		<span id="cw-toggle-caret" class="cw-caret"><i class="ico accordion"></i></span>
-		
 	</button>
 
 	<!-- 추천 질문 (기본: 닫힘) -->
