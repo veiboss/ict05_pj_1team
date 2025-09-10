@@ -69,7 +69,7 @@
 							    </p>
 							
 							    <div class="button-area pack-center">
-							        <button type="submit" class="btn black medium r-full" style="padding:8px 0">
+							        <button type="submit" class="btn black medium r-full">
 							            <span class="fs-18">수정하기</span>
 							        </button>
 							    </div>

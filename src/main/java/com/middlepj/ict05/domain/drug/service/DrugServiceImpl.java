@@ -198,7 +198,6 @@ public class DrugServiceImpl implements DrugService{
 	    	response.sendRedirect(request.getContextPath() + "/login.do");
 	        return null;
 	    }
-
 	    
 	    Integer mb_id = (Integer) session.getAttribute("sessionID");
 	    if (mb_id == null) {

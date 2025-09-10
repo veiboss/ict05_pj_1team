@@ -107,6 +107,9 @@ div, article, aside, footer, header, hgroup, main, menu, nav, section,
 legend[class*="-title"] {
 	width: 100%;
 	display: block;
+	margin-bottom: 32px;
+}
+legend.article-title {
 	margin-bottom: 60px;
 }
 
@@ -766,10 +769,12 @@ scale(
 [class*="pack-"].col-3 li {
 	width: calc(( 100% - ( var(--gap) * 2))/3);
 }
-
+[class*="pack-"].col-3.gap-40 li[class*="pack-"] {
+	width: calc(( 100% - ( 40px * 2))/3);
+}
 @media all and (max-width: 768px) {
 	[class*="pack-"].col-3.gap-40 {
-		--gap: 16px;
+		--gap: 12px;
 	}	
 }
 /* tabs */

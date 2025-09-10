@@ -207,6 +207,7 @@ table p + p						{margin-top: 1rem;}
 /* data-table */
 .data-table thead th			{color: var(--body-dark);}
 .data-table tbody td			{text-align: center;}
+.data-table tbody td[data-th="버튼"] .btn	{margin: 2px}
 @media (max-width: 761px) {
 	.data-table thead th,
 	.data-table colgroup,

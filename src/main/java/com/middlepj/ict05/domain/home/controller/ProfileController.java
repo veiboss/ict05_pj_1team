@@ -46,4 +46,5 @@ public class ProfileController {
 		service.insertProfileAction(request, response, model);
 		return "home/profileAction";
 	}
+	
 }
