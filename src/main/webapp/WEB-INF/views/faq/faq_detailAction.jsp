@@ -99,15 +99,16 @@
 									<div class="field">
 										<label class="label medium" for="inputSet02">FAQ 내용</label>
 										<div class="insert">
-											<textarea name="fa_content" class="textarea medium" rows="6" cols="50" placeholder="텍스트에리어"><c:out value="${
-		                                       fn:replace(
-		                                         fn:replace(
-		                                           fn:replace(
-		                                             fn:replace(fn:replace(dto.fa_content,'<p>',''),'</p>',''),
-		                                           '<br/>',''),
-		                                         '<br />',''),
-		                                       '<br>','')}"/>
-		                                    </textarea>
+											<textarea name="fa_content" class="textarea medium" rows="6" cols="50" placeholder="텍스트에리어">${fn:replace(
+											    fn:replace(
+											      fn:replace(
+											        fn:replace(
+											          fn:replace(dto.fa_content,'<p>',''),
+											        '</p>',''),
+											      '<br/>',''),
+											    '<br />',''),
+											  '<br>','')}
+										   </textarea>
 										</div>
 									</div>
 								</div>
