@@ -98,7 +98,7 @@
 	</select>
 	<!-- 메인페이지 설문 점수 10개 -->
 	<select id="surveyList" resultType="map">
-	    SELECT MB_ID, MBS_SCORE, MB_NAME, MBS_SERVEY_DATE
+	    SELECT MB_ID, MBS_SCORE, SUBSTR(MB_NAME, 1, 1) || '**' AS MB_NAME, MBS_SERVEY_DATE
 	    FROM (
 	        SELECT t.*, ROWNUM rnum
 	        FROM (
