@@ -16,7 +16,6 @@
 	--regular: 44px;
 	--medium: 48px;
 	--large: 56px;
-	--xlarge: 80px;
 }
 
 @media (min-width: 600px) {

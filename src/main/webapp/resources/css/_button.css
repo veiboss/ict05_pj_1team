@@ -40,13 +40,12 @@ button.btn					{overflow: visible; margin: 0;}
 .btn.small		{min-width: 80px;}
 .btn.medium		{height: var(--medium); line-height: var(--medium); font-size: 14px;}
 .btn.large		{height: var(--large); line-height: var(--large); font-size: 14px;}
-.btn.xlarge		{height: var(--xlarge); line-height: var(--xlarge); font-size: 20px;}
+.btn.xlarge		{width: 70%; height: clamp(60px, 16vw, 80px); line-height: clamp(60px, 16vw, 80px); font-size: clamp(20px, 5.33vw, 24px); border-radius: 100vw;}
 .btn.xsmall:not(.circle)		{padding: 0 8px;}
 .btn.small:not(.circle)			{padding: 0 12px;}
 .btn.regular:not(.circle)		{padding: 0 16px;}
 .btn.medium:not(.circle)		{padding: 0 20px;}
 .btn.large:not(.circle)			{padding: 0 24px; }
-.btn.xlarge:not(.circle)		{padding: 0 calc(var(--xlarge)*.8);}
 
 
 /* button circle */

@@ -40,8 +40,6 @@
 .chart .point{position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); line-height: 1; letter-spacing: -1px;}
 /* 최근 설문 목록, 약 목록 공통 */
 .list-wrap {margin-top: 40px;}
-.list-wrap .pack-left.col-3		{align-items: flex-start; flex-wrap: wrap; gap: 40px;}
-.list-wrap .pack-left.col-3 li	{width: calc((100% - 80px)/3);}
 
 .data-list.toon a.pack-both{padding-left: 40px; padding-right: 40px;}
  
