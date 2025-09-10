@@ -191,13 +191,15 @@ public class DrugServiceImpl implements DrugService{
 	    String pageNum = request.getParameter("pageNum");
 	    
 	    DrugReviewDTO dto = new DrugReviewDTO();
-
+	    
+	    // 세션 체크
 	    HttpSession session = request.getSession(false);
 	    if (session == null || session.getAttribute("sessionID") == null) {
 	    	response.sendRedirect(request.getContextPath() + "/login.do");
 	        return null;
 	    }
 
+	    
 	    Integer mb_id = (Integer) session.getAttribute("sessionID");
 	    if (mb_id == null) {
 	    	response.sendRedirect(request.getContextPath() + "/login.do");
@@ -209,19 +211,23 @@ public class DrugServiceImpl implements DrugService{
 
 	    dto.setMb_id((Integer) session.getAttribute("sessionID"));
 	    
+	    // dr_id - null 체크
 	    Integer dr_id = Integer.parseInt(request.getParameter("dr_id"));
 	    if (dr_id != null) {
 	    	dto.setDr_id(dr_id);
 	    }
 
+	    // 후기 내용 - null 체크
 	    dto.setRv_content(request.getParameter("rv_content"));
 	    if(dto.getRv_content() == null || dto.getRv_content().trim().isEmpty()) {
 	        dto.setRv_content("내용 없음");
 	    }
 	    
+	    // 회원 이름 - null 체크
 	    String mb_name = String.valueOf(session.getAttribute("sessionName")); 
 	    dto.setMb_name((mb_name == null || mb_name.trim().isEmpty()) ? "이름 없음" : mb_name);
 
+	    // 별점 - null 체크
 	    String rv_rating = request.getParameter("rv_rating");
 	    if (rv_rating != null && !rv_rating.isEmpty()) {
 	        dto.setRv_rating(Integer.parseInt(rv_rating));
@@ -240,8 +246,14 @@ public class DrugServiceImpl implements DrugService{
 		map.put("start", start);
 		map.put("end", end);
 
-	    
 	    int insertCnt = dao.insertReview(dto);
+	    
+	    // 약 정보 조회 후 dto에 세팅
+	    DrugReviewDTO drugInfo = dao.reviewImg(dto);
+	    if (drugInfo != null) {
+	        dto.setDr_product(drugInfo.getDr_product());
+	        dto.setDr_sungsang(drugInfo.getDr_sungsang());
+	    }
 
 	    model.addAttribute("paging", paging);
 	    model.addAttribute("insertCnt", insertCnt);

@@ -130,7 +130,7 @@
 						</div>
 						
 						<div class="list-wrap">
-							<ul class="pack-left col-3">
+							<ul class="pack-left col-3 gap-40">
 								<c:forEach var="drug_dto" items="${list}">
 									<li class="pack-down-center gap-12">
 										<a href="${path}/drug_detailAction.do?dr_id=${drug_dto.dr_id}" class="pack-down-center gap-12">

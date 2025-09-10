@@ -119,4 +119,12 @@
 	    VALUES ((SELECT NVL(max(rv_id)+1, 1)FROM REVIEW_TB), #{mb_id}, #{mb_name, jdbcType=VARCHAR}, #{dr_id, jdbcType=DECIMAL}, #{rv_rating}, #{mb_id}, #{rv_content, jdbcType=VARCHAR}, 'Y', SYSDATE)
 	</insert>
 	
+	<!-- 후기 작성 - 약 이미지, 이름 가져오기 -->
+	<select id="reviewImg" parameterType="com.middlepj.ict05.domain.drug.dto.DrugReviewDTO" resultType="com.middlepj.ict05.domain.drug.dto.DrugReviewDTO">
+		SELECT dr_product
+			 , dr_sungsang
+	      FROM DRUG_TB
+	     WHERE dr_id = #{dr_id}
+	</select>
+	
 </mapper> 

@@ -39,8 +39,7 @@ body.modal-opened{overflow: hidden; height:100%; padding-right:4px;}
 #nav,
 #nav .btn.bdr-blue,
 #nav .btn.blue,
-.tab-nav.sticky,
-#btnMyFeed	{
+#cw-popup	{
 	-webkit-transition: all .7s ease 0s;
 	transition: all .7s ease 0s;
 }
@@ -163,13 +162,6 @@ body.modal-opened{overflow: hidden; height:100%; padding-right:4px;}
 	100% {-webkit-transform: translateY(0) scaleY(1); transform: translateY(0) scaleY(1);  }
 }
 
-/* btnMyFeed */
-#btnMyFeed	{position: fixed; bottom:calc( -4 * var(--nav)); right: 16px; width: 123px; height: 48px; background: var(--light-blue); z-index: 19;}
-#btnMyFeed.hide-text	{width: 48px; }
-#btnMyFeed .inline-flex.pack-center	{width: 48px; height: 48px;}
-#btnMyFeed .text		{margin-left: 12px; color: #fff; font-size: 13px;}
-#btnMyFeed.hide-text .text{display: none; margin-left: 0}
-
 /*
 	scroll-up > fix
 */
@@ -178,7 +170,6 @@ body.modal-opened{overflow: hidden; height:100%; padding-right:4px;}
 .scroll-up #header.fixed	{top: 0;}
 .scroll-up #nav,
 .scroll-down.scroll-end #nav{bottom:0;}
-.scroll-up #btnMyFeed		{bottom: 141px;}
 .scroll-down #header.fixed	{top: calc( -1 * var(--header));}
 .scroll-down .lines #header.fixed	{top: calc( (-1 * var(--header)) * 2);}
 .scroll-down #nav			{bottom:calc( -4 * var(--nav));}
@@ -187,8 +178,7 @@ body.modal-opened{overflow: hidden; height:100%; padding-right:4px;}
 	scroll-zero
 */
 body:not(.scroll-has) #nav > .btn.bdr-blue	{opacity: 0; display:none;}		/*위로*/
-body:not(.scroll-has) #nav > .btn.blue,
-body.scroll-up:not(.scroll-has) #btnMyFeed		{bottom: 81px;}		/* 글쓰기, 내피드보기*/
+body:not(.scroll-has) #nav > .btn.blue		{bottom: 81px;}		/* 글쓰기, 내피드보기*/
 
 /*
 	ios body.opened-keyboard
@@ -238,14 +228,12 @@ body.opened-keyboard .fixed-element				{bottom:-60px;}
   }
 }
 @media all and (min-width: 600px) and (max-width: 914px){
-	#btnMyFeed		{right: calc(((100% - var(--conW))/2) + 16px);}
 	#container		{margin: 0 auto;}
 
 	.overlay,
 	.loading		{left: calc((100% - var(--conW))/2); right: calc((100% - var(--conW))/2);}
 }
 @media all and (min-width: 915px){
-	#btnMyFeed		{right: calc(var(--conR) + 16px);}
 	#container		{margin: 0 var(--conR) 0 auto;}
 	.overlay,
 	.loading		{left: auto; right: var(--conR);}
@@ -276,7 +264,6 @@ hr.line		{display: block; margin: 0; width: 100%; height: 1px; background-color:
 
 #content						{padding-left: 16px; padding-right: 16px; padding-bottom: 80px;}
 #content.home						{padding-top: 20px}	/* home */
-#content.main						{padding-top: 8px;}	/* main service */
 #content.sub-main					{padding-top: 4px}	/* pick */
 #content.sub						{padding-top: 0}	/* sub */
 #content.main > .section:not(:nth-of-type(1)),
@@ -303,6 +290,7 @@ hr.line		{display: block; margin: 0; width: 100%; height: 1px; background-color:
 #content > .out-cont:not(.tabs).out-cont:not(.tab-content):not(.step-progress):not(.section-bar),
 #content > .section .swiper-container.out-cont	{position: relative;}
 #content > .out-cont:last-child		{padding-bottom: 80px; margin-bottom: -80px}
+
 @media all and (min-width:600px){
 	#content > .bg-fixed			{width: var(--conW);}
 }
@@ -313,11 +301,88 @@ hr.line		{display: block; margin: 0; width: 100%; height: 1px; background-color:
 	#content > .bg-fixed			{left: calc(100% - var(--conR) - var(--conW)); right: var(--conR);}
 }
 
-/*
-	tab-nav
-*/
-.tab-nav:not(.sticky)				{opacity: 0; height: 0;}
-.tab-nav.sticky						{overflow: hidden; position: fixed; top: 56px; width: 100%; height: 44px; margin: 0 -16px; z-index: 20; background: #fff;}
-.scroll-down .tab-nav.sticky		{top: 0;}
-.tab-nav #tabSticky .swiper-slide			{width: auto}
-.tab-nav #tabSticky .tabs.line li a			{display: block; min-width: 80px; text-align: center;}
+
+
+
+
+
+
+
+/* 챗봇 버튼 */
+#cw-fab.btn.blue{background:var(--light-red)}
+#cw-fab:hover{ filter:brightness(1.05);}
+/* 챗봇  Popup*/
+#cw-popup{
+	display:none; /* JS에서 flex로 변경 */
+	position:fixed; right: 16px; bottom: 140px;
+	width: calc(100vw - 32px); max-width: 390px; height: calc(var(--vh100) - 160px); min-height: 300px; max-height:600px; z-index:99999;
+	border-radius:12px;
+	box-shadow:0 12px 24px rgba(0,0,0,.2);
+	overflow:hidden;
+}
+.scroll-up #cw-popup{}
+.scroll-down #cw-popup{bottom: 20px;}
+.scroll-down.scroll-end #cw-popup{bottom: 140px;}
+
+#cw-header{
+	height:48px; background:var(--blue); color:#fff; 
+	display:flex; align-items:center; justify-content:space-between;
+	padding:0 12px; font-weight:600; flex:0 0 auto;
+}
+#cw-close{
+	background:transparent;
+}
+#cw-close .ico.close{width: 18px; height:18px;}
+/* 챗봇 : 토글바 */
+.cw-toggle{
+	width:100%; text-align:left; 
+	display:flex; align-items:center; justify-content:space-between;
+	padding:10px 12px; border-bottom:1px solid var(--light-gray); background: var(--very-light-gray-2);
+	flex:0 0 auto;
+}
+.cw-toggle:hover{background: #fff;}
+.cw-caret {transition:transform .15s ease;}
+.cw-caret.open{transform:rotate(180deg);}
+.cw-caret .ico.accordion{width: 12px; height: 12px;}
+
+/* 챗봇 :  추천 영역: 기본 4개 정도만 보이고 내부 스크롤 */
+.cw-sugs{
+	padding:8px 10px; border-bottom:1px solid #eee; flex:0 0 auto; background: var(--light-violet2);
+	max-height:132px;            /* 필요시 140~160px로 조절 */
+	overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch;
+}
+.cw-sugs::-webkit-scrollbar{ width:6px }
+.cw-sugs::-webkit-scrollbar-thumb{ background:#ddd; border-radius:999px }
+.cw-sugs button{
+	margin:0 5px 5px 0; padding: 5px 10px; color: var(--gray);
+	border:1px solid var(--light-violet); border-radius: 999px;
+	background: #fff; cursor:pointer; font-size: 13px; letter-spacing: -.06rem;
+}
+.cw-sugs button:hover{border-color:var(--light-blue);}
+
+/* 메시지 영역: 세로 스택 */
+.cw-body{
+	padding:10px; flex:1 1 auto; overflow-y:auto; background:#fff;
+	display:flex; flex-direction:column; gap:4px;  /* ▶ 간격 촘촘하게(gap=4px) */
+}
+
+/* 말풍선(촘촘 스타일) */
+.cw-msg{
+	margin: 0;                  /* 추가 여백 제거 */
+	padding: 6px 8px;
+	line-height: 1.3;
+	display: inline-block;
+	border-radius: 8px;
+	max-width: 80%;
+	white-space: pre-wrap; word-break: break-word;
+}
+.cw-msg.user	{background: var(--light-pink); align-self:flex-end; color: #000; }
+.cw-msg.bot		{background: var(--very-light-gray); align-self:flex-start; color: #111; }
+.cw-msg.system	{background: transparent; color: var(--dark-gray); font-style: italic; align-self:center; }
+
+#cw-input{
+	display:flex; gap:6px; padding:8px; border-top:1px solid var(--light-gray); background: #fff; flex:0 0 auto;
+}
+#cw-input input{ flex:1; padding:8px; border:1px solid var(--light-gray); border-radius:6px; }
+#cw-input button{ padding:8px 12px; border:0; border-radius:6px;}
+#cw-input button:hover{ filter:brightness(1.05); }

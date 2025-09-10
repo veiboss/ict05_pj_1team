@@ -23,6 +23,7 @@
     </style>
 </head>
 <body>
+
 <div id="wrap" class="wrap">
     <%@ include file="../common/pc_left.jsp" %>
     <div id="container" class="lines">
@@ -115,6 +116,6 @@
         }
     });
 </script>
-
+<%@ include file="../common/chat-widget.jspf" %>
 </body>
 </html>

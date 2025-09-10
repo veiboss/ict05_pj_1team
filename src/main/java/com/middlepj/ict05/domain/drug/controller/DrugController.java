@@ -1,13 +1,11 @@
 package com.middlepj.ict05.domain.drug.controller;
 
 import java.io.IOException;
-import java.util.Enumeration;
 import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -80,10 +78,7 @@ public class DrugController {
 	public String drug_reviewInsert(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
 		logger.info("<<< url ==> drug_reviewInsert.do");
-		
-//		DrugReviewDTO dto = service.reviewInsertAction(request, response, model);
-//		model.addAttribute("dto", dto);
-		
+	
 		DrugReviewDTO dto = service.reviewInsertAction(request, response, model);
 		model.addAttribute("dto", dto);
 		
@@ -101,4 +96,5 @@ public class DrugController {
 		
 		return "drug/drug_reviewInsertAction";		
 	}
+	
 }

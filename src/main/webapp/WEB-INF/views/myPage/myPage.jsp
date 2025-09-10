@@ -160,5 +160,7 @@
 		<!-- // #container -->
 	</div>
 	<!-- // #wrap -->
+	<!-- === Chatbot Widget === -->
+<%@ include file="../common/chat-widget.jspf" %>
 </body>
 </html>

@@ -183,7 +183,7 @@ public class FaqServiceImpl implements FaqService {
 		String fa_writer_name = request.getParameter("fa_writer_name");
 		String fa_title = request.getParameter("fa_title");
 		String fa_content = request.getParameter("fa_content");
-
+		
 		FaqDTO dto = new FaqDTO();
 		dto.setFa_id(fa_id);
 		dto.setFa_writer_name(fa_writer_name);
@@ -199,6 +199,11 @@ public class FaqServiceImpl implements FaqService {
 			logger.error("Failed to fetch faq_updateAction", e);
 			throw new ServletException("FAQ 수정 로직 실패", e);
 		}
+		String plain = dto.getFa_content()
+			    .replaceAll("<br\\s*/?>", "\n")
+			    .replaceAll("<[^>]+>", "");
+		dto.setFa_content(plain);
+		
 		model.addAttribute("updateCnt", updateCnt);
 	}
 

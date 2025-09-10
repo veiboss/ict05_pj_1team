@@ -73,6 +73,7 @@ public class DrugDAOImpl implements DrugDAO{
 	@Override
 	public int addDrug(Map<String, Object> map) {
 		System.out.println("=== drugDAO - addDrug() ===");
+		
 		return sqlSession.insert("com.middlepj.ict05.domain.drug.dao.DrugDAO.addDrug", map);
 	}
 	
@@ -112,6 +113,15 @@ public class DrugDAOImpl implements DrugDAO{
 		int insertCnt = sqlSession.insert("com.middlepj.ict05.domain.drug.dao.DrugDAO.insertReview", dto);
 		
 		return insertCnt;
+	}
+
+	// 후기 작성 - 약 이미지
+	@Override
+	public DrugReviewDTO reviewImg(DrugReviewDTO dto) {
+		System.out.println("=== drugDAO - reviewImg() ===");
+		
+		return sqlSession.selectOne("com.middlepj.ict05.domain.drug.dao.DrugDAO.reviewImg", dto);
+		
 	}
 
 }

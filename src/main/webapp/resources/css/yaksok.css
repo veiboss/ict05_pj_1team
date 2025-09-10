@@ -2,6 +2,7 @@
 /* ICT TeamONE _ 약을 쏘옥, 약속 _ KimJuyeon _ 20250818 */
 
 @import url(lib/reset.css);
+@import url(lib/swiper.min.css);
 
 @import url(_fonts.css);
 @import url(_colors.css);
@@ -17,3 +18,24 @@
 	transform: translateY(-50%);
 	padding: 0 8%;
 }
+
+#content.main > .out-cont[class*="bg-"]{padding: 40px 16px;}
+#content.main .chart	{position: relative;}
+#content.main .chart .point {position: absolute; left: 50%; top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+ol.rank-list				{counter-reset: li;}
+ol.rank-list li + li		{margin-top: 8px;}
+ol.rank-list li .item::before	{width: 64px; 
+	font-size: 16px; font-weight: 600; line-height: 1.5; color: var(--blue); text-align: center;
+	content: counter(li); counter-increment: li;
+	display: flex; justify-content: center; align-items: center;
+}
+
+/* item rank */
+.item.rank				{padding: 23px 0; border: solid 1px var(--very-light-gray);
+	border-radius: 8px; gap: 0;}
+.item.rank .drug-wrap		{width: calc(100% - (64px + 80px));}
+.item.rank .item-title		{overflow: hidden; max-height: 66px;}
+.item.rank .heart-wrap		{width: 80px;}

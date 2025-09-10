@@ -72,10 +72,8 @@
 						<!-- 페이징처리 -->
 						<!-- 이전 버튼 활성화 -->
 						<c:if test="${paging.startPage > paging.pageBlock}">
-							<a href="${path}/faq_user_list.fc?pageNum=${paging.prev}" class="btn prev">
-								<svg xmlns="http://www.w3.org/2000/svg" class="svg">
-									<path d="m2 6 6-4.33v8.66L2 6z" />
-								</svg>
+							<a href="${path}/faq_user_list.fc?pageNum=${paging.prev}" class="prev">
+								<i class="ico page-arr"><span>&lt;</span></i>
 							</a>
 						</c:if>
 						
@@ -83,17 +81,15 @@
 						<ul>
 							<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
 								<li class="<c:if test='${num == paging.currentPage}'>current</c:if>">
-									<a href="${path}/faq_user_list.fc?pageNum=${num}" class="btn">${num}</a>
+									<a href="${path}/faq_user_list.fc?pageNum=${num}">${num}</a>
 								</li>
 							</c:forEach>
 						</ul>
 						
 						<!-- 다음 버튼 활성화 -->
 						<c:if test="${paging.endPage < paging.pageCount}">
-							<a href="${path}/faq_user_list.fc?pageNum=${paging.next}" class="btn next">
-								<svg xmlns="http://www.w3.org/2000/svg" class="svg">
-									<path d="m2 6 6-4.33v8.66L2 6z" />
-								</svg>
+							<a href="${path}/faq_user_list.fc?pageNum=${paging.next}" class="next">
+								<i class="ico page-arr"><span>&gt;;</span></i>
 							</a>
 						</c:if>
 					</div><!-- // .pagination -->
@@ -122,5 +118,7 @@
 	    if (window.accordion) { accordion(1); }   // 아래에서 정의할 함수
 	  });
 	</script>
+	<!-- === Chatbot Widget === -->
+	<%@ include file="../common/chat-widget.jspf"%>
 </body>
 </html>
