@@ -21,6 +21,13 @@
 <script src="${path}/resources/js/lib/aos.js" defer></script>
 <script src="${path}/resources/js/yaksok.js" defer></script>
 
+<script>
+   $(function() {
+      // 내비게이션 선택
+      nav.current(4);
+   });
+</script>
+
 </head>
 <body>
 	<div id="wrap" class="wrap">
@@ -39,8 +46,8 @@
 			<!-- SID : COM000 -->
 			<div id="content" class="sub"><!-- [D] main / sub-main / sub && pagd name -->
 				<div class="pack-down-center gap-20">
-					<h2 class="page-title ta-c">후기 작성</h2>
-
+					<h2 class="page-title ta-c">후기 수정</h2>
+					
 					<a href="${path}/drug_detailAction.do?dr_id=${dto.dr_id}" class="item pack-left r4">
 						<div class="img-wrap s48">
 							<c:choose>
@@ -85,6 +92,7 @@
 				<!-- 수정 폼 -->
 				<form action="${path}/myReviewUpdate.do" method="post">
 					<input type="hidden" name="rv_id" value="${dto.rv_id}"/>
+					<input type="hidden" name="dr_id" value="${dto.dr_id}"/>
 					<fieldset class="pack-down gap-16">
 					<legend class="blind">${dto.dr_id} 후기작성폼</legend>
 					<!-- 별점 -->

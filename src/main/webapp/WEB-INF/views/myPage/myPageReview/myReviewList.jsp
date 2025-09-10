@@ -29,6 +29,13 @@ function delReview(id){
 	}
 }
 </script>
+
+<script>
+   $(function() {
+      // 내비게이션 선택
+      nav.current(4);
+   });
+</script>
 </head>
 <body>
 	<div id="wrap" class="wrap">

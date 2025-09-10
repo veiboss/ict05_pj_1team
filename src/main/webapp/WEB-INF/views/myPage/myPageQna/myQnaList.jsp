@@ -31,6 +31,13 @@
 
 </script>
 
+<script>
+   $(function() {
+      // 내비게이션 선택
+      nav.current(4);
+   });
+</script>
+
 <style>
   /* 저장 후 포커스 항목 하이라이트 */
   .flash { animation: flash-bg 1.2s ease-in-out 1; }
