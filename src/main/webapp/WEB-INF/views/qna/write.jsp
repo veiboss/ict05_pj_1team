@@ -94,7 +94,7 @@
                         </label>
                     </div>
  -->                    <div class="button-area pack-center">
-                        <button type="submit" class="btn black medium r-full">작성하기</button>
+                        <button type="submit" class="btn black large r-full">작성하기</button>
                     </div>
 
                 </fieldset>
@@ -102,7 +102,7 @@
             <hr class="out-cont section-bar" style="height:1px; margin-top: 20px;">
             <div class="button-area pack-both">
                 <a class="btn bdr-blue medium r-full" href="${path}/qna/list">목록</a>
-                <a class="btn black medium r-full" href="${path}/qna/write">전문가 QnA 작성</a>
+                <a class="btn blue medium r-full" href="${path}/qna/write">전문가 QnA 작성</a>
             </div>
         </div>
 
