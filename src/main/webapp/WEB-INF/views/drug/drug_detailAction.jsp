@@ -22,6 +22,9 @@
 <script src="${path}/resources/js/yaksok.js" defer></script>
 <script>
 $(document).ready(function() {
+	//내비게이션 선택
+	nav.current(2);
+	
     $(".add-btn").click(function() {
         var dr_id = $(this).data("drid"); // 버튼의 data-drid 가져오기
 

@@ -16,6 +16,12 @@
     <link rel="stylesheet" href="${path}/resources/ckeditor/style.css">
     <link rel="stylesheet" href="${path}/resources/ckeditor/ckeditor5.css">
     <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
+	<script>
+		$(function() {
+			// 내비게이션 선택
+			nav.current(3);
+		});
+	</script>
     <style>
         .ck-editor__editable:not(.ck-editor__nested-editable) {
             height: 450px;
@@ -35,42 +41,44 @@
                 <fieldset class="pack-down gap-12">
                 	<legend class="section-title">전문가에게 물어보기</legend>
                 	<c:if test="${not empty dr_id}">
-		        	<h3>${drug.dr_product}</h3>
-		        	<div class="img-wrap s100">
-				        <c:choose>
-				            <c:when test="${fn:contains(dto.dr_sungsang, '분말')}">
-				                <img src="${path}/resources/images/drug_type/01.png" alt="분말">
-				            </c:when>
-				
-				            <c:when test="${fn:contains(dto.dr_sungsang, '원형캡슐')}">
-				                <img src="${path}/resources/images/drug_type/02.png" alt="원형캡슐">
-				            </c:when>
-				
-				            <c:when test="${fn:contains(dto.dr_sungsang, '원형정제')}">
-				                <img src="${path}/resources/images/drug_type/03.png" alt="원형정제">
-				            </c:when>
-				
-				            <c:when test="${fn:contains(dto.dr_sungsang, '제피정제')}">
-				                <img src="${path}/resources/images/drug_type/04.png" alt="제피정제">
-				            </c:when>
-				            
-				            <c:when test="${fn:contains(dto.dr_sungsang, '젤리')}">
-				                <img src="${path}/resources/images/drug_type/05.png" alt="젤리">
-				            </c:when>
-				            
-				            <c:when test="${fn:contains(dto.dr_sungsang, '액상')}">
-				                <img src="${path}/resources/images/drug_type/06.png" alt="유동성 액체">
-				            </c:when>
-				            
-				            <c:when test="${fn:contains(dto.dr_sungsang, '경질캡슐')}">
-				                <img src="${path}/resources/images/drug_type/07.png" alt="경질캡슐">
-				            </c:when>
-				
-				            <c:otherwise>
-				                <img src="${path}/resources/images/drug_type/03.png" alt="정제">
-				            </c:otherwise>
-				        </c:choose>
-					</div>
+                	<div class="item pack-left r4">
+			        	<div class="img-wrap s48">
+					        <c:choose>
+					            <c:when test="${fn:contains(dto.dr_sungsang, '분말')}">
+					                <img src="${path}/resources/images/drug_type/01.png" alt="분말">
+					            </c:when>
+					
+					            <c:when test="${fn:contains(dto.dr_sungsang, '원형캡슐')}">
+					                <img src="${path}/resources/images/drug_type/02.png" alt="원형캡슐">
+					            </c:when>
+					
+					            <c:when test="${fn:contains(dto.dr_sungsang, '원형정제')}">
+					                <img src="${path}/resources/images/drug_type/03.png" alt="원형정제">
+					            </c:when>
+					
+					            <c:when test="${fn:contains(dto.dr_sungsang, '제피정제')}">
+					                <img src="${path}/resources/images/drug_type/04.png" alt="제피정제">
+					            </c:when>
+					            
+					            <c:when test="${fn:contains(dto.dr_sungsang, '젤리')}">
+					                <img src="${path}/resources/images/drug_type/05.png" alt="젤리">
+					            </c:when>
+					            
+					            <c:when test="${fn:contains(dto.dr_sungsang, '액상')}">
+					                <img src="${path}/resources/images/drug_type/06.png" alt="유동성 액체">
+					            </c:when>
+					            
+					            <c:when test="${fn:contains(dto.dr_sungsang, '경질캡슐')}">
+					                <img src="${path}/resources/images/drug_type/07.png" alt="경질캡슐">
+					            </c:when>
+					
+					            <c:otherwise>
+					                <img src="${path}/resources/images/drug_type/03.png" alt="정제">
+					            </c:otherwise>
+					        </c:choose>
+						</div>
+			        	<p class="fc-body fw-600 fs-18">${drug.dr_product}</p>
+                	</div>
 					</c:if>
                     <div>
                         <label class="label-box">

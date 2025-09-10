@@ -107,6 +107,9 @@ div, article, aside, footer, header, hgroup, main, menu, nav, section,
 legend[class*="-title"] {
 	width: 100%;
 	display: block;
+	margin-bottom: 32px;
+}
+legend.article-title {
 	margin-bottom: 60px;
 }
 

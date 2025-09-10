@@ -96,7 +96,7 @@ button.btn					{overflow: visible; margin: 0;}
 
 /* .button-area */
 .button-area				{margin-top: 28px;}
-.button-area .btn.large						{width: 100%;}
+.button-area .btn.large						{width: 50%;}
 .section-bar + .button-area					{margin-top: 36px;}
 .button-area:not(.pack-both) br + .btn		{margin-top: 18px;}
 .button-area.pack-center .btn + .btn		{margin-left: 8px}

@@ -16,6 +16,13 @@
     <link rel="stylesheet" href="${path}/resources/ckeditor/style.css">
     <link rel="stylesheet" href="${path}/resources/ckeditor/ckeditor5.css">
     <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
+    
+	<script>
+		$(function() {
+			// 내비게이션 선택
+			nav.current(3);
+		});
+	</script>
     <style>
     	#frm,
     	#frm textarea,

@@ -22,6 +22,12 @@
 <!-- defer : html을 다 읽은 후에 자바스크립트를 실행한다. 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행된다. -->
 <script src="${path}/resources/js/lib/aos.js" defer></script>
 <script src="${path}/resources/js/yaksok.js" defer></script>
+<script>
+	$(function() {
+		// 내비게이션 선택
+		nav.current(4);
+	});
+</script>
 <style>
 .my-home .pack-down-center.bg-blue.out-cont {
 	margin-top: 80px;
