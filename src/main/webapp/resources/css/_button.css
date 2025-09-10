@@ -39,7 +39,7 @@ button.btn					{overflow: visible; margin: 0;}
 .btn.regular	{font-size: 13px;}
 .btn.small		{min-width: 80px;}
 .btn.medium		{height: var(--medium); line-height: var(--medium); font-size: 14px;}
-.btn.large		{height: var(--large); line-height: var(--large); font-size: 14px;}
+.btn.large		{height: var(--large); line-height: var(--large); font-size: 16px;}
 .btn.xlarge		{width: 70%; height: clamp(60px, 16vw, 80px); line-height: clamp(60px, 16vw, 80px); font-size: clamp(20px, 5.33vw, 24px); border-radius: 100vw;}
 .btn.xsmall:not(.circle)		{padding: 0 8px;}
 .btn.small:not(.circle)			{padding: 0 12px;}
