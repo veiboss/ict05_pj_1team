@@ -19,4 +19,8 @@ public interface MypageSurveyDAO {
 	
 	// 회원 최근 설문 목록
 	public List<MypageSurveyDTO> selectSurvey(int sessionID);
+	
+	// 메인페이지 설문 점수 10개
+	public List<Map<String, Object>> surveyList();
+	
 }

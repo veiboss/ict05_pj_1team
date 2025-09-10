@@ -25,5 +25,13 @@ public interface MemberService {
 	// 마이페이지 정보 제공
 	public void myProfileDetail(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException;
+	
+	// 최근 설문 목록 10명
+	public void recentSurveyList(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException;
+	
+	// 메인페이지 인기영양제 5개
+	public void top5Drugs(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException;
 
 }

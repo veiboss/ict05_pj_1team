@@ -50,4 +50,17 @@ public class MypageSurveyDAOImpl implements MypageSurveyDAO{
 		List<MypageSurveyDTO> list = sqlsession.selectList("com.middlepj.ict05.domain.mypage.mypagesurvey.dao.MypageSurveyDAO.selectSurvey", sessionID);
 		return list;
 	}
+	
+	// 메인페이지 설문 점수 10개
+	@Override
+	public List<Map<String, Object>> surveyList() {
+	    System.out.println("MypageSurveyDAOImpl-surveyList");
+
+	    List<Map<String, Object>> list =
+	        sqlsession.selectList("com.middlepj.ict05.domain.mypage.mypagesurvey.dao.MypageSurveyDAO.surveyList");
+	    return list;
+	}
+	
+
+	
 }

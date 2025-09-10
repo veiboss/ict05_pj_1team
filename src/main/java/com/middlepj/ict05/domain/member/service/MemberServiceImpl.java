@@ -2,6 +2,7 @@ package com.middlepj.ict05.domain.member.service;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -14,6 +15,8 @@ import org.springframework.ui.Model;
 
 import com.middlepj.ict05.domain.member.dao.MemberDAO;
 import com.middlepj.ict05.domain.member.dto.MemberDTO;
+import com.middlepj.ict05.domain.mypage.mypagedrug.dao.MyPageDrugDAO;
+import com.middlepj.ict05.domain.mypage.mypagesurvey.dao.MypageSurveyDAO;
 import com.middlepj.ict05.domain.mypage.myprofile.dto.MyProfileDTO;
 
 @Service
@@ -21,6 +24,28 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberDAO dao;
+	
+	@Autowired
+	private MypageSurveyDAO surveyDAO;
+	
+	@Autowired
+	private MyPageDrugDAO drugDAO;
+	
+	// 최근 설문 목록 10명
+	public void recentSurveyList(HttpServletRequest request, HttpServletResponse response, Model model)
+	        throws ServletException, IOException {
+	    System.out.println("MemberServiceImpl - recentSurveyList()");
+	    List<Map<String, Object>> surveyList = surveyDAO.surveyList();
+	    model.addAttribute("surveyList", surveyList);
+	}
+	
+	// 메인 인기영양제 5개	
+	public void top5Drugs(HttpServletRequest request, HttpServletResponse response, Model model)
+	        throws ServletException, IOException {
+	    System.out.println("MemberServiceImpl - top5Drugs()");
+	    List<Map<String, Object>> top5list = drugDAO.selectTop5Drugs();
+	    model.addAttribute("top5list", top5list);
+	}
 
 	// 로그인 처리 / 회원정보 인증(수정, 탈퇴)
 	@Override

@@ -89,106 +89,18 @@
 					
 					<div id="recOPH" class="swiper-container out-cont">
 						<ul class="swiper-wrapper">
+							<c:forEach var="recentsurvey" items="${surveyList}">
 							<li class="swiper-slide">
 								<div class="pack-down-center gap-12">
 									<div class="chart small" data-percent="75">
 										<span class="point">
-											<strong class="fs-20 fc-blue counter-up">75</strong>
+											<strong class="fs-20 fc-blue counter-up">${recentsurvey.MBS_SCORE}</strong>
 										</span>
 									</div>
-									<p class="fs-14 fw-600 fc-body">크크크</p>
+									<p class="fs-14 fw-600 fc-body">${recentsurvey.MB_NAME}</p>
 								</div><!-- //.pack-down-center -->
 							</li>
-							<li class="swiper-slide">
-								<div class="pack-down-center gap-12">
-									<div class="chart small" data-percent="75">
-										<span class="point">
-											<strong class="fs-20 fc-blue counter-up">75</strong>
-										</span>
-									</div>
-									<p class="fs-14 fw-600 fc-body">크크크2</p>
-								</div><!-- //.pack-down-center -->
-							</li>
-							<li class="swiper-slide">
-								<div class="pack-down-center gap-12">
-									<div class="chart small" data-percent="75">
-										<span class="point">
-											<strong class="fs-20 fc-blue counter-up">75</strong>
-										</span>
-									</div>
-									<p class="fs-14 fw-600 fc-body">크크크</p>
-								</div><!-- //.pack-down-center -->
-							</li>
-							<li class="swiper-slide">
-								<div class="pack-down-center gap-12">
-									<div class="chart small" data-percent="75">
-										<span class="point">
-											<strong class="fs-20 fc-blue counter-up">75</strong>
-										</span>
-									</div>
-									<p class="fs-14 fw-600 fc-body">크크크4</p>
-								</div><!-- //.pack-down-center -->
-							</li>
-							<li class="swiper-slide">
-								<div class="pack-down-center gap-12">
-									<div class="chart small" data-percent="75">
-										<span class="point">
-											<strong class="fs-20 fc-blue counter-up">75</strong>
-										</span>
-									</div>
-									<p class="fs-14 fw-600 fc-body">크크크</p>
-								</div><!-- //.pack-down-center -->
-							</li>
-							<li class="swiper-slide">
-								<div class="pack-down-center gap-12">
-									<div class="chart small" data-percent="75">
-										<span class="point">
-											<strong class="fs-20 fc-blue counter-up">75</strong>
-										</span>
-									</div>
-									<p class="fs-14 fw-600 fc-body">크크크6</p>
-								</div><!-- //.pack-down-center -->
-							</li>
-							<li class="swiper-slide">
-								<div class="pack-down-center gap-12">
-									<div class="chart small" data-percent="75">
-										<span class="point">
-											<strong class="fs-20 fc-blue counter-up">75</strong>
-										</span>
-									</div>
-									<p class="fs-14 fw-600 fc-body">크크크</p>
-								</div><!-- //.pack-down-center -->
-							</li>
-							<li class="swiper-slide">
-								<div class="pack-down-center gap-12">
-									<div class="chart small" data-percent="75">
-										<span class="point">
-											<strong class="fs-20 fc-blue counter-up">75</strong>
-										</span>
-									</div>
-									<p class="fs-14 fw-600 fc-body">크크크8</p>
-								</div><!-- //.pack-down-center -->
-							</li>
-							<li class="swiper-slide">
-								<div class="pack-down-center gap-12">
-									<div class="chart small" data-percent="75">
-										<span class="point">
-											<strong class="fs-20 fc-blue counter-up">75</strong>
-										</span>
-									</div>
-									<p class="fs-14 fw-600 fc-body">크크크</p>
-								</div><!-- //.pack-down-center -->
-							</li>
-							<li class="swiper-slide">
-								<div class="pack-down-center gap-12">
-									<div class="chart small" data-percent="75">
-										<span class="point">
-											<strong class="fs-20 fc-blue counter-up">75</strong>
-										</span>
-									</div>
-									<p class="fs-14 fw-600 fc-body">크크크10</p>
-								</div><!-- //.pack-down-center -->
-							</li>
+							</c:forEach>
 						</ul>
 						<div class="swiper-pagination"></div>
 					</div><!-- #recOPH -->
@@ -200,13 +112,39 @@
 					</div>
 					<div class="list-wrap">
 						<ol class="rank-list">
+							<c:forEach var="top5pill" items="${top5list}">
 							<li>
-								<a href="#" class="item rank pack-both">
+								<a href="${path}/drug_detailAction.do?dr_id=${top5pill.DR_ID}" class="item rank pack-both">
 									<div class="pack-left drug-wrap">
 										<div class="img-wrap s68">
-											<img src="${path}/resources/images/drug_type/04.png" alt="제피정제">
+											<c:choose>
+												<c:when test="${fn:contains(top5pill.DR_SUNGSANG, '분말')}">
+													<img src="${path}/resources/images/drug_type/01.png" alt="분말">
+												</c:when>
+												<c:when test="${fn:contains(top5pill.DR_SUNGSANG, '원형캡슐')}">
+													<img src="${path}/resources/images/drug_type/02.png" alt="원형캡슐">
+												</c:when>
+												<c:when test="${fn:contains(top5pill.DR_SUNGSANG, '원형정제')}">
+													<img src="${path}/resources/images/drug_type/03.png" alt="원형정제">
+												</c:when>
+												<c:when test="${fn:contains(top5pill.DR_SUNGSANG, '제피정제')}">
+													<img src="${path}/resources/images/drug_type/04.png" alt="제피정제">
+												</c:when>
+												<c:when test="${fn:contains(top5pill.DR_SUNGSANG, '젤리')}">
+													<img src="${path}/resources/images/drug_type/05.png" alt="젤리">
+												</c:when>
+												<c:when test="${fn:contains(top5pill.DR_SUNGSANG, '액상')}">
+													<img src="${path}/resources/images/drug_type/06.png" alt="유동성 액체">
+												</c:when>
+												<c:when test="${fn:contains(top5pill.DR_SUNGSANG, '경질캡슐')}">
+													<img src="${path}/resources/images/drug_type/07.png" alt="경질캡슐">
+												</c:when>
+												<c:otherwise>
+													<img src="${path}/resources/images/drug_type/03.png" alt="정제">
+												</c:otherwise>
+											</c:choose>
 										</div>
-										<p class="item-title">프로바이오틱스 블렌드-6종 프로바이오틱스 블렌드-6종</p>
+										<p class="item-title">${top5pill.MBD_DRUG_NAME}</p>
 									</div>
 
 									<p class="pack-down-center heart-wrap">
@@ -215,86 +153,11 @@
 												<path data-name="좋아요" d="m8919.206-76.941-1.99-2.034a4.868 4.868 0 0 1 0-6.779 4.616 4.616 0 0 1 6.634 0l1.991 2.034 1.989-2.034a4.622 4.622 0 0 1 6.636 0 4.869 4.869 0 0 1 0 6.781l-1.989 2.033-6.635 6.779z" transform="translate(-8915.842 88.66)"></path>
 											</svg>
 										</i>
-										<span class="fc-body fw-600 counter-up">100</span>
+										<span class="fc-body fw-600 counter-up">${top5pill.CNT_MEMBER}</span>
 									</p>
 								</a><!-- .item.rank -->
 							</li>
-							<li>
-								<a href="#" class="item rank pack-both">
-									<div class="pack-left drug-wrap">
-										<div class="img-wrap s68">
-											<img src="${path}/resources/images/drug_type/04.png" alt="제피정제">
-										</div>
-										<p class="item-title">프로바이오틱스 블렌드-6종</p>
-									</div>
-
-									<p class="pack-down-center heart-wrap">
-										<i class="ico heart small active"><!-- [D] heart.active 확인 -->
-											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-												<path data-name="좋아요" d="m8919.206-76.941-1.99-2.034a4.868 4.868 0 0 1 0-6.779 4.616 4.616 0 0 1 6.634 0l1.991 2.034 1.989-2.034a4.622 4.622 0 0 1 6.636 0 4.869 4.869 0 0 1 0 6.781l-1.989 2.033-6.635 6.779z" transform="translate(-8915.842 88.66)"></path>
-											</svg>
-										</i>
-										<span class="fc-body fw-600 counter-up">66</span>
-									</p>
-								</a><!-- .item.rank -->
-							</li>
-							<li>
-								<a href="#" class="item rank pack-both">
-									<div class="pack-left drug-wrap">
-										<div class="img-wrap s68">
-											<img src="${path}/resources/images/drug_type/04.png" alt="제피정제">
-										</div>
-										<p class="item-title">프로바이오틱스 블렌드-6종</p>
-									</div>
-
-									<p class="pack-down-center heart-wrap">
-										<i class="ico heart small active"><!-- [D] heart.active 확인 -->
-											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-												<path data-name="좋아요" d="m8919.206-76.941-1.99-2.034a4.868 4.868 0 0 1 0-6.779 4.616 4.616 0 0 1 6.634 0l1.991 2.034 1.989-2.034a4.622 4.622 0 0 1 6.636 0 4.869 4.869 0 0 1 0 6.781l-1.989 2.033-6.635 6.779z" transform="translate(-8915.842 88.66)"></path>
-											</svg>
-										</i>
-										<span class="fc-body fw-600 counter-up">75</span>
-									</p>
-								</a><!-- .item.rank -->
-							</li>
-							<li>
-								<a href="#" class="item rank pack-both">
-									<div class="pack-left drug-wrap">
-										<div class="img-wrap s68">
-											<img src="${path}/resources/images/drug_type/04.png" alt="제피정제">
-										</div>
-										<p class="item-title">프로바이오틱스 블렌드-6종</p>
-									</div>
-
-									<p class="pack-down-center heart-wrap">
-										<i class="ico heart small active"><!-- [D] heart.active 확인 -->
-											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-												<path data-name="좋아요" d="m8919.206-76.941-1.99-2.034a4.868 4.868 0 0 1 0-6.779 4.616 4.616 0 0 1 6.634 0l1.991 2.034 1.989-2.034a4.622 4.622 0 0 1 6.636 0 4.869 4.869 0 0 1 0 6.781l-1.989 2.033-6.635 6.779z" transform="translate(-8915.842 88.66)"></path>
-											</svg>
-										</i>
-										<span class="fc-body fw-600 counter-up">66</span>
-									</p>
-								</a><!-- .item.rank -->
-							</li>
-							<li>
-								<a href="#" class="item rank pack-both">
-									<div class="pack-left drug-wrap">
-										<div class="img-wrap s68">
-											<img src="${path}/resources/images/drug_type/04.png" alt="제피정제">
-										</div>
-										<p class="item-title">프로바이오틱스 블렌드-6종</p>
-									</div>
-
-									<p class="pack-down-center heart-wrap">
-										<i class="ico heart small active"><!-- [D] heart.active 확인 -->
-											<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-												<path data-name="좋아요" d="m8919.206-76.941-1.99-2.034a4.868 4.868 0 0 1 0-6.779 4.616 4.616 0 0 1 6.634 0l1.991 2.034 1.989-2.034a4.622 4.622 0 0 1 6.636 0 4.869 4.869 0 0 1 0 6.781l-1.989 2.033-6.635 6.779z" transform="translate(-8915.842 88.66)"></path>
-											</svg>
-										</i>
-										<span class="fc-body fw-600 counter-up">66</span>
-									</p>
-								</a><!-- .item.rank -->
-							</li>
+							</c:forEach>
 						</ol>
 					</div><!-- //.list-wrap -->
 				</section>
