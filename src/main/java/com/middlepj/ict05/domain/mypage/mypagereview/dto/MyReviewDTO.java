@@ -1,5 +1,6 @@
 package com.middlepj.ict05.domain.mypage.mypagereview.dto;
 
+import java.util.Date;
 
 public class MyReviewDTO {
 
@@ -11,13 +12,14 @@ public class MyReviewDTO {
 	private String rv_show;			// 노출 여부
 	private String dr_product;
 	private String dr_sungsang;
+	private Date rv_reg_date;  // 작성일 
 	
 	public MyReviewDTO() {
 		super();
 	}
 
 	public MyReviewDTO(int rv_id, int mb_id, int dr_id, String rv_content, int rv_rating, String rv_show,
-			String dr_product, String dr_sungsang) {
+			String dr_product, String dr_sungsang, Date rv_reg_date) {
 		super();
 		this.rv_id = rv_id;
 		this.mb_id = mb_id;
@@ -27,6 +29,7 @@ public class MyReviewDTO {
 		this.rv_show = rv_show;
 		this.dr_product = dr_product;
 		this.dr_sungsang = dr_sungsang;
+		this.rv_reg_date = rv_reg_date;
 	}
 
 	public int getRv_id() {
@@ -93,11 +96,19 @@ public class MyReviewDTO {
 		this.dr_sungsang = dr_sungsang;
 	}
 
+	public Date getRv_reg_date() {
+		return rv_reg_date;
+	}
+
+	public void setRv_reg_date(Date rv_reg_date) {
+		this.rv_reg_date = rv_reg_date;
+	}
+
 	@Override
 	public String toString() {
 		return "MyReviewDTO [rv_id=" + rv_id + ", mb_id=" + mb_id + ", dr_id=" + dr_id + ", rv_content=" + rv_content
 				+ ", rv_rating=" + rv_rating + ", rv_show=" + rv_show + ", dr_product=" + dr_product + ", dr_sungsang="
-				+ dr_sungsang + "]";
+				+ dr_sungsang + ", rv_reg_date=" + rv_reg_date + "]";
 	}
 
 	

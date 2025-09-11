@@ -64,10 +64,18 @@ public class MyReviewDAOImpl implements MyReviewDAO{
 	public int deleteReview(int rv_id) {
 		
 		System.out.println("ReviewDAOImpl - deleteReview");
-		System.out.println("아이디" + rv_id);
+		
 		int deleteCnt = sqlSession.update("com.middlepj.ict05.domain.mypage.mypagereview.dao.MyReviewDAO.deleteReview", rv_id);
 		
 		return deleteCnt;
+	}
+
+	// 후시 수정 - 이미지
+	@Override
+	public MyReviewDTO reviewImg(MyReviewDTO dto) {
+	System.out.println("ReviewDAOImpl - reviewImg");
+		
+		return sqlSession.selectOne("com.middlepj.ict05.domain.mypage.mypagereview.dao.MyReviewDAO.reviewImg", dto);
 	}
 	
 

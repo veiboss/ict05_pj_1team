@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.middlepj.ict05.common.Paging;
+import com.middlepj.ict05.domain.drug.dto.DrugReviewDTO;
 import com.middlepj.ict05.domain.mypage.mypagereview.dao.MyReviewDAOImpl;
 import com.middlepj.ict05.domain.mypage.mypagereview.dto.MyReviewDTO;
 
@@ -39,6 +40,7 @@ public class MyReviewServiceImpl implements MyReviewService{
 	      
 	    int total = dao.listCnt(mbId);
 	    
+	    System.out.println("total : " + total);
 	    paging.setTotalCount(total);
 	    
 	    
@@ -60,6 +62,7 @@ public class MyReviewServiceImpl implements MyReviewService{
 	    // 6단계. jsp로 처리결과 전달
 	    model.addAttribute("list", list);
 	    model.addAttribute("paging", paging);
+	    model.addAttribute("total", total);
 	}
 
 	// 2. 수정버튼 클릭시 - 수정 페이지로 이동
@@ -77,20 +80,41 @@ public class MyReviewServiceImpl implements MyReviewService{
 
 		// 2-1. 게시글 수정 (내용, 별점, 노출/비노출)
 	@Override
-	public void reviewUpdateAction(HttpServletRequest request, HttpServletResponse reqResponse, Model model)
+	public MyReviewDTO reviewUpdateAction(HttpServletRequest request, HttpServletResponse reqResponse, Model model)
 			throws ServletException, IOException {
 		System.out.println("ReviewServiceImpl - reviewUpdateAction()");
 		
 		MyReviewDTO dto = new MyReviewDTO();
 		
+		int rv_id = Integer.parseInt(request.getParameter("rv_id"));
+		int rv_rating = Integer.parseInt(request.getParameter("rv_rating"));
+		int dr_id = Integer.parseInt(request.getParameter("dr_id"));
+		
+//		if (rv_id = null || dr_id == null) {
+//	        throw new IllegalArgumentException("필수 파라미터 누락: rv_id=" + rv_id + ", dr_id=" + dr_id);
+//	    }
+		
 		dto.setRv_id(Integer.parseInt(request.getParameter("rv_id")));
 		dto.setRv_content(request.getParameter("rv_content"));
 		dto.setRv_show((String)request.getParameter("rv_show"));
 		dto.setRv_rating(Integer.parseInt(request.getParameter("rv_rating")));
+		//dto.setDr_product(request.getParameter("dr_product"));
+		//dto.setDr_id(Integer.parseInt(request.getParameter("dr_id")));
+		//dto.setDr_sungsang(request.getParameter("dr_sungsang"));
 		
+	    // dto.setDr_id(drId);
+		
+		  // 약 정보 조회 후 dto에 세팅
+		MyReviewDTO drugInfo = dao.reviewImg(dto);
+	    if (drugInfo != null) {
+	        dto.setDr_product(drugInfo.getDr_product());
+	        dto.setDr_sungsang(drugInfo.getDr_sungsang());
+	    }
 		
 		dao.updateReview(dto);
 		model.addAttribute("dto", dto);
+		
+		return dto;
 	}
 
 	// 3. 게시글 삭제 버튼 클릭시 - 삭제 (안보임처리)

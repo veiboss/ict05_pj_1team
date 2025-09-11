@@ -22,6 +22,8 @@ public interface MyReviewDAO {
 	// 3. 게시글 삭제 버튼 클릭시 - 삭제 (안보임처리)
 	public int deleteReview(int rv_id);
 		
+	// 후기 수정 - 약 이미지
+	public MyReviewDTO reviewImg(MyReviewDTO dto);
 	
 	
 }

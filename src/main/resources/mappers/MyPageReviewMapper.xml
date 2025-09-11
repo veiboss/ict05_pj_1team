@@ -11,15 +11,7 @@
 	<![CDATA[
 	 SELECT *
      FROM (
-      SELECT ROWNUM AS rn
-      	   , x.rv_id
-      	   , x.mb_id
-           , x.rv_content
-           , x.rv_rating
-           , x.rv_show
-           , x.dr_product
-           , x.dr_id
-           , x.dr_sungsang
+      SELECT x.*, ROWNUM AS rn
       FROM (
         SELECT rv.rv_content
         	 , rv.rv_id
@@ -29,11 +21,12 @@
              , dr.dr_product
              , dr.dr_id
              , dr.dr_sungsang
+             , rv.rv_reg_date
           FROM REVIEW_TB rv
           JOIN DRUG_TB dr ON rv.dr_id = dr.dr_id
          WHERE rv.mb_id = #{mbId}
            AND rv.rv_show = 'Y'
-         ORDER BY rv.rv_id DESC
+         ORDER BY rv.rv_reg_date DESC
       ) x
       WHERE ROWNUM <= #{end}
     )
@@ -45,7 +38,8 @@
 <select id="listCnt" parameterType="int" resultType="int">
 	SELECT COUNT(*)	AS cnt
 	  FROM REVIEW_TB
-	 WHERE mb_id = #{mb_id}
+	 WHERE rv_show = 'Y'
+	   AND mb_id = #{mb_id}
 </select>
 
 <!-- 수정버튼 클릭시 - 수정페이지로 이동 -->
@@ -74,5 +68,12 @@
      WHERE rv_id = #{rv_id}
 </update> 
  
+<!-- 후기 수정 - 약 이미지, 이름 가져오기 -->
+<select id="reviewImg" parameterType="com.middlepj.ict05.domain.mypage.mypagereview.dto.MyReviewDTO" resultType="com.middlepj.ict05.domain.mypage.mypagereview.dto.MyReviewDTO">
+	SELECT dr_product
+		 , dr_sungsang
+      FROM DRUG_TB
+     WHERE dr_id = #{dr_id}
+</select>
 
 </mapper> 

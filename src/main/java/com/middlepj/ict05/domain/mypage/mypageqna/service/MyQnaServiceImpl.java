@@ -33,7 +33,6 @@ public class MyQnaServiceImpl implements MyQnaService{
 		int mbId = (int) request.getSession().getAttribute("sessionID");
 		String mbGrade = (String)request.getSession().getAttribute("sessionGrade");
 		
-	     
 	    // 갯수 카운트
 		int currentPage = (pageNum == null || pageNum.equals("0")) ? 1 : Integer.parseInt(pageNum);
 	    Paging paging = new Paging(String.valueOf(currentPage));
@@ -41,13 +40,11 @@ public class MyQnaServiceImpl implements MyQnaService{
 		Map<String,Object> mapCnt = new HashMap<>();
 		mapCnt.put("mbId", mbId);
 		
-		
 	    int total = dao.listCnt(mapCnt);
 	    
 	    paging.setTotalCount(total);
 	    
-	    
-	    // 5-2단계. 게시글 목록 조회
+	    // 게시글 목록 조회
         int start = paging.getStartRow();
         int end = paging.getEndRow();
       
@@ -59,14 +56,11 @@ public class MyQnaServiceImpl implements MyQnaService{
 	      
 	    // qna 목록 조회
 	    List<MyQnaDTO> list = dao.qnaList(map);
-		
-	    System.out.println(list);
-	    
 	    
 	    // 6단계. jsp로 처리결과 전달
 	    model.addAttribute("list", list);
 	    model.addAttribute("paging", paging);
-		
+	    model.addAttribute("total", total);
 	}
 
 	// 2. 수정버튼 클릭시 - 전문가 댓글 없을 시에 수정 페이지 이동

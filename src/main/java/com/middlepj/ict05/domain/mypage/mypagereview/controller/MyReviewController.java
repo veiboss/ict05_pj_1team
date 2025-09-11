@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.middlepj.ict05.domain.mypage.mypagereview.dto.MyReviewDTO;
 import com.middlepj.ict05.domain.mypage.mypagereview.service.MyReviewServiceImpl;
 
 
@@ -42,7 +43,8 @@ private static final Logger logger = LoggerFactory.getLogger(MyReviewController.
 			throws ServletException, IOException {
 		logger.info("<<< url ==> /myReviewDetail.do >>>");
 		
-		service.reviewDetailAction(request, response, model);
+		MyReviewDTO dto = service.reviewUpdateAction(request, response, model);
+	    model.addAttribute("dto", dto);
 		
 		return "myPage/myPageReview/myReviewDetail";
 	
@@ -54,7 +56,10 @@ private static final Logger logger = LoggerFactory.getLogger(MyReviewController.
 			throws ServletException, IOException {
 		logger.info("<<< url ==> /myReviewUpdate.do >>>");
 		
-		service.reviewUpdateAction(request, response, model);
+		MyReviewDTO dto = service.reviewUpdateAction(request, response, model);
+	    model.addAttribute("dto", dto);
+		
+		//service.reviewUpdateAction(request, response, model);
 		
 		return "myPage/myPageReview/myReviewDetail";
 	

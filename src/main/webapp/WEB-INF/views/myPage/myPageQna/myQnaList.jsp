@@ -140,9 +140,9 @@
 				
 				<p class="total fc-body fw-500">
 					총
-					<%-- <c:if test="${total > 0}"> --%>
-						<span class="count fc-blue">1111</span>
-					<%-- </c:if> --%>
+					<c:if test="${total > 0}"> 
+						<span class="count fc-blue">${total}</span>
+					 </c:if> 
 				</p>
 
 				<c:if test="${empty list}">
@@ -151,117 +151,119 @@
 					</div>
 				</c:if>
 				
-				<div class="list-wrap">
-					<ul class="data-list">
-						<c:forEach var="dto" items="${list}">
-						<li>
-						<!-- 앵커로 전체 감싸지 말고 div로 -->
-						<div class="item normal">
-							<div class="pack-down">
-								<!-- 제목 -->
-								<p class="item-title">
-									<c:if test="${fn:trim(dto.qa_private) == 'Y'}"><span class="fc-gray">비밀글</span></c:if>
-		            				<c:out value="${dto.qa_title}"/>
-		            			</p>
-		            			
-	       						<p class="qa-content fc-dark-gray">
-	       							<c:out value="${
-								      fn:replace(
-								        fn:replace(
-								          fn:replace(
-								            fn:replace(fn:replace(dto.qa_content,'<p>',''),'</p>',''),
-								          '<br/>',''),
-								        '<br />',''),
-								      '<br>','')}"/>
-						 		</p>
-	
-								<p class="pack-left">
-									<a class="btn blue xsmall r4"
-				                  		href="${path}/myQnaDetail.do?qa_id=${dto.qa_id}" >수정</a>
-				                	<button type="button" class="btn bdr-blue xsmall r4"
-				                		onclick="delQna(${dto.qa_id})">삭제</button>
-								</p>
-							</div><!-- 내 QnA 끝 -->
-							
-							<!-- 전문가 답변 시작 -->
-							<div class="pack-down-right expert-wrap">
-								<p id="ans-text-${dto.qa_id}" class="fc-body fs-16">
-									<c:out value="${
-								      fn:replace(
-								        fn:replace(
-								          fn:replace(
-								            fn:replace(fn:replace(dto.qa_answer,'<p>',''),'</p>',''),
-								          '<br/>',''),
-								        '<br />',''),
-								      '<br>','')}"/>
-						 		</p>
-								
-								<!-- 수정 버튼: sessionGrade가 expert일 때만 보임 -->
-								<c:if test="${not empty sessionScope.sessionGrade 
-								             and fn:toLowerCase(fn:trim(sessionScope.sessionGrade)) eq 'expert' 
-								             and not empty dto.qa_answer}">
-								             
-									<p class="btns pack-left">
-										<button type="button" class="btn blue xsmall r4"
-									           id="ans-open-${dto.qa_id}" onclick="answerUpdate(${dto.qa_id})">수정열기</button>
-									    <button type="button" class="btn bdr-blue xsmall r4"
-									           id="ans-close-${dto.qa_id}" onclick="cancelAnswer(${dto.qa_id})" style="display:none;">수정닫기</button>
+				<c:if test="${not empty list}">
+					<div class="list-wrap">
+						<ul class="data-list">
+							<c:forEach var="dto" items="${list}">
+							<li>
+							<!-- 앵커로 전체 감싸지 말고 div로 -->
+							<div class="item normal">
+								<div class="pack-down">
+									<!-- 제목 -->
+									<p class="item-title">
+										<c:if test="${fn:trim(dto.qa_private) == 'Y'}"><span class="fc-gray">비밀글</span></c:if>
+			            				<c:out value="${dto.qa_title}"/>
+			            			</p>
+			            			
+		       						<p class="qa-content fc-dark-gray">
+		       							<c:out value="${
+									      fn:replace(
+									        fn:replace(
+									          fn:replace(
+									            fn:replace(fn:replace(dto.qa_content,'<p>',''),'</p>',''),
+									          '<br/>',''),
+									        '<br />',''),
+									      '<br>','')}"/>
+							 		</p>
+		
+									<p class="pack-left">
+										<a class="btn blue xsmall r4"
+					                  		href="${path}/myQnaDetail.do?qa_id=${dto.qa_id}" >수정</a>
+					                	<button type="button" class="btn bdr-blue xsmall r4"
+					                		onclick="delQna(${dto.qa_id})">삭제</button>
 									</p>
+								</div><!-- 내 QnA 끝 -->
+								
+								<!-- 전문가 답변 시작 -->
+								<div class="pack-down-right expert-wrap">
+									<p id="ans-text-${dto.qa_id}" class="fc-body fs-16">
+										<c:out value="${
+									      fn:replace(
+									        fn:replace(
+									          fn:replace(
+									            fn:replace(fn:replace(dto.qa_answer,'<p>',''),'</p>',''),
+									          '<br/>',''),
+									        '<br />',''),
+									      '<br>','')}"/>
+							 		</p>
 									
-									<div id="ans-edit-${dto.qa_id}" class="expert-edit-wrap pack-down-right" style="display:none;">
-										<div  class="pack-down">
-											<textarea id="ans-ta-${dto.qa_id}" rows="6" class="textarea"><c:out value="${fn:trim(
-												  fn:replace(
-												    fn:replace(
-												      fn:replace(
-												        fn:replace(
-												          fn:replace(dto.qa_answer,'<p>',''),
-												        '</p>',''),
-												      '<br/>','&#10;'),
-												    '<br />','&#10;'),
-												  '<br>','&#10;')
-												)}"/></textarea>
-											
-											<div class="pack-center">
-												<button type="button" class="btn black small r-full"
-												        onclick="saveAnswer(${dto.qa_id})">수정하기</button>
-												<button type="button" class="btn bdr-gray small r-full"
-												        onclick="deleteAnswer(${dto.qa_id})">삭제</button>
+									<!-- 수정 버튼: sessionGrade가 expert일 때만 보임 -->
+									<c:if test="${not empty sessionScope.sessionGrade 
+									             and fn:toLowerCase(fn:trim(sessionScope.sessionGrade)) eq 'expert' 
+									             and not empty dto.qa_answer}">
+									             
+										<p class="btns pack-left">
+											<button type="button" class="btn blue xsmall r4"
+										           id="ans-open-${dto.qa_id}" onclick="answerUpdate(${dto.qa_id})">수정열기</button>
+										    <button type="button" class="btn bdr-blue xsmall r4"
+										           id="ans-close-${dto.qa_id}" onclick="cancelAnswer(${dto.qa_id})" style="display:none;">수정닫기</button>
+										</p>
+										
+										<div id="ans-edit-${dto.qa_id}" class="expert-edit-wrap pack-down-right" style="display:none;">
+											<div  class="pack-down">
+												<textarea id="ans-ta-${dto.qa_id}" rows="6" class="textarea"><c:out value="${fn:trim(
+													  fn:replace(
+													    fn:replace(
+													      fn:replace(
+													        fn:replace(
+													          fn:replace(dto.qa_answer,'<p>',''),
+													        '</p>',''),
+													      '<br/>','&#10;'),
+													    '<br />','&#10;'),
+													  '<br>','&#10;')
+													)}"/></textarea>
+												
+												<div class="pack-center">
+													<button type="button" class="btn black small r-full"
+													        onclick="saveAnswer(${dto.qa_id})">수정하기</button>
+													<button type="button" class="btn bdr-gray small r-full"
+													        onclick="deleteAnswer(${dto.qa_id})">삭제</button>
+												</div>
 											</div>
 										</div>
-									</div>
-								</c:if>
-							</div><!-- //.expert-wrap -->
-						</div><!-- //.item.normal -->
-			          	</li>
-			          </c:forEach>
-		          	</ul>
-		          	
-		          	<div class="pagination">
-					    <!-- 이전 버튼 -->
-					    <c:if test="${paging.startPage > paging.pageBlock}">
-					        <a href="${path}/myQnaList.do?pageNum=${paging.prev}" class="btn prev page-link" data-page="${paging.prev}">
-					            <i class="ico page-arr"><span>&lt;</span></i>
-					        </a>
-					    </c:if>
-					
-					    <!-- 페이지 번호 -->
-					    <ul>
-					        <c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
-					            <li class="${num == paging.currentPage ? 'current' : ''}">
-					                <a href="${path}/myQnaList.do?pageNum=${num}" class="btn page-link" data-page="${num}">${num}</a>
-					            </li>
-					        </c:forEach>
-					    </ul>
-					
-					    <!-- 다음 버튼 -->
-					    <c:if test="${paging.endPage < paging.pageCount}">
-					        <a href="${path}/myQnaList.do?pageNum=${paging.next}" class="btn next page-link" data-page="${paging.next}">
-					            <i class="ico page-arr"><span>&gt;;</span></i>
-					        </a>
-					    </c:if>
-					</div><!-- .pagination -->
-	        	</div><!-- /.list-wrap -->
+									</c:if>
+								</div><!-- //.expert-wrap -->
+							</div><!-- //.item.normal -->
+				          	</li>
+				          </c:forEach>
+			          	</ul>
+			          	
+			          	<div class="pagination">
+						    <!-- 이전 버튼 -->
+						    <c:if test="${paging.startPage > paging.pageBlock}">
+						        <a href="${path}/myQnaList.do?pageNum=${paging.prev}" class="btn prev page-link" data-page="${paging.prev}">
+						            <i class="ico page-arr"><span>&lt;</span></i>
+						        </a>
+						    </c:if>
+						
+						    <!-- 페이지 번호 -->
+						    <ul>
+						        <c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+						            <li class="${num == paging.currentPage ? 'current' : ''}">
+						                <a href="${path}/myQnaList.do?pageNum=${num}" class="btn page-link" data-page="${num}">${num}</a>
+						            </li>
+						        </c:forEach>
+						    </ul>
+						
+						    <!-- 다음 버튼 -->
+						    <c:if test="${paging.endPage < paging.pageCount}">
+						        <a href="${path}/myQnaList.do?pageNum=${paging.next}" class="btn next page-link" data-page="${paging.next}">
+						            <i class="ico page-arr"><span>&gt;;</span></i>
+						        </a>
+						    </c:if>
+						</div><!-- .pagination -->
+		        	</div><!-- /.list-wrap -->
+		        </c:if>
 			</div>
 			
 			<!-- 답변 수정  (공용 1개) -->

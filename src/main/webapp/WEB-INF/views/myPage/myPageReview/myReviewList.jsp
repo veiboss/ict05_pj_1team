@@ -57,9 +57,9 @@ function delReview(id){
 				
 				<p class="total fc-body fw-500">
 					총
-					<%-- <c:if test="${total > 0}"> --%>
-						<span class="count fc-blue">1111</span>
-					<%-- </c:if> --%>
+				 	<c:if test="${total > 0}"> 
+						<span class="count fc-blue">${total}</span>
+					 </c:if> 
 				</p>
 				
 				<c:if test="${empty list}">
@@ -68,116 +68,118 @@ function delReview(id){
 					</div>
 				</c:if>
 				
-				<div class="list-wrap">
-					<ul class="data-list toon">
-						<c:forEach var="dto" items="${list}">
-							<li>
-								<input type="hidden" name="rv_id" value="${dto.rv_id}">
-								<!-- 앵커로 전체 감싸지 말고 div로 -->
-								<div class="item thumb-left">
-									<div class="img-wrap s100">
-										<c:choose>
-											<c:when test="${fn:contains(dto.dr_sungsang, '분말')}">
-												<img src="${path}/resources/images/drug_type/01.png" alt="분말">
-											</c:when>
-											<c:when test="${fn:contains(dto.dr_sungsang, '원형캡슐')}">
-												<img src="${path}/resources/images/drug_type/02.png" alt="원형캡슐">
-											</c:when>
-											<c:when test="${fn:contains(dto.dr_sungsang, '원형정제')}">
-												<img src="${path}/resources/images/drug_type/03.png" alt="원형정제">
-											</c:when>
-											<c:when test="${fn:contains(dto.dr_sungsang, '제피정제')}">
-												<img src="${path}/resources/images/drug_type/04.png" alt="제피정제">
-											</c:when>
-											<c:when test="${fn:contains(dto.dr_sungsang, '젤리')}">
-												<img src="${path}/resources/images/drug_type/05.png" alt="젤리">
-											</c:when>
-											<c:when test="${fn:contains(dto.dr_sungsang, '액상')}">
-												<img src="${path}/resources/images/drug_type/06.png" alt="유동성 액체">
-											</c:when>
-											<c:when test="${fn:contains(dto.dr_sungsang, '경질캡슐')}">
-												<img src="${path}/resources/images/drug_type/07.png" alt="경질캡슐">
-											</c:when>
-											<c:otherwise>
-												<img src="${path}/resources/images/drug_type/03.png" alt="정제">
-											</c:otherwise>
-										</c:choose>
-									</div><!-- //.img-wrap -->
-									
-									<div class="data-content pack-down">
-										<!-- 상품명 -->
-										<p class="small-title"><c:out value="${dto.dr_product}"/></p>
+				<c:if test="${not empty list}">
+					<div class="list-wrap">
+						<ul class="data-list toon">
+							<c:forEach var="dto" items="${list}">
+								<li>
+									<input type="hidden" name="rv_id" value="${dto.rv_id}">
+									<!-- 앵커로 전체 감싸지 말고 div로 -->
+									<div class="item thumb-left">
+										<div class="img-wrap s100">
+											<c:choose>
+												<c:when test="${fn:contains(dto.dr_sungsang, '분말')}">
+													<img src="${path}/resources/images/drug_type/01.png" alt="분말">
+												</c:when>
+												<c:when test="${fn:contains(dto.dr_sungsang, '원형캡슐')}">
+													<img src="${path}/resources/images/drug_type/02.png" alt="원형캡슐">
+												</c:when>
+												<c:when test="${fn:contains(dto.dr_sungsang, '원형정제')}">
+													<img src="${path}/resources/images/drug_type/03.png" alt="원형정제">
+												</c:when>
+												<c:when test="${fn:contains(dto.dr_sungsang, '제피정제')}">
+													<img src="${path}/resources/images/drug_type/04.png" alt="제피정제">
+												</c:when>
+												<c:when test="${fn:contains(dto.dr_sungsang, '젤리')}">
+													<img src="${path}/resources/images/drug_type/05.png" alt="젤리">
+												</c:when>
+												<c:when test="${fn:contains(dto.dr_sungsang, '액상')}">
+													<img src="${path}/resources/images/drug_type/06.png" alt="유동성 액체">
+												</c:when>
+												<c:when test="${fn:contains(dto.dr_sungsang, '경질캡슐')}">
+													<img src="${path}/resources/images/drug_type/07.png" alt="경질캡슐">
+												</c:when>
+												<c:otherwise>
+													<img src="${path}/resources/images/drug_type/03.png" alt="정제">
+												</c:otherwise>
+											</c:choose>
+										</div><!-- //.img-wrap -->
 										
-										<!-- 별점 (여분의 > 제거) -->
-										<p class="pack-left" aria-label="별점">
-											<span class="star-score">
-												<c:forEach begin="1" end="${dto.rv_rating}">
-							                		<i class="ico star small active"><span>★</span></i>
-							                	</c:forEach>
-							                	<c:forEach begin="1" end="${5 - dto.rv_rating}">
-							                		<i class="ico star small"><span>☆</span></i>
-							                	</c:forEach>
-						                	</span>
-						                </p>
-						            
-							            <!-- 내용 -->
-										<p class="fc-dark-gray ">
-											<c:out value="${
-											      fn:replace(
-											        fn:replace(
-											          fn:replace(
-											            fn:replace(fn:replace(dto.rv_content,'<p>',''),'</p>',''),
-											          '<br/>',''),
-											        '<br />',''),
-											      '<br>','') }"/>
-										</p>
+										<div class="data-content pack-down">
+											<!-- 상품명 -->
+											<p class="small-title"><c:out value="${dto.dr_product}"/></p>
 											
-										<!-- 버튼 (앵커 밖으로 분리) -->
-										<p class="pack-both">
-											<span></span>
-											<span>
-												<a class="btn blue small color1 r4"
-													href="${path}/myReviewDetail.do?rv_id=${dto.rv_id}">
-													수정
-												</a>
-												<button type="button" class="btn bdr-blue small color1 r4"
-													onclick="delReview(${dto.rv_id})">
-													삭제
-												</button>
-											</span>
-										</p>
-									</div><!-- //.data-wrap -->
-								</div><!-- /.item.thumb-left -->
-							</li>
-						</c:forEach>
-					</ul>
-					
-					
-					<div class="pagination">
-					    <!-- 이전 버튼 -->
-					    <c:if test="${paging.startPage > paging.pageBlock}">
-					        <a href="${path}/myReviewList.do?pageNum=${paging.prev}" class="btn prev page-link" data-page="${paging.prev}">
-					            <i class="ico page-arr"><span>&lt;</span></i>
-					        </a>
-					    </c:if>
-					
-					    <!-- 페이지 번호 -->
-					    <ul>
-					        <c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
-					            <li class="${num == paging.currentPage ? 'current' : ''}">
-					                <a href="${path}/myReviewList.do?pageNum=${num}" class="btn page-link" data-page="${num}">${num}</a>
-					            </li>
-					        </c:forEach>
-					    </ul>
-					
-					    <!-- 다음 버튼 -->
-					    <c:if test="${paging.endPage < paging.pageCount}">
-					        <a href="${path}/myReviewList.do?pageNum=${paging.next}" class="btn next page-link" data-page="${paging.next}">
-					            <i class="ico page-arr"><span>&gt;;</span></i>
-					        </a>
-					    </c:if>
-					</div><!-- //.pagination -->
-				</div><!-- //.list-wrap -->
+											<!-- 별점 (여분의 > 제거) -->
+											<p class="pack-left" aria-label="별점">
+												<span class="star-score">
+													<c:forEach begin="1" end="${dto.rv_rating}">
+								                		<i class="ico star small active"><span>★</span></i>
+								                	</c:forEach>
+								                	<c:forEach begin="1" end="${5 - dto.rv_rating}">
+								                		<i class="ico star small"><span>☆</span></i>
+								                	</c:forEach>
+							                	</span>
+							                </p>
+							            
+								            <!-- 내용 -->
+											<p class="fc-dark-gray ">
+												<c:out value="${
+												      fn:replace(
+												        fn:replace(
+												          fn:replace(
+												            fn:replace(fn:replace(dto.rv_content,'<p>',''),'</p>',''),
+												          '<br/>',''),
+												        '<br />',''),
+												      '<br>','') }"/>
+											</p>
+												
+											<!-- 버튼 (앵커 밖으로 분리) -->
+											<p class="pack-both">
+												<span></span>
+												<span>
+													<a class="btn blue small color1 r4"
+														href="${path}/myReviewDetail.do?rv_id=${dto.rv_id}">
+														수정
+													</a>
+													<button type="button" class="btn bdr-blue small color1 r4"
+														onclick="delReview(${dto.rv_id})">
+														삭제
+													</button>
+												</span>
+											</p>
+										</div><!-- //.data-wrap -->
+									</div><!-- /.item.thumb-left -->
+								</li>
+							</c:forEach>
+						</ul>
+						
+						
+						<div class="pagination">
+						    <!-- 이전 버튼 -->
+						    <c:if test="${paging.startPage > paging.pageBlock}">
+						        <a href="${path}/myReviewList.do?pageNum=${paging.prev}" class="btn prev page-link" data-page="${paging.prev}">
+						            <i class="ico page-arr"><span>&lt;</span></i>
+						        </a>
+						    </c:if>
+						
+						    <!-- 페이지 번호 -->
+						    <ul>
+						        <c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
+						            <li class="${num == paging.currentPage ? 'current' : ''}">
+						                <a href="${path}/myReviewList.do?pageNum=${num}" class="btn page-link" data-page="${num}">${num}</a>
+						            </li>
+						        </c:forEach>
+						    </ul>
+						
+						    <!-- 다음 버튼 -->
+						    <c:if test="${paging.endPage < paging.pageCount}">
+						        <a href="${path}/myReviewList.do?pageNum=${paging.next}" class="btn next page-link" data-page="${paging.next}">
+						            <i class="ico page-arr"><span>&gt;;</span></i>
+						        </a>
+						    </c:if>
+						</div><!-- //.pagination -->
+					</div><!-- //.list-wrap -->
+				</c:if>
 				
 				<!-- 삭제(비노출) POST 폼: ❗ forEach 밖, 단 한 개만 -->
 				<form id="delForm" action="${path}/myReviewDelete.do" method="post" style="display:none;">
