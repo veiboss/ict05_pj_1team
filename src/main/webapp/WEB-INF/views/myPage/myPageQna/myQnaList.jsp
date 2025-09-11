@@ -136,7 +136,7 @@
 			<!-- 컨텐츠 시작 -->
 			<!-- SID : COM000 -->
 			<div id="content" class="sub"><!-- [D] main / sub-main / sub && pagd name -->
-				<h2 class="page-title">내가 쓴 Q&amp;A 목록</h2>
+				<h2 class="page-title">내가 쓴 Q&amp;A</h2>
 				
 				<p class="total fc-body fw-500">
 					총

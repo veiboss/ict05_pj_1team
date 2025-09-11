@@ -2,7 +2,7 @@ package com.middlepj.ict05.domain.qna.dto;
 
 public class QnaForm {
 	private int qa_id;
-	private int dr_id;
+	private Integer dr_id;
 	private String qa_title;
 	private String qa_content;
 	private String qa_private;
@@ -13,7 +13,7 @@ public class QnaForm {
 		// TODO Auto-generated constructor stub
 	}
 
-	public QnaForm(int qa_id, int dr_id, String qa_title, String qa_content, String qa_private, String qa_show) {
+	public QnaForm(int qa_id, Integer dr_id, String qa_title, String qa_content, String qa_private, String qa_show) {
 		super();
 		this.qa_id = qa_id;
 		this.dr_id = dr_id;
@@ -31,11 +31,11 @@ public class QnaForm {
 		this.qa_id = qa_id;
 	}
 
-	public int getDr_id() {
+	public Integer getDr_id() {
 		return dr_id;
 	}
 
-	public void setDr_id(int dr_id) {
+	public void setDr_id(Integer dr_id) {
 		this.dr_id = dr_id;
 	}
 

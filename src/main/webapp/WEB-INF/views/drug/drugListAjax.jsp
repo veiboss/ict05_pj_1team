@@ -38,7 +38,7 @@ $(document).ready(function() {
 	<p class="total fc-body fw-500">
 		총 
 		<c:if test="${total > 0}">
-			<span class="count">${total}</span>
+			<span class="count fc-blue">${total}</span>
 		</c:if>
 	</p>
 	
@@ -91,14 +91,13 @@ $(document).ready(function() {
 					</div>
 				
 					<div class="data-content pack-down">
-						
 						<p class="small-title">${dto.dr_product}</p>
 						
 						<p class="data-wrap">
 							${dto.dr_serve_use}
 						</p>
 							
-						<div id="drug-item" class="pack-right">
+						<div class="pack-right">
 							<button type="submit" class="btn blue small r-full add-btn" data-drid="${dto.dr_id}">
 								내약추가
 							</button>
