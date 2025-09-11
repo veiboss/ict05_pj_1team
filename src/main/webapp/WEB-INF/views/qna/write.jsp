@@ -143,7 +143,7 @@
             formData.append("qa_title", form.qa_title.value);
             formData.append("qa_content", form.qa_content.value);
             formData.append("qa_private", form.qa_private.checked ? "Y" : "N");
-            formData.append("qa_show", form.qa_show.checked ? "Y" : "N");
+            formData.append("qa_show", form.qa_show.value);
 
             try {
                 const response = await fetch(`${path}/API/qna/write`, {
