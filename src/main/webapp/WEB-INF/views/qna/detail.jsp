@@ -16,7 +16,17 @@
     <link rel="stylesheet" href="${path}/resources/ckeditor/style.css">
     <link rel="stylesheet" href="${path}/resources/ckeditor/ckeditor5.css">
     <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/classic/ckeditor.js"></script>
+    
+	<script>
+		$(function() {
+			// 내비게이션 선택
+			nav.current(3);
+		});
+	</script>
     <style>
+    	#frm,
+    	#frm textarea,
+    	.ck.ck-editor{width: 100%;}
         .ck-editor__editable:not(.ck-editor__nested-editable) {
             height: 450px;
         }
@@ -84,11 +94,12 @@
                 <c:if test="${empty dto.qa_answer}">
                     <form name="frm" id="frm" action="${path}/qna/answer" method="POST">
                         <input type="hidden" name="qa_id" value="${qa_id}">
-                        <div>
+                        <div class="pack-down">
                             <textarea name="qa_answer" id="qa_answer">${dto.qa_answer}</textarea>
-                        </div>
-                        <div style="text-align:right;margin-top:10px;">
-                            <button type="submit" class="btn blue medium">답변등록</button>
+                        	
+                        	<div class="button-area pack-center">
+                            	<button type="submit" class="btn black large r-full">답변등록</button>
+                        	</div>
                         </div>
                     </form>
                 </c:if>
@@ -96,7 +107,7 @@
             </section>
             <div class="button-area pack-both">
                 <a class="btn bdr-blue medium r-full" href="${path}/qna/list">목록</a>
-                <a class="btn black medium r-full" href="${path}/qna/write">전문가에게 물어보기</a>
+                <a class="btn blue medium r-full" href="${path}/qna/write">전문가에게 물어보기</a>
             </div>
         </div>
 

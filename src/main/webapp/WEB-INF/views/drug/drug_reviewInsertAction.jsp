@@ -37,7 +37,7 @@
 				setTimeout(function() {
 					alert("후기 작성 성공 !!");
 					window.location="${path}/drug_detailAction.do?dr_id=${dr_id}";
-				}, 1000);
+				});
 				</script>
 			</c:if>
 			
@@ -46,7 +46,7 @@
 				setTimeout(function() {
 					alert("후기 작성 실패 ㅠㅠ");
 					window.location="${path}/drug_reviewInsert.do?dr_id=${dr_id}"
-				}, 1000);
+				});
 				</script>
 			</c:if>
 			

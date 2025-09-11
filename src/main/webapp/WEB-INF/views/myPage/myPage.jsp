@@ -22,6 +22,12 @@
 <!-- defer : html을 다 읽은 후에 자바스크립트를 실행한다. 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행된다. -->
 <script src="${path}/resources/js/lib/aos.js" defer></script>
 <script src="${path}/resources/js/yaksok.js" defer></script>
+<script>
+	$(function() {
+		// 내비게이션 선택
+		nav.current(4);
+	});
+</script>
 <style>
 .my-home .pack-down-center.bg-blue.out-cont {
 	margin-top: 80px;
@@ -111,16 +117,16 @@
 					</h3>
 					<div class="pack-down">
 						<a href="MA20" class="btn transparent">
-							<span class="fs-18">내설문목록</span>
+							<span class="fs-18">내 설문</span>
 						</a>
 						<a href="myPageDrugList.do" class="btn transparent">
-							<span class="fs-18">내약목록</span>
+							<span class="fs-18">내 약</span>
 						</a>
 						<a href="myReviewList.do" class="btn transparent">
-							<span class="fs-18">내가쓴후기목록</span>
+							<span class="fs-18">내가 쓴 후기</span>
 						</a>
 						<a href="myQnaList.do" class="btn transparent">
-							<span class="fs-18">내가쓴qna</span>
+							<span class="fs-18">내가 쓴 Q&amp;A</span>
 						</a>
 
 					</div>

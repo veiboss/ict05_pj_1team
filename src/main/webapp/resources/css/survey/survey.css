@@ -41,7 +41,7 @@
 /* 최근 설문 목록, 약 목록 공통 */
 .list-wrap {margin-top: 40px;}
 
-.data-list.toon a.pack-both{padding-left: 40px; padding-right: 40px;}
+.data-list.toon a.pack-both{padding-left: 1rem; padding-right: 1rem;}
  
 /* ellipsis */
 .ellipsis		{display: block; overflow: hidden; text-overflow: ellipsis;

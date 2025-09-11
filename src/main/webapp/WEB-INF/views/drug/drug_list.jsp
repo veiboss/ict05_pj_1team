@@ -21,6 +21,9 @@
 <script src="${path}/resources/js/yaksok.js" defer></script>
  <script>
         $(document).ready(function(){
+    		//내비게이션 선택
+   			nav.current(2);
+    		
             function loadReviews(page = 1){
                 $.ajax({
                     type: "GET",

@@ -28,7 +28,7 @@
 		<%@ include file="../../common/pc_left.jsp" %>
 		<!-- PC 컨텐츠 끝 -->
 		
-		<div id="container" class="">
+		<div id="container" class="lines">
 		<!-- [D] HEADER VIEW :  no class /.lines(2) / .only-back(1) / .only-close(1) -->
 			<!-- header 시각 -->
 			<%@ include file="../../common/header.jsp" %>
@@ -38,15 +38,57 @@
 			<!-- 컨텐츠 시작 -->
 			<!-- SID : COM000 -->
 			<div id="content" class="sub"><!-- [D] main / sub-main / sub && pagd name -->
-				
-				<h2 class="article-title ta-c">후기 수정</h2>
+				<div class="pack-down-center gap-20">
+					<h2 class="page-title ta-c">후기 작성</h2>
+
+					<a href="${path}/drug_detailAction.do?dr_id=${dto.dr_id}" class="item pack-left r4">
+						<div class="img-wrap s48">
+							<c:choose>
+					            <c:when test="${fn:contains(dto.dr_sungsang, '분말')}">
+					                <img src="${path}/resources/images/drug_type/01.png" alt="분말">
+					            </c:when>
+					
+					            <c:when test="${fn:contains(dto.dr_sungsang, '원형캡슐')}">
+					                <img src="${path}/resources/images/drug_type/02.png" alt="원형캡슐">
+					            </c:when>
+					
+					            <c:when test="${fn:contains(dto.dr_sungsang, '원형정제')}">
+					                <img src="${path}/resources/images/drug_type/03.png" alt="원형정제">
+					            </c:when>
+					
+					            <c:when test="${fn:contains(dto.dr_sungsang, '제피정제')}">
+					                <img src="${path}/resources/images/drug_type/04.png" alt="제피정제">
+					            </c:when>
+					            
+					            <c:when test="${fn:contains(dto.dr_sungsang, '젤리')}">
+					                <img src="${path}/resources/images/drug_type/05.png" alt="젤리">
+					            </c:when>
+					            
+					            <c:when test="${fn:contains(dto.dr_sungsang, '액상')}">
+					                <img src="${path}/resources/images/drug_type/06.png" alt="유동성 액체">
+					            </c:when>
+					            
+					            <c:when test="${fn:contains(dto.dr_sungsang, '경질캡슐')}">
+					                <img src="${path}/resources/images/drug_type/07.png" alt="경질캡슐">
+					            </c:when>
+					
+					            <c:otherwise>
+					                <img src="${path}/resources/images/drug_type/03.png" alt="정제">
+					            </c:otherwise>
+					        </c:choose>
+						</div>
+					
+						<p class="fc-dark-gray">${dto.dr_product}</p><!-- 민진 -->
+					</a><!-- .item.pack-left -->
+				</div>
 				
 				<!-- 수정 폼 -->
 				<form action="${path}/myReviewUpdate.do" method="post">
 					<input type="hidden" name="rv_id" value="${dto.rv_id}"/>
-					
+					<fieldset class="pack-down gap-16">
+					<legend class="blind">${dto.dr_id} 후기작성폼</legend>
 					<!-- 별점 -->
-			        <div class="rating r4">
+					<div class="rating r4">
 		            	<input type="radio" name="rv_rating" id="rating5" value="5" <c:if test="${dto.rv_rating == 5}">checked</c:if> />
 						<label for="rating5"></label>
 						<input type="radio" name="rv_rating" id="rating4" value="4" <c:if test="${dto.rv_rating == 4}">checked</c:if> />
@@ -75,9 +117,10 @@
 			
 					<!-- 버튼 -->
 					<div class="button-area pack-center">
-						<button type="submit" class="btn blue medium">저장</button>
-						<a class="btn bdr-blue medium" href="myReviewList.do">목록</a>
+						<button type="submit" class="btn black medium r-full">저장</button>
 			   		</div>
+			   		
+			   		</fieldset>
 			    </form>
 			    
 				

@@ -22,6 +22,9 @@
 <script src="${path}/resources/js/yaksok.js" defer></script>
 <script>
 $(document).ready(function() {
+	//내비게이션 선택
+	nav.current(2);
+	
     $(".add-btn").click(function() {
         var dr_id = $(this).data("drid"); // 버튼의 data-drid 가져오기
 
@@ -43,7 +46,7 @@ $(document).ready(function() {
 });
 </script>
 <style>
-.detail-btns .btn{width: 25%}
+.detail-btns .btn{width: 28%}
 .tabs.line {margin-bottom: 0}
 .pack-down.gap-20.fc-body {padding-top: 24px;}
 dl.pack-left-top dt{width: 80px; color: var(--dark-gray);}
@@ -52,7 +55,8 @@ dl.pack-left-top dd{width: 100%;}
 .data-content{padding: 40px;}
 
 .img-wrap.s100{width: 100%; max-width: 375px; margin: 0 auto;}
-.rv-list{padding: 0 20px;}
+.tabs.line{margin-top: 20px;}
+.rv-list{padding: 0 .75rem;}
 </style>
 </head>
 <body>

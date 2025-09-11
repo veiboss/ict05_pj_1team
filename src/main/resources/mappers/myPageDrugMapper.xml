@@ -31,4 +31,24 @@
 		DELETE FROM MEMBER_DRUG_TB
 		  WHERE dr_id = #{dr_id}
 	</delete>
+	
+	<!-- 약별 복용 회원수 TOP5 -->
+    <select id="selectTop5Drugs" resultType="map">
+        SELECT DR_ID,
+               MBD_DRUG_NAME,
+               DR_SUNGSANG,
+               CNT_MEMBER
+        FROM (
+            SELECT dt.DR_ID,
+                   mdt.MBD_DRUG_NAME,
+                   dt.DR_SUNGSANG,
+                   COUNT(DISTINCT mdt.MB_ID) AS CNT_MEMBER
+            FROM MEMBER_DRUG_TB mdt
+            JOIN DRUG_TB dt
+              ON dt.DR_ID = mdt.DR_ID
+            GROUP BY dt.DR_ID, mdt.MBD_DRUG_NAME, dt.DR_SUNGSANG
+            ORDER BY COUNT(DISTINCT mdt.MB_ID) DESC
+        )
+        WHERE ROWNUM &lt;= 5
+    </select>
 </mapper>

@@ -40,7 +40,7 @@
 			
 			<div class="title-bar">
 				<div class="pack-left">
-					<h2 class="page-title ellipsis">회원 등록</h2>
+					<h2 class="page-title ellipsis">회원 정보 수정</h2>
 				</div>
 			</div>
 			

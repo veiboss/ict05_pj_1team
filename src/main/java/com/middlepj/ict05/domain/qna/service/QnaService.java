@@ -96,7 +96,12 @@ public class QnaService {
 		String sessionID = sessionIdObj != null ? sessionIdObj.toString():null;
 		
 		QnaDto dto = new QnaDto();
-		dto.setDr_id(form.getDr_id());
+		if (form.getDr_id() != null) {
+		    int drId = form.getDr_id();
+			dto.setDr_id(form.getDr_id());
+		} else {
+			dto.setDr_id(0);			
+		}
 		dto.setQa_title(form.getQa_title());
 		dto.setQa_content(form.getQa_content());
 		dto.setQa_private(form.getQa_private());
@@ -116,9 +121,13 @@ public class QnaService {
 	}
 
 	public QnaDto answerQna(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Object sessionIdObj = session.getAttribute("sessionID");
+		String sessionID = sessionIdObj != null ? sessionIdObj.toString():null;
+
 		QnaAnswer answer = new QnaAnswer();
 		answer.setQa_id(Integer.parseInt(request.getParameter("qa_id")));
-		answer.setMb_id(1);
+		answer.setMb_id(Integer.parseInt(sessionID));
 		answer.setQa_answer(request.getParameter("qa_answer"));
 
 		dao.answerQna(answer);

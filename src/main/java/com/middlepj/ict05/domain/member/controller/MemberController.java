@@ -15,19 +15,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.middlepj.ict05.domain.member.service.MemberService;
+import com.middlepj.ict05.domain.mypage.mypagesurvey.service.MypageSurveyService;
 
 @Controller
 public class MemberController {
 
 	@Autowired
 	private MemberService service;
-
+	
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 
 	@RequestMapping("/main.do")
-	public String main() {
+	public String main(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException {
 		logger.info("<<< url ==>  /main.do >>>");
-
+		service.recentSurveyList(request, response, model);
+		service.top5Drugs(request, response, model);
 		return "common/main";
 	}
 

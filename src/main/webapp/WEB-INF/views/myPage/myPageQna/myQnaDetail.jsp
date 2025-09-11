@@ -28,7 +28,7 @@
 		<%@ include file="../../common/pc_left.jsp" %>
 		<!-- PC 컨텐츠 끝 -->
 		
-		<div id="container" class="">
+		<div id="container" class="lines">
 		<!-- [D] HEADER VIEW :  no class /.lines(2) / .only-back(1) / .only-close(1) -->
 			<!-- header 시각 -->
 			<%@ include file="../../common/header.jsp" %>
@@ -39,50 +39,56 @@
 			<!-- SID : COM000 -->
 			<div id="content" class="sub"><!-- [D] main / sub-main / sub && pagd name -->
 				
-				<h2 class="article-title ta-c">Q&A 수정</h2>
+				<h2 class="page-title ta-c">Q&amp;A 수정</h2>
 				
 				<!-- 수정 폼 -->
 				<form action="${path}/myQnaUpdate.do" method="post">
-					<input type="hidden" name="qa_id" value="${dto.qa_id}"/>
-					
-					<!-- 제목 -->
-			        <div class="">
-		            	<textarea name="qa_title" class="textarea"><c:out value="${dto.qa_title}"/></textarea>
-			        </div>
-
-
-					<!-- 내용 -->
-			        <div class="">
-			            <textarea name="qa_content" class="textarea"><c:out value="${
-								      fn:replace(
-								        fn:replace(
-								          fn:replace(
-								            fn:replace(fn:replace(dto.qa_content,'<p>',''),'</p>',''),
-								          '<br/>',''),
-								        '<br />',''),
-								      '<br>','')}"/>
-						</textarea>
-			        </div>
-			        <div class="field col">
-						<span class="label medium">비밀글 여부</span>
-						<div class="insert pack-left">
-							<label>
-								<input type="radio" class="radio" name="qa_private" value="N" 
-									<c:if test="${fn:trim(dto.qa_private) == 'N'}">checked="checked"</c:if> />
-								  	공개
-							</label>
-							<label>
-								<input type="radio" class="radio" name="qa_private" value="Y" 
-									<c:if test="${fn:trim(dto.qa_private) == 'Y'}">checked="checked"</c:if> />
-								  	 비밀글
-							</label>
-						</div>
-					</div>
-					<!-- 버튼 -->
-					<div class="button-area pack-center">
-						<button type="submit" class="btn blue medium">수정</button>
-						<a class="btn bdr-blue medium" href="myQnaList.do">목록</a>
-			   		</div>
+					<fieldset class="pack-down gap-24">
+					<legend class="blind">${dto.qa_id} 후기작성폼</legend>
+						<input type="hidden" name="qa_id" value="${dto.qa_id}"/>
+						
+						<!-- 제목 -->
+						<p class="pack-down gap-4">
+							<span class="fc-body">제목</span>
+							<input type="text" class="input-text" name="qa_title" value="${dto.qa_title}"/>
+						</p>
+	
+						<!-- 내용 -->
+						<p class="pack-down gap-4">
+							<span class="fc-body">내용</span>
+				            <textarea name="qa_content" class="textarea"><c:out value="${
+									      fn:replace(
+									        fn:replace(
+									          fn:replace(
+									            fn:replace(fn:replace(dto.qa_content,'<p>',''),'</p>',''),
+									          '<br/>',''),
+									        '<br />',''),
+									      '<br>','')}"/>
+							</textarea>
+				        </p>
+				        
+				        <p class="pack-left gap-40">
+							<span class="fc-body" >비밀글 여부</span>
+							<span class="pack-left gap-40">
+								<label class="pack-left gap-4">
+									<input type="radio" class="radio" name="qa_private" value="N" 
+										<c:if test="${fn:trim(dto.qa_private) == 'N'}">checked="checked"</c:if> />
+									  	공개
+								</label>
+								<label class="pack-left gap-4">
+									<input type="radio" class="radio" name="qa_private" value="Y" 
+										<c:if test="${fn:trim(dto.qa_private) == 'Y'}">checked="checked"</c:if> />
+									  	 비밀글
+								</label>
+							</span>
+						</p>
+						
+						<!-- 버튼 -->
+						<div class="button-area pack-center">
+							<button type="submit" class="btn black medium r-full">수정</button>
+							<a class="btn bdr-gray medium r-full" href="myQnaList.do">목록</a>
+				   		</div>
+					</fieldset>
 			    </form>
 				
 			</div><!-- // #content -->

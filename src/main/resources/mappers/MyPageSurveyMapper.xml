@@ -88,12 +88,31 @@
 		ORDER BY DR_ID
 	</select>
 	<!-- 최근 설문 목록 -->
-	<select id="selectSurvey">
+	<select id="selectSurvey" parameterType="int" resultType="com.middlepj.ict05.domain.mypage.mypagesurvey.dto.MypageSurveyDTO">
 		SELECT MBS_ID
 			 , MBS_SCORE
 			 , MBS_SERVEY_DATE
 		  FROM MEMBER_SURVEY_TB 
 		 WHERE MB_ID = #{sessionID}
 		 ORDER BY MBS_SERVEY_DATE DESC
+	</select>
+	<!-- 메인페이지 설문 점수 10개 -->
+	<select id="surveyList" resultType="map">
+	    SELECT MB_ID, MBS_SCORE, SUBSTR(MB_NAME, 1, 1) || '**' AS MB_NAME, MBS_SERVEY_DATE
+	    FROM (
+	        SELECT t.*, ROWNUM rnum
+	        FROM (
+	            SELECT mst.MB_ID       AS MB_ID,
+	                   mst.MBS_SCORE   AS MBS_SCORE,
+	                   mt.MB_NAME      AS MB_NAME,
+	                   mst.MBS_SERVEY_DATE AS MBS_SERVEY_DATE
+	            FROM MEMBER_SURVEY_TB mst
+	            JOIN MEMBER_TB mt
+	              ON mst.MB_ID = mt.MB_ID
+	            ORDER BY mst.MBS_SERVEY_DATE DESC
+	        ) t
+	        WHERE ROWNUM &lt;= 10
+	    )
+	    ORDER BY rnum
 	</select>
 </mapper> 

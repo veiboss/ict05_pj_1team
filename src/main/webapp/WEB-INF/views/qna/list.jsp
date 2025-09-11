@@ -14,6 +14,12 @@
     <link rel="stylesheet" href="${path}/resources/css/yaksok.css">
     <script src="${path}/resources/js/lib/aos.js" defer></script>
     <script src="${path}/resources/js/yaksok.js" defer></script>
+	<script>
+		$(function() {
+			// 내비게이션 선택
+			nav.current(3);
+		});
+	</script>
 </head>
 <body>
 <div id="wrap" class="wrap">

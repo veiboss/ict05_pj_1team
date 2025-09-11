@@ -26,6 +26,12 @@
 <!-- defer : html을 다 읽은 후에 자바스크립트를 실행한다. 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행된다. -->
 <script src="${path}/resources/js/lib/aos.js" defer></script>
 <script src="${path}/resources/js/yaksok.js" defer></script>
+<script>
+	$(function() {
+		// 내비게이션 선택
+		nav.current(4);
+	});
+</script>
 </head>
 <body>
 	<div id="wrap" class="wrap">
@@ -43,7 +49,7 @@
 			<!-- SID : PL20 -->
 			<div id="content" class="pl20"><!-- [D] main / sub-main / sub && pagd name -->
 				<div class="header-line pack-both" style="display:flex; gap:10px;">
-					<h3 class="page-title">내 약 목록</h3>
+					<h3 class="page-title">내 약</h3>
 
 					<a href="drug_list.do" class="btn black small r-full">내 영양제 추가</a>
 				</div>
