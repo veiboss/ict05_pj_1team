@@ -36,9 +36,8 @@ $(document).ready(function() {
 </script>
 
 	<p class="total fc-body fw-500">
-		총 
 		<c:if test="${total > 0}">
-			<span class="count fc-blue">${total}</span>
+			총 <span class="count fc-blue">${total}</span>
 		</c:if>
 	</p>
 	
@@ -108,7 +107,9 @@ $(document).ready(function() {
 	    </c:forEach>
 		</ul>
 		
+			<c:if test="${total > 0}">
 			<div class="pagination">
+			
 			    <!-- 이전 버튼 -->
 			    <c:if test="${paging.startPage > paging.pageBlock}">
 			        <a href="${path}/drug_list.do?pageNum=${paging.prev}" class="btn prev page-link" data-page="${paging.prev}">
@@ -132,6 +133,7 @@ $(document).ready(function() {
 			        </a>
 			    </c:if>
 			</div>
+			</c:if>
 		</div><!-- .section.list-wrap -->
 		<!-- === Chatbot Widget === -->
 		<%@ include file="../common/chat-widget.jspf" %>
