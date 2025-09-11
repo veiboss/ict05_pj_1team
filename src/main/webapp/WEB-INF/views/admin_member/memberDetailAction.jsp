@@ -119,7 +119,7 @@
 									</div>
 								</div>
 								
-								<c:if test="${dto.mb_modify_date} != ''">
+								<c:if test="${!empty dto.mb_modify_id}">
 									<div class="field col pack-down">
 										<label class="label medium required" for="regDate">관리자 수정정보</label>
 										<div class="insert">
