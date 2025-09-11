@@ -211,16 +211,33 @@ public class DrugServiceImpl implements DrugService{
 	    dto.setMb_id((Integer) session.getAttribute("sessionID"));
 	    
 	    // dr_id - null 체크
-	    Integer dr_id = Integer.parseInt(request.getParameter("dr_id"));
-	    if (dr_id != null) {
-	    	dto.setDr_id(dr_id);
+	    Integer dr_id = null;
+	    try {
+	        dr_id = Integer.parseInt(request.getParameter("dr_id"));
+	        dto.setDr_id(dr_id);
+	    } catch (NumberFormatException e) {
+	        System.out.println("❗ dr_id 파라미터 오류");
+	        model.addAttribute("insertCnt", 0);
+	        return dto;
 	    }
 
 	    // 후기 내용 - null 체크
-	    dto.setRv_content(request.getParameter("rv_content"));
-	    if(dto.getRv_content() == null || dto.getRv_content().trim().isEmpty()) {
-	        dto.setRv_content("내용 없음");
+	    String rv_content = request.getParameter("rv_content");
+	    if (rv_content == null || rv_content.trim().isEmpty()) {
+	        System.out.println("리뷰 내용이 비어 있음. 저장 안 함.");
+	        
+	        // 약 정보 조회 후 dto에 세팅
+		    DrugReviewDTO drugInfo = dao.reviewImg(dto);
+		    if (drugInfo != null) {
+		        dto.setDr_product(drugInfo.getDr_product());
+		        dto.setDr_sungsang(drugInfo.getDr_sungsang());
+		    }
+	        
+	        model.addAttribute("insertCnt", 0);
+	        model.addAttribute("dr_id", dr_id);
+	        return dto;
 	    }
+	    dto.setRv_content(rv_content.trim());
 	    
 	    // 회원 이름 - null 체크
 	    String mb_name = String.valueOf(session.getAttribute("sessionName")); 
@@ -229,7 +246,11 @@ public class DrugServiceImpl implements DrugService{
 	    // 별점 - null 체크
 	    String rv_rating = request.getParameter("rv_rating");
 	    if (rv_rating != null && !rv_rating.isEmpty()) {
-	        dto.setRv_rating(Integer.parseInt(rv_rating));
+	        try {
+	            dto.setRv_rating(Integer.parseInt(rv_rating));
+	        } catch (NumberFormatException e) {
+	            System.out.println("❗ 별점 숫자 파싱 오류");
+	        }
 	    }
 
 	    Map<String, Object> map = new HashMap<String, Object>();
@@ -245,14 +266,13 @@ public class DrugServiceImpl implements DrugService{
 		map.put("start", start);
 		map.put("end", end);
 
-	    int insertCnt = dao.insertReview(dto);
-	    
-	    // 약 정보 조회 후 dto에 세팅
-	    DrugReviewDTO drugInfo = dao.reviewImg(dto);
-	    if (drugInfo != null) {
-	        dto.setDr_product(drugInfo.getDr_product());
-	        dto.setDr_sungsang(drugInfo.getDr_sungsang());
-	    }
+		// 내용 비어있으면 insert 실행 안되게
+		int insertCnt = 0;
+		if (dto.getRv_content() != null && !dto.getRv_content().trim().isEmpty()) {
+		    insertCnt = dao.insertReview(dto);
+		} else {
+		    System.out.println("리뷰 내용이 비어 있음. 저장하지 않음.");
+		}
 
 	    model.addAttribute("paging", paging);
 	    model.addAttribute("insertCnt", insertCnt);
