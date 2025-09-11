@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ include file="../../common/setting.jsp" %>
+<%@ include file="../../common/setting.jsp" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -161,6 +162,10 @@
 							<!-- 앵커로 전체 감싸지 말고 div로 -->
 							<div class="item normal">
 								<div class="pack-down">
+								
+									<span class="fc-gray">
+								        	<fmt:formatDate value="${dto.qa_reg_date}" pattern="yyyy-MM-dd"/>
+								    </span>
 									<!-- 제목 -->
 									<p class="item-title">
 										<c:if test="${fn:trim(dto.qa_private) == 'Y'}"><span class="fc-gray">비밀글</span></c:if>
@@ -188,6 +193,9 @@
 								
 								<!-- 전문가 답변 시작 -->
 								<div class="pack-down-right expert-wrap">
+									<p class="fc-gray">
+										<fmt:formatDate value="${dto.qa_answer_date}" pattern="yyyy-MM-dd"/>
+									</p>
 									<p id="ans-text-${dto.qa_id}" class="fc-body fs-16">
 										<c:out value="${
 									      fn:replace(

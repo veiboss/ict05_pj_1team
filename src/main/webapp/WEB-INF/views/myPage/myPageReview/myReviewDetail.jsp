@@ -93,6 +93,7 @@
 				<form action="${path}/myReviewUpdate.do" method="post">
 					<input type="hidden" name="rv_id" value="${dto.rv_id}"/>
 					<input type="hidden" name="dr_id" value="${dto.dr_id}"/>
+					<input type="hidden" name="pageNum" value="${param.pageNum != null ? param.pageNum : 1}"/>
 					<fieldset class="pack-down gap-16">
 					<legend class="blind">${dto.dr_id} 후기작성폼</legend>
 					<!-- 별점 -->

@@ -55,10 +55,14 @@ private static final Logger logger = LoggerFactory.getLogger(MyReviewController.
 			throws ServletException, IOException {
 		logger.info("<<< url ==> /myReviewUpdate.do >>>");
 		
+		// 업데이트 처리
 		service.reviewUpdateAction(request, response, model);
 		
-		return "myPage/myPageReview/myReviewDetail";
-	
+		 String pageNum = request.getParameter("pageNum");
+		 String pn = (pageNum == null || pageNum.isBlank()) ? "1" : pageNum;
+
+		 // 저장 후 목록으로
+		 return "redirect:/myReviewList.do?pageNum=" + pn;
 	}
 	
 	// 3. 게시글 삭제 버튼 클릭시 - 삭제 (안보임처리)
