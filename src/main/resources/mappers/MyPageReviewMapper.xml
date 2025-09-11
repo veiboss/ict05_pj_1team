@@ -44,11 +44,16 @@
 
 <!-- 수정버튼 클릭시 - 수정페이지로 이동 -->
 <select id="reviewDetail" parameterType="int" resultType="com.middlepj.ict05.domain.mypage.mypagereview.dto.MyReviewDTO">
-	SELECT rv_rating
-		 , rv_id
-		 , rv_content
-		 , rv_show
-	  FROM REVIEW_TB
+	SELECT r.rv_rating
+		 , r.rv_id
+		 , r.rv_content
+		 , r.rv_show
+		 , d.dr_id
+		 , d.dr_product
+		 , d.dr_sungsang
+	  FROM REVIEW_TB r
+	  JOIN DRUG_TB d
+	    ON d.dr_id = r.dr_id
 	 WHERE rv_id = #{rv_id}
 </select> 
 
@@ -67,13 +72,5 @@
        SET rv_show = 'N'
      WHERE rv_id = #{rv_id}
 </update> 
- 
-<!-- 후기 수정 - 약 이미지, 이름 가져오기 -->
-<select id="reviewImg" parameterType="com.middlepj.ict05.domain.mypage.mypagereview.dto.MyReviewDTO" resultType="com.middlepj.ict05.domain.mypage.mypagereview.dto.MyReviewDTO">
-	SELECT dr_product
-		 , dr_sungsang
-      FROM DRUG_TB
-     WHERE dr_id = #{dr_id}
-</select>
 
 </mapper> 

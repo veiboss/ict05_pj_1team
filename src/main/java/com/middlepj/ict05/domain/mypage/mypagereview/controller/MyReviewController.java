@@ -43,8 +43,7 @@ private static final Logger logger = LoggerFactory.getLogger(MyReviewController.
 			throws ServletException, IOException {
 		logger.info("<<< url ==> /myReviewDetail.do >>>");
 		
-		MyReviewDTO dto = service.reviewUpdateAction(request, response, model);
-	    model.addAttribute("dto", dto);
+		service.reviewDetailAction(request, response, model);
 		
 		return "myPage/myPageReview/myReviewDetail";
 	
@@ -56,10 +55,7 @@ private static final Logger logger = LoggerFactory.getLogger(MyReviewController.
 			throws ServletException, IOException {
 		logger.info("<<< url ==> /myReviewUpdate.do >>>");
 		
-		MyReviewDTO dto = service.reviewUpdateAction(request, response, model);
-	    model.addAttribute("dto", dto);
-		
-		//service.reviewUpdateAction(request, response, model);
+		service.reviewUpdateAction(request, response, model);
 		
 		return "myPage/myPageReview/myReviewDetail";
 	
