@@ -8,7 +8,11 @@
 <body>
 		<!-- menu 시각 -->
 		<aside id="aside" class="aside">
-			<h1><img src="${path}/resources/images/logo/finger@2x.png" class="logo" alt="TeamOne"></h1>
+			<h1>
+				<a href="${path}/main.do">
+					<img src="${path}/resources/images/logo/finger@2x.png" class="logo" alt="TeamOne">
+				</a>
+			</h1>
 			<nav id="nav" class="aside-nav">
 				<ul>
 					<!-- 단일 메뉴  -->

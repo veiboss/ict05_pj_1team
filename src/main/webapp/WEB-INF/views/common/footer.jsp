@@ -3,8 +3,12 @@
 <!-- footer 시작 -->
 <footer id="footer" class="footer">
 	<div class="footer-menu">
-		<a href="#" class="btn transparent">약속 소개</a>
 		<a href="faq_user_list.fc" class="btn transparent">FAQ</a>
+		
+		<c:if test="${sessionID != null and sessionGrade == 'ADMIN'}">
+			<a href="login.ad" class="btn transparent">약속 관리자</a>
+		</c:if>
+		
 	</div>
 	<div class="com-info">
 		<p>YAKSOK</p>
