@@ -117,16 +117,16 @@
 					</h3>
 					<div class="pack-down">
 						<a href="MA20" class="btn transparent">
-							<span class="fs-18">내설문목록</span>
+							<span class="fs-18">내 설문</span>
 						</a>
 						<a href="myPageDrugList.do" class="btn transparent">
-							<span class="fs-18">내약목록</span>
+							<span class="fs-18">내 약</span>
 						</a>
 						<a href="myReviewList.do" class="btn transparent">
-							<span class="fs-18">내가쓴후기목록</span>
+							<span class="fs-18">내가 쓴 후기</span>
 						</a>
 						<a href="myQnaList.do" class="btn transparent">
-							<span class="fs-18">내가쓴qna</span>
+							<span class="fs-18">내가 쓴 Q&amp;A</span>
 						</a>
 
 					</div>

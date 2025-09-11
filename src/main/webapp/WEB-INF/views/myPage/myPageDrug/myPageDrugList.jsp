@@ -49,7 +49,7 @@
 			<!-- SID : PL20 -->
 			<div id="content" class="pl20"><!-- [D] main / sub-main / sub && pagd name -->
 				<div class="header-line pack-both" style="display:flex; gap:10px;">
-					<h3 class="page-title">내 약 목록</h3>
+					<h3 class="page-title">내 약</h3>
 
 					<a href="drug_list.do" class="btn black small r-full">내 영양제 추가</a>
 				</div>

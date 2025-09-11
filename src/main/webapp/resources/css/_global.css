@@ -772,11 +772,8 @@ scale(
 [class*="pack-"].col-3.gap-40 li[class*="pack-"] {
 	width: calc(( 100% - ( 40px * 2))/3);
 }
-@media all and (max-width: 768px) {
-	[class*="pack-"].col-3.gap-40 {
-		--gap: 12px;
-	}	
-}
+
+
 /* tabs */
 .tabs {
 	display: flex;

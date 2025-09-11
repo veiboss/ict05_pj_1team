@@ -46,7 +46,7 @@ function delReview(id){
 			<!-- 컨텐츠 시작 -->
 			<!-- SID : COM000 -->
 			<div id="content" class="sub"><!-- [D] main / sub-main / sub && pagd name -->
-				<h1 class="page-title">내가 쓴 후기 목록</h1>
+				<h1 class="page-title">내가 쓴 후기</h1>
 				
 				<p class="total fc-body fw-500">
 					총
