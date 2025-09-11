@@ -73,7 +73,7 @@
 								</div>
 								
 								<div class="field col pack-down">
-									<span class="label medium">회원등급</span>
+									<span class="label medium">노출여부</span>
 									<div class="insert pack-left">
 										<label class="pack-left">
 											<input type="radio" class="radio" name="fa_show"value="Y" <c:if test="${dto.fa_show eq 'Y'}"> checked </c:if>>

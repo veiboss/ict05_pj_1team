@@ -24,50 +24,6 @@ function confirmId(){
 	}
 }
 
-// 아이디 중복확인 버튼 클릭시
-// 1. 아이디 중복확인 페이지 open
-function emailChk() {
-	var inputEmail = document.joinform.mb_email;
-	
-	if(!inputEmail.value){
-		alert("가입할 이메일을 입력해주세요!");
-		inputEmail.focus();
-		return false;
-	} else {
-		if(!inputEmail.value.includes("@")){
-			alert("이메일 형식에 맞춰 입력해주세요!");
-		} else {
-			// 중복확인 버튼 클릭시 컨트롤러로 url을 전달, 컨트롤러에 소스 추가
-			// do로 컨트롤러 이동
-			modalOpen('#alertSignIn');
-			let url = `${ctx}/emailCheckAction.do?mb_email=${encodeURIComponent(inputEmail.value)}`;
-			load(url);
-		}
-	}
-}
-
-// 팝업안에 url 로딩
-function load(url) {
-	alert("load~~");
-	sendRequest(loadPop_callback, url, "post", "");
-}
-
-function loadPop_callback(){
-	let result = document.getElementById("emailCheckWrap");
-	if(httpRequest.readyState == 4) {	//4 : completed = > 전체 데이터 취득 완료
-		if(httpRequest.status == 200) {		//200 : 정상종료
-			// 6-1. 응답결과가 html이면 responseText로 받고, xml이면 responseXML로 받는다.
-			result.innerHTML = httpRequest.responseText;
-		} 
-		else {
-			result.innerHTML = "state 상태:" + httpRequest.status;
-		}
-	}
-	else {
-		result.innerHTML = "readyState 상태:" + httpRequest.readyState;
-	}
-}
-
 // 2. join.jsp - onsubmit시 - 회원가입페이지 필수 체크
 function signUpCheck() {
 	// 2-1. 중복 확인 버튼 체크
@@ -89,7 +45,18 @@ function signUpCheck() {
 		return false;
 	}
 	
-} 
+	// 비밀번호 조건 체크 (영문, 숫자, 특수문자 포함 8자 이상)
+	var password = document.joinform.mb_password.value;
+	var passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+	
+	if (!passwordPattern.test(password)) {
+		alert("비밀번호는 영문, 숫자, 특수문자를 포함하여 8자 이상이어야 합니다.");
+		document.joinform.mb_password.value = "";
+		document.joinform.mb_password.focus();
+		return false;
+	}
+	
+}
 
 // 3. 사용가능한 id를 찾은 경우 = 자식창에서 부모창으로 userid값을 전달
 /*

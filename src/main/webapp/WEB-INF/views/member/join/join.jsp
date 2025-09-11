@@ -40,7 +40,7 @@
 			<div id="content" class="sub si20"><!-- [D] main / sub-main / sub && pagd name -->
 			
 				<form class="join-form" name="joinform" action="joinAction.do" method="post" onsubmit="return signUpCheck()">
-					<fieldset class="pack-down-center">
+					<fieldset class="pack-down">
 						<legend class="article-title">회원가입</legend>
 						<!-- 2-1. 중복 확인 버튼 안 눌렸을 때 0으로 설정-->
 						<input type="hidden" name="hidden_mb_email" value="0">
@@ -76,8 +76,8 @@
 							</label>
 						</div>
 
-						<div class="button-area flex-center">
-							<input type="submit" class="btn black medium r4" value="가입">
+						<div class="button-area">
+							<input type="submit" class="btn black large r-full" value="가입">
 						</div>
 					</fieldset>
 				</form>

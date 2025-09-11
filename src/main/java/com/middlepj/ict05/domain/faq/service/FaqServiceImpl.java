@@ -157,7 +157,7 @@ public class FaqServiceImpl implements FaqService {
 	@Override
 	public void faqDetailAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
-		System.out.println("FaqServiceImpl - faqInsertAction()");
+		System.out.println("FaqServiceImpl - faqDetailAction()");
 		
 		int fa_id = Integer.parseInt(request.getParameter("fa_id"));
 		FaqDTO dto;

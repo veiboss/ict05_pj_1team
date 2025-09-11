@@ -39,7 +39,7 @@
 						<input type="email" class="input-text" name="mb_email" id="emailAddress" placeholder="이메일 입력"  style="min-width: 280px;">
 						
 						<div class="button-area pack-center">
-							<button type="submit" class="btn bdr-blue medium r4">중복확인</button>
+							<button type="submit" class="btn bdr-blue medium r-full">중복확인</button>
 						</div>
 					</div>
 				</div>
