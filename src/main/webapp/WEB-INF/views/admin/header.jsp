@@ -19,8 +19,7 @@
 
 			<div>
 				<div class="user">
-				
-					<c:if test="${sessionID != null}">
+					<c:if test="${sessionID != null and sessionGrade == 'ADMIN'}">
 						<ul>
 							<li>
 								<button type="button" class="btn btn-toggle">
@@ -50,10 +49,13 @@
 					</c:if>
 					
 					<c:if test="${sessionID == null}">
-						<a href="${path}/login.ad" class="btn">
+						<script type="text/javascript">
+							alert("관리자 로그인 페이지로 이동합니다.");
+							window.location = "${path}/login.ad";
+						</script>
+						<%-- <a href="${path}/login.ad" class="btn">
 							<span>로그인 필요</span>
-							<img src="https://img.imbc.com/adams/Program/20237/133342330004430266.jpg" alt="{user name}" class="img profile">
-						</a>
+						</a> --%>
 					</c:if>
 				</div>
 			</div><!-- #header > div : right-->
