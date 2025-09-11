@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../common/setting.jsp" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -108,11 +109,8 @@ function delReview(id){
 										</div><!-- //.img-wrap -->
 										
 										<div class="data-content pack-down">
-											<!-- 상품명 -->
-											<p class="small-title"><c:out value="${dto.dr_product}"/></p>
-											
 											<!-- 별점 (여분의 > 제거) -->
-											<p class="pack-left" aria-label="별점">
+											<p class="pack-both" aria-label="별점">
 												<span class="star-score">
 													<c:forEach begin="1" end="${dto.rv_rating}">
 								                		<i class="ico star small active"><span>★</span></i>
@@ -121,7 +119,13 @@ function delReview(id){
 								                		<i class="ico star small"><span>☆</span></i>
 								                	</c:forEach>
 							                	</span>
+								                <span class="fc-gray">
+								                	<fmt:formatDate value="${dto.rv_reg_date}" pattern="yyyy-MM-dd"/>
+								                </span>
 							                </p>
+							                
+											<!-- 상품명 -->
+											<p class="small-title"><c:out value="${dto.dr_product}"/></p>
 							            
 								            <!-- 내용 -->
 											<p class="fc-dark-gray ">
@@ -139,11 +143,11 @@ function delReview(id){
 											<p class="pack-both">
 												<span></span>
 												<span>
-													<a class="btn blue small color1 r4"
+													<a class="btn blue xsmall color1 r4"
 														href="${path}/myReviewDetail.do?rv_id=${dto.rv_id}">
 														수정
 													</a>
-													<button type="button" class="btn bdr-blue small color1 r4"
+													<button type="button" class="btn bdr-blue xsmall color1 r4"
 														onclick="delReview(${dto.rv_id})">
 														삭제
 													</button>
