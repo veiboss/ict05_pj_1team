@@ -138,12 +138,14 @@
 			<div id="content" class="sub"><!-- [D] main / sub-main / sub && pagd name -->
 				<h2 class="page-title">내가 쓴 Q&amp;A</h2>
 				
+				<c:if test="${not empty list}">
 				<p class="total fc-body fw-500">
 					총
 					<c:if test="${total > 0}"> 
 						<span class="count fc-blue">${total}</span>
 					 </c:if> 
 				</p>
+				</c:if>
 
 				<c:if test="${empty list}">
 					<div class="nodata-box">
