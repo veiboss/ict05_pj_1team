@@ -121,9 +121,13 @@ public class QnaService {
 	}
 
 	public QnaDto answerQna(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Object sessionIdObj = session.getAttribute("sessionID");
+		String sessionID = sessionIdObj != null ? sessionIdObj.toString():null;
+
 		QnaAnswer answer = new QnaAnswer();
 		answer.setQa_id(Integer.parseInt(request.getParameter("qa_id")));
-		answer.setMb_id(1);
+		answer.setMb_id(Integer.parseInt(sessionID));
 		answer.setQa_answer(request.getParameter("qa_answer"));
 
 		dao.answerQna(answer);
