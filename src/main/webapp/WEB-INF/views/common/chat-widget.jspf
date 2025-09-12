@@ -24,6 +24,26 @@
 		<span class="cw-toggle-title">자주 묻는 질문이에요!</span>
 		<span id="cw-toggle-caret" class="cw-caret"><i class="ico accordion"></i></span>
 	</button>
+	
+	<!-- 예시: memberId가 세션에서 JSP EL로 접근된다면 -->
+	<button type="button" onclick="checkMyInteractions()">내 약 상호작용 확인</button>
+	<script>
+	async function checkMyInteractions(){
+	  try{
+	    const res = await fetch('<c:url value="/chat/check-interactions"/>');
+	    const data = await res.json();
+	    if (data.error && data.code === 'LOGIN_REQUIRED') {
+	      alert('로그인이 필요합니다.');
+	      return;
+	    }
+	    cwAppend('bot', data.summary || '(결과 없음)');
+	  }catch(e){
+	    cwAppend('system', '(상호작용 확인 실패)');
+	  }
+	}
+	</script>
+
+	
 
 	<!-- 추천 질문 (기본: 닫힘) -->
 	<div id="cw-sugs" class="cw-sugs" style="display:none;">로딩 중…</div>
