@@ -18,13 +18,13 @@ import com.middlepj.ict05.domain.home.service.ProfileServiceImpl;
 
 @Controller
 public class ProfileController {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(ProfileController.class);
-	
+
 	@Autowired
 	private ProfileServiceImpl service;
 	
-	// 회원 프로필 내용 등록 페이지
+
 	@RequestMapping("MA10")
 	public String addProfile(HttpServletRequest request, HttpServletResponse response, Model model) 
 			throws ServletException, IOException {
@@ -38,7 +38,7 @@ public class ProfileController {
 		}
 	}
 	
-	// 회원 프로필 내용 등록 처리
+
 	@RequestMapping("MA11")
 	public String addProfileAction(HttpServletRequest request, HttpServletResponse response, Model model) 
 			throws ServletException, IOException {
