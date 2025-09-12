@@ -64,7 +64,11 @@ private static final Logger logger = LoggerFactory.getLogger(MyQnaController.cla
 	
 		 service.qnaUpdateAction(request, response, model);
 		 
-		 return "myPage/myPageQna/myQnaDetail"; 
+		 String pageNum = request.getParameter("pageNum");
+		 String pn = (pageNum == null || pageNum.isBlank()) ? "1" : pageNum;
+
+		 // 저장 후 목록으로
+		 return "redirect:/myQnaList.do?pageNum=" + pn;
 	 
 	 } 
 	

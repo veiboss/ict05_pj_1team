@@ -157,6 +157,11 @@
 				<c:if test="${not empty list}">
 					<div class="list-wrap">
 						<ul class="data-list">
+							
+							<!-- 세션의 로그인 사용자 ID -->
+							<c:set var="loginId" value="${sessionScope.sessionID}" />
+							
+						
 							<c:forEach var="dto" items="${list}">
 							<li>
 							<!-- 앵커로 전체 감싸지 말고 div로 -->
@@ -164,7 +169,7 @@
 								<div class="pack-down">
 								
 									<span class="fc-gray">
-								        	<fmt:formatDate value="${dto.qa_reg_date}" pattern="yyyy-MM-dd"/>
+								        <fmt:formatDate value="${dto.qa_reg_date}" pattern="yyyy-MM-dd"/>
 								    </span>
 									<!-- 제목 -->
 									<p class="item-title">
@@ -182,13 +187,14 @@
 									        '<br />',''),
 									      '<br>','')}"/>
 							 		</p>
-		
-									<p class="pack-left">
-										<a class="btn blue xsmall r4"
-					                  		href="${path}/myQnaDetail.do?qa_id=${dto.qa_id}" >수정</a>
-					                	<button type="button" class="btn bdr-blue xsmall r4"
-					                		onclick="delQna(${dto.qa_id})">삭제</button>
-									</p>
+									<c:if test="${loginId eq dto.qa_writer_id}">
+										<p class="pack-left">
+											<a class="btn blue xsmall r4"
+						                  		href="${path}/myQnaDetail.do?qa_id=${dto.qa_id}" >수정</a>
+						                	<button type="button" class="btn bdr-blue xsmall r4"
+						                		onclick="delQna(${dto.qa_id})">삭제</button>
+										</p>
+									</c:if>
 								</div><!-- 내 QnA 끝 -->
 								
 								<!-- 전문가 답변 시작 -->

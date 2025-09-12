@@ -92,7 +92,6 @@
 						<!-- 버튼 -->
 						<div class="button-area pack-center">
 							<button type="submit" class="btn black medium r-full">수정</button>
-							<a class="btn bdr-gray medium r-full" href="myQnaList.do">목록</a>
 				   		</div>
 					</fieldset>
 			    </form>
