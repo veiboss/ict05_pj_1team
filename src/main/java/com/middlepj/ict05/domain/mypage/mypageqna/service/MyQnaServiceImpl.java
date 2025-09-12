@@ -33,12 +33,20 @@ public class MyQnaServiceImpl implements MyQnaService{
 		int mbId = (int) request.getSession().getAttribute("sessionID");
 		String mbGrade = (String)request.getSession().getAttribute("sessionGrade");
 		
+		// null 방어
+	    if (mbId == null || "null".equals(mbId)) mbId = "";
+	    if (mbGrade == null || "null".equals(mbGrade)) mbGrade = "";
+ 
+	    // ✅ 2) 전문가 여부 플래그
+	    String isExpert = "expert".equalsIgnoreCase(mbGrade) ? "Y" : "N";
+	    
 	    // 갯수 카운트
 		int currentPage = (pageNum == null || pageNum.equals("0")) ? 1 : Integer.parseInt(pageNum);
 	    Paging paging = new Paging(String.valueOf(currentPage));
 
 		Map<String,Object> mapCnt = new HashMap<>();
 		mapCnt.put("mbId", mbId);
+		mapCnt.put("isExpert", isExpert);
 		
 	    int total = dao.listCnt(mapCnt);
 	    

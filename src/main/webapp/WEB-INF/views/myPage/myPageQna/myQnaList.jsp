@@ -199,9 +199,13 @@
 								
 								<!-- 전문가 답변 시작 -->
 								<div class="pack-down-right expert-wrap">
-									<p class="fc-gray">
-										<fmt:formatDate value="${dto.qa_answer_date}" pattern="yyyy-MM-dd"/>
-									</p>
+									<!-- 날짜: 답변 있을 때만 노출 -->
+								    <c:if test="${not empty dto.qa_answer and fn:trim(dto.qa_answer) != ''}">
+								        <p class="fc-gray">
+								            <fmt:formatDate value="${dto.qa_answer_date}" pattern="yyyy-MM-dd"/>
+								        </p>
+								    </c:if>
+
 									<p id="ans-text-${dto.qa_id}" class="fc-body fs-16">
 										<c:out value="${
 									      fn:replace(

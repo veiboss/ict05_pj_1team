@@ -16,7 +16,11 @@
         SELECT *
         FROM QNA_TB
         WHERE qa_show = 'Y'
-          AND (qa_writer_id = #{mbId} OR mb_id = #{mbId})
+          AND (
+            ( #{isExpert} = 'Y' AND (qa_writer_id = #{mbId} OR mb_id = #{mbId}) )
+         OR
+            ( #{isExpert} <> 'Y' AND qa_writer_id = #{mbId} )
+          )
         ORDER BY qa_reg_date DESC
       ) A
       WHERE ROWNUM <= #{end}
@@ -52,6 +56,7 @@
 <update id="deleteQna" parameterType="int">
 	UPDATE QNA_TB
        SET qa_show = 'N'
+         , qa_answer_date = NULL
      WHERE qa_id = #{qa_id}
 </update> 
 
