@@ -29,6 +29,35 @@
 		 WHERE mst.MB_ID = #{sessionID}) 
 	</select>
 	<!-- 영양제 추천 -->
+	<!--
+	/**
+	 * @mapper recommendPill
+	 * @description
+	 *   회원의 프로필에 저장된 관심 약(콤마(,) 구분 문자열)을 기준으로
+	 *   룰(RULE_TB)의 추천 텍스트와 매칭하여 DRUG_TB에서 추천 약품 목록을 조회합니다.
+	 *
+	 *   처리 흐름 요약:
+	 *     1) SPLIT_PILL: MEMBER_PROFILE_TB.MBP_INT_PILL 컬럼(콤마로 구분된 관심 약 목록)을 행으로 분리
+	 *     2) SPLIT_RULE: RULE_TB.RULE_RECOMMEND 컬럼(콤마로 구분된 추천 키워드)을 행으로 분리
+	 *     3) RECOMMEND_JOIN: 관심 약(PILL)과 룰의 RULE_INTEREST를 매칭하여 추천 키워드(RECOMMEND)를 구함
+	 *     4) LIMITED_RECOMMEND: 회원별/프로필별(RECOMMEND) 중복 제거 후 최대 100개로 제한
+	 *     5) MATCHED_DRUGS: DRUG_TB.DR_MAIN_FUNCTION(LOB)에서 RECOMMEND 텍스트 포함 여부로 매칭,
+	 *                       각 RECOMMEND별로 DR_ID 순서대로 ROW_NUMBER를 매김
+	 *     6) 최종 결과: MATCHED_DRUGS에서 DRUG_RN <= #{resultScore} 인 DR_ID들로 DRUG_TB 전체 레코드 조회
+	 *
+	 * @param parameterType java.util.Map
+	 *   - sessionID : (바인드) MEMBER_PROFILE_TB의 MB_ID (회원 식별자)
+	 *   - resultScore: (바인드) 각 추천(RECOMMEND)별로 가져올 약(DR_ID)의 최대 개수 (정수)
+	 *
+	 * @resultType com.middlepj.ict05.domain.drug.dto.DrugDTO
+	 *   - DRUG_TB의 모든 컬럼을 매핑하는 DTO를 반환합니다.
+	 * 
+	 * @example (Java Mapper 예시)
+	 *   // Mapper 인터페이스에 다음과 같이 선언
+	 *   List<DrugDTO> recommendPill(@Param("sessionID") Long sessionID,
+	 *                               @Param("resultScore") Integer resultScore);
+	 */
+	-->
 	<select id="recommendPill" parameterType="java.util.Map" resultType="com.middlepj.ict05.domain.drug.dto.DrugDTO">
 		WITH SPLIT_PILL AS (
 		    SELECT MB_ID,
