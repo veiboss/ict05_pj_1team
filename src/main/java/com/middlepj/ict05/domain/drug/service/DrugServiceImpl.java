@@ -216,7 +216,7 @@ public class DrugServiceImpl implements DrugService{
 	        dr_id = Integer.parseInt(request.getParameter("dr_id"));
 	        dto.setDr_id(dr_id);
 	    } catch (NumberFormatException e) {
-	        System.out.println("❗ dr_id 파라미터 오류");
+	        System.out.println("dr_id 파라미터 오류");
 	        model.addAttribute("insertCnt", 0);
 	        return dto;
 	    }
@@ -249,7 +249,7 @@ public class DrugServiceImpl implements DrugService{
 	        try {
 	            dto.setRv_rating(Integer.parseInt(rv_rating));
 	        } catch (NumberFormatException e) {
-	            System.out.println("❗ 별점 숫자 파싱 오류");
+	            System.out.println("별점 숫자 파싱 오류");
 	        }
 	    }
 
