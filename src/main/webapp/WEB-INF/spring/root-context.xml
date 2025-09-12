@@ -41,6 +41,12 @@
 	    <property name="mapperInterface" value="com.middlepj.ict05.chatbot.dao.FaqMapper"/>
 	    <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
+	
+    <!-- MemberDrugMapper를 명시적으로 빈 등록 -->
+	<bean id="MemberDrugMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+	    <property name="mapperInterface" value="com.middlepj.ict05.chatbot.dao.MemberDrugMapper"/>
+	    <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
 	    
 
 </beans>

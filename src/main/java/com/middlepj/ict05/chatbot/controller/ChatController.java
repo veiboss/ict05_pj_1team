@@ -3,19 +3,15 @@ package com.middlepj.ict05.chatbot.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.middlepj.ict05.chatbot.service.FaqService;
 import com.middlepj.ict05.chatbot.service.OpenAiChatService;
+import com.middlepj.ict05.chatbot.service.DrugInteractionService;
+import com.middlepj.ict05.chatbot.service.DrugInteractionService.InteractionReport;
 
 @Controller
 @RequestMapping("/chat")
@@ -26,10 +22,14 @@ public class ChatController {
 
     private final OpenAiChatService chatService;
     private final FaqService faqService;
+    private final DrugInteractionService interactionService;
 
-    public ChatController(OpenAiChatService chatService, FaqService faqService) {
+    public ChatController(OpenAiChatService chatService,
+                          FaqService faqService,
+                          DrugInteractionService interactionService) {
         this.chatService = chatService;
         this.faqService = faqService;
+        this.interactionService = interactionService;
     }
 
     /** 추천 질문: /chat/suggestions, /chat/suggestions.do */
@@ -40,7 +40,7 @@ public class ChatController {
         return Map.of("items", faqService.suggestions(limit));
     }
 
-    /** 대화 API: /chat/api, /chat/api.do  (FAQ → GPT + 안전문구) */
+    /** 대화 API: (FAQ → GPT) + 안전문구 */
     @PostMapping(value = {"/api", "/api.do"},
                  consumes = "application/json",
                  produces = "application/json; charset=UTF-8")
@@ -48,7 +48,7 @@ public class ChatController {
     public Map<String, Object> api(@RequestBody Map<String, Object> body, HttpSession session) {
         String user = String.valueOf(body.getOrDefault("message", "")).trim();
 
-        // 0) FAQ (정확 일치) 우선
+        // 0) FAQ 우선
         String faq = faqService.answerFromDb(user);
         if (faq != null) {
             return Map.of("reply", faq + "\n\n(FAQ)");
@@ -65,7 +65,7 @@ public class ChatController {
         }
         history.add(Map.of("role", "user", "content", user));
 
-        // 2) GPT 호출 + 안전문구(중복 방지) 부착
+        // 2) GPT 호출 + 안전문구 부착(중복 방지)
         String answer = chatService.replyWithHistory(history);
         String safeAnswer = appendSafetyNoteIfMissing(answer);
 
@@ -84,7 +84,70 @@ public class ChatController {
         return Map.of("ok", true);
     }
 
-    /** 안전문구가 이미 포함돼 있으면 다시 붙이지 않음(공백/줄바꿈 무시) */
+    /** 내 약 상호작용 확인: 세션(sessionID)에서 회원 식별자 조회 */
+    @GetMapping(value = {"/check-interactions", "/check-interactions.do"},
+                produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public Map<String, Object> checkInteractions(HttpSession session) {
+        Long memberId = resolveFromSessionID(session);
+        if (memberId == null) {
+            return Map.of("error", true, "code", "LOGIN_REQUIRED", "message", "로그인이 필요합니다.");
+        }
+
+        InteractionReport rpt = interactionService.checkForMember(memberId);
+
+        StringBuilder sb = new StringBuilder();
+        if (rpt.interactions.isEmpty()) {
+            sb.append("등록된 약/영양성분 기준에서 특이 상호작용 주의사항이 발견되지 않았어요.\n");
+        } else {
+            sb.append("다음 상호작용/동시복용 주의가 확인되었습니다:\n");
+            rpt.interactions.forEach(it -> {
+                if (it.nutrientB == null) {
+                    sb.append("- [").append(it.severity).append("] ")
+                      .append(it.nutrientA).append(": ").append(it.message).append("\n");
+                    if (!it.drugsA.isEmpty()) {
+                        sb.append("  · 관련 약: ")
+                          .append(String.join(", ", it.drugsA)).append("\n");
+                    }
+                } else {
+                    sb.append("- [").append(it.severity).append("] ")
+                      .append(it.nutrientA).append(" ↔ ").append(it.nutrientB).append(": ")
+                      .append(it.message).append("\n");
+                    if (!it.drugsA.isEmpty() || !it.drugsB.isEmpty()) {
+                        sb.append("  · 관련 약: ");
+                        if (!it.drugsA.isEmpty()) {
+                            sb.append(it.nutrientA).append("=").append(String.join(", ", it.drugsA));
+                        }
+                        if (!it.drugsA.isEmpty() && !it.drugsB.isEmpty()) sb.append(" / ");
+                        if (!it.drugsB.isEmpty()) {
+                            sb.append(it.nutrientB).append("=").append(String.join(", ", it.drugsB));
+                        }
+                        sb.append("\n");
+                    }
+                }
+            });
+        }
+        sb.append("\n").append(SAFETY_NOTE);
+
+        return Map.of(
+            "memberId", memberId,
+            "nutrients", rpt.nutrients,      // 감지된 성분
+            "hits", rpt.nutrientHits,        // 성분→해당 약 목록
+            "count", rpt.interactions.size(),
+            "items", rpt.interactions,       // 상세 항목
+            "summary", sb.toString()
+        );
+    }
+
+    private Long resolveFromSessionID(HttpSession session){
+        Object sid = session.getAttribute("sessionID");
+        if (sid instanceof Number) return ((Number) sid).longValue();
+        if (sid instanceof String && !((String) sid).isBlank()) {
+            try { return Long.parseLong(((String) sid).trim()); } catch (Exception ignore) {}
+        }
+        return null;
+    }
+
     private String appendSafetyNoteIfMissing(String answer) {
         if (answer == null) answer = "";
         String normalized = answer.replaceAll("\\s+", "");
