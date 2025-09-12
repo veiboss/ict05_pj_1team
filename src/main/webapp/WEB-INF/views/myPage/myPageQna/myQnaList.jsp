@@ -161,7 +161,6 @@
 							<!-- 세션의 로그인 사용자 ID -->
 							<c:set var="loginId" value="${sessionScope.sessionID}" />
 							
-						
 							<c:forEach var="dto" items="${list}">
 							<li>
 							<!-- 앵커로 전체 감싸지 말고 div로 -->
@@ -187,7 +186,8 @@
 									        '<br />',''),
 									      '<br>','')}"/>
 							 		</p>
-									<c:if test="${loginId eq dto.qa_writer_id}">
+									<c:if test="${loginId == dto.qa_writer_id and (empty dto.qa_answer or fn:trim(dto.qa_answer) == '')}">
+
 										<p class="pack-left">
 											<a class="btn blue xsmall r4"
 						                  		href="${path}/myQnaDetail.do?qa_id=${dto.qa_id}" >수정</a>

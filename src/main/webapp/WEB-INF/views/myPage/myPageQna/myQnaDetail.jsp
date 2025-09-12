@@ -63,13 +63,13 @@
 						<p class="pack-down gap-4">
 							<span class="fc-body">내용</span>
 				            <textarea name="qa_content" class="textarea"><c:out value="${
-									      fn:replace(
-									        fn:replace(
-									          fn:replace(
-									            fn:replace(fn:replace(dto.qa_content,'<p>',''),'</p>',''),
-									          '<br/>',''),
-									        '<br />',''),
-									      '<br>','')}"/>
+						      fn:replace(
+						        fn:replace(
+						          fn:replace(
+						            fn:replace(fn:replace(dto.qa_content,'<p>',''),'</p>',''),
+						          '<br/>',''),
+						        '<br />',''),
+						      '<br>','')}"/>
 							</textarea>
 				        </p>
 				        
