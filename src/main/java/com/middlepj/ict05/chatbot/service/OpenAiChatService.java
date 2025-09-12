@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class OpenAiChatService {
 
     private static final String API_URL = "https://api.openai.com/v1/chat/completions";
-    private static final String MODEL   = "gpt-4o"; // 저렴/빠름
+    private static final String MODEL   = "gpt-4o-mini"; // 저렴/빠름
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     private final String apiKey;
