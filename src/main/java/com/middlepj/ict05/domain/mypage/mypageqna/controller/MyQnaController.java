@@ -78,19 +78,10 @@ private static final Logger logger = LoggerFactory.getLogger(MyQnaController.cla
 			 throws ServletException, IOException { 
 		 logger.info("<<< url ==> /myQnaDelete.do >>>");
 	
+		 service.qnaDeleteAction(request, response, model);
+		  
+		 return "myPage/myPageQna/myQnaDelete";
 		 
-		// 답변 여부 확인
-		 MyQnaDTO qna = service.getQnaById(Integer.parseInt(request.getParameter("qa_id")));
-		 if (qna.getQa_answer() != null && !qna.getQa_answer().isEmpty()) {
-		     // 답변이 이미 있는 경우
-		     return "myPage/myPageQna/myQnaDeleteBack";
-		     
-		 } else {
-			 
-		     // 답변이 없는 경우 → 삭제jsp 이동
-			 service.qnaDeleteAction(request, response, model);
-		     return "myPage/myPageQna/myQnaDelete";
-		 }
 		 
 	 } 
 	 

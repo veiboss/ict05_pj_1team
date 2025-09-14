@@ -30,15 +30,18 @@ public class MyQnaServiceImpl implements MyQnaService{
 		System.out.println("MyQnaServiceImpl - qnaListAction()");
 		
 		String pageNum = request.getParameter("pageNum");
-		int mbId = (int) request.getSession().getAttribute("sessionID");
+		Object id = request.getSession().getAttribute("sessionID");
 		String mbGrade = (String)request.getSession().getAttribute("sessionGrade");
 		
-		// null 방어
-	    if (mbId == null || "null".equals(mbId)) mbId = "";
-	    if (mbGrade == null || "null".equals(mbGrade)) mbGrade = "";
- 
-	    // ✅ 2) 전문가 여부 플래그
-	    String isExpert = "expert".equalsIgnoreCase(mbGrade) ? "Y" : "N";
+		int mbId = 0;                     
+		if (id != null) {
+		    try {
+		        mbId = Integer.parseInt(String.valueOf(id).trim());
+		    } catch (NumberFormatException ignore) {
+		        mbId = 0;                 // 숫자 아님 → 0 유지
+		    }
+		}
+		boolean isExpert = "expert".equalsIgnoreCase(mbGrade);
 	    
 	    // 갯수 카운트
 		int currentPage = (pageNum == null || pageNum.equals("0")) ? 1 : Integer.parseInt(pageNum);
@@ -46,7 +49,7 @@ public class MyQnaServiceImpl implements MyQnaService{
 
 		Map<String,Object> mapCnt = new HashMap<>();
 		mapCnt.put("mbId", mbId);
-		mapCnt.put("isExpert", isExpert);
+		mapCnt.put("isExpert", isExpert ? 1 : 0); 
 		
 	    int total = dao.listCnt(mapCnt);
 	    
@@ -61,6 +64,7 @@ public class MyQnaServiceImpl implements MyQnaService{
         map.put("end", end);
         map.put("mbId", mbId);
         map.put("mbGrade",mbGrade);
+        map.put("isExpert", isExpert ? 1 : 0);   // 1 = 전문가, 0 = 일반회원
 	      
 	    // qna 목록 조회
 	    List<MyQnaDTO> list = dao.qnaList(map);

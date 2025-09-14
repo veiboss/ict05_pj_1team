@@ -8,33 +8,49 @@
 	
 <!-- qna 상세 목록  -->
 <select id="qnaList" parameterType="java.util.Map" resultType="com.middlepj.ict05.domain.mypage.mypageqna.dto.MyQnaDTO">
-<![CDATA[
-    SELECT *
-    FROM (
-      SELECT A.*, ROWNUM rn
+	SELECT *
       FROM (
-        SELECT *
-        FROM QNA_TB
-        WHERE qa_show = 'Y'
-          AND (
-            ( #{isExpert} = 'Y' AND (qa_writer_id = #{mbId} OR mb_id = #{mbId}) )
-         OR
-            ( #{isExpert} <> 'Y' AND qa_writer_id = #{mbId} )
-          )
-        ORDER BY qa_reg_date DESC
-      ) A
-      WHERE ROWNUM <= #{end}
-    )
-    WHERE rn >= #{start}
-  ]]>
+         SELECT A.*, ROWNUM rn
+      	   FROM (
+        	  SELECT *
+        		FROM QNA_TB
+               WHERE qa_show = 'Y'
+        
+        	<if test="isExpert == 0">
+          		AND qa_writer_id = #{mbId}
+        	</if>
+        
+        	<if test="isExpert == 1">
+                  AND (
+                         qa_writer_id = #{mbId}
+                      OR (mb_id = #{mbId} AND qa_answer IS NOT NULL)
+          		       )
+        	</if>
+        
+        		 ORDER BY qa_reg_date DESC
+      			) A
+      	WHERE ROWNUM &lt;= #{end}
+    	)
+      WHERE rn &gt;= #{start}
 </select>
+
 
 <!-- 게시글 갯수 구하기 -->
 <select id="listCnt" parameterType="java.util.Map" resultType="int" >
-	SELECT COUNT(*)	AS cnt
-	  FROM QNA_TB
-	 WHERE qa_show = 'Y'
-	   AND (qa_writer_id = #{mbId} OR mb_id = #{mbId})
+	SELECT COUNT(*) AS cnt
+      FROM QNA_TB
+     WHERE qa_show = 'Y'
+    
+      <if test="isExpert eq 0">
+        AND qa_writer_id = #{mbId}
+      </if>
+    
+      <if test="isExpert eq 1">
+        AND (
+             qa_writer_id = #{mbId}
+             OR (mb_id = #{mbId} AND qa_answer IS NOT NULL)
+             )
+      </if>
 </select>
 
 <!-- qna 답변 여부 확인 -->
@@ -61,15 +77,15 @@
 </update> 
 
 <update id="updateAnswer" parameterType="com.middlepj.ict05.domain.mypage.mypageqna.dto.MyQnaDTO">
-  UPDATE QNA_TB
-     SET qa_answer = #{qa_answer}
-   WHERE qa_id     = #{qa_id}
+    UPDATE QNA_TB
+       SET qa_answer = #{qa_answer}
+     WHERE qa_id     = #{qa_id}
 </update>
 
 <update id="deleteAnswer" parameterType="int">
-  UPDATE QNA_TB
-     SET qa_answer = NULL
-   WHERE qa_id = #{qa_id}
+	UPDATE QNA_TB
+       SET qa_answer = NULL
+     WHERE qa_id = #{qa_id}
 </update>
 
 
