@@ -59,7 +59,6 @@ public class MemberServiceImpl implements MemberService {
 		
 		int selectCnt = dao.idPasswordChk(map);
 		
-
 		// 로그인 성공시 세션ID를 설정(중요)
 		if(selectCnt == 1) {
 			request.getSession().setAttribute("sessionEmail", request.getParameter("mb_email"));
@@ -80,13 +79,13 @@ public class MemberServiceImpl implements MemberService {
 			throws ServletException, IOException {
 		System.out.println("MemberServiceImpl - idConfirmAction");
 
-		// 화면에서 입력받은 값을 가져오기
+		// 화면에서 입력받은 이메일 가져오기
 		String strEmail = request.getParameter("mb_email");
 		
 		// id 중복확인 처리
 		int selectCnt = dao.emailCheck(strEmail);
 
-		// 6단계. jsp로 처리결과 전달
+		// jsp로 처리결과 전달
 		model.addAttribute("selectCnt", selectCnt);
 		model.addAttribute("strEmail", strEmail);
 	}
@@ -97,19 +96,16 @@ public class MemberServiceImpl implements MemberService {
 			throws ServletException, IOException {
 		System.out.println("MemberServiceImpl - signUpAction");
 
-		//DTO 생성 -> setter - > 멤버변수 전달
+		// DTO 생성 -> setter
 		MemberDTO dto = new MemberDTO();
-		
 		dto.setMb_email(request.getParameter("mb_email"));
 		dto.setMb_password(request.getParameter("mb_password"));
 		dto.setMb_name(request.getParameter("mb_name"));
 		
-		System.out.println("dto : " + dto);
-		
-		// 5단계. 회원가입 처리
+		// 회원가입 처리
 		int insertCnt = dao.insertMember(dto);
 		
-		// 6단계. jsp로 처리결과 전달
+		// jsp로 처리결과 전달
 		model.addAttribute("insertCnt", insertCnt);
 	}
 	

@@ -1,7 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-    <%@ include file="../common/setting.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,119 +33,15 @@
 		<div id="container" class="container">
 			<!-- 컨텐츠 시작 -->
 			
-			
 			<div class="title-bar">
 				<h2 class="page-title ellipsis">페이지 제목 </h2>
 			</div>
 			
 
 			<main id="content">
-
-
-				<div class="row-2">
-					<div class="col box-wrap">
-						.row-2 > .col
-					</div>
-					<div class="col box-wrap">
-						.row-2 > .col
-					</div>
-				</div>
-				<div class="row-3">
-					<div class="col box-wrap">
-						.row-3 > .col
-					</div>
-					<div class="col box-wrap">
-						.row-3 > .col
-					</div>
-					<div class="col box-wrap">
-						.row-3 > .col
-					</div>
-				</div>
-				<div class="row-3">
-					<div class="col field box-wrap">
-						.row-3 > .col
-					</div>
-					<div class="col-2 box-wrap">
-						.row-3 > .col-2
-					</div>
-				</div>
-				<div class="row-4">
-					<div class="col box-wrap">
-						.row-4 > .col
-					</div>
-					<div class="col box-wrap">
-						.row-4 > .col
-					</div>
-					<div class="col box-wrap">
-						.row-4 > .col
-					</div>
-					<div class="col box-wrap">
-						.row-4 > .col
-					</div>
-				</div>
-				<div class="row-4">
-					<div class="col field box-wrap">
-						.row-4 > .col
-					</div>
-					<div class="col-2 box-wrap">
-						.row-4 > .col-2
-					</div>
-					<div class="col field box-wrap">
-						.row-4 > .col
-					</div>
-				</div>
-				<div class="row-4">
-					<div class="col field box-wrap">
-						.row-4 > .col
-					</div>
-					<div class="col-3 box-wrap">
-						.row-4 > .col-3
-					</div>
-				</div>
-				<div class="row-5">
-					<div class="col box-wrap">
-						.row-5 > .col
-					</div>
-					<div class="col box-wrap">
-						.row-5 > .col
-					</div>
-					<div class="col box-wrap">
-						.row-5 > .col
-					</div>
-					<div class="col box-wrap">
-						.row-5 > .col
-					</div>
-					<div class="col box-wrap">
-						.row-5 > .col
-					</div>
-				</div>
-				<div class="row-5">
-					<div class="col box-wrap">
-						.row-5 > .col
-					</div>
-					<div class="col-4 field box-wrap">
-						.row-5 > .col-4
-					</div>
-				</div>
-				<div class="row-5">
-					<div class="col-2 box-wrap">
-						.row-5 > .col-2
-					</div>
-					<div class="col-3 field box-wrap">
-						.row-5 > .col-3
-					</div>
-				</div>
-				<div class="row-5">
-					<div class="col box-wrap">
-						.row-5 > .col
-					</div>
-					<div class="col-2 box-wrap">
-						.row-5 > .col-2
-					</div>
-					<div class="col-2 box-wrap">
-						.row-5 > .col-2
-					</div>
-				</div>
+				
+				<!-- 컨텐츠 내용 들어오는 곳 -->
+				
 			</main>
 			
 			<!-- 컨텐츠 끝 -->

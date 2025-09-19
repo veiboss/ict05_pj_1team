@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../common/setting.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -37,7 +36,6 @@
 		<div id="container" class="container">
 			<!-- 컨텐츠 시작 -->
 			
-			
 			<div class="title-bar">
 				<div class="pack-left">
 					<h2 class="page-title ellipsis">회원 등록</h2>
@@ -62,9 +60,7 @@
 					</script>
 				</c:if>
 			</main>
-			
 			<!-- 컨텐츠 끝 -->
-			
 			
 			<!-- footer 시작 -->
 			<%@ include file="../admin/footer.jsp" %>

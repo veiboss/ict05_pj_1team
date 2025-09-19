@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-    <%@ include file="../common/setting.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="../common/setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -136,7 +134,7 @@
 							</div>
 							<div class="button-area pack-both">
 								<button type="reset" class="btn medium bdr-color1">초기화</button>
-								<button type="button" class="btn medium bdr-color1" onclick="history.back()">회원목록</a>
+								<button type="button" class="btn medium bdr-color1" onclick="history.back()">회원목록</button>
 							</div>
 						</fieldset>
 					</form>

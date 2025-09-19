@@ -34,14 +34,6 @@ public class MemberController {
 		return "common/main";
 	}
 
-	/* 스타일 참고용 삭제예정 */
-	@RequestMapping("/layout.do")
-	public String layout() {
-		logger.info("<<< url ==>  /layout.do >>>");
-
-		return "common/layout";
-	}
-
 	@RequestMapping("/login.do")
 	public String login() {
 		logger.info("<<< url ==>  /login.do >>>");

@@ -24,14 +24,6 @@ public class AdminHomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(AdminHomeController.class);
 
-	/* 템플릿확인용 삭제예정 */
-	@RequestMapping("/layout.ad")
-	public String layout() {
-		logger.info("<<< url ==>  /layout.ad >>>");
-
-		return "admin/layout";
-	}
-
 	@RequestMapping("/login.ad")
 	public String login() {
 		logger.info("<<< url ==>  /login.ad >>>");

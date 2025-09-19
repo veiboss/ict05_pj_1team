@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,9 +52,6 @@
 							alert("관리자 로그인 페이지로 이동합니다.");
 							window.location = "${path}/login.ad";
 						</script>
-						<%-- <a href="${path}/login.ad" class="btn">
-							<span>로그인 필요</span>
-						</a> --%>
 					</c:if>
 				</div>
 			</div><!-- #header > div : right-->

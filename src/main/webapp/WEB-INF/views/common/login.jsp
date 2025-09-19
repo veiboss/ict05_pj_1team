@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ include file="setting.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="setting.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,9 +11,6 @@
 <title>약을 쏘옥, 약속</title>
 <!-- css -->
 <link rel="stylesheet" href="${path}/resources/css/yaksok.css">
-
-<!--  js -->
-<script src="https://kit.fontawesome.com/d7162d59a4.js" crossorigin="anonymous"></script>
 
 <!-- (3-4). 자바스크립트 소스 연결 -->
 <!-- defer : html을 다 읽은 후에 자바스크립트를 실행한다. 페이지가 모두 로드된 후에 해당 외부 스크립트가 실행된다. -->
