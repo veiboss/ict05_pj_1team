@@ -72,24 +72,9 @@
 	    const form = document.getElementById('ansForm');
 	    form.qa_id.value = id;
 	    document.getElementById('ansFormAnswer').value = ta.value;
-	    form.submit(); // ← 일반 submit (JSON 아님)
+	    form.submit(); // 일반 submit (JSON 아님)
   	}
 
-  	// 리다이렉트 후 focusId로 해당 항목 위치로 스크롤 + 하이라이트
-  	(function(){
-	    const params = new URLSearchParams(location.search);
-	    const fid = params.get('focusId');
-	    if (!fid) return;
-	    const target = document.getElementById('qa-'+fid);
-	    if (target){
-			target.scrollIntoView({behavior:'instant', block:'start'});
-			target.classList.add('flash');
-			setTimeout(()=>target.classList.remove('flash'), 1500);
-	    }
-  	})();
-</script>
-
-<script>
 	// 답변 삭제
     function deleteAnswer(id){
     	if(!confirm('이 답변을 삭제할까요?')) return;
@@ -98,21 +83,7 @@
     	f.submit(); 
   	}
 
-    // redirect 후 focusId로 해당 항목으로 스크롤/하이라이트
-    (function(){
-    	const p = new URLSearchParams(location.search);
-    	const fid = p.get('focusId');
-    	if(!fid) return;
-   	 	const target = document.getElementById('qa-'+fid); 
-   	 	if(target){
-      		target.scrollIntoView({behavior:'instant', block:'start'});
-      		target.classList.add('flash');
-      		setTimeout(()=>target.classList.remove('flash'), 1500);
-	   }
-  	})();
 </script>
-
-
 
 <style>
 	.item.normal{border-color: var(--light-gray);}
@@ -162,7 +133,7 @@
 							<c:set var="loginId" value="${sessionScope.sessionID}" />
 							
 							<c:forEach var="dto" items="${list}">
-							<li>
+							<li id="qa-${dto.qa_id}">
 							<!-- 앵커로 전체 감싸지 말고 div로 -->
 							<div class="item normal">
 								<div class="pack-down">
@@ -190,7 +161,7 @@
 
 										<p class="pack-left">
 											<a class="btn blue xsmall r4"
-						                  		href="${path}/myQnaDetail.do?qa_id=${dto.qa_id}" >수정</a>
+						                  		href="${path}/myQnaDetail.do?qa_id=${dto.qa_id}&pageNum=${paging.currentPage}">수정</a>
 						                	<button type="button" class="btn bdr-blue xsmall r4"
 						                		onclick="delQna(${dto.qa_id})">삭제</button>
 										</p>
@@ -299,13 +270,53 @@
 				<input type="hidden" name="qa_id">
 				<input type="hidden" name="pageNum" value="${paging.currentPage}">
 			</form>
-			
-						
-			
-			<!-- 삭제(비노출) POST 폼: ❗ forEach 밖, 단 한 개만 -->
+					
+			<!-- 삭제(비노출) POST 폼 -->
 			<form id="delForm" action="${path}/myQnaDelete.do" method="post" style="display:none;">
 			  <input type="hidden" name="qa_id" >
+			  <input type="hidden" name="pageNum" value="${paging.currentPage}">
 			</form>
+			
+			<!-- 저장 후 포커스 유지 -->
+			 <script>
+			 document.addEventListener('DOMContentLoaded', function(){
+			 	const fid = new URLSearchParams(location.search).get('focusId');
+			    if(!fid) return;
+			
+			    const el = document.getElementById('qa-' + fid);
+			    if(!el) return;
+			
+			    // 고정 헤더 높이 (없으면 0)
+			    const header = document.querySelector('#header, .header, header');
+			    const headerH = header ? header.offsetHeight : 0;
+			
+			    // 스크롤 주체 판단: 내부 컨테이너(#container)인지, window인지
+			    const sc = document.querySelector('#container');
+			    const useContainer = sc && sc.scrollHeight > sc.clientHeight;
+			
+			    if (useContainer) {
+			    	// 컨테이너 중앙 보정
+			    	const offset = el.getBoundingClientRect().top - sc.getBoundingClientRect().top
+			                 	+ sc.scrollTop - (sc.clientHeight/2 - el.offsetHeight/2) - headerH;
+			    	sc.scrollTo(0, Math.max(0, offset));
+			  	} else {
+			    	// 윈도우 중앙 보정
+			    	const y = el.getBoundingClientRect().top + window.pageYOffset
+			            	- (window.innerHeight/2 - el.offsetHeight/2) - headerH;
+			   		 window.scrollTo(0, Math.max(0, y));
+			  	}
+			
+			  // 새로고침 시 재이동 방지: focusId 제거
+			  const p = new URLSearchParams(location.search);
+			  p.delete('focusId');
+			  const qs = p.toString();
+			  history.replaceState(null, '', location.pathname + (qs ? '?' + qs : ''));
+			});
+			</script>
+
+			
+			
+			
 			<!-- 컨텐츠 끝 -->
 		
 			<!-- nav 시작 -->

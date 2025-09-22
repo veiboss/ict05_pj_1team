@@ -52,6 +52,7 @@
 					<fieldset class="pack-down gap-24">
 					<legend class="blind">${dto.qa_id} 후기작성폼</legend>
 						<input type="hidden" name="qa_id" value="${dto.qa_id}"/>
+						<input type="hidden" name="pageNum" value="${empty param.pageNum ? '1' : param.pageNum}" />
 						
 						<!-- 제목 -->
 						<p class="pack-down gap-4">
@@ -62,16 +63,20 @@
 						<!-- 내용 -->
 						<p class="pack-down gap-4">
 							<span class="fc-body">내용</span>
-				            <textarea name="qa_content" class="textarea"><c:out value="${
-						      fn:replace(
-						        fn:replace(
-						          fn:replace(
-						            fn:replace(fn:replace(dto.qa_content,'<p>',''),'</p>',''),
-						          '<br/>',''),
-						        '<br />',''),
-						      '<br>','')}"/>
-							</textarea>
-				        </p>
+						  	<textarea name="qa_content" class="textarea"><c:out value="${
+							    fn:trim(
+							      fn:replace(
+							        fn:replace(
+							          fn:replace(
+							            fn:replace(
+							              fn:replace(dto.qa_content,'<p>',''),
+							            '</p>',''),
+							          '<br/>','&#10;'),
+							        '<br />','&#10;'),
+							      '<br>','&#10;')
+							    )
+						  }"/></textarea>
+						</p>
 				        
 				        <p class="pack-left gap-40">
 							<span class="fc-body" >비밀글 여부</span>

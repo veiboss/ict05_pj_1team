@@ -75,8 +75,7 @@ function delReview(id){
 					<div class="list-wrap">
 						<ul class="data-list toon">
 							<c:forEach var="dto" items="${list}">
-								<li>
-									<input type="hidden" name="rv_id" value="${dto.rv_id}">
+								<li id="rv-${dto.rv_id}">
 									<!-- 앵커로 전체 감싸지 말고 div로 -->
 									<div class="item thumb-left">
 										<div class="img-wrap s100">
@@ -186,7 +185,7 @@ function delReview(id){
 						    <!-- 다음 버튼 -->
 						    <c:if test="${paging.endPage < paging.pageCount}">
 						        <a href="${path}/myReviewList.do?pageNum=${paging.next}" class="btn next page-link" data-page="${paging.next}">
-						            <i class="ico page-arr"><span>&gt;;</span></i>
+						            <i class="ico page-arr"><span>&gt;</span></i>
 						        </a>
 						    </c:if>
 						</div><!-- //.pagination -->
@@ -199,7 +198,55 @@ function delReview(id){
 				</form>	
 			</div><!-- .section.list-wrap -->
 			
-		       
+			<!-- 저장 후 포커스 유지: 중앙 정렬 -->
+			<script>
+			document.addEventListener('DOMContentLoaded', function(){
+				// 컨트롤러에서 전달된 ?focusId=123 받기
+			    const fid = new URLSearchParams(location.search).get('focusId');
+			    if (!fid) return;
+			
+			    // rv-<id> 요소 찾기
+			    const el = document.getElementById('rv-' + fid);
+			    if (!el) return;
+			
+			    // 고정 헤더가 있으면(#header, .header, <header>) 그 높이만큼 보정(윈도우 스크롤일 때만)
+			    const header = document.querySelector('#header, .header, header');
+			    const headerH = header ? header.offsetHeight : 0;
+			
+			    // 스크롤 주체: 내부 컨테이너(#container)인지 window인지 판별
+			    const sc = document.querySelector('#container');
+			    const useContainer = sc && sc.scrollHeight > sc.clientHeight;
+			
+			    function center() {
+			    	if (useContainer) {
+			        // 컨테이너 중앙: 헤더는 보통 컨테이너 밖에 고정되어 있으니 보정 X
+			      	const offset = el.getBoundingClientRect().top
+			                     - sc.getBoundingClientRect().top
+			                     + sc.scrollTop
+			                     - (sc.clientHeight/2 - el.offsetHeight/2);
+			        sc.scrollTo(0, Math.max(0, offset));
+			        } else {
+			      		// 윈도우 중앙: 헤더 높이만큼 위에서 더 빼줌
+			     		const y = el.getBoundingClientRect().top
+			              		+ window.pageYOffset
+			              		- (window.innerHeight/2 - el.offsetHeight/2)
+			             		- headerH;
+			      		window.scrollTo(0, Math.max(0, y));
+			    	}
+			
+			    	// 새로고침 시 재이동 방지
+			   		const p = new URLSearchParams(location.search);
+			    	p.delete('focusId');
+			    	history.replaceState(null, '', location.pathname + (p.toString() ? '?' + p.toString() : ''));
+			  	}
+			
+			 	// 레이아웃(이미지/폰트) 반영 후 확실히 중앙으로
+			 	requestAnimationFrame(() => setTimeout(center, 0));
+			  	// 그래도 레이아웃이 늦게 잡히면 한 번 더:
+			  	window.addEventListener('load', () => setTimeout(center, 0));
+			});
+			</script>
+					       
 				
 				
 			

@@ -38,7 +38,7 @@ public class MyQnaServiceImpl implements MyQnaService{
 		    try {
 		        mbId = Integer.parseInt(String.valueOf(id).trim());
 		    } catch (NumberFormatException ignore) {
-		        mbId = 0;                 // 숫자 아님 → 0 유지
+		        mbId = 0;                 // 숫자 아니면 0 유지
 		    }
 		}
 		boolean isExpert = "expert".equalsIgnoreCase(mbGrade);
@@ -75,26 +75,21 @@ public class MyQnaServiceImpl implements MyQnaService{
 	    model.addAttribute("total", total);
 	}
 
-	// 2. 수정버튼 클릭시 - 전문가 댓글 없을 시에 수정 페이지 이동
+	// 2. 수정버튼 클릭시 수정 페이지 이동
 	@Override
 	public void qnaDetailAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
 		
-//		System.out.println("MyQnaServiceImpl - qnaListAction()");
-//		
-//		int qaId = Integer.parseInt(request.getParameter("qa_id"));
-//		
-//		MyQnaDTO dto = dao.qnaDetail(rvId);
-//			
-//		model.addAttribute("dto", dto);
+		System.out.println("MyQnaServiceImpl - qnaListAction()");
+		
+		int qaId = Integer.parseInt(request.getParameter("qa_id"));
+		
+		MyQnaDTO dto = dao.qnaDetail(qaId);
+			
+		model.addAttribute("dto", dto);
 		
 	}
 	
-	//  답변 여부 확인용 dto
-	public MyQnaDTO getQnaById(int qa_id) {
-		
-	    return dao.selectQnaDetail(qa_id);
-	}
  
 	// 3. qna 수정
 	@Override
@@ -129,7 +124,7 @@ public class MyQnaServiceImpl implements MyQnaService{
 		model.addAttribute("deleteCnt", deleteCnt);	
 	}
 	
-	//
+	// 답변 수정
 	@Override
 	public int updateAnswer(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
@@ -145,7 +140,7 @@ public class MyQnaServiceImpl implements MyQnaService{
 	    return dao.updateAnswer(dto);
 	}
 	
-	//
+	// 답변 삭제
 	@Override
 	public int deleteAnswer(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
@@ -156,6 +151,34 @@ public class MyQnaServiceImpl implements MyQnaService{
 	    return dao.deleteAnswer(qaId);
 	}
 
+	// 삭제 후 빈페이지 보정 
+	public String recalcPageAfterDelete(HttpServletRequest request, HttpServletResponse response, Model model) 
+				throws ServletException, IOException {
+	    String pageNum = request.getParameter("pageNum");
+	    int currentPage = (pageNum == null || pageNum.isBlank()) ? 1 : Integer.parseInt(pageNum);
+
+	    Object id = request.getSession().getAttribute("sessionID");
+	    String mbGrade = (String) request.getSession().getAttribute("sessionGrade");
+	    int mbId = 0;
+	    if (id != null) {
+	        try { mbId = Integer.parseInt(String.valueOf(id).trim()); } catch (NumberFormatException ignored) {}
+	    }
+	    boolean isExpert = "expert".equalsIgnoreCase(mbGrade);
+
+	    Map<String,Object> cntMap = new HashMap<>();
+	    cntMap.put("mbId", mbId);
+	    cntMap.put("isExpert", isExpert ? 1 : 0);
+
+	    int total = dao.listCnt(cntMap);
+
+	    // Paging이 고정 pageSize를 쓰는 구조라면 여기서 맞춰주세요.
+	    int pageSize = new Paging("1").getPageSize(); // Paging에 getPageSize()가 없다면 상수(예: 10)로
+	    int maxPage = Math.max(1, (int) Math.ceil(total / (double) pageSize));
+
+	    if (currentPage > maxPage) currentPage = maxPage;
+
+	    return String.valueOf(currentPage);
+	}
 
 
 }

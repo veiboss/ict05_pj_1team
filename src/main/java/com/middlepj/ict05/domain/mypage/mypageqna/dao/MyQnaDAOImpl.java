@@ -37,7 +37,7 @@ public class MyQnaDAOImpl implements MyQnaDAO{
 		return total;
 	}
 
-	// 수정버튼 클릭시 - 전문가 댓글 없을 시에 수정 페이지 이동
+	// 수정버튼 클릭시 - 수정 페이지 이동
 	@Override
 	public MyQnaDTO qnaDetail(int qa_id) {
 		
@@ -48,17 +48,6 @@ public class MyQnaDAOImpl implements MyQnaDAO{
 		return dto;
 	}
 
-	// qna 답변 여부확인
-	@Override
-	public MyQnaDTO selectQnaDetail(int qa_id) {
-		
-		System.out.println("MyQnaDAOImpl - selectQnaDetail()");
-		
-		MyQnaDTO dto = sqlsession.selectOne("com.middlepj.ict05.domain.mypage.mypageqna.dao.MyQnaDAO.selectQnaDetail", qa_id);
-		
-		return dto;
-	}
-	
  
 	// 3. qna 수정
 	@Override

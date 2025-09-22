@@ -53,10 +53,10 @@
       </if>
 </select>
 
-<!-- qna 답변 여부 확인 -->
-<select id="selectQnaDetail" parameterType="int" resultType="com.middlepj.ict05.domain.mypage.mypageqna.dto.MyQnaDTO">
-    SELECT * FROM QNA_TB
-    WHERE qa_id = #{qa_id}
+<!-- qna 상세 화면 -->
+<select id="qnaDetail" parameterType="int" resultType="com.middlepj.ict05.domain.mypage.mypageqna.dto.MyQnaDTO">
+	SELECT * FROM QNA_TB
+	WHERE qa_id = #{qa_id}
 </select>
 
 <!-- qna 수정 -->

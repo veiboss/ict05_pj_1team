@@ -20,9 +20,6 @@ public interface MyQnaService {
 	public void qnaDetailAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException;
 	
-	// 답변 여부 확인용 dto
-	public MyQnaDTO getQnaById(int qa_id) ;
-	
 	// qna 수정 
 	public void qnaUpdateAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException;
@@ -31,10 +28,16 @@ public interface MyQnaService {
 	public void qnaDeleteAction(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException;
 	
+	// 답변 수정
 	public int updateAnswer(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException;
 
+	// 답변 삭제
 	public int deleteAnswer(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException;
+	
+	// // 삭제 후 빈페이지 보정 
+	public String recalcPageAfterDelete(HttpServletRequest request, HttpServletResponse response, Model model) 
 			throws ServletException, IOException;
 
 

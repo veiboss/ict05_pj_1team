@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.middlepj.ict05.domain.mypage.mypagereview.dto.MyReviewDTO;
 import com.middlepj.ict05.domain.mypage.mypagereview.service.MyReviewServiceImpl;
 
 
@@ -49,7 +48,7 @@ private static final Logger logger = LoggerFactory.getLogger(MyReviewController.
 	
 	}
 	
-		// 2-1. 게시글 수정 (내용, 별점, 노출/비노출)
+	// 2-1. 게시글 수정 (내용, 별점, 노출/비노출)
 	@RequestMapping("/myReviewUpdate.do")
 	public String myReviewUpdate(HttpServletRequest request, HttpServletResponse response, Model model)
 			throws ServletException, IOException {
@@ -58,11 +57,23 @@ private static final Logger logger = LoggerFactory.getLogger(MyReviewController.
 		// 업데이트 처리
 		service.reviewUpdateAction(request, response, model);
 		
-		 String pageNum = request.getParameter("pageNum");
-		 String pn = (pageNum == null || pageNum.isBlank()) ? "1" : pageNum;
+		// 현재 페이지 유지
+        String pageNum = request.getParameter("pageNum");
+        if (pageNum == null || pageNum.isBlank()) pageNum = "1";
 
-		 // 저장 후 목록으로
-		 return "redirect:/myReviewList.do?pageNum=" + pn;
+        // 방금 수정한 글 id (프로젝트마다 rv_id 또는 review_id 사용)
+        String reviewId = request.getParameter("rv_id");
+        if (reviewId == null || reviewId.isBlank()) {
+            reviewId = request.getParameter("review_id");
+        }
+
+        // 페이지 유지 + 수정한 글로 포커스(목록 JSP에서 focusId로 중앙정렬 처리)
+        if (reviewId != null && !reviewId.isBlank()) {
+            return "redirect:/myReviewList.do?pageNum=" + pageNum + "&focusId=" + reviewId;
+        } else {
+            // id를 못 받았다면 포커스 없이 페이지만 유지
+            return "redirect:/myReviewList.do?pageNum=" + pageNum;
+        }
 	}
 	
 	// 3. 게시글 삭제 버튼 클릭시 - 삭제 (안보임처리)
@@ -73,7 +84,10 @@ private static final Logger logger = LoggerFactory.getLogger(MyReviewController.
 		
 		service.reviewDeleteAction(request, response, model);
 		
-		return "myPage/myPageReview/myReviewDelete";	
+		String pageNum = request.getParameter("pageNum");
+        if (pageNum == null || pageNum.isBlank()) pageNum = "1";
+        return "redirect:/myReviewList.do?pageNum=" + pageNum;
+    
 	
 	}
 	
