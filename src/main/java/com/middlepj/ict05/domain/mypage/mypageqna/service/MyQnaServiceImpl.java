@@ -171,8 +171,7 @@ public class MyQnaServiceImpl implements MyQnaService{
 
 	    int total = dao.listCnt(cntMap);
 
-	    // Paging이 고정 pageSize를 쓰는 구조라면 여기서 맞춰주세요.
-	    int pageSize = new Paging("1").getPageSize(); // Paging에 getPageSize()가 없다면 상수(예: 10)로
+	    int pageSize = new Paging("1").getPageSize(); 
 	    int maxPage = Math.max(1, (int) Math.ceil(total / (double) pageSize));
 
 	    if (currentPage > maxPage) currentPage = maxPage;

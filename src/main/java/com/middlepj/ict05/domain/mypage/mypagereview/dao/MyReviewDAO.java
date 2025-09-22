@@ -16,7 +16,7 @@ public interface MyReviewDAO {
 	// 2. 수정버튼 클릭시 - 수정 페이지로 이동
 	public MyReviewDTO reviewDetail(int rv_id);
 		
-		// 2-1. 게시글 수정 (내용, 별점)
+	// 2-1. 게시글 수정 (내용, 별점)
 	public void updateReview(MyReviewDTO dto);
 	
 	// 3. 게시글 삭제 버튼 클릭시 - 삭제 (안보임처리)

@@ -257,7 +257,7 @@
 		        </c:if>
 			</div>
 			
-			<!-- 답변 수정  (공용 1개) -->
+			<!-- 답변 수정 -->
 			<form id="ansForm" action="${path}/myQnaAnswerUpdate.do" method="post" style="display:none;">
 				<input type="hidden" name="qa_id">
 				<input type="hidden" name="pageNum" value="${paging.currentPage}">

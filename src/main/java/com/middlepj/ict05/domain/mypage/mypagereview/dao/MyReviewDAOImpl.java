@@ -70,7 +70,7 @@ public class MyReviewDAOImpl implements MyReviewDAO{
 		return deleteCnt;
 	}
 
-	// 후시 수정 - 이미지
+	// 후기 수정 - 이미지
 	@Override
 	public MyReviewDTO reviewImg(MyReviewDTO dto) {
 	System.out.println("ReviewDAOImpl - reviewImg");

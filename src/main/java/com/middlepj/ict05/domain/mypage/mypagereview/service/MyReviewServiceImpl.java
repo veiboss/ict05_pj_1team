@@ -44,7 +44,7 @@ public class MyReviewServiceImpl implements MyReviewService{
 	    paging.setTotalCount(total);
 	    
 	    
-	    // 5-2단계. 게시글 목록 조회
+	    // 게시글 목록 조회
         int start = paging.getStartRow();
         int end = paging.getEndRow();
       
@@ -59,7 +59,7 @@ public class MyReviewServiceImpl implements MyReviewService{
 		
 	    System.out.println(list);
 	    																																																																
-	    // 6단계. jsp로 처리결과 전달
+	    // jsp로 처리결과 전달
 	    model.addAttribute("list", list);
 	    model.addAttribute("paging", paging);
 	    model.addAttribute("total", total);
@@ -78,7 +78,7 @@ public class MyReviewServiceImpl implements MyReviewService{
 		model.addAttribute("dto", dto);
 	}
 
-		// 2-1. 게시글 수정 (내용, 별점, 노출/비노출)
+	// 2-1. 게시글 수정 (내용, 별점, 노출/비노출)
 	@Override
 	public void reviewUpdateAction(HttpServletRequest request, HttpServletResponse reqResponse, Model model)
 			throws ServletException, IOException {
@@ -101,7 +101,6 @@ public class MyReviewServiceImpl implements MyReviewService{
 		System.out.println("ReviewServiceImpl - reviewDeleteAction()");
 		
 		int num = Integer.parseInt(request.getParameter("rv_id"));
-//		System.out.println("rv" + num); 
 		
 		int deleteCnt = dao.deleteReview(num);
 		

@@ -201,7 +201,7 @@ function delReview(id){
 			<!-- 저장 후 포커스 유지: 중앙 정렬 -->
 			<script>
 			document.addEventListener('DOMContentLoaded', function(){
-				// 컨트롤러에서 전달된 ?focusId=123 받기
+				// 컨트롤러에서 전달된 ?focusId= 받기
 			    const fid = new URLSearchParams(location.search).get('focusId');
 			    if (!fid) return;
 			
@@ -247,9 +247,6 @@ function delReview(id){
 			});
 			</script>
 					       
-				
-				
-			
 			<!-- 컨텐츠 끝 -->
 		
 			<!-- nav 시작 -->

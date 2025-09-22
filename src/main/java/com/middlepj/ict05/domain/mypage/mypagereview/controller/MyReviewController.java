@@ -61,13 +61,13 @@ private static final Logger logger = LoggerFactory.getLogger(MyReviewController.
         String pageNum = request.getParameter("pageNum");
         if (pageNum == null || pageNum.isBlank()) pageNum = "1";
 
-        // 방금 수정한 글 id (프로젝트마다 rv_id 또는 review_id 사용)
+        // 방금 수정한 글 id 
         String reviewId = request.getParameter("rv_id");
         if (reviewId == null || reviewId.isBlank()) {
             reviewId = request.getParameter("review_id");
         }
 
-        // 페이지 유지 + 수정한 글로 포커스(목록 JSP에서 focusId로 중앙정렬 처리)
+        // 페이지 유지 + 수정한 글로 포커스
         if (reviewId != null && !reviewId.isBlank()) {
             return "redirect:/myReviewList.do?pageNum=" + pageNum + "&focusId=" + reviewId;
         } else {

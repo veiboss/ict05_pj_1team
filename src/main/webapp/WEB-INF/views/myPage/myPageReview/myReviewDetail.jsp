@@ -1,4 +1,4 @@
-    <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ include file="../../common/setting.jsp" %>
 <!DOCTYPE html>
@@ -85,7 +85,7 @@
 					        </c:choose>
 						</div>
 					
-						<p class="fc-dark-gray">${dto.dr_product}</p><!-- 민진 -->
+						<p class="fc-dark-gray">${dto.dr_product}</p>
 					</a><!-- .item.pack-left -->
 				</div>
 				
@@ -131,8 +131,6 @@
 			   		
 			   		</fieldset>
 			    </form>
-			    
-				
 				
 			</div><!-- // #content -->
 			<!-- 컨텐츠 끝 -->

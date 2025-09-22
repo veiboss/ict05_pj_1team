@@ -76,12 +76,14 @@
      WHERE qa_id = #{qa_id}
 </update> 
 
+<!-- 답변 수정 -->
 <update id="updateAnswer" parameterType="com.middlepj.ict05.domain.mypage.mypageqna.dto.MyQnaDTO">
     UPDATE QNA_TB
        SET qa_answer = #{qa_answer}
      WHERE qa_id     = #{qa_id}
 </update>
 
+<!-- 답변 삭제 -->
 <update id="deleteAnswer" parameterType="int">
 	UPDATE QNA_TB
        SET qa_answer = NULL

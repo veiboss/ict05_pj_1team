@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.middlepj.ict05.domain.mypage.mypageqna.dto.MyQnaDTO;
 import com.middlepj.ict05.domain.mypage.mypageqna.service.MyQnaServiceImpl;
 
 @Controller
@@ -36,7 +35,7 @@ private static final Logger logger = LoggerFactory.getLogger(MyQnaController.cla
 	 
 	 }
 	
-	 // 수정버튼 클릭시 - 전문가 댓글 없을 시에 수정 페이지 이동
+	 // 수정버튼 클릭시 - 수정 페이지 이동
 	 @RequestMapping("/myQnaDetail.do")
 	 public String myQnaDetail(HttpServletRequest request, HttpServletResponse response, Model model) 
 			 throws ServletException, IOException { 
@@ -75,7 +74,7 @@ private static final Logger logger = LoggerFactory.getLogger(MyQnaController.cla
 		 String pageNum = request.getParameter("pageNum");
 		 if (pageNum == null || pageNum.isBlank()) pageNum = "1";
  
-		 // 삭제 후 빈 페이지 보정 (여기서 쓰세요)
+		 // 삭제 후 빈 페이지 보정 
 		 String newPage = service.recalcPageAfterDelete(request, response, model);
 		 if (newPage != null) pageNum = newPage;
 
@@ -115,8 +114,5 @@ private static final Logger logger = LoggerFactory.getLogger(MyQnaController.cla
 	    return "redirect:/myQnaList.do?pageNum=" + pageNum + "&focusId=" + qaId ; 
 	 
 	 } 
-	 
-	 
-	 
-	 
+ 
 }

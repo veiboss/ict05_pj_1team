@@ -70,7 +70,7 @@ public class MyQnaDAOImpl implements MyQnaDAO{
 		return deleteCnt;
 	}
 
-	//                          
+	// 답변 수정                      
 	@Override
 	public int updateAnswer(MyQnaDTO dto) {
 		System.out.println("MyQnaDAOImpl - updateAnswer()");
@@ -78,7 +78,7 @@ public class MyQnaDAOImpl implements MyQnaDAO{
 	
 	}
 
-	//
+	// 답변 삭제
 	@Override
 	public int deleteAnswer(int qa_id) {
 		   System.out.println("MyQnaDAOImpl - deleteAnswer()");
