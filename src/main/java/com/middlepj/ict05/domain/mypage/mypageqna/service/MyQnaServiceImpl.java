@@ -152,6 +152,7 @@ public class MyQnaServiceImpl implements MyQnaService{
 	}
 
 	// 삭제 후 빈페이지 보정 
+	@Override
 	public String recalcPageAfterDelete(HttpServletRequest request, HttpServletResponse response, Model model) 
 				throws ServletException, IOException {
 	    String pageNum = request.getParameter("pageNum");

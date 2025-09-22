@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../../common/setting.jsp" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -135,13 +135,13 @@ function delReview(id){
 								            <!-- 내용 -->
 											<p class="fc-dark-gray ">
 												<c:out value="${
-												      fn:replace(
-												        fn:replace(
-												          fn:replace(
-												            fn:replace(fn:replace(dto.rv_content,'<p>',''),'</p>',''),
-												          '<br/>',''),
-												        '<br />',''),
-												      '<br>','') }"/>
+											      fn:replace(
+											        fn:replace(
+											          fn:replace(
+											            fn:replace(fn:replace(dto.rv_content,'<p>',''),'</p>',''),
+											          '<br/>',''),
+											        '<br />',''),
+											      '<br>','') }"/>
 											</p>
 												
 											<!-- 버튼 (앵커 밖으로 분리) -->
