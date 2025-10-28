@@ -24,7 +24,7 @@ body				{color: var(--body-color); background: var(--body-bg-color)}
 @media (min-width: 768px) {
 	#wrap.frame			{
 		display: flex;
-		-webkit-flex-wrap: wrap; flex-wrap: wrap;
+		flex-wrap: wrap;
 		justify-content: space-between;
 		align-items: flex-start;
 	}
@@ -57,7 +57,7 @@ body				{color: var(--body-color); background: var(--body-bg-color)}
 #nav ul,
 #container,
 #content		{
-	-webkit-flex-direction: column; flex-direction: column;
+	flex-direction: column;
 }
 body:not(.opened-nav) #nav a,
 #footer			{
@@ -70,7 +70,6 @@ body:not(.opened-nav) #nav a,
 	align-items: center;
 }
 #header{
-	-webkit-justify-content: space-between;
 	justify-content: space-between;
 }
 #header,
@@ -144,7 +143,7 @@ body:not(.opened-nav) #header .btn.toggle-nav	{
 #header .user					{}
 #header .user > ul				{gap: 8px;}
 #header .user > ul > li			{position: relative; overflow: visible;}
-#header .user > ul > li > .btn	{width: 40px; height: 40px; font-size: smaller; overflow: hidden;}
+#header .user > ul > li > .btn	{height: 40px; font-size: smaller; overflow: hidden;}
 #header .user .toggle-cont		{overflow: hidden; position: absolute; top: 44px; right: 0; width: fit-content; min-width: 120px; height: fit-content; background: #fff;  border-radius: 4px; opacity: 0; z-index: -1;}
 #header .user .toggle-cont.active	{opacity: 1; z-index: 20;
 	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -175,7 +174,7 @@ body:not(.opened-nav) #header .btn.toggle-nav	{
 #footer			{padding: 24px 0 20px; gap: 12px; font-size: smaller; color: var(--greyDark);}
 @media (max-width: 767px) {
 	#footer		{gap: 4px;
-		-webkit-flex-direction: column; flex-direction: column;
+		flex-direction: column;
 	}
 }
 /* #container */

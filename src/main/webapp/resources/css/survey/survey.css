@@ -1,0 +1,50 @@
+@charset "UTF-8";
+/* ICT TeamONE _ 약을 쏘옥, 약속 _ 경욱 _ 20250905 */
+
+#content > .bg-gray {padding: 68px 16px 16px;}
+
+.article.card .card:not(.active){display:none;}
+.article-header + .pack-down-center {padding-top: 40px; padding-bottom: 40px;}
+.gap-20[class*="pack-"]	{gap: 40px;}
+.article.card .btn{ border-radius: 100px;}
+
+.article.card .select-options {height: fit-content;}
+.article.card .select-options:before{display: none;} 
+.article.card .select-options .btn{padding: 5px 16px; width: 50%; min-width: 200px; max-width: 70%;}
+.article.card .select-options .btn .fs-18{white-space: nowrap;}
+
+.article.card .input-text.large	{width: 50%; height: var(--large); line-height: var(--large); text-align:center; font-size: 18px; font-weight: bold;}
+
+.article.card .card > .button-area{margin: 0 auto; padding: 40px 0; width: 80%; text-align:center;}
+
+.btn.bdr-gray:has(input:checked){border: solid 1px var(--blue);}
+
+.article.card .button-area .btn.large {width: 50%; text-align: center;}
+
+#survey-container .article-type {padding: 20px 0; text-align: right;}
+
+#surveyCard{position: relative;}
+#question {font-size: 20px; font-weight: bold; line-height: 1.35; letter-spacing: -0.6px;}
+#progress {position: absolute; top: 72px; right: 0; font-weight: bold; color: var(--blue);}
+
+
+
+/* result */
+#content.result	{}
+#content.result .button-area {width: 80%; margin: 80px auto 40px;}
+.section.result {position: relative; padding: 50px 20px 40px; border-radius: 12px;}
+.section.result .badge-wrap	{position: absolute; top: -12px; right: calc(50% - 30px); min-width: 186px; font-size: 14px;}
+#comment {max-width: 60%;}
+.result .chart {position: relative; display: block;}
+.result .chart:not(.small) {margin: 0 auto;}
+.chart .point{position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); line-height: 1; letter-spacing: -1px;}
+/* 최근 설문 목록, 약 목록 공통 */
+.list-wrap {margin-top: 40px;}
+
+.data-list.toon a.pack-both{padding-left: 1rem; padding-right: 1rem;}
+ 
+/* ellipsis */
+.ellipsis		{display: block; overflow: hidden; text-overflow: ellipsis;
+	-webkit-line-clamp: 1; height: 24px;
+	display: -webkit-box; -webkit-box-orient: vertical;
+}

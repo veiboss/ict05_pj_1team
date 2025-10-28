@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.middlepj.ict05.domain.drug.dao.DrugDAO"><!-- namespace="패키지명.인터페이스" -->
+	
+	<!-- 검색 시 총 개수 -->
+	<select id="drugSearchCnt" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*) AS cnt
+		  FROM DRUG_TB
+		 WHERE DR_PRODUCT LIKE '%' || #{keyword} || '%'
+	</select>
+	
+	<!-- 검색 시 총 목록 -->
+	<select id="drugSearchList" parameterType="java.util.Map" resultType="com.middlepj.ict05.domain.drug.dto.DrugDTO">
+		SELECT * 
+  		  FROM (SELECT A.*
+             		 , rownum AS rn 
+          		  FROM (SELECT * 
+                 		  FROM DRUG_TB 
+                 		 WHERE DR_SHOW = 'Y'
+                 		   AND DR_PRODUCT LIKE '%' || #{keyword} || '%' 
+                 		 ORDER BY DR_ID DESC) A)  
+         WHERE rn BETWEEN #{start} AND #{end}	
+	</select>
+	
+	<!-- 영양제 개수 -->
+	<select id="drugCnt" resultType="int">
+		SELECT COUNT(*) AS cnt FROM DRUG_TB
+	</select>
+	
+	<!-- 영양제 목록 -->
+	<select id="drugList" parameterType="java.util.Map" resultType="com.middlepj.ict05.domain.drug.dto.DrugDTO"> 
+		SELECT * 
+  		  FROM (SELECT A.*
+             		 , rownum AS rn 
+          		  FROM (SELECT * 
+                 		  FROM DRUG_TB 
+                 		 WHERE DR_SHOW = 'Y' 
+                 		 ORDER BY DR_ID DESC) A)  
+         WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 영양제 중복 확인 -->
+	<select id="existCnt" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*)
+		  FROM MEMBER_DRUG_TB
+		 WHERE MB_ID = #{mb_id}
+		   AND DR_ID = #{dr_id}
+	</select>
+	
+	<!-- 영양제 정보 담기 -->
+	<select id="getDrugById" resultType="com.middlepj.ict05.domain.drug.dto.DrugDTO">
+		SELECT DR_ID, DR_PRODUCT, DR_MAIN_FUNCTION
+		  FROM DRUG_TB
+		 WHERE DR_ID = #{dr_id}
+	</select>
+	
+	<!-- 영양제 추가 -->
+	<insert id="addDrug" parameterType="java.util.Map">
+		INSERT INTO MEMBER_DRUG_TB (MBD_ID, 
+									MB_ID, 
+									DR_ID, 
+								    MBD_DRUG_NAME, 
+								    MBD_DRUG_EFFECT, 
+								    MBD_WRITER_ID, 
+								    MBD_REG_DATE)
+		 VALUES((SELECT NVL(max(MBD_ID)+1, 1)FROM MEMBER_DRUG_TB), 
+		 		#{mb_id}, 
+		 		#{dr_id}, 
+		 		#{mbd_drug_name}, 
+		 		#{mbd_drug_effect}, 
+		 		#{mb_id}, 
+		 		SYSDATE)
+		  
+	</insert>
+	
+	<!-- 영양제 상세 페이지 -->
+	<select id="getDrugDetail" parameterType="int" resultType="com.middlepj.ict05.domain.drug.dto.DrugDTO">
+		SELECT * FROM DRUG_TB
+		 WHERE DR_ID = #{dr_id}
+	</select>
+	
+	<!-- 후기 목록 -->
+	<select id="drugReviewList" parameterType="java.util.Map" resultType="com.middlepj.ict05.domain.drug.dto.DrugReviewDTO">
+		SELECT *
+		  FROM (
+		    SELECT A.*, ROWNUM AS rn
+		    FROM (
+		        SELECT R.rv_id,
+		               R.dr_id,
+		               R.mb_name,
+		               R.rv_content,
+		               R.rv_rating,
+		               R.rv_show,
+		               D.dr_product
+		          FROM REVIEW_TB R
+		          JOIN DRUG_TB D ON R.dr_id = D.dr_id
+		         WHERE R.rv_show = 'Y' and D.dr_id = #{dr_id}
+		         ORDER BY R.rv_id DESC
+		      ) A
+		 )
+		 WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+	
+	<!-- 후기 개수 -->
+	<select id="reviewCnt" resultType="int">
+		SELECT COUNT(*) 
+		  FROM REVIEW_TB 
+		 WHERE rv_show = 'Y' 
+		   AND dr_id = #{dr_id}
+	</select>
+	
+	<!-- 후기 등록 -->
+	<insert id="insertReview" parameterType="com.middlepj.ict05.domain.drug.dto.DrugReviewDTO">
+	    INSERT INTO REVIEW_TB (rv_id, mb_id, mb_name, dr_id, rv_rating, rv_writer_id, rv_content, rv_show, rv_reg_date)
+	    VALUES ((SELECT NVL(max(rv_id)+1, 1)FROM REVIEW_TB), #{mb_id}, #{mb_name, jdbcType=VARCHAR}, #{dr_id, jdbcType=DECIMAL}, #{rv_rating}, #{mb_id}, #{rv_content, jdbcType=VARCHAR}, 'Y', SYSDATE)
+	</insert>
+	
+	<!-- 후기 작성 - 약 이미지, 이름 가져오기 -->
+	<select id="reviewImg" parameterType="com.middlepj.ict05.domain.drug.dto.DrugReviewDTO" resultType="com.middlepj.ict05.domain.drug.dto.DrugReviewDTO">
+		SELECT dr_product
+			 , dr_sungsang
+	      FROM DRUG_TB
+	     WHERE dr_id = #{dr_id}
+	</select>
+	
+</mapper> 

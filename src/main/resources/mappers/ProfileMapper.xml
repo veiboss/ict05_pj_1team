@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.middlepj.ict05.domain.home.dao.ProfileDAO"><!-- namespace="패키지명.인터페이스" -->
+	<!-- 프로필 등록여부 체크 -->
+	<select id="checkProfile" parameterType="int" resultType="int">
+		SELECT count(*) as CNT
+		  FROM MEMBER_PROFILE_TB
+		 WHERE MB_ID =#{checkNo}
+	</select>
+	<!-- 프로필 등록 -->
+	<insert id="insertProfile" parameterType="com.middlepj.ict05.domain.home.dto.ProfileDTO">
+		INSERT INTO MEMBER_PROFILE_TB (MBP_ID
+									 , MB_ID
+									 , MBP_HEIGHT
+									 , MBP_WEIGHT
+									 , MBP_AGE
+									 , MBP_DISEASE
+									 , MBP_INT_PILL
+									 , MBP_GENDER
+									 , MBP_PILL_SCORE
+									 , MBP_WRITER_ID
+									 , MBP_REG_DATE)
+							VALUES((SELECT NVL(MAX(MBP_ID)+1, 1) FROM MEMBER_PROFILE_TB)
+									 , #{mb_id}
+									 , #{mbp_height}
+									 , #{mbp_weight}
+									 , #{mbp_age}
+									 , #{mbp_disease}
+									 , #{mbp_int_pill}
+									 , #{mbp_gender}
+									 , #{mbp_pill_score}
+									 , #{mbp_writer_id}
+									 , SYSDATE)
+	</insert>
+</mapper> 

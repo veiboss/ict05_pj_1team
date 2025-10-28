@@ -1,0 +1,37 @@
+package com.middlepj.ict05.domain.member.service;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.ui.Model;
+
+public interface MemberService {
+
+	// 로그인 처리 / 회원정보 인증(수정, 탈퇴)
+	public void loginAction(HttpServletRequest request, HttpServletResponse response, Model model)
+				throws ServletException, IOException;
+	
+	// 회원가입_아이디 중복확인
+	public void emailCheckAction(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException;
+	
+	// 회원가입처리
+	public void signUpAction(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException;	
+	
+	// 마이페이지 정보 제공
+	public void myProfileDetail(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException;
+	
+	// 최근 설문 목록 10명
+	public void recentSurveyList(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException;
+	
+	// 메인페이지 인기영양제 5개
+	public void top5Drugs(HttpServletRequest request, HttpServletResponse response, Model model)
+			throws ServletException, IOException;
+
+}

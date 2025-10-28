@@ -13,9 +13,9 @@
   --color1-light: rgba(124, 155, 254, 1);;
   --color1-light2: rgba(225, 232, 254, 1);;
 
-  /*yellow*/
-  --color2: rgba(254, 211, 73, 1);
-  --color2-dark: rgba(254, 194, 0, 1);
+  /*yellow > red */
+  --color2: #FCD8CD;
+  --color2-dark: #f9b29d;
 
   /*gray*/
   --gray: #b4bcc6;

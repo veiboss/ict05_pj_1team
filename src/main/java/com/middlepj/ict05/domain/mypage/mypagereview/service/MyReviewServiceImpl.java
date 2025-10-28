@@ -1,0 +1,111 @@
+package com.middlepj.ict05.domain.mypage.mypagereview.service;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
+
+import com.middlepj.ict05.common.Paging;
+import com.middlepj.ict05.domain.drug.dto.DrugReviewDTO;
+import com.middlepj.ict05.domain.mypage.mypagereview.dao.MyReviewDAOImpl;
+import com.middlepj.ict05.domain.mypage.mypagereview.dto.MyReviewDTO;
+
+@Service
+public class MyReviewServiceImpl implements MyReviewService{
+	
+	@Autowired
+	private MyReviewDAOImpl dao;
+
+	// 1. 게시글 목록
+	@Override
+	public void reviewListAction(HttpServletRequest request, HttpServletResponse reqResponse, Model model)
+			throws ServletException, IOException {
+		System.out.println("ReviewServiceImpl - reviewListAction()");
+		
+		String pageNum = request.getParameter("pageNum");
+		int mbId = (Integer)request.getSession().getAttribute("sessionID");
+		
+	     
+	    // 갯수 카운트
+		int currentPage = (pageNum == null || pageNum.equals("0")) ? 1 : Integer.parseInt(pageNum);
+	      Paging paging = new Paging(String.valueOf(currentPage));
+	      
+	    int total = dao.listCnt(mbId);
+	    
+	    System.out.println("total : " + total);
+	    paging.setTotalCount(total);
+	    
+	    
+	    // 게시글 목록 조회
+        int start = paging.getStartRow();
+        int end = paging.getEndRow();
+      
+        Map<String, Object> map =  new HashMap<String, Object>();
+        map.put("start", start);
+        map.put("end", end);
+        map.put("mbId", mbId);
+	      
+	      
+	    // 후기 목록 조회
+	    List<MyReviewDTO> list = dao.reviewList(map);
+		
+	    System.out.println(list);
+	    																																																																
+	    // jsp로 처리결과 전달
+	    model.addAttribute("list", list);
+	    model.addAttribute("paging", paging);
+	    model.addAttribute("total", total);
+	}
+
+	// 2. 수정버튼 클릭시 - 수정 페이지로 이동
+	@Override
+	public void reviewDetailAction(HttpServletRequest request, HttpServletResponse reqResponse, Model model)
+			throws ServletException, IOException {
+		System.out.println("ReviewServiceImpl - reviewDetailAction()");
+		
+		int rvId = Integer.parseInt(request.getParameter("rv_id"));
+		
+		MyReviewDTO dto = dao.reviewDetail(rvId);
+			
+		model.addAttribute("dto", dto);
+	}
+
+	// 2-1. 게시글 수정 (내용, 별점, 노출/비노출)
+	@Override
+	public void reviewUpdateAction(HttpServletRequest request, HttpServletResponse reqResponse, Model model)
+			throws ServletException, IOException {
+		System.out.println("ReviewServiceImpl - reviewUpdateAction()");
+		
+		MyReviewDTO dto = new MyReviewDTO();
+		dto.setRv_id(Integer.parseInt(request.getParameter("rv_id")));
+		dto.setRv_content(request.getParameter("rv_content"));
+		dto.setRv_show((String)request.getParameter("rv_show"));
+		dto.setRv_rating(Integer.parseInt(request.getParameter("rv_rating")));
+		
+		dao.updateReview(dto);
+		model.addAttribute("dto", dto);
+	}
+
+	// 3. 게시글 삭제 버튼 클릭시 - 삭제 (안보임처리)
+	@Override
+	public void reviewDeleteAction(HttpServletRequest request, HttpServletResponse reqResponse, Model model)
+			throws ServletException, IOException {
+		System.out.println("ReviewServiceImpl - reviewDeleteAction()");
+		
+		int num = Integer.parseInt(request.getParameter("rv_id"));
+		
+		int deleteCnt = dao.deleteReview(num);
+		
+		model.addAttribute("num", num);
+		model.addAttribute("deleteCnt", deleteCnt);
+	}
+	
+}

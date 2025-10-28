@@ -322,20 +322,6 @@ function toggleReply(btn) {
 	}
 }
 
-//showReplyForm
-function showReplyForm(btn) {
-	var myForm = $(btn).closest('.comment-set').find('.comment-form.reply'),
-		myInput = $(myForm).find('textarea'),
-		otherForm = $(btn).closest('li').siblings('li').find('.comment-form.reply'),
-		otherTxt = $(btn).closest('li').siblings('li').find('.btn.show-form');
-
-	$(btn).addClass('fc-000');
-	$(myForm).removeClass('hidden');
-	$(otherForm).addClass('hidden');
-	$(otherTxt).removeClass('fc-000');
-	$(myInput).focus();
-}
-
 //fileAdd
 function fileAdd() {
 	//File upload
@@ -504,15 +490,6 @@ function loadingActive(){
 function loadingInActive(){
 	$('.loading').removeClass('active');
 	$('body').removeClass('modal-opened');
-}
-
-// insertSticker
-function insertSticker(el){
-	var cloneTxt = $(el).children('img').clone(true);
-	var btnDel = "<button type='button' class='btn file-remove' onclick='stickerRemove(this);'><i class='ico delete'><span>삭제</span></i></button>";
-
-	$(".comment-form .for-sticker").html(cloneTxt);
-	$(".comment-form .for-sticker").append(btnDel);
 }
 
 

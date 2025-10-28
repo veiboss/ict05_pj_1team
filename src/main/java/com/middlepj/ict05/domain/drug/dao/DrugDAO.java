@@ -1,0 +1,46 @@
+package com.middlepj.ict05.domain.drug.dao;
+
+import java.util.List;
+import java.util.Map;
+
+import com.middlepj.ict05.domain.drug.dto.DrugDTO;
+import com.middlepj.ict05.domain.drug.dto.DrugReviewDTO;
+
+public interface DrugDAO {
+
+	// 검색
+	public int drugSearchCnt(Map<String, Object> map);
+	public List<DrugDTO> drugSearchList(Map<String, Object> map);
+	
+	// 영양제 목록
+	public List<DrugDTO> drugList(Map<String, Object> map);
+	
+	// 해당 영양제 개수 카운팅
+	public int drugCnt();
+	
+	// 영양제 추가 버튼 클릭 시 - 영양제 중복 확인
+	public int existCnt(Map<String, Object> map);
+	
+	// 영양제 정보 가져오기
+	public DrugDTO getDrugById(int dr_id);
+	
+	// 영양제 추가 버튼 클릭 시 - 내 영양제에 추가
+	public int addDrug(Map<String, Object> map);
+	
+	// 영양제 상세 처리
+	public DrugDTO getDrugDetail(int dr_id);
+	
+	// 후기 목록
+	public List<DrugReviewDTO> drugReviewList(Map<String, Object> map);
+	
+	// 후기 개수 
+	public int reviewCnt(int dr_id);
+	
+	// 후기 등록 처리
+	public int insertReview(DrugReviewDTO dto);
+	
+	// 후기 작성 - 약 이미지
+	public DrugReviewDTO reviewImg(DrugReviewDTO drdto);
+	
+}
+

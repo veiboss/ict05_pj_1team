@@ -1,0 +1,87 @@
+package com.middlepj.ict05.domain.admin.adminmember.controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.middlepj.ict05.domain.admin.adminmember.service.MemberAdminServiceImpl;
+
+@Controller
+public class MemberAdminController {
+
+	@Autowired
+	private MemberAdminServiceImpl service;
+	
+	private static final Logger logger = LoggerFactory.getLogger(MemberAdminController.class);
+
+	// 회원 목록
+	@RequestMapping("/memberList.ad")
+	public String memberList(HttpServletRequest request, HttpServletResponse response, Model model) 
+			throws ServletException, IOException {
+		logger.info("<<< url ==>  /memberList.ad >>>");
+		
+		service.memberListAction(request, response, model);
+		
+		return "admin_member/memberList";
+	}
+	
+	// 회원 등록
+	@RequestMapping("/memberInsert.ad")
+	public String memberInsert(HttpServletRequest request, HttpServletResponse response, Model model) 
+			throws ServletException, IOException {
+		logger.info("<<< url ==>  /memberList.ad >>>");
+	
+		return "admin_member/memberInsert";
+	}
+	
+	// 회원 등록 처리 => 등록
+	@RequestMapping("/memberInsertAction.ad")
+	public String memberInsertAction(HttpServletRequest request, HttpServletResponse response, Model model) 
+			throws ServletException, IOException{
+		logger.info("<<< url ==> memberInsertAction >>>");
+		
+		service.memberAddAction(request, response, model);
+		
+		return "admin_member/memberInsertAction";
+	}
+	
+	// 회원 상세
+	@RequestMapping("/memberDetailAction.ad")
+	public String member_detailAction(HttpServletRequest request, HttpServletResponse response, Model model) 
+			throws ServletException, IOException{
+		logger.info("<<< url ==> member_detailAction >>>");
+		
+		service.memberDetailAction(request, response, model);
+		return "admin_member/memberDetailAction";
+	}
+	
+	// 회원 수정
+	@RequestMapping("/memberUpdateAction.ad")
+	public String member_updateAction(HttpServletRequest request, HttpServletResponse response, Model model) 
+			throws ServletException, IOException{
+		logger.info("<<< url ==> member_detailAction >>>");
+		
+		service.memberUpdateAction(request, response, model);
+		return "admin_member/memberUpdateAction";
+	}
+
+	// 회원 삭제
+	@RequestMapping("/memberDeleteAction.ad")
+	public String memberDeleteAction(HttpServletRequest request, HttpServletResponse response, Model model) 
+			throws ServletException, IOException {
+		logger.info("<<< url ==>  /memberDeleteAction.ad >>>");
+		
+		service.memberDeleteAction(request, response, model);
+		
+		return "admin_member/memberDelete";
+	}
+}

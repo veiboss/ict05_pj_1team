@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.middlepj.ict05.domain.faq.dao.FaqDAO">
+
+	<!-- FAQ 회원 목록 -->
+	<select id="userFaqlist" parameterType="map" resultType="com.middlepj.ict05.domain.faq.dto.FaqUserDTO">
+	    <![CDATA[
+		  SELECT *
+		  FROM (
+		    SELECT A.*, ROWNUM rn
+		    FROM (
+		      SELECT *
+		      FROM FAQ_TB
+		      WHERE fa_show = 'Y'
+		      ORDER BY fa_id DESC
+		    ) A
+		    WHERE ROWNUM <= #{end}
+		  )
+		  WHERE rn >= #{start}
+	   ]]>
+	</select>
+
+	<!-- 회원 목록 갯수 구하기 -->
+	<select id="userFaqCount" resultType="int">
+		SELECT COUNT(*) FROM FAQ_TB WHERE fa_show = 'Y'
+	</select>
+
+	<!-- FAQ 관리자 목록 -->
+	<select id="faqlist" parameterType="map" resultType="com.middlepj.ict05.domain.faq.dto.FaqDTO">
+	    <![CDATA[
+		  SELECT *
+		  FROM (
+		    SELECT A.*, ROWNUM rn
+		    FROM (
+		      SELECT *
+		      FROM FAQ_TB
+		      ORDER BY fa_id DESC
+		    ) A
+		    WHERE ROWNUM <= #{end}
+		  )
+		  WHERE rn >= #{start}
+	   ]]>
+	</select>
+	
+	<!-- 관리자 목록 갯수 구하기 -->
+	<select id="faqCount" resultType="int">
+		SELECT COUNT(*) FROM FAQ_TB WHERE fa_show = 'Y'
+	</select>
+	
+	<!-- FAQ 글등록 -->
+	<insert id="insertFaq" parameterType="com.middlepj.ict05.domain.faq.dto.FaqDTO">
+	    INSERT INTO faq_TB (
+	    fa_id,
+	    fa_writer_id,
+	    fa_title, 
+	    fa_content, 
+	    fa_show, 
+	    fa_writer_name, 
+	    fa_reg_date)
+	    VALUES (FAQ_SEQ.NEXTVAL, #{fa_writer_id}, #{fa_title}, #{fa_content}, #{fa_show, jdbcType=CHAR}, #{fa_writer_name}, SYSDATE)
+	</insert>
+
+
+	<!-- 검색 카운터 -->
+	<select id="faqSearchCount" parameterType="java.util.Map" resultType="int">
+		SELECT COUNT(*) AS cnt
+	    FROM FAQ_TB
+	    WHERE FA_TITLE LIKE '%' || #{keyword} || '%'
+	</select>
+	
+	<!-- 검색 리스트 -->
+	<select id="faqSearchList" parameterType="java.util.Map" resultType="com.middlepj.ict05.domain.faq.dto.FaqDTO">
+	    SELECT * 
+	    FROM (SELECT A.*, rownum AS rn 
+	          FROM (SELECT * 
+	                FROM FAQ_TB 
+	                WHERE FA_SHOW = 'Y'
+	                AND FA_TITLE LIKE '%' || #{keyword} || '%' 
+	                ORDER BY FA_ID DESC) A)  
+	    WHERE rn BETWEEN #{start} AND #{end}
+	</select>
+
+	<!-- FAQ 상세 -->
+	<select id="faqDetail" parameterType="int" resultType="com.middlepj.ict05.domain.faq.dto.FaqDTO">
+		SELECT FA_ID,
+               FA_TITLE,
+               FA_CONTENT,
+               FA_SHOW,
+               FA_WRITER_NAME,
+               FA_REG_DATE
+          FROM FAQ_TB 
+         WHERE FA_ID = #{fa_id}
+	</select>
+	
+	<!-- FAQ 수정 -->
+	<update id="updateFaq" parameterType="com.middlepj.ict05.domain.faq.dto.FaqDTO">
+		UPDATE FAQ_TB
+		   SET fa_writer_name = #{fa_writer_name},
+		   	   fa_show = #{fa_show},
+		   	   fa_title = #{fa_title},
+		   	   fa_content = #{fa_content}
+		 WHERE fa_id = #{fa_id}
+	</update>
+
+</mapper>

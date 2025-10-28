@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.middlepj.ict05.domain.mypage.mypageqna.dao.MyQnaDAO">
+	
+<!-- qna 상세 목록  -->
+<select id="qnaList" parameterType="java.util.Map" resultType="com.middlepj.ict05.domain.mypage.mypageqna.dto.MyQnaDTO">
+	SELECT *
+      FROM (
+         SELECT A.*, ROWNUM rn
+      	   FROM (
+        	  SELECT *
+        		FROM QNA_TB
+               WHERE qa_show = 'Y'
+        
+        	<if test="isExpert == 0">
+          		AND qa_writer_id = #{mbId}
+        	</if>
+        
+        	<if test="isExpert == 1">
+                  AND (
+                         qa_writer_id = #{mbId}
+                      OR (mb_id = #{mbId} AND qa_answer IS NOT NULL)
+          		       )
+        	</if>
+        
+        		 ORDER BY qa_reg_date DESC
+      			) A
+      	WHERE ROWNUM &lt;= #{end}
+    	)
+      WHERE rn &gt;= #{start}
+</select>
+
+
+<!-- 게시글 갯수 구하기 -->
+<select id="listCnt" parameterType="java.util.Map" resultType="int" >
+	SELECT COUNT(*) AS cnt
+      FROM QNA_TB
+     WHERE qa_show = 'Y'
+    
+      <if test="isExpert eq 0">
+        AND qa_writer_id = #{mbId}
+      </if>
+    
+      <if test="isExpert eq 1">
+        AND (
+             qa_writer_id = #{mbId}
+             OR (mb_id = #{mbId} AND qa_answer IS NOT NULL)
+             )
+      </if>
+</select>
+
+<!-- qna 상세 화면 -->
+<select id="qnaDetail" parameterType="int" resultType="com.middlepj.ict05.domain.mypage.mypageqna.dto.MyQnaDTO">
+	SELECT * FROM QNA_TB
+	WHERE qa_id = #{qa_id}
+</select>
+
+<!-- qna 수정 -->
+<update id="updateQna" parameterType="com.middlepj.ict05.domain.mypage.mypageqna.dto.MyQnaDTO">
+	UPDATE QNA_TB
+	   SET qa_title = #{qa_title}
+	   	 , qa_content =#{qa_content}
+	   	 , qa_private =#{qa_private}
+	 WHERE qa_id = #{qa_id}
+</update>
+
+<!-- qna 삭제 -->
+<update id="deleteQna" parameterType="int">
+	UPDATE QNA_TB
+       SET qa_show = 'N'
+         , qa_answer_date = NULL
+     WHERE qa_id = #{qa_id}
+</update> 
+
+<!-- 답변 수정 -->
+<update id="updateAnswer" parameterType="com.middlepj.ict05.domain.mypage.mypageqna.dto.MyQnaDTO">
+    UPDATE QNA_TB
+       SET qa_answer = #{qa_answer}
+     WHERE qa_id     = #{qa_id}
+</update>
+
+<!-- 답변 삭제 -->
+<update id="deleteAnswer" parameterType="int">
+	UPDATE QNA_TB
+       SET qa_answer = NULL
+     WHERE qa_id = #{qa_id}
+</update>
+
+
+</mapper> 

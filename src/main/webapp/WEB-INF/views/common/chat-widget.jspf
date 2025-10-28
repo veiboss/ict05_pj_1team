@@ -1,0 +1,278 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="setting.jsp" %>
+
+<!-- =========================================================================
+     (옵션) 플로팅 버튼: 화면 우측 하단 등에서 챗봇 팝업을 여는 트리거
+     - 현재는 주석 처리. 필요 시 주석 해제 후 cwOpen() 연결
+     ========================================================================= -->
+<%-- 
+<div id="cw-fab" title="챗봇 열기" onclick="cwOpen()">
+  <img src="${path}/resources/images/chabot.svg"
+     alt="챗봇"
+     style="width:32px; height:32px;"/>
+</div>
+--%>
+
+<!-- =========================================================================
+     챗봇 팝업 영역
+     - aria-hidden 으로 접근성 제어
+     - cwOpen()/cwClose()로 표시/숨김
+     ========================================================================= -->
+<div id="cw-popup" aria-hidden="true">
+	<!-- 헤더: 타이틀 + 닫기 버튼 -->
+	<div id="cw-header">
+		<span class="fs-16">도움이 필요하신가요?</span>
+		<button type="button" id="cw-close" class="btn" onclick="cwClose()">
+			<i class="ico close white"><span>닫기</span></i>
+		</button>
+	</div>
+	
+	<!-- 추천 질문 토글 바: 클릭 시 추천질문 박스를 펼침/접음 -->
+	<button id="cw-sugs-toggle" type="button" class="btn cw-toggle" onclick="cwToggleSuggestions()">
+		<span class="cw-toggle-title">자주 묻는 질문이에요!</span>
+		<span id="cw-toggle-caret" class="cw-caret"><i class="ico accordion"></i></span>
+	</button>
+	
+	<!-- 내 약 상호작용 확인 버튼: 서버의 /chat/check-interactions 호출 -->
+	<button type="button" onclick="checkMyInteractions()">내 약 상호작용 확인</button>
+
+	<script>
+	/**
+	 * [내 약 상호작용 확인]
+	 * - /chat/check-interactions GET 호출
+	 * - 로그인 필요 시 알림
+	 * - 성공 시 summary 텍스트를 대화창에 추가
+	 */
+	async function checkMyInteractions(){
+	  try{
+	    const res = await fetch('<c:url value="/chat/check-interactions"/>');
+	    const data = await res.json();
+	    if (data.error && data.code === 'LOGIN_REQUIRED') {
+	      alert('로그인이 필요합니다.');
+	      return;
+	    }
+	    cwAppend('bot', data.summary || '(결과 없음)');
+	  }catch(e){
+	    cwAppend('system', '(상호작용 확인 실패)');
+	  }
+	}
+	</script>
+
+	<!-- 추천 질문 영역: 기본은 display:none → 토글 시 로드 -->
+	<div id="cw-sugs" class="cw-sugs" style="display:none;">로딩 중…</div>
+
+	<!-- 메시지 표시 영역: 사용자/봇/시스템 메시지가 쌓임 -->
+	<div id="cw-body" class="cw-body"></div>
+
+	<!-- 입력창: 엔터/버튼으로 cwSend() 실행 -->
+	<div id="cw-input">
+		<input id="cw-msg" type="text" placeholder="질문을 입력하세요"
+			onkeydown="if(event.key==='Enter')cwSend()"/>
+		<button type="button" onclick="cwSend()" class="btn blue">보내기</button>
+	</div>
+</div>
+
+<script>
+  // 전역 상태 플래그
+  let cwBusy=false;   // 요청 중복 방지
+  let cwGreeted=false; // 인사말 1회 출력 제어
+
+  /**
+   * [팝업 열기]
+   * - display:flex로 전환, 포커스 이동, 인사말 1회 표시
+   * - 추천질문은 기본 접힘 상태로
+   */
+  function cwOpen(){
+    const p = document.getElementById('cw-popup');
+    p.style.display = 'flex';
+    p.style.flexDirection = 'column';
+    p.setAttribute('aria-hidden','false');
+
+    // 최초 1회 인사말
+    if(!cwGreeted){
+      cwAppend('bot', '안녕하세요 챗봇 AI 입니다! 무엇이 궁금하실까요?');
+      cwGreeted = true;
+    }
+
+    // 추천질문: 기본은 닫힘
+    const sugs = document.getElementById('cw-sugs');
+    sugs.style.display = 'none';
+    const caret = document.getElementById('cw-toggle-caret');
+    if (caret) caret.classList.remove('open');
+
+    // 입력창 포커스 및 스크롤 하단 고정
+    setTimeout(()=>{
+      const input = document.getElementById('cw-msg');
+      if (input) input.focus();
+      cwScrollBottom();
+    },0);
+  }
+
+  /**
+   * [팝업 닫기]
+   * - display:none + aria-hidden 처리
+   */
+  function cwClose(){
+    const p = document.getElementById('cw-popup');
+    p.style.display = 'none';
+    p.setAttribute('aria-hidden','true');
+  }
+
+  /**
+   * [추천질문 토글]
+   * - 펼칠 때 서버에서 목록 로드(cwLoadSuggestions)
+   * - caret 아이콘 open 클래스 토글
+   */
+  async function cwToggleSuggestions(){
+    const sugs = document.getElementById('cw-sugs');
+    const caret = document.getElementById('cw-toggle-caret');
+    if (sugs.style.display === 'none') {
+      sugs.style.display = 'block';
+      if (caret) caret.classList.add('open');
+      cwLoadSuggestions(50); // 펼칠 때 넉넉히 로드
+    } else {
+      sugs.style.display = 'none';
+      if (caret) caret.classList.remove('open');
+    }
+  }
+
+  /**
+   * [추천질문 로드]
+   * - /chat/suggestions?limit=... 호출
+   * - 버튼 리스트로 렌더링 (클릭 시 질문 전송)
+   */
+  async function cwLoadSuggestions(limit=6){
+    const box = document.getElementById('cw-sugs');
+    try{
+      const base = '<c:url value="/chat/suggestions"/>';
+      const res = await fetch(base + '?limit=' + encodeURIComponent(limit), {
+        headers:{'Accept':'application/json; charset=UTF-8'}
+      });
+      const data = await res.json();
+
+      // 초기화 후 렌더링
+      box.innerHTML = '';
+      (data.items || []).forEach(title=>{
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.textContent = title;
+        // 클릭 시 입력창에 세팅 후 전송
+        b.onclick = ()=>{
+          document.getElementById('cw-msg').value = title;
+          cwSend();
+        };
+        box.appendChild(b);
+      });
+
+      if ((data.items||[]).length === 0) box.textContent = '(추천 없음)';
+    }catch(e){
+      box.textContent = '(추천 로딩 실패)';
+    }
+  }
+
+  /**
+   * [메시지 전송]
+   * - 중복 전송 방지(cwBusy)
+   * - 입력값 검증 → 사용자 메시지 렌더 → 타이핑 표시
+   * - /chat/api POST → 응답 메시지 렌더
+   */
+  async function cwSend(){
+    if(cwBusy) return;
+    const input = document.getElementById('cw-msg');
+    const q = input.value.trim();
+    if(!q) return;
+
+    cwBusy = true;
+    cwAppend('me', q);     // 사용자 메시지 표시
+    input.value = '';      // 입력창 비우기
+    cwTyping(true);        // 타이핑 인디케이터 ON
+
+    try{
+      const res = await fetch('<c:url value="/chat/api"/>', {
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json; charset=UTF-8',
+          'Accept':'application/json; charset=UTF-8'
+        },
+        body: JSON.stringify({ message: q })
+      });
+      const data = await res.json();
+
+      cwTyping(false);                       // 타이핑 인디케이터 OFF
+      cwAppend('bot', data.reply || '(응답 없음)'); // 봇 응답 표시
+      cwScrollBottom();
+    }catch(e){
+      cwTyping(false);
+      cwAppend('system', '(네트워크 오류)');
+      cwScrollBottom();
+    }finally{
+      cwBusy = false;
+    }
+  }
+
+  /**
+   * [대화 리셋]
+   * - 서버 세션 히스토리 초기화(/chat/reset)
+   * - 프런트 메시지 영역도 비우고 시스템 메시지로 알림
+   */
+  async function cwReset(){
+    await fetch('<c:url value="/chat/reset"/>', {method:'POST'});
+    const body = document.getElementById('cw-body');
+    body.textContent = '';
+    cwAppend('system','대화를 새로 시작합니다.');
+  }
+
+  /**
+   * [메시지 DOM 추가]
+   * - who: 'me'|'bot'|'system' (한글 '나'/'봇'도 허용)
+   * - 클래스에 따라 스타일 분기 (cw-msg user|bot|system)
+   */
+  function cwAppend(who, text){
+    const body = document.getElementById('cw-body');
+
+    const div = document.createElement('div');
+    if (who === '나' || who === 'me') {
+      div.className = 'cw-msg user';
+      div.textContent = '[나] ' + text;
+    } else if (who === '봇' || who === 'bot') {
+      div.className = 'cw-msg bot';
+      div.textContent = '[봇] ' + text;
+    } else {
+      div.className = 'cw-msg system';
+      div.textContent = '[시스템] ' + text;
+    }
+
+    body.appendChild(div);
+    cwScrollBottom();
+  }
+
+  /**
+   * [타이핑 인디케이터]
+   * - on: '…응답 작성 중…' 시스템 메시지 추가
+   * - off: 해당 DOM 제거
+   */
+  function cwTyping(on){
+    const body = document.getElementById('cw-body');
+    if(on){
+      const t = document.createElement('div');
+      t.id = 'cw-typing';
+      t.className = 'cw-msg system';
+      t.textContent = '…응답 작성 중…';
+      body.appendChild(t);
+      cwScrollBottom();
+    }else{
+      const t = document.getElementById('cw-typing');
+      if(t) t.remove();
+    }
+  }
+
+  /**
+   * [스크롤 하단 고정]
+   * - 새 메시지 추가 시 항상 최신 위치를 보이도록 처리
+   */
+  function cwScrollBottom(){
+    const body = document.getElementById('cw-body');
+    body.scrollTop = body.scrollHeight;
+  }
+</script>

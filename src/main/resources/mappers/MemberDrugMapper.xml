@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.middlepj.ict05.chatbot.dao.MemberDrugMapper">
+
+  <resultMap id="MemberDrugMap" type="com.middlepj.ict05.chatbot.dto.MemberDrug">
+    <id     property="mbdId"     column="MBD_ID"/>
+    <result property="mbId"      column="MB_ID"/>
+    <result property="drId"      column="DR_ID"/>
+    <result property="drugName"  column="MBD_DRUG_NAME"/>
+    <!-- CLOB → String 매핑 -->
+    <result property="drugEffect" column="MBD_DRUG_EFFECT" jdbcType="CLOB"/>
+    <result property="writerId"   column="MBD_WRITER_ID"/>
+    <result property="regDate"    column="MBD_REG_DATE"/>
+    <result property="modifyId"   column="MBD_MODIFY_ID"/>
+    <result property="modifyDate" column="MBD_MODIFY_DATE"/>
+  </resultMap>
+
+  <select id="findByMemberId" resultMap="MemberDrugMap">
+    SELECT
+      MBD_ID,
+      MB_ID,
+      DR_ID,
+      MBD_DRUG_NAME,
+      MBD_DRUG_EFFECT,
+      MBD_WRITER_ID,
+      MBD_REG_DATE,
+      MBD_MODIFY_ID,
+      MBD_MODIFY_DATE
+    FROM MEMBER_DRUG_TB
+    WHERE MB_ID = #{memberId}
+    ORDER BY MBD_ID DESC
+  </select>
+
+</mapper>
